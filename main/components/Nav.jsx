@@ -19,7 +19,7 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 w-full flex-between p-3 z-50 border-b border-gray-100 orange_gradient_nav">
+    <nav className="fixed top-0 w-full flex-between p-3 z-50 border-b border-orange-100 bg-white shadow-full">
       <Link href="/" className="flex gap-2 flex-center">
         <Image
           src="/assets/images/comparator-logo.png"

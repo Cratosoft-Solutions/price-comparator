@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-
+import { paseStoreNumber } from '@utils/functions';
 const scrapCompanyConfiguration = [
          {
             id: 1,
@@ -1778,7 +1778,7 @@ export const GET = async (request, { params }) => {
                     //Se hace el reemplazo de todas las coincidencias por expresion regular, sirve para versiones anteriores de exploradores
                     //en el caso de walmart se envia 2 veces el parametro en la url
                     urlToScrap = (company.url).replace(/SEARCH_TEXT/g, params.text);
-                    console.log('Control JM - URL ', urlToScrap);
+                    //console.log('Control JM - URL ', urlToScrap);
                     break;
                 default:
                     urlToScrap = '';
@@ -1887,6 +1887,7 @@ export const GET = async (request, { params }) => {
                             }
                         });
                     }
+                        
                         temProduct[field.fieldName] = fieldValue;
                     })
                     currentProducts.push(temProduct);
@@ -1895,6 +1896,12 @@ export const GET = async (request, { params }) => {
             }, company, urlToScrap)
 
             await browser.close();
+
+            if(productList.currentProducts.length >0){
+                productList.currentProducts.forEach((element, index) => {
+                    productList.currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice)*1;
+                });
+            }
 
             products.push({
                 companyName: company.name,
@@ -1905,10 +1912,10 @@ export const GET = async (request, { params }) => {
             //console.log(productList);
         };
         const t1 = performance.now();
-        console.log("Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company );
+        //console.log("Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company );
         return new Response(JSON.stringify(products[0]), { status: 200 })
     } catch (error) {
-        console.log(error);
+        //console.log(error);
         return new Response("Failed to fetch prompts created by user", { status: 500 })
     }
 }

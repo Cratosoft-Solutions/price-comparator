@@ -1,10 +1,10 @@
 import React from 'react'
 import MobileProductCard from './MobileProductCard'
 
-const MobileHorizontalCardList = ({ productList}) => {
+const MobileHorizontalCardList = ({ mergedProducts}) => {
   return (
     <>
-        {productList.map((product)=>(
+        {mergedProducts.map((product)=>(
             <MobileProductCard product={product}></MobileProductCard>
         ))}
     </>
