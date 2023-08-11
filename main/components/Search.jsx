@@ -9,14 +9,15 @@ import { SEARCH_DEFAULT_OPTIONS } from '@utils/constants';
 const Search = () => {
   const [storeFullData, setStoreFullData] = useState([]);
   const [storeFullProducts, setStoreFullProducts] = useState([]);
+  const [storeFullMatchedProducts, setStoreFullMatchedProducts] = useState([]);
+  const [textSearchArray, setTextSearchArray] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchConfigOptions, setSearchConfigOptions] = useState(SEARCH_DEFAULT_OPTIONS);
 
+
   const setRetrievedData = (dataToSet) =>{
-    dataToSet.forEach(element => {
-      setStoreFullData(oldArray => [...oldArray, element]);
-      mergeStoreProducts(element.companyProducts);
-    });    
+      setStoreFullData(oldArray => [...oldArray, dataToSet]);
+      mergeStoreProducts(dataToSet.companyProducts);   
   }
 
   const mergeStoreProducts = (productArray)=>{
@@ -35,15 +36,26 @@ const Search = () => {
         setSearchConfigOptions({...searchConfigOptions, GROUPBYSTORE:false});   
         break;  
       case "MINTOMAX":
-        configOptions.MINTOMAX = true;
+        setSearchConfigOptions({...searchConfigOptions, MINTOMAX:true});   
         break;
       case "MAXTOMIN":
-        configOptions.MAXTOMIN = true;
+        setSearchConfigOptions({...searchConfigOptions, MAXTOMIN:true});   
         break;
       case "MATCH":
-        configOptions.MATCH = true;      
+        const filteredFinal = [];
+        storeFullProducts.forEach(element=>{
+            const filtered = element.productName.toUpperCase().split(" ").filter(item => textSearchArray.includes(item));
+            if(filtered.length > 0)
+              filteredFinal.push(element);
+        })
+        setStoreFullMatchedProducts(filteredFinal);
+        setSearchConfigOptions({...searchConfigOptions, MATCH:!searchConfigOptions.MATCH});   
         break;
     }
+  }
+
+  const setTextArray =(searchText)=>{
+    setTextSearchArray(oldArray => oldArray.concat(searchText.toUpperCase().split(" ")));
   }
 
   return (
@@ -57,11 +69,12 @@ const Search = () => {
             onSetData={setRetrievedData}
             onRestartData={setStoreFullData}
             onSetLoading={setLoading}
+            onTextEntered={setTextArray}
           />
         </div>
       </section>
       {storeFullData.length > 0 && <SearchOptions searchConfigOptions={searchConfigOptions} onSetSearchConfig={onSetSearchConfig}/>}
-      <ProductList searchConfigOptions={searchConfigOptions} storeFullData={storeFullData} mergedProducts={storeFullProducts.sort(comparePrice("formatedPrice"))} loading={loading} />
+      <ProductList searchConfigOptions={searchConfigOptions} storeFullData={storeFullData} mergedProducts={(searchConfigOptions.MATCH?storeFullMatchedProducts:storeFullProducts).sort(comparePrice("formatedPrice"))} loading={loading} />
     </>
   );
 }

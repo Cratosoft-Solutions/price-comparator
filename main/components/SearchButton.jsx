@@ -2,34 +2,31 @@
 
 import { useState } from "react";
 
-  const SearchButton = ({onSetData, onSetLoading, onRestartData}) => {
+  const SearchButton = ({onTextEntered, onSetData, onSetLoading, onRestartData}) => {
   const [serchText, setSearchText] = useState('');
   const restartFields = (value) =>{
-    setSearchText(value)
+    onTextEntered(value);
+    setSearchText(value);
     onRestartData([]);
   }
 
   const fetchProducts = async (e) => {
     e.preventDefault();
      onSetLoading(true);
-     //for (let index = 1; index < 4; index++) {  
-       
-     const [data1, data2, data3, data4, data5, data6] = await Promise.all([
-       fetch(`/api/search/${"1"}/${serchText.replace(" ", "+")}`).then(r => r.json()),
-       fetch(`/api/search/${"2"}/${serchText.replace(" ", "+")}`).then(r => r.json()),
-       fetch(`/api/search/${"5"}/${serchText.replace(" ", "+")}`).then(r => r.json()),
-       fetch(`/api/search/${"4"}/${serchText.replace(" ", "+")}`).then(r => r.json()),
-       fetch(`/api/search/${"6"}/${serchText.replace(" ", "+")}`).then(r => r.json()),
-       fetch(`/api/search/${"7"}/${serchText.replace(" ", "+")}`).then(r => r.json()),
-       /*fetch(`/api/search/${"5"}/${serchText.replace(" ", "+")}`).then(r => r.json()),
-       fetch(`/api/search/${"6"}/${serchText.replace(" ", "+")}`).then(r => r.json()),
-       fetch(`/api/search/${"7"}/${serchText.replace(" ", "+")}`).then(r => r.json()),
-       fetch(`/api/search/${"8"}/${serchText.replace(" ", "+")}`).then(r => r.json()),
-       fetch(`/api/search/${"9"}/${serchText.replace(" ", "+")}`).then(r => r.json()),
-     fetch(`/api/search/${"10"}/${serchText.replace(" ", "+")}`).then(r => r.json())*/]);
-       onSetData([data1, data2, data3, data4, data5, data6]);
-     //}
-     onSetLoading(false);
+     for (let index = 1; index < 27; index++) {
+        fetch(`/api/search/${index}/${serchText.replace(" ", "+")}`).then(r => r.json()).then((data)=> processIndividualResponse(data)).catch((error)=>processIndividualError(error));
+     }
+
+}
+
+const processIndividualResponse =(response)=>{
+  onSetLoading(false);
+  console.log(response);
+  onSetData(response);
+}
+
+const processIndividualError =(error)=>{
+  console.log(error);
 }
 
   return (

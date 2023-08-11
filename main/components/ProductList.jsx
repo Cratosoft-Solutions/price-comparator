@@ -14,7 +14,7 @@ const ProductList = ({searchConfigOptions, mergedProducts, storeFullData, loadin
                 {loading && <HorizontalCardListLoading/>}
         </div>
         <div className='container mx-auto block lg:hidden '>
-          <MobileHorizontalCardList  mergedProducts={mergedProducts} />
+          <MobileHorizontalCardList searchConfigOptions={searchConfigOptions} storeFullData={storeFullData}mergedProducts={mergedProducts} />
 
         {loading && <HorizontalCardListLoading/>}
     </div>
