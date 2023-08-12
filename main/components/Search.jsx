@@ -2,7 +2,7 @@
 import React, {useState} from 'react'
 import SearchButton from './SearchButton';
 import ProductList from './ProductList';
-import { comparePrice } from '@utils/functions';
+import { comparePrice, filterArrayBySearchText } from '@utils/functions';
 import SearchOptions from './SearchOptions';
 import { SEARCH_DEFAULT_OPTIONS } from '@utils/constants';
 
@@ -13,7 +13,6 @@ const Search = () => {
   const [textSearchArray, setTextSearchArray] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchConfigOptions, setSearchConfigOptions] = useState(SEARCH_DEFAULT_OPTIONS);
-
 
   const setRetrievedData = (dataToSet) =>{
       setStoreFullData(oldArray => [...oldArray, dataToSet]);
@@ -27,27 +26,15 @@ const Search = () => {
   }
 
   const onSetSearchConfig = (configOption)=>{
-    let configOptions = SEARCH_DEFAULT_OPTIONS;
     switch (configOption) {
-      case "GROUPBYSTORE":
-        setSearchConfigOptions({...searchConfigOptions, GROUPBYSTORE:true});   
-        break;
-      case "NOTGROUPBYSTORE":
-        setSearchConfigOptions({...searchConfigOptions, GROUPBYSTORE:false});   
-        break;  
       case "MINTOMAX":
-        setSearchConfigOptions({...searchConfigOptions, MINTOMAX:true});   
+        setSearchConfigOptions({...searchConfigOptions, MINTOMAX:true, MAXTOMIN:false});      
         break;
       case "MAXTOMIN":
-        setSearchConfigOptions({...searchConfigOptions, MAXTOMIN:true});   
+        setSearchConfigOptions({...searchConfigOptions, MAXTOMIN:true, MINTOMAX:false});  
         break;
       case "MATCH":
-        const filteredFinal = [];
-        storeFullProducts.forEach(element=>{
-            const filtered = element.productName.toUpperCase().split(" ").filter(item => textSearchArray.includes(item));
-            if(filtered.length > 0)
-              filteredFinal.push(element);
-        })
+        const filteredFinal = filterArrayBySearchText(storeFullProducts, textSearchArray);
         setStoreFullMatchedProducts(filteredFinal);
         setSearchConfigOptions({...searchConfigOptions, MATCH:!searchConfigOptions.MATCH});   
         break;
@@ -55,7 +42,9 @@ const Search = () => {
   }
 
   const setTextArray =(searchText)=>{
-    setTextSearchArray(oldArray => oldArray.concat(searchText.toUpperCase().split(" ")));
+    setStoreFullData([]);
+    setStoreFullProducts([]);
+    setTextSearchArray(searchText.toUpperCase().split(" "));
   }
 
   return (
@@ -70,11 +59,12 @@ const Search = () => {
             onRestartData={setStoreFullData}
             onSetLoading={setLoading}
             onTextEntered={setTextArray}
+            showSearchButton={storeFullData.length==0}
           />
         </div>
       </section>
       {storeFullData.length > 0 && <SearchOptions searchConfigOptions={searchConfigOptions} onSetSearchConfig={onSetSearchConfig}/>}
-      <ProductList searchConfigOptions={searchConfigOptions} storeFullData={storeFullData} mergedProducts={(searchConfigOptions.MATCH?storeFullMatchedProducts:storeFullProducts).sort(comparePrice("formatedPrice"))} loading={loading} />
+      <ProductList mergedProducts={(searchConfigOptions.MATCH?storeFullMatchedProducts:storeFullProducts).sort(comparePrice("formatedPrice", searchConfigOptions.MINTOMAX?1:-1))} loading={loading} />
     </>
   );
 }

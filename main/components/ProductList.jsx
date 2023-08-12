@@ -4,17 +4,16 @@ import HorizontalCardList from './HorizontalCardList';
 import HorizontalCardListLoading from './HorizontalCardListLoading';
 import MobileHorizontalCardList from './MobileHorizontalCardList';
 
-const ProductList = ({searchConfigOptions, mergedProducts, storeFullData, loading}) => {
+const ProductList = ({mergedProducts, loading}) => {
 
   return (
     <>
         <div className='container mx-auto hidden lg:block '>
-                { storeFullData && <HorizontalCardList searchConfigOptions={searchConfigOptions} storeFullData={storeFullData} mergedProducts={mergedProducts}/>
-                } 
+                { mergedProducts && <HorizontalCardList mergedProducts={mergedProducts}/>} 
                 {loading && <HorizontalCardListLoading/>}
         </div>
         <div className='container mx-auto block lg:hidden '>
-          <MobileHorizontalCardList searchConfigOptions={searchConfigOptions} storeFullData={storeFullData}mergedProducts={mergedProducts} />
+          <MobileHorizontalCardList mergedProducts={mergedProducts} />
 
         {loading && <HorizontalCardListLoading/>}
     </div>

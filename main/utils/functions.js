@@ -32,17 +32,50 @@ export const paseStoreNumber=(number)=>{
     }
 }
 
-export function comparePrice( property ) {
+export function comparePrice( property, order ) {
     var sortOrder = 1;
     if(property[0] === "-") {
         sortOrder = -1;
         property = property.substr(1);
     }
     return function (a,b) {
-        /* next line works with strings and numbers, 
-         * and you may want to customize it to your needs
-         */
-        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        var result = (a[property] < b[property]) ? -1*order : (a[property] > b[property]) ? 1*order : 0;
         return result * sortOrder;
+    }
+  }
+
+  export async function fetchWithTimeout(resource, options = {}) {
+    const { timeout = 15000 } = options;
+    
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
+  
+    const response = await fetch(resource, {
+      ...options,
+      signal: controller.signal  
+    });
+    clearTimeout(id);
+  
+    return response;
+  }
+
+  export const filterArrayBySearchText=(arrayToFilter, textSearchArray)=>{
+    try {
+        const arrayToReturn = [];
+        arrayToFilter.forEach(element => {
+            console.log(element.productName);
+            let fullCoincidence = true;
+            textSearchArray.forEach(currentText => {
+                console.log(currentText);
+                if(fullCoincidence)
+                    fullCoincidence = element.productName.toUpperCase().split(" ").includes(currentText);
+            })
+            if(fullCoincidence)
+                arrayToReturn.push(element);
+        })
+        return arrayToReturn;
+    } catch (error) {
+        alert(error);
+       return []; 
     }
   }

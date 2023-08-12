@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ProductCard from "./ProductCard";
 
-const HorizontalCardList = ({ searchConfigOptions, storeFullData, mergedProducts }) => {
+const HorizontalCardList = ({mergedProducts }) => {
   const parentHTML = useRef(null);
   const [scrollInterval, setScrollInterval] = useState(null);
   const [scrollToLeft, setScrollToLeft] = useState(true);
@@ -43,14 +43,8 @@ const HorizontalCardList = ({ searchConfigOptions, storeFullData, mergedProducts
 
   return (
     <div div className='grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 xl:grid-cols-6 mt-2'>
-    {searchConfigOptions.GROUPBYSTORE && storeFullData.map((element, index) => (
-        <>
-            {element.companyProducts.map((product, index)=>(
-              <ProductCard logo={element.companyLogo} product ={product} index={index}/>
-            ))}
-        </>
-        ))}{!searchConfigOptions.GROUPBYSTORE && mergedProducts.map((product, index)=>(
-              <ProductCard  product ={product} index={index}/>
+            {mergedProducts.map((product, index)=>(
+              <ProductCard  product = {product} index={index}/>
             ))}
     </div>
   );
