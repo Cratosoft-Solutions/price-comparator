@@ -79,3 +79,20 @@ export function comparePrice( property, order ) {
        return []; 
     }
   }
+
+  export const setStorageData = (key, dataToSet)=>{
+    const item = window.sessionStorage.getItem(key);
+      if (item == null){
+        window.sessionStorage.setItem(key, JSON.stringify([dataToSet]));
+      }else{
+        window.sessionStorage.setItem(key, JSON.stringify([...JSON.parse(item), dataToSet]));
+      } 
+  }
+
+  export const formatKeyForStorage = (category, searchText)=>{
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1;
+    let dd = today.getDate();
+    return yyyy +"-"+ mm +"-"+ dd + "-" + category+ "-" +searchText.toUpperCase().split(" ").join('.');
+  }
