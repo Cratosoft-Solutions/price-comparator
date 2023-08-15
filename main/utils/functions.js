@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-
+import { compress, decompress } from 'compress-json';
 
 export const isUserAuthenticathed = (status) => {
     try {
@@ -49,7 +49,7 @@ export function comparePrice( property, order ) {
     
     const controller = new AbortController();
     const id = setTimeout(() => controller.abort(), timeout);
-  
+
     const response = await fetch(resource, {
       ...options,
       signal: controller.signal  
@@ -82,10 +82,10 @@ export function comparePrice( property, order ) {
 
   export const setStorageData = (key, dataToSet)=>{
     const item = window.sessionStorage.getItem(key);
-      if (item == null){
-        window.sessionStorage.setItem(key, JSON.stringify([dataToSet]));
+      if (item == null){      
+        window.sessionStorage.setItem(key, JSON.stringify([compress(dataToSet)]));
       }else{
-        window.sessionStorage.setItem(key, JSON.stringify([...JSON.parse(item), dataToSet]));
+        window.sessionStorage.setItem(key, JSON.stringify([...JSON.parse(item), compress(dataToSet)]));
       } 
   }
 
@@ -95,4 +95,31 @@ export function comparePrice( property, order ) {
     let mm = today.getMonth() + 1;
     let dd = today.getDate();
     return yyyy +"-"+ mm +"-"+ dd + "-" + category+ "-" +searchText.toUpperCase().split(" ").join('.');
+  }
+
+  export const localDataExists = (key) => {
+    try {
+        const item = window.sessionStorage.getItem(key);
+        
+        if(item != null){
+           const decompressed = decompressObject(JSON.parse(item)); 
+           return {localData:true, data: decompressed, saveOnStorage: decompressed.length >0?true:false}     
+        }else{
+            return {localData: false, data:null, saveOnStorage: false}
+        }
+    } catch (error) {
+        return {localData: false, data:null, saveOnStorage:bull};
+    }
+  }
+
+  const decompressObject = (storageObject)=> {
+    try {
+        let decompressedArray = [];
+        storageObject.forEach((element)=>{
+            decompressedArray.push(decompress(element));
+        })
+        return decompressedArray;
+    } catch (error) {
+      return [];  
+    }
   }

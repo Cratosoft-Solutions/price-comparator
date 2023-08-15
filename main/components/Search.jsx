@@ -16,10 +16,11 @@ const Search = () => {
   const [searchText, setSearchText] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(CATEGORIES[0].value);
 
-  const setRetrievedData = (dataToSet) =>{
+  const setRetrievedData = (dataToSet, saveOnStorage) =>{
       setStoreFullData(oldArray => [...oldArray, dataToSet]);
       mergeStoreProducts(dataToSet.companyProducts);
-      setStorageData(formatKeyForStorage(selectedCategory, searchText), dataToSet);  
+      if(!saveOnStorage)
+        setStorageData(formatKeyForStorage(selectedCategory, searchText), dataToSet);  
   }
 
   const mergeStoreProducts = (productArray)=>{
