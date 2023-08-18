@@ -1,19 +1,24 @@
 "use client";
 
-import { useState } from "react";
 import DropDownList from "./DropDownList";
 import { CATEGORIES, STORE_BY_CATEGORY } from "@utils/constants";
-import { fetchWithTimeout, formatKeyForStorage, localDataExists } from "@utils/functions";
+import { fetchWithTimeout, formatKeyForStorage, localDataExists, setStorageData } from "@utils/functions";
+import { useDispatch } from "react-redux";
+import { pushProduct, restartProducts } from "@app/redux/slices/products";
+import { setLoading } from "@app/redux/slices/loading";
 
-  const SearchButton = ({onTextEntered, onSetData, onSetLoading, onRestartData, searchText, selectedCategory, onSetSelectedCategory}) => {
-  const restartFields = (value) =>{
+const SearchButton = ({onTextEntered, searchText, selectedCategory, onSetSelectedCategory}) => {
+  const dispatch = useDispatch();
+  
+  const restartFields = (value) => {
     onTextEntered(value);
-    onRestartData([]);
+    dispatch(restartProducts());
   }
 
   const fetchProducts = async (e) => {
-    e.preventDefault();
-     onSetLoading(true);
+     e.preventDefault();
+     dispatch(restartProducts());
+     dispatch(setLoading(true));
      const key = formatKeyForStorage(selectedCategory, searchText);
      const {localData, data, saveOnStorage} = localDataExists(key);
      if(localData){
@@ -28,13 +33,14 @@ import { fetchWithTimeout, formatKeyForStorage, localDataExists } from "@utils/f
 }
 
 const processIndividualResponse =(response, saveOnStorage)=>{
-  onSetLoading(false);
-  console.log(response);
-  onSetData(response, saveOnStorage);
+  dispatch(setLoading(false));
+  dispatch(pushProduct(response));
+  if(!saveOnStorage)
+      setStorageData(formatKeyForStorage(selectedCategory, searchText), response);  
 }
 
 const processIndividualError =(error)=>{
-  onSetLoading(false);
+  dispatch(setLoading(false));
 }
 
   return (
