@@ -1,21 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import SearchButton from "./SearchButton";
 import ProductList from "./ProductList";
 import SearchOptions from "./SearchOptions";
-import { CATEGORIES } from "@utils/constants";
 import { useSelector } from "react-redux";
 
 const Search = () => {
   const { storeFullData } = useSelector((state) => state.products);
-  const [textSearchArray, setTextSearchArray] = useState([]);
-  const [searchText, setSearchText] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(CATEGORIES[0].value);
-
-  const setTextArray = (searchText) => {
-    setSearchText(searchText.replace(/[^a-zA-Z0-9 ]/g, ""));
-    setTextSearchArray(searchText.toUpperCase().split(" "));
-  };
 
   return (
     <>
@@ -27,19 +18,13 @@ const Search = () => {
             </span>
           </h1>
           <div className="flex w-full justify-center">
-            <SearchButton
-              onTextEntered={setTextArray}
-              searchText={searchText}
-              selectedCategory={selectedCategory}
-              onSetSelectedCategory={setSelectedCategory}
-            />
+            <SearchButton/>
           </div>
         </section>
       )}
 
-      {storeFullData.length > 0 && (
-        <SearchOptions textSearchArray={textSearchArray} />
-      )}
+      {storeFullData.length > 0 && (<SearchOptions /> )}
+
       <ProductList />
     </>
   );

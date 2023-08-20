@@ -8,9 +8,12 @@ import {
   orderProducts,
 } from "@app/redux/slices/products";
 
-const SearchOptions = ({ textSearchArray }) => {
+const SearchOptions = () => {
   const { configuration } = useSelector((state) => state.searchoptions);
   const dispatch = useDispatch();
+  const { text } = useSelector(state => state.searchProperties.properties);
+  const { storeFullData } = useSelector((state) => state.products);
+  const textSearchArray = text.toUpperCase().split(" ");
 
   const setSearchConfigProperty = (property) => {
     dispatch(setSearchOption(property));
@@ -31,7 +34,8 @@ const SearchOptions = ({ textSearchArray }) => {
   };
 
   return (
-    <div className="fixed top-16 z-10 left-0 w-full overflow-y-scroll bg-white p-4 border-b-2 border-orange-300">
+   <div className="fixed top-16 z-10 left-0 w-full bg-white">
+    <div className="overflow-y-scroll bg-white p-4 ">
       <div className="grid grid-cols-1 grid-rows-1 lg:grid-cols-4 gap-2">
         <button
           onClick={() => {setSearchConfigProperty("NEWSEARCH");}}
@@ -64,7 +68,13 @@ const SearchOptions = ({ textSearchArray }) => {
         >
           Coincidencia Exacta
         </button>
+          
       </div>
+
+    </div>
+    <div className = 'h-1 w-full w-full'>
+          <div className="bg-primary p-4 pl-2 flex items-center justify-center bg-white  border-b-2 border-orange-300">Resultados en {storeFullData.length} tienda(s)</div>
+        </div>
     </div>
   );
 };

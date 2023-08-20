@@ -6,11 +6,11 @@ import MobileHorizontalCardList from './MobileHorizontalCardList';
 import { useSelector } from 'react-redux';
 
 const ProductList = () => {
-  const {storeFullProducts, storeFullMatchedProducts} = useSelector(state => state.products);
+  const { storeFullProducts, storeFullMatchedProducts } = useSelector(state => state.products);
   const {configuration} = useSelector(state => state.searchoptions);
   const { loading } = useSelector(state =>state.siteloading);
   
-  const mergedProducts = configuration.MATCH?storeFullMatchedProducts:storeFullProducts;
+  const mergedProducts = configuration.MATCH? storeFullMatchedProducts:storeFullProducts;
 
   return (
     <div className='mt-56 lg:mt-16'>

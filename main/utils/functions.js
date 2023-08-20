@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { compress, decompress } from 'compress-json';
 
+
 export const isUserAuthenticathed = (status) => {
     try {
         return status === "authenticated";
@@ -48,7 +49,7 @@ export function comparePrice( property, order ) {
     const { timeout = 15000 } = options;
     
     const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), timeout);
+    const id = setTimeout(() => {controller.abort();}, timeout);
 
     const response = await fetch(resource, {
       ...options,
