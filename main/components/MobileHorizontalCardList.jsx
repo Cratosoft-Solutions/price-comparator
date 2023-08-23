@@ -5,7 +5,7 @@ const MobileHorizontalCardList = ({mergedProducts}) => {
   return (
     <>
       {mergedProducts.map((product, index) => (
-          <MobileProductCard product={product}></MobileProductCard>
+          <MobileProductCard key={index} product={product} index={index}></MobileProductCard>
         ))}
     </>
   );

@@ -12,14 +12,11 @@ export const medatada = {
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
-      <head>
-
-      </head>
       <ProviderRedux>
         <body className="__variable_7dbc08 __variable_20951f">
           <Provider>
             <div  className="site-background">
-            <div />
+              <div />
             </div>
             <main className="app">
               <Nav />

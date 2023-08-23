@@ -1,8 +1,8 @@
 import React from "react";
 
-const MobileProductCard = ({ product }) => {
+const MobileProductCard = ({ product, index }) => {
   return (
-    <div key={product.productName} className="container-fluid mx-auto w-full">
+    <div key={product.productName + index} className="container-fluid mx-auto w-full">
       <div
         className="flex bg-white border border-gray-300  overflow-hidden items-center justify-start"
         style={{ cursor: "auto" }}

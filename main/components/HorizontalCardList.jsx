@@ -42,9 +42,9 @@ const HorizontalCardList = ({mergedProducts }) => {
 
 
   return (
-    <div div className='grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 xl:grid-cols-6 mt-2'>
+    <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 xl:grid-cols-6 mt-2'>
             {mergedProducts.map((product, index)=>(
-              <ProductCard  product = {product} index={index}/>
+              <ProductCard key={index} product = {product} index={index}/>
             ))}
     </div>
   );

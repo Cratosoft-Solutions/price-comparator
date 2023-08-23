@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation';
 import { compress, decompress } from 'compress-json';
+import axios from 'axios';
 
 
 export const isUserAuthenticathed = (status) => {
@@ -18,13 +19,10 @@ export const paseStoreNumber=(number)=>{
     try {
         let tempNumber = number.trim().replace(/[^a-zA-Z0-9,.]/g, '');
        if(tempNumber.charAt(tempNumber.length-3)=="."){
-            console.log(tempNumber +" queda asi "+ tempNumber.replaceAll(",", "") + " Se separa por .");
             tempNumber=tempNumber.replaceAll(",", "");
         }else if(tempNumber.charAt(tempNumber.length-3)==","){
-            console.log(tempNumber +" queda asi "+ tempNumber.replaceAll(".", "").replaceAll(",",".") + " Se separa por ,");
             tempNumber = tempNumber.replaceAll(".", "").replaceAll(",",".");
         }else{
-            console.log(tempNumber +" queda asi "+ tempNumber.replaceAll(".", "").replaceAll(",", "") + " No se separa");
             tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", "")
         }
         return tempNumber.trim();
@@ -64,10 +62,8 @@ export function comparePrice( property, order ) {
     try {
         const arrayToReturn = [];
         arrayToFilter.forEach(element => {
-            console.log(element.productName);
             let fullCoincidence = true;
             textSearchArray.forEach(currentText => {
-                console.log(currentText);
                 if(fullCoincidence)
                     fullCoincidence = element.productName.toUpperCase().split(" ").includes(currentText);
             })
@@ -98,18 +94,17 @@ export function comparePrice( property, order ) {
     return yyyy +"-"+ mm +"-"+ dd + "-" + category+ "-" +searchText.toUpperCase().split(" ").join('.');
   }
 
-  export const localDataExists = (key) => {
+  export const localDataExists =  (key, resultDecompressed=false) => {
     try {
         const item = window.sessionStorage.getItem(key);
-        
         if(item != null){
            const decompressed = decompressObject(JSON.parse(item)); 
-           return {localData:true, data: decompressed, saveOnStorage: decompressed.length >0?true:false}     
-        }else{
-            return {localData: false, data:null, saveOnStorage: false}
+           return {localData:true, data: resultDecompressed? item: decompressed, saveOnStorage: decompressed.length >0?true:false}     
+        }else{       
+              return {localData:false, data: null, saveOnStorage: false}     
         }
     } catch (error) {
-        return {localData: false, data:null, saveOnStorage:bull};
+        return {localData: false, data:null, saveOnStorage:null};
     }
   }
 
@@ -122,5 +117,33 @@ export function comparePrice( property, order ) {
         return decompressedArray;
     } catch (error) {
       return [];  
+    }
+  }
+
+
+  export const saveSearchOnDB =  (key) => {
+    try {
+      const { data } =  localDataExists(key, true);
+          axios.post(`/api/search/save`, {
+            key:key,
+            result:data
+          });
+    } catch (error) {
+      console.log("Guardando en BD" + error);
+    }
+  }
+
+  export const getSearchDataFromDataBase = async (key) => {
+    try {
+      const response = await axios.post(`/api/search/validate`, {
+        key:key
+      });
+
+      const compressedData = await response.data.result;
+      const decompressed = decompressObject(JSON.parse(compressedData)); 
+      return {dataBaseData: true, data:decompressed}
+    
+    } catch (error) {
+      return {dataBaseData: false, data:null};
     }
   }
