@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { compress, decompress } from 'compress-json';
 import axios from 'axios';
+import { CATEGORIES } from './constants';
 
 
 export const isUserAuthenticathed = (status) => {
@@ -86,6 +87,14 @@ export function comparePrice( property, order ) {
       } 
   }
 
+  export const setStorageCoincidences = (key, dataToSet)=>{
+        window.sessionStorage.setItem(key, JSON.stringify([compress(dataToSet)]));
+  }
+
+  export const deleteStorageData = (key,)=>{
+     window.sessionStorage.removeItem(key);
+  }
+
   export const formatKeyForStorage = (category, searchText)=>{
     const today = new Date();
     const yyyy = today.getFullYear();
@@ -96,7 +105,7 @@ export function comparePrice( property, order ) {
 
   export const localDataExists =  (key, resultDecompressed=false) => {
     try {
-        const item = window.sessionStorage.getItem(key);
+        const item =  window.sessionStorage.getItem(key);
         if(item != null){
            const decompressed = decompressObject(JSON.parse(item)); 
            return {localData:true, data: resultDecompressed? item: decompressed, saveOnStorage: decompressed.length >0?true:false}     
@@ -147,3 +156,21 @@ export function comparePrice( property, order ) {
       return {dataBaseData: false, data:null};
     }
   }
+
+export const searchArrayCoincidences = (tags, text) =>{
+  try {
+    var search = new RegExp(text , 'i');
+    return tags.filter(item => search.test(item.key));
+  } catch (error) {
+    return [];
+  }
+}
+
+export const formatAutoCompletableItem = (category, text) => {
+  const categoryInfo = CATEGORIES.filter(element => element.value == category);
+  if (categoryInfo.length > 0){
+    return categoryInfo[0].label + " - " + text;
+  }else{
+    return "Unknow Category" + " - " + text;
+  }
+}

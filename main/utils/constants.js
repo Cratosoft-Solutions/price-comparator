@@ -2,6 +2,8 @@ export const SEARCH_DEFAULT_OPTIONS = {
   configuration: { MINTOMAX: false, MAXTOMIN: false, MATCH: false },
 };
 
+export const COINCIDENCES = "COINCIDENCES";
+
 export const CATEGORIES = [
   { value: -1, label: "Categoria" },
   { value: 1, label: "Supermercados" },

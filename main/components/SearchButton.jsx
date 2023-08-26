@@ -8,6 +8,7 @@ import { pushProduct, restartProducts } from "@app/redux/slices/products";
 import { setLoading } from "@app/redux/slices/loading";
 import { setText, setCategory } from "@app/redux/slices/searchProperties";
 import { useState } from "react";
+import AutoCompletableList from "./AutoCompletableList";
 
 
 const SearchButton = () => {
@@ -68,26 +69,27 @@ const processIndividualResponse =(response, saveOnStorage, saveOnDatabase, error
 }
 
   return (
-      <div className="mb-1 w-full sm:w-1/2 pl-4 pr-4 justify-center">
+      <div className="mb-1 w-full sm:w-1/2 justify-center">
         <form onSubmit={fetchProducts} className="grid place-items-center w-full">
-            <div className="grid grid-cols-1 grid-rows-2 lg:grid-rows-1 lg:grid-cols-2 gap-0 w-full lg:grid-cols-[25%_75%]">
+            <div className="grid grid-cols-1 grid-rows-2 lg:grid-rows-1 lg:grid-cols-2 gap-0 w-full lg:grid-cols-[30%_70%]">
               <DropDownList values={CATEGORIES} onSelectValue={setInternalCategory} currentValue={category} />
-              <input
-                type="search"
-                className="block w-full h-16 px-4 py-2 text-gray-400 bg-white border focus:border-gray-400 focus:ring-gray-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                placeholder="Buscar"
-                aria-label="Search"
-                aria-describedby="button-addon3" 
-                onChange={(e)=>{restartFields(e.target.value)}}
-                value={text}
-                />
+             <div className="relative text-orange-500">
+                <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+                  <button disabled={category == CATEGORIES[0].value || text.length < 3} type="submit" className="p-1 focus:outline-none focus:shadow-outline">
+                    <svg fill="none" stroke="currentColor" strokeLinecaplinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="w-6 h-6"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                  </button>
+                </span>
+                  <input onChange={(e)=>{restartFields(e.target.value)}}
+                    value={text} 
+                    id="txt-search" 
+                    type="search" 
+                    name="q" 
+                    className="py-2 text-sm text-gray-500 bg-white border  pl-10 focus:outline-none focus:bg-white h-16 w-full" placeholder="Buscar..." autoComplete="off"/>
+               </div>
             </div>
-               <input
-                disabled={category == CATEGORIES[0].value || text.length < 3}
-                type="submit"
-                className="bg-black text-white rounded-full mt-4 h-14 w-64 text-lg"
-                value="Buscar Productos"
-              />
+            <div className="grid grid-cols-1 grid-rows-1 w-full">
+              <AutoCompletableList text={text}/>
+            </div>
         </form>
       </div>
     
