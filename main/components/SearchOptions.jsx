@@ -7,11 +7,15 @@ import {
   setMatchedProducts,
   orderProducts,
 } from "@app/redux/slices/products";
+import SearchLoadingBar from "./SearchLoadingBar";
 
 const SearchOptions = () => {
   const { configuration } = useSelector((state) => state.searchoptions);
   const dispatch = useDispatch();
   const {  text } = useSelector(state => state.searchProperties.properties);
+  const { loading } = useSelector(state =>state.siteloading);
+  const { searching } = useSelector(state =>state.productSearching);
+
   const { storeFullData } = useSelector((state) => state.products);
   const textSearchArray = text.toUpperCase().split(" ");
 
@@ -71,8 +75,9 @@ const SearchOptions = () => {
       </div>
 
     </div>
-    <div className="h-1 w-full w-full">
-          <div className="bg-primary p-4 pl-2 flex items-center justify-center bg-white  border-b-2 border-orange-300">Resultados en {storeFullData.length} tienda(s)</div>
+    <div className="h-16 lg:h-10 w-full grid grid-cols-1 grid-rows-2 lg:grid-cols-2 lg:grid-rows-1  border-b-2 border-orange-300">
+          {!searching? <div className="flex justify-center w-full bg-red-800"><SearchLoadingBar /></div> : <div className="flex items-center justify-center w-full font-medium  text-green-700 font-bold">Busqueda Finalizada</div> }
+          <div className="bg-primary p-4 pl-2 flex items-center justify-center bg-white">Resultados en {storeFullData.length} tienda(s)</div>
         </div>
     </div>
   );
