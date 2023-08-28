@@ -76,7 +76,7 @@ const SearchOptions = () => {
 
     </div>
     <div className="h-16 lg:h-10 w-full grid grid-cols-1 grid-rows-2 lg:grid-cols-2 lg:grid-rows-1  border-b-2 border-orange-300">
-          {!searching? <div className="flex justify-center w-full bg-red-800"><SearchLoadingBar /></div> : <div className="flex items-center justify-center w-full font-medium  text-green-700 font-bold">Busqueda Finalizada</div> }
+          {searching? <div className="flex justify-center w-full bg-red-800"><SearchLoadingBar /></div> : <div className="flex items-center justify-center w-full font-medium  text-green-700 font-bold">Busqueda Finalizada</div> }
           <div className="bg-primary p-4 pl-2 flex items-center justify-center bg-white">Resultados en {storeFullData.length} tienda(s)</div>
         </div>
     </div>
