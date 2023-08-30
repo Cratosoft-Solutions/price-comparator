@@ -36,7 +36,7 @@ const AutoCompletableList = ({text}) => {
         <>
             {document.activeElement.id == 'txt-search' && text.length > 0 &&
                 <ul className="bg-white w-full">   
-                    {coincidencesList.map((coincidence, index)=>(
+                    {coincidencesList.slice(0, 5).map((coincidence, index)=>(
                         <li onClick={()=>{dispatch(setText(coincidence.key)); dispatch(setCategory(coincidence.category));  setCoincidencesList([]);}} key={index} className="pl-8 pr-2 py-1 border border-gray-50 relative cursor-pointer hover:bg-gray-100 hover:text-gray-900 text-gray-500">
                             <svg className="absolute w-4 h-4 left-2 top-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd"/>

@@ -1,18 +1,18 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import SearchButton from "./SearchButton";
 import ProductList from "./ProductList";
 import SearchOptions from "./SearchOptions";
 import { useSelector } from "react-redux";
+import {RiArrowDownSLine} from "react-icons/ri";
 
 const Search = () => {
   const { storeFullData } = useSelector((state) => state.products);
   const { loading } = useSelector(state =>state.siteloading);
 
-
   return (
     <>
-      {(storeFullData.length == 0 && !loading) && (
+      {storeFullData.length == 0 && !loading && (
         <section className="grid grid-cols-1 grid-rows-1 w-full">
           <h1 className="flex w-full justify-center font-bold p-4 h-32">
             <span className="orange_gradient text-center text-4xl lg:text-7xl">
@@ -20,14 +20,16 @@ const Search = () => {
             </span>
           </h1>
           <div className="flex w-full justify-center mt-2">
-            <SearchButton/>
+            <SearchButton />
           </div>
         </section>
       )}
 
-      {(storeFullData.length > 0 || loading) && (<SearchOptions /> )}
+      {(storeFullData.length > 0 || loading) && (<SearchOptions />
+ 
+      )}
 
-      <ProductList />
+      <ProductList searchOptionsVisible={true}/>
     </>
   );
 };

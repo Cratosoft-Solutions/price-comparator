@@ -74,7 +74,7 @@ const processIndividualResponse =(response, saveOnStorage, saveOnDatabase, error
 }
 
   return (
-      <div className="mb-1 w-full sm:w-1/2 justify-center">
+      <div className="mb-1 w-full sm:w-1/2 justify-center mr-4 ml-4">
         <form onSubmit={fetchProducts} className="grid place-items-center w-full">
             <div className="grid grid-cols-1 grid-rows-2 lg:grid-rows-1 lg:grid-cols-2 gap-0 w-full lg:grid-cols-[30%_70%]">
               <DropDownList values={CATEGORIES} onSelectValue={setInternalCategory} currentValue={category} />
@@ -89,7 +89,7 @@ const processIndividualResponse =(response, saveOnStorage, saveOnDatabase, error
                     id="txt-search" 
                     type="search" 
                     name="q" 
-                    className="py-2 text-sm text-gray-500 bg-white border  pl-10 focus:outline-none focus:bg-white h-16 w-full" placeholder="Buscar..." autoComplete="off"/>
+                    className="py-2 text-sm text-gray-500 bg-white border  lg:rounded-r-lg pl-10 focus:outline-none focus:bg-white h-16 w-full" placeholder="Buscar..." autoComplete="off"/>
                </div>
             </div>
             <div className="grid grid-cols-1 grid-rows-1 w-full">

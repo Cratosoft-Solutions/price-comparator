@@ -13,7 +13,7 @@ const ProductList = () => {
   const mergedProducts = configuration.MATCH? storeFullMatchedProducts:storeFullProducts;
 
   return (
-    <div className='mt-56 lg:mt-16'>
+    <div className="mt-12 lg:mt-1">
         <div className='container mx-auto hidden lg:block '>
                 { mergedProducts && <HorizontalCardList mergedProducts={mergedProducts}/>} 
                 {loading && <HorizontalCardListLoading/>}

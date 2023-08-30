@@ -1,7 +1,7 @@
 @keyframes bouncing-loader {
     to {
       opacity: 0.1;
-      transform: translateY(-16px);
+      transform: translateY(-2px);
       @apply bg-orange-500;
     }
   }
