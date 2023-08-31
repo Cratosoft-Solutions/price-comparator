@@ -3,12 +3,12 @@ import { BsArrowUpCircle } from "react-icons/bs";
 import {useState, useEffect} from "react";
 
 const ScrollToTopButton  =() => {
-    const [scrollYPosition, setScrollYPosition]= useState(window.scrollY);
+    const [scrollYPosition, setScrollYPosition]= useState(window?.scrollY);
     const isBrowser = () => typeof window !== 'undefined'; 
 
     function scrollToTop() {
         if (!isBrowser()) return;
-        window?.scrollTo({ top: 0, behavior: 'smooth' });
+           window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     const onScroll = (e) => {
@@ -16,7 +16,8 @@ const ScrollToTopButton  =() => {
       }
 
     useEffect(() => {
-        window?.addEventListener('scroll', onScroll);
+      if (typeof window != undefined)
+        window.addEventListener('scroll', onScroll);
     },[]);
 
     return (
