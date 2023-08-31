@@ -1,0 +1,1552 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
+*/
+
+.__variable_20951f {
+  --font-inter: "__Inter_20951f","__Inter_Fallback_20951f";
+}
+
+.__variable_7dbc08 {
+  --font-satoshi: "__satoshi_7dbc08","__satoshi_Fallback_7dbc08";
+}
+
+.main {
+  width: 100vw;
+  min-height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  padding: 120px 24px 160px 24px;
+  pointer-events: none;
+}
+
+
+.site-background {
+  @apply absolute  bg-white w-full h-full top-0
+}
+
+.gradient {
+  height: fit-content;
+  z-index: 3;
+  width: 100%;
+  max-width: 640px;
+  background-image: radial-gradient(
+      at 27% 37%,
+      hsla(215, 98%, 61%, 1) 0px,
+      transparent 0%
+    ),
+    radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 1) 0px, transparent 50%),
+    radial-gradient(at 52% 99%, hsla(354, 98%, 61%, 1) 0px, transparent 50%),
+    radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 1) 0px, transparent 50%),
+    radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 1) 0px, transparent 50%),
+    radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 1) 0px, transparent 50%),
+    radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 50%);
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  filter: blur(100px) saturate(150%);
+  top: 80px;
+  opacity: 0.15;
+}
+
+@media screen and (max-width: 640px) {
+  .main {
+    padding: 0;
+  }
+}
+
+/* Tailwind Styles */
+
+.app {
+  @apply relative z-10 flex justify-center flex-col 
+}
+
+.black_btn {
+  @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
+}
+
+.orange_btn {
+  @apply  rounded border border-orange-500 bg-orange-500 py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
+}
+
+.outline_btn {
+  @apply  h-12 rounded border border-gray-400 bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
+}
+
+
+.outline_btn_orange {
+  @apply h-12 rounded border border-orange-400 bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
+}
+
+
+.head_text {
+  @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+}
+
+.orange_gradient {
+  @apply bg-gradient-to-r from-purple-500 via-pink-600 to-orange-400 bg-clip-text text-transparent;
+}
+
+.orange_gradient_scroll {
+  @apply bg-gradient-to-r from-purple-500 via-pink-600 to-orange-400  stroke-transparent;
+}
+
+.orange_gradient_nav {
+  @apply bg-gradient-to-r from-white  to-gray-50 ;
+}
+
+.green_gradient {
+  @apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
+}
+
+.blue_gradient {
+  @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+}
+
+.desc {
+  @apply mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl;
+}
+
+.search_input {
+  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
+}
+
+.copy_btn {
+  @apply w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer;
+}
+
+.glassmorphism {
+  @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
+}
+
+.prompt_layout {
+  @apply space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3;
+}
+
+/* Feed Component */
+.feed {
+  @apply mt-16 mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-2;
+}
+
+/* Form Component */
+.form_textarea {
+  @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0;
+}
+
+.form_input {
+  @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0;
+}
+
+/* Nav Component */
+.logo_text {
+  @apply max-sm:hidden font-satoshi font-semibold text-lg text-black tracking-wide;
+}
+
+.dropdown {
+  @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
+}
+
+.dropdown_link {
+  @apply text-sm font-inter text-gray-700 hover:text-gray-500 font-medium;
+}
+
+/* PromptCard Component */
+.prompt_card {
+  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit;
+}
+
+.flex-center {
+  @apply flex justify-center items-center;
+}
+
+.flex-start {
+  @apply flex justify-start items-start;
+}
+
+.flex-end {
+  @apply flex justify-end items-center;
+}
+
+.flex-between {
+  @apply flex justify-between items-center;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
+.bbg-black{ @apply bg-black;}
+.bbg-white{ @apply bg-white;}
+.bbg-transparent{ @apply bg-transparent;}
+
+.bbg-slate-50{ @apply bg-slate-50;}
+ .bbg-slate-100{ @apply bg-slate-100;}
+ .bbg-slate-200{ @apply bg-slate-200;}
+ .bbg-slate-300{ @apply bg-slate-300;}
+ .bbg-slate-400{ @apply bg-slate-400;}
+ .bbg-slate-500{ @apply bg-slate-500;}
+ .bbg-slate-600{ @apply bg-slate-600;}
+ .bbg-slate-700{ @apply bg-slate-700;}
+ .bbg-slate-800{ @apply bg-slate-800;}
+ .bbg-slate-900{ @apply bg-slate-900;}
+ .bbg-slate-950{ @apply bg-slate-950;}
+ .bbg-gray-50{ @apply bg-gray-50;}
+ .bbg-gray-100{ @apply bg-gray-100;}
+ .bbg-gray-200{ @apply bg-gray-200;}
+ .bbg-gray-300{ @apply bg-gray-300;}
+ .bbg-gray-400{ @apply bg-gray-400;}
+ .bbg-gray-500{ @apply bg-gray-500;}
+ .bbg-gray-600{ @apply bg-gray-600;}
+ .bbg-gray-700{ @apply bg-gray-700;}
+ .bbg-gray-800{ @apply bg-gray-800;}
+ .bbg-gray-900{ @apply bg-gray-900;}
+ .bbg-gray-950{ @apply bg-gray-950;}
+ .bbg-zinc-50{ @apply bg-zinc-50;}
+ .bbg-zinc-100{ @apply bg-zinc-100;}
+ .bbg-zinc-200{ @apply bg-zinc-200;}
+ .bbg-zinc-300{ @apply bg-zinc-300;}
+ .bbg-zinc-400{ @apply bg-zinc-400;}
+ .bbg-zinc-500{ @apply bg-zinc-500;}
+ .bbg-zinc-600{ @apply bg-zinc-600;}
+ .bbg-zinc-700{ @apply bg-zinc-700;}
+ .bbg-zinc-800{ @apply bg-zinc-800;}
+ .bbg-zinc-900{ @apply bg-zinc-900;}
+ .bbg-zinc-950{ @apply bg-zinc-950;}
+ .bbg-neutral-50{ @apply bg-neutral-50;}
+ .bbg-neutral-100{ @apply bg-neutral-100;}
+ .bbg-neutral-200{ @apply bg-neutral-200;}
+ .bbg-neutral-300{ @apply bg-neutral-300;}
+ .bbg-neutral-400{ @apply bg-neutral-400;}
+ .bbg-neutral-500{ @apply bg-neutral-500;}
+ .bbg-neutral-600{ @apply bg-neutral-600;}
+ .bbg-neutral-700{ @apply bg-neutral-700;}
+ .bbg-neutral-800{ @apply bg-neutral-800;}
+ .bbg-neutral-900{ @apply bg-neutral-900;}
+ .bbg-neutral-950{ @apply bg-neutral-950;}
+ .bbg-stone-50{ @apply bg-stone-50;}
+ .bbg-stone-100{ @apply bg-stone-100;}
+ .bbg-stone-200{ @apply bg-stone-200;}
+ .bbg-stone-300{ @apply bg-stone-300;}
+ .bbg-stone-400{ @apply bg-stone-400;}
+ .bbg-stone-500{ @apply bg-stone-500;}
+ .bbg-stone-600{ @apply bg-stone-600;}
+ .bbg-stone-700{ @apply bg-stone-700;}
+ .bbg-stone-800{ @apply bg-stone-800;}
+ .bbg-stone-900{ @apply bg-stone-900;}
+ .bbg-stone-950{ @apply bg-stone-950;}
+ .bbg-red-50{ @apply bg-red-50;}
+ .bbg-red-100{ @apply bg-red-100;}
+ .bbg-red-200{ @apply bg-red-200;}
+ .bbg-red-300{ @apply bg-red-300;}
+ .bbg-red-400{ @apply bg-red-400;}
+ .bbg-red-500{ @apply bg-red-500;}
+ .bbg-red-600{ @apply bg-red-600;}
+ .bbg-red-700{ @apply bg-red-700;}
+ .bbg-red-800{ @apply bg-red-800;}
+ .bbg-red-900{ @apply bg-red-900;}
+ .bbg-red-950{ @apply bg-red-950;}
+ .bbg-orange-50{ @apply bg-orange-50;}
+ .bbg-orange-100{ @apply bg-orange-100;}
+ .bbg-orange-200{ @apply bg-orange-200;}
+ .bbg-orange-300{ @apply bg-orange-300;}
+ .bbg-orange-400{ @apply bg-orange-400;}
+ .bbg-orange-500{ @apply bg-orange-500;}
+ .bbg-orange-600{ @apply bg-orange-600;}
+ .bbg-orange-700{ @apply bg-orange-700;}
+ .bbg-orange-800{ @apply bg-orange-800;}
+ .bbg-orange-900{ @apply bg-orange-900;}
+ .bbg-orange-950{ @apply bg-orange-950;}
+ .bbg-amber-50{ @apply bg-amber-50;}
+ .bbg-amber-100{ @apply bg-amber-100;}
+ .bbg-amber-200{ @apply bg-amber-200;}
+ .bbg-amber-300{ @apply bg-amber-300;}
+ .bbg-amber-400{ @apply bg-amber-400;}
+ .bbg-amber-500{ @apply bg-amber-500;}
+ .bbg-amber-600{ @apply bg-amber-600;}
+ .bbg-amber-700{ @apply bg-amber-700;}
+ .bbg-amber-800{ @apply bg-amber-800;}
+ .bbg-amber-900{ @apply bg-amber-900;}
+ .bbg-amber-950{ @apply bg-amber-950;}
+ .bbg-yellow-50{ @apply bg-yellow-50;}
+ .bbg-yellow-100{ @apply bg-yellow-100;}
+ .bbg-yellow-200{ @apply bg-yellow-200;}
+ .bbg-yellow-300{ @apply bg-yellow-300;}
+ .bbg-yellow-400{ @apply bg-yellow-400;}
+ .bbg-yellow-500{ @apply bg-yellow-500;}
+ .bbg-yellow-600{ @apply bg-yellow-600;}
+ .bbg-yellow-700{ @apply bg-yellow-700;}
+ .bbg-yellow-800{ @apply bg-yellow-800;}
+ .bbg-yellow-900{ @apply bg-yellow-900;}
+ .bbg-yellow-950{ @apply bg-yellow-950;}
+ .bbg-lime-50{ @apply bg-lime-50;}
+ .bbg-lime-100{ @apply bg-lime-100;}
+ .bbg-lime-200{ @apply bg-lime-200;}
+ .bbg-lime-300{ @apply bg-lime-300;}
+ .bbg-lime-400{ @apply bg-lime-400;}
+ .bbg-lime-500{ @apply bg-lime-500;}
+ .bbg-lime-600{ @apply bg-lime-600;}
+ .bbg-lime-700{ @apply bg-lime-700;}
+ .bbg-lime-800{ @apply bg-lime-800;}
+ .bbg-lime-900{ @apply bg-lime-900;}
+ .bbg-lime-950{ @apply bg-lime-950;}
+ .bbg-green-50{ @apply bg-green-50;}
+ .bbg-green-100{ @apply bg-green-100;}
+ .bbg-green-200{ @apply bg-green-200;}
+ .bbg-green-300{ @apply bg-green-300;}
+ .bbg-green-400{ @apply bg-green-400;}
+ .bbg-green-500{ @apply bg-green-500;}
+ .bbg-green-600{ @apply bg-green-600;}
+ .bbg-green-700{ @apply bg-green-700;}
+ .bbg-green-800{ @apply bg-green-800;}
+ .bbg-green-900{ @apply bg-green-900;}
+ .bbg-green-950{ @apply bg-green-950;}
+ .bbg-teal-50{ @apply bg-teal-50;}
+ .bbg-teal-100{ @apply bg-teal-100;}
+ .bbg-teal-200{ @apply bg-teal-200;}
+ .bbg-teal-300{ @apply bg-teal-300;}
+ .bbg-teal-400{ @apply bg-teal-400;}
+ .bbg-teal-500{ @apply bg-teal-500;}
+ .bbg-teal-600{ @apply bg-teal-600;}
+ .bbg-teal-700{ @apply bg-teal-700;}
+ .bbg-teal-800{ @apply bg-teal-800;}
+ .bbg-teal-900{ @apply bg-teal-900;}
+ .bbg-teal-950{ @apply bg-teal-950;}
+ .bbg-cyan-50{ @apply bg-cyan-50;}
+ .bbg-cyan-100{ @apply bg-cyan-100;}
+ .bbg-cyan-200{ @apply bg-cyan-200;}
+ .bbg-cyan-300{ @apply bg-cyan-300;}
+ .bbg-cyan-400{ @apply bg-cyan-400;}
+ .bbg-cyan-500{ @apply bg-cyan-500;}
+ .bbg-cyan-600{ @apply bg-cyan-600;}
+ .bbg-cyan-700{ @apply bg-cyan-700;}
+ .bbg-cyan-800{ @apply bg-cyan-800;}
+ .bbg-cyan-900{ @apply bg-cyan-900;}
+ .bbg-cyan-950{ @apply bg-cyan-950;}
+ .bbg-sky-50{ @apply bg-sky-50;}
+ .bbg-sky-100{ @apply bg-sky-100;}
+ .bbg-sky-200{ @apply bg-sky-200;}
+ .bbg-sky-300{ @apply bg-sky-300;}
+ .bbg-sky-400{ @apply bg-sky-400;}
+ .bbg-sky-500{ @apply bg-sky-500;}
+ .bbg-sky-600{ @apply bg-sky-600;}
+ .bbg-sky-700{ @apply bg-sky-700;}
+ .bbg-sky-800{ @apply bg-sky-800;}
+ .bbg-sky-900{ @apply bg-sky-900;}
+ .bbg-sky-950{ @apply bg-sky-950;}
+ .bbg-blue-50{ @apply bg-blue-50;}
+ .bbg-blue-100{ @apply bg-blue-100;}
+ .bbg-blue-200{ @apply bg-blue-200;}
+ .bbg-blue-300{ @apply bg-blue-300;}
+ .bbg-blue-400{ @apply bg-blue-400;}
+ .bbg-blue-500{ @apply bg-blue-500;}
+ .bbg-blue-600{ @apply bg-blue-600;}
+ .bbg-blue-700{ @apply bg-blue-700;}
+ .bbg-blue-800{ @apply bg-blue-800;}
+ .bbg-blue-900{ @apply bg-blue-900;}
+ .bbg-blue-950{ @apply bg-blue-950;}
+ .bbg-indigo-50{ @apply bg-indigo-50;}
+ .bbg-indigo-100{ @apply bg-indigo-100;}
+ .bbg-indigo-200{ @apply bg-indigo-200;}
+ .bbg-indigo-300{ @apply bg-indigo-300;}
+ .bbg-indigo-400{ @apply bg-indigo-400;}
+ .bbg-indigo-500{ @apply bg-indigo-500;}
+ .bbg-indigo-600{ @apply bg-indigo-600;}
+ .bbg-indigo-700{ @apply bg-indigo-700;}
+ .bbg-indigo-800{ @apply bg-indigo-800;}
+ .bbg-indigo-900{ @apply bg-indigo-900;}
+ .bbg-indigo-950{ @apply bg-indigo-950;}
+ .bbg-violet-50{ @apply bg-violet-50;}
+ .bbg-violet-100{ @apply bg-violet-100;}
+ .bbg-violet-200{ @apply bg-violet-200;}
+ .bbg-violet-300{ @apply bg-violet-300;}
+ .bbg-violet-400{ @apply bg-violet-400;}
+ .bbg-violet-500{ @apply bg-violet-500;}
+ .bbg-violet-600{ @apply bg-violet-600;}
+ .bbg-violet-700{ @apply bg-violet-700;}
+ .bbg-violet-800{ @apply bg-violet-800;}
+ .bbg-violet-900{ @apply bg-violet-900;}
+ .bbg-violet-950{ @apply bg-violet-950;}
+ .bbg-purple-50{ @apply bg-purple-50;}
+ .bbg-purple-100{ @apply bg-purple-100;}
+ .bbg-purple-200{ @apply bg-purple-200;}
+ .bbg-purple-300{ @apply bg-purple-300;}
+ .bbg-purple-400{ @apply bg-purple-400;}
+ .bbg-purple-500{ @apply bg-purple-500;}
+ .bbg-purple-600{ @apply bg-purple-600;}
+ .bbg-purple-700{ @apply bg-purple-700;}
+ .bbg-purple-800{ @apply bg-purple-800;}
+ .bbg-purple-900{ @apply bg-purple-900;}
+ .bbg-purple-950{ @apply bg-purple-950;}
+ .bbg-fuchsia-50{ @apply bg-fuchsia-50;}
+ .bbg-fuchsia-100{ @apply bg-fuchsia-100;}
+ .bbg-fuchsia-200{ @apply bg-fuchsia-200;}
+ .bbg-fuchsia-300{ @apply bg-fuchsia-300;}
+ .bbg-fuchsia-400{ @apply bg-fuchsia-400;}
+ .bbg-fuchsia-500{ @apply bg-fuchsia-500;}
+ .bbg-fuchsia-600{ @apply bg-fuchsia-600;}
+ .bbg-fuchsia-700{ @apply bg-fuchsia-700;}
+ .bbg-fuchsia-800{ @apply bg-fuchsia-800;}
+ .bbg-fuchsia-900{ @apply bg-fuchsia-900;}
+ .bbg-fuchsia-950{ @apply bg-fuchsia-950;}
+ .bbg-pink-50{ @apply bg-pink-50;}
+ .bbg-pink-100{ @apply bg-pink-100;}
+ .bbg-pink-200{ @apply bg-pink-200;}
+ .bbg-pink-300{ @apply bg-pink-300;}
+ .bbg-pink-400{ @apply bg-pink-400;}
+ .bbg-pink-500{ @apply bg-pink-500;}
+ .bbg-pink-600{ @apply bg-pink-600;}
+ .bbg-pink-700{ @apply bg-pink-700;}
+ .bbg-pink-800{ @apply bg-pink-800;}
+ .bbg-pink-900{ @apply bg-pink-900;}
+ .bbg-pink-950{ @apply bg-pink-950;}
+ .bbg-rose-50{ @apply bg-rose-50;}
+ .bbg-rose-100{ @apply bg-rose-100;}
+ .bbg-rose-200{ @apply bg-rose-200;}
+ .bbg-rose-300{ @apply bg-rose-300;}
+ .bbg-rose-400{ @apply bg-rose-400;}
+ .bbg-rose-500{ @apply bg-rose-500;}
+ .bbg-rose-600{ @apply bg-rose-600;}
+ .bbg-rose-700{ @apply bg-rose-700;}
+ .bbg-rose-800{ @apply bg-rose-800;}
+ .bbg-rose-900{ @apply bg-rose-900;}
+ .bbg-rose-950{ @apply bg-rose-950;}
+ .bbg-border-black {border:solid; border-color:green; border-width: 2px; border-style: dashed;}
+ 
+ .bfrom-slate-50{ @apply from-slate-50;}
+ .bvia-slate-50{ @apply via-slate-50;}
+ .bto-slate-50{ @apply to-slate-50 !important;}
+ .bfrom-slate-100{ @apply from-slate-100;}
+ .bvia-slate-100{ @apply via-slate-100;}
+ .bto-slate-100{ @apply to-slate-100 !important;}
+ .bfrom-slate-200{ @apply from-slate-200;}
+ .bvia-slate-200{ @apply via-slate-200;}
+ .bto-slate-200{ @apply to-slate-200 !important;}
+ .bfrom-slate-300{ @apply from-slate-300;}
+ .bvia-slate-300{ @apply via-slate-300;}
+ .bto-slate-300{ @apply to-slate-300 !important;}
+ .bfrom-slate-400{ @apply from-slate-400;}
+ .bvia-slate-400{ @apply via-slate-400;}
+ .bto-slate-400{ @apply to-slate-400 !important;}
+ .bfrom-slate-500{ @apply from-slate-500;}
+ .bvia-slate-500{ @apply via-slate-500;}
+ .bto-slate-500{ @apply to-slate-500 !important;}
+ .bfrom-slate-600{ @apply from-slate-600;}
+ .bvia-slate-600{ @apply via-slate-600;}
+ .bto-slate-600{ @apply to-slate-600 !important;}
+ .bfrom-slate-700{ @apply from-slate-700;}
+ .bvia-slate-700{ @apply via-slate-700;}
+ .bto-slate-700{ @apply to-slate-700 !important;}
+ .bfrom-slate-800{ @apply from-slate-800;}
+ .bvia-slate-800{ @apply via-slate-800;}
+ .bto-slate-800{ @apply to-slate-800 !important;}
+ .bfrom-slate-900{ @apply from-slate-900;}
+ .bvia-slate-900{ @apply via-slate-900;}
+ .bto-slate-900{ @apply to-slate-900 !important;}
+ .bfrom-gray-50{ @apply from-gray-50;}
+ .bvia-gray-50{ @apply via-gray-50;}
+ .bto-gray-50{ @apply to-gray-50 !important;}
+ .bfrom-gray-100{ @apply from-gray-100;}
+ .bvia-gray-100{ @apply via-gray-100;}
+ .bto-gray-100{ @apply to-gray-100 !important;}
+ .bfrom-gray-200{ @apply from-gray-200;}
+ .bvia-gray-200{ @apply via-gray-200;}
+ .bto-gray-200{ @apply to-gray-200 !important;}
+ .bfrom-gray-300{ @apply from-gray-300;}
+ .bvia-gray-300{ @apply via-gray-300;}
+ .bto-gray-300{ @apply to-gray-300 !important;}
+ .bfrom-gray-400{ @apply from-gray-400;}
+ .bvia-gray-400{ @apply via-gray-400;}
+ .bto-gray-400{ @apply to-gray-400 !important;}
+ .bfrom-gray-500{ @apply from-gray-500;}
+ .bvia-gray-500{ @apply via-gray-500;}
+ .bto-gray-500{ @apply to-gray-500 !important;}
+ .bfrom-gray-600{ @apply from-gray-600;}
+ .bvia-gray-600{ @apply via-gray-600;}
+ .bto-gray-600{ @apply to-gray-600 !important;}
+ .bfrom-gray-700{ @apply from-gray-700;}
+ .bvia-gray-700{ @apply via-gray-700;}
+ .bto-gray-700{ @apply to-gray-700 !important;}
+ .bfrom-gray-800{ @apply from-gray-800;}
+ .bvia-gray-800{ @apply via-gray-800;}
+ .bto-gray-800{ @apply to-gray-800 !important;}
+ .bfrom-gray-900{ @apply from-gray-900;}
+ .bvia-gray-900{ @apply via-gray-900;}
+ .bto-gray-900{ @apply to-gray-900 !important;}
+ .bfrom-zinc-50{ @apply from-zinc-50;}
+ .bvia-zinc-50{ @apply via-zinc-50;}
+ .bto-zinc-50{ @apply to-zinc-50 !important;}
+ .bfrom-zinc-100{ @apply from-zinc-100;}
+ .bvia-zinc-100{ @apply via-zinc-100;}
+ .bto-zinc-100{ @apply to-zinc-100 !important;}
+ .bfrom-zinc-200{ @apply from-zinc-200;}
+ .bvia-zinc-200{ @apply via-zinc-200;}
+ .bto-zinc-200{ @apply to-zinc-200 !important;}
+ .bfrom-zinc-300{ @apply from-zinc-300;}
+ .bvia-zinc-300{ @apply via-zinc-300;}
+ .bto-zinc-300{ @apply to-zinc-300 !important;}
+ .bfrom-zinc-400{ @apply from-zinc-400;}
+ .bvia-zinc-400{ @apply via-zinc-400;}
+ .bto-zinc-400{ @apply to-zinc-400 !important;}
+ .bfrom-zinc-500{ @apply from-zinc-500;}
+ .bvia-zinc-500{ @apply via-zinc-500;}
+ .bto-zinc-500{ @apply to-zinc-500 !important;}
+ .bfrom-zinc-600{ @apply from-zinc-600;}
+ .bvia-zinc-600{ @apply via-zinc-600;}
+ .bto-zinc-600{ @apply to-zinc-600 !important;}
+ .bfrom-zinc-700{ @apply from-zinc-700;}
+ .bvia-zinc-700{ @apply via-zinc-700;}
+ .bto-zinc-700{ @apply to-zinc-700 !important;}
+ .bfrom-zinc-800{ @apply from-zinc-800;}
+ .bvia-zinc-800{ @apply via-zinc-800;}
+ .bto-zinc-800{ @apply to-zinc-800 !important;}
+ .bfrom-zinc-900{ @apply from-zinc-900;}
+ .bvia-zinc-900{ @apply via-zinc-900;}
+ .bto-zinc-900{ @apply to-zinc-900 !important;}
+ .bfrom-neutral-50{ @apply from-neutral-50;}
+ .bvia-neutral-50{ @apply via-neutral-50;}
+ .bto-neutral-50{ @apply to-neutral-50 !important;}
+ .bfrom-neutral-100{ @apply from-neutral-100;}
+ .bvia-neutral-100{ @apply via-neutral-100;}
+ .bto-neutral-100{ @apply to-neutral-100 !important;}
+ .bfrom-neutral-200{ @apply from-neutral-200;}
+ .bvia-neutral-200{ @apply via-neutral-200;}
+ .bto-neutral-200{ @apply to-neutral-200 !important;}
+ .bfrom-neutral-300{ @apply from-neutral-300;}
+ .bvia-neutral-300{ @apply via-neutral-300;}
+ .bto-neutral-300{ @apply to-neutral-300 !important;}
+ .bfrom-neutral-400{ @apply from-neutral-400;}
+ .bvia-neutral-400{ @apply via-neutral-400;}
+ .bto-neutral-400{ @apply to-neutral-400 !important;}
+ .bfrom-neutral-500{ @apply from-neutral-500;}
+ .bvia-neutral-500{ @apply via-neutral-500;}
+ .bto-neutral-500{ @apply to-neutral-500 !important;}
+ .bfrom-neutral-600{ @apply from-neutral-600;}
+ .bvia-neutral-600{ @apply via-neutral-600;}
+ .bto-neutral-600{ @apply to-neutral-600 !important;}
+ .bfrom-neutral-700{ @apply from-neutral-700;}
+ .bvia-neutral-700{ @apply via-neutral-700;}
+ .bto-neutral-700{ @apply to-neutral-700 !important;}
+ .bfrom-neutral-800{ @apply from-neutral-800;}
+ .bvia-neutral-800{ @apply via-neutral-800;}
+ .bto-neutral-800{ @apply to-neutral-800 !important;}
+ .bfrom-neutral-900{ @apply from-neutral-900;}
+ .bvia-neutral-900{ @apply via-neutral-900;}
+ .bto-neutral-900{ @apply to-neutral-900 !important;}
+ .bfrom-stone-50{ @apply from-stone-50;}
+ .bvia-stone-50{ @apply via-stone-50;}
+ .bto-stone-50{ @apply to-stone-50 !important;}
+ .bfrom-stone-100{ @apply from-stone-100;}
+ .bvia-stone-100{ @apply via-stone-100;}
+ .bto-stone-100{ @apply to-stone-100 !important;}
+ .bfrom-stone-200{ @apply from-stone-200;}
+ .bvia-stone-200{ @apply via-stone-200;}
+ .bto-stone-200{ @apply to-stone-200 !important;}
+ .bfrom-stone-300{ @apply from-stone-300;}
+ .bvia-stone-300{ @apply via-stone-300;}
+ .bto-stone-300{ @apply to-stone-300 !important;}
+ .bfrom-stone-400{ @apply from-stone-400;}
+ .bvia-stone-400{ @apply via-stone-400;}
+ .bto-stone-400{ @apply to-stone-400 !important;}
+ .bfrom-stone-500{ @apply from-stone-500;}
+ .bvia-stone-500{ @apply via-stone-500;}
+ .bto-stone-500{ @apply to-stone-500 !important;}
+ .bfrom-stone-600{ @apply from-stone-600;}
+ .bvia-stone-600{ @apply via-stone-600;}
+ .bto-stone-600{ @apply to-stone-600 !important;}
+ .bfrom-stone-700{ @apply from-stone-700;}
+ .bvia-stone-700{ @apply via-stone-700;}
+ .bto-stone-700{ @apply to-stone-700 !important;}
+ .bfrom-stone-800{ @apply from-stone-800;}
+ .bvia-stone-800{ @apply via-stone-800;}
+ .bto-stone-800{ @apply to-stone-800 !important;}
+ .bfrom-stone-900{ @apply from-stone-900;}
+ .bvia-stone-900{ @apply via-stone-900;}
+ .bto-stone-900{ @apply to-stone-900 !important;}
+ .bfrom-red-50{ @apply from-red-50;}
+ .bvia-red-50{ @apply via-red-50;}
+ .bto-red-50{ @apply to-red-50 !important;}
+ .bfrom-red-100{ @apply from-red-100;}
+ .bvia-red-100{ @apply via-red-100;}
+ .bto-red-100{ @apply to-red-100 !important;}
+ .bfrom-red-200{ @apply from-red-200;}
+ .bvia-red-200{ @apply via-red-200;}
+ .bto-red-200{ @apply to-red-200 !important;}
+ .bfrom-red-300{ @apply from-red-300;}
+ .bvia-red-300{ @apply via-red-300;}
+ .bto-red-300{ @apply to-red-300 !important;}
+ .bfrom-red-400{ @apply from-red-400;}
+ .bvia-red-400{ @apply via-red-400;}
+ .bto-red-400{ @apply to-red-400 !important;}
+ .bfrom-red-500{ @apply from-red-500;}
+ .bvia-red-500{ @apply via-red-500;}
+ .bto-red-500{ @apply to-red-500 !important;}
+ .bfrom-red-600{ @apply from-red-600;}
+ .bvia-red-600{ @apply via-red-600;}
+ .bto-red-600{ @apply to-red-600 !important;}
+ .bfrom-red-700{ @apply from-red-700;}
+ .bvia-red-700{ @apply via-red-700;}
+ .bto-red-700{ @apply to-red-700 !important;}
+ .bfrom-red-800{ @apply from-red-800;}
+ .bvia-red-800{ @apply via-red-800;}
+ .bto-red-800{ @apply to-red-800 !important;}
+ .bfrom-red-900{ @apply from-red-900;}
+ .bvia-red-900{ @apply via-red-900;}
+ .bto-red-900{ @apply to-red-900 !important;}
+ .bfrom-orange-50{ @apply from-orange-50;}
+ .bvia-orange-50{ @apply via-orange-50;}
+ .bto-orange-50{ @apply to-orange-50 !important;}
+ .bfrom-orange-100{ @apply from-orange-100;}
+ .bvia-orange-100{ @apply via-orange-100;}
+ .bto-orange-100{ @apply to-orange-100 !important;}
+ .bfrom-orange-200{ @apply from-orange-200;}
+ .bvia-orange-200{ @apply via-orange-200;}
+ .bto-orange-200{ @apply to-orange-200 !important;}
+ .bfrom-orange-300{ @apply from-orange-300;}
+ .bvia-orange-300{ @apply via-orange-300;}
+ .bto-orange-300{ @apply to-orange-300 !important;}
+ .bfrom-orange-400{ @apply from-orange-400;}
+ .bvia-orange-400{ @apply via-orange-400;}
+ .bto-orange-400{ @apply to-orange-400 !important;}
+ .bfrom-orange-500{ @apply from-orange-500;}
+ .bvia-orange-500{ @apply via-orange-500;}
+ .bto-orange-500{ @apply to-orange-500 !important;}
+ .bfrom-orange-600{ @apply from-orange-600;}
+ .bvia-orange-600{ @apply via-orange-600;}
+ .bto-orange-600{ @apply to-orange-600 !important;}
+ .bfrom-orange-700{ @apply from-orange-700;}
+ .bvia-orange-700{ @apply via-orange-700;}
+ .bto-orange-700{ @apply to-orange-700 !important;}
+ .bfrom-orange-800{ @apply from-orange-800;}
+ .bvia-orange-800{ @apply via-orange-800;}
+ .bto-orange-800{ @apply to-orange-800 !important;}
+ .bfrom-orange-900{ @apply from-orange-900;}
+ .bvia-orange-900{ @apply via-orange-900;}
+ .bto-orange-900{ @apply to-orange-900 !important;}
+ .bfrom-amber-50{ @apply from-amber-50;}
+ .bvia-amber-50{ @apply via-amber-50;}
+ .bto-amber-50{ @apply to-amber-50 !important;}
+ .bfrom-amber-100{ @apply from-amber-100;}
+ .bvia-amber-100{ @apply via-amber-100;}
+ .bto-amber-100{ @apply to-amber-100 !important;}
+ .bfrom-amber-200{ @apply from-amber-200;}
+ .bvia-amber-200{ @apply via-amber-200;}
+ .bto-amber-200{ @apply to-amber-200 !important;}
+ .bfrom-amber-300{ @apply from-amber-300;}
+ .bvia-amber-300{ @apply via-amber-300;}
+ .bto-amber-300{ @apply to-amber-300 !important;}
+ .bfrom-amber-400{ @apply from-amber-400;}
+ .bvia-amber-400{ @apply via-amber-400;}
+ .bto-amber-400{ @apply to-amber-400 !important;}
+ .bfrom-amber-500{ @apply from-amber-500;}
+ .bvia-amber-500{ @apply via-amber-500;}
+ .bto-amber-500{ @apply to-amber-500 !important;}
+ .bfrom-amber-600{ @apply from-amber-600;}
+ .bvia-amber-600{ @apply via-amber-600;}
+ .bto-amber-600{ @apply to-amber-600 !important;}
+ .bfrom-amber-700{ @apply from-amber-700;}
+ .bvia-amber-700{ @apply via-amber-700;}
+ .bto-amber-700{ @apply to-amber-700 !important;}
+ .bfrom-amber-800{ @apply from-amber-800;}
+ .bvia-amber-800{ @apply via-amber-800;}
+ .bto-amber-800{ @apply to-amber-800 !important;}
+ .bfrom-amber-900{ @apply from-amber-900;}
+ .bvia-amber-900{ @apply via-amber-900;}
+ .bto-amber-900{ @apply to-amber-900 !important;}
+ .bfrom-yellow-50{ @apply from-yellow-50;}
+ .bvia-yellow-50{ @apply via-yellow-50;}
+ .bto-yellow-50{ @apply to-yellow-50 !important;}
+ .bfrom-yellow-100{ @apply from-yellow-100;}
+ .bvia-yellow-100{ @apply via-yellow-100;}
+ .bto-yellow-100{ @apply to-yellow-100 !important;}
+ .bfrom-yellow-200{ @apply from-yellow-200;}
+ .bvia-yellow-200{ @apply via-yellow-200;}
+ .bto-yellow-200{ @apply to-yellow-200 !important;}
+ .bfrom-yellow-300{ @apply from-yellow-300;}
+ .bvia-yellow-300{ @apply via-yellow-300;}
+ .bto-yellow-300{ @apply to-yellow-300 !important;}
+ .bfrom-yellow-400{ @apply from-yellow-400;}
+ .bvia-yellow-400{ @apply via-yellow-400;}
+ .bto-yellow-400{ @apply to-yellow-400 !important;}
+ .bfrom-yellow-500{ @apply from-yellow-500;}
+ .bvia-yellow-500{ @apply via-yellow-500;}
+ .bto-yellow-500{ @apply to-yellow-500 !important;}
+ .bfrom-yellow-600{ @apply from-yellow-600;}
+ .bvia-yellow-600{ @apply via-yellow-600;}
+ .bto-yellow-600{ @apply to-yellow-600 !important;}
+ .bfrom-yellow-700{ @apply from-yellow-700;}
+ .bvia-yellow-700{ @apply via-yellow-700;}
+ .bto-yellow-700{ @apply to-yellow-700 !important;}
+ .bfrom-yellow-800{ @apply from-yellow-800;}
+ .bvia-yellow-800{ @apply via-yellow-800;}
+ .bto-yellow-800{ @apply to-yellow-800 !important;}
+ .bfrom-yellow-900{ @apply from-yellow-900;}
+ .bvia-yellow-900{ @apply via-yellow-900;}
+ .bto-yellow-900{ @apply to-yellow-900 !important;}
+ .bfrom-lime-50{ @apply from-lime-50;}
+ .bvia-lime-50{ @apply via-lime-50;}
+ .bto-lime-50{ @apply to-lime-50 !important;}
+ .bfrom-lime-100{ @apply from-lime-100;}
+ .bvia-lime-100{ @apply via-lime-100;}
+ .bto-lime-100{ @apply to-lime-100 !important;}
+ .bfrom-lime-200{ @apply from-lime-200;}
+ .bvia-lime-200{ @apply via-lime-200;}
+ .bto-lime-200{ @apply to-lime-200 !important;}
+ .bfrom-lime-300{ @apply from-lime-300;}
+ .bvia-lime-300{ @apply via-lime-300;}
+ .bto-lime-300{ @apply to-lime-300 !important;}
+ .bfrom-lime-400{ @apply from-lime-400;}
+ .bvia-lime-400{ @apply via-lime-400;}
+ .bto-lime-400{ @apply to-lime-400 !important;}
+ .bfrom-lime-500{ @apply from-lime-500;}
+ .bvia-lime-500{ @apply via-lime-500;}
+ .bto-lime-500{ @apply to-lime-500 !important;}
+ .bfrom-lime-600{ @apply from-lime-600;}
+ .bvia-lime-600{ @apply via-lime-600;}
+ .bto-lime-600{ @apply to-lime-600 !important;}
+ .bfrom-lime-700{ @apply from-lime-700;}
+ .bvia-lime-700{ @apply via-lime-700;}
+ .bto-lime-700{ @apply to-lime-700 !important;}
+ .bfrom-lime-800{ @apply from-lime-800;}
+ .bvia-lime-800{ @apply via-lime-800;}
+ .bto-lime-800{ @apply to-lime-800 !important;}
+ .bfrom-lime-900{ @apply from-lime-900;}
+ .bvia-lime-900{ @apply via-lime-900;}
+ .bto-lime-900{ @apply to-lime-900 !important;}
+ .bfrom-green-50{ @apply from-green-50;}
+ .bvia-green-50{ @apply via-green-50;}
+ .bto-green-50{ @apply to-green-50 !important;}
+ .bfrom-green-100{ @apply from-green-100;}
+ .bvia-green-100{ @apply via-green-100;}
+ .bto-green-100{ @apply to-green-100 !important;}
+ .bfrom-green-200{ @apply from-green-200;}
+ .bvia-green-200{ @apply via-green-200;}
+ .bto-green-200{ @apply to-green-200 !important;}
+ .bfrom-green-300{ @apply from-green-300;}
+ .bvia-green-300{ @apply via-green-300;}
+ .bto-green-300{ @apply to-green-300 !important;}
+ .bfrom-green-400{ @apply from-green-400;}
+ .bvia-green-400{ @apply via-green-400;}
+ .bto-green-400{ @apply to-green-400 !important;}
+ .bfrom-green-500{ @apply from-green-500;}
+ .bvia-green-500{ @apply via-green-500;}
+ .bto-green-500{ @apply to-green-500 !important;}
+ .bfrom-green-600{ @apply from-green-600;}
+ .bvia-green-600{ @apply via-green-600;}
+ .bto-green-600{ @apply to-green-600 !important;}
+ .bfrom-green-700{ @apply from-green-700;}
+ .bvia-green-700{ @apply via-green-700;}
+ .bto-green-700{ @apply to-green-700 !important;}
+ .bfrom-green-800{ @apply from-green-800;}
+ .bvia-green-800{ @apply via-green-800;}
+ .bto-green-800{ @apply to-green-800 !important;}
+ .bfrom-green-900{ @apply from-green-900;}
+ .bvia-green-900{ @apply via-green-900;}
+ .bto-green-900{ @apply to-green-900 !important;}
+ .bfrom-teal-50{ @apply from-teal-50;}
+ .bvia-teal-50{ @apply via-teal-50;}
+ .bto-teal-50{ @apply to-teal-50 !important;}
+ .bfrom-teal-100{ @apply from-teal-100;}
+ .bvia-teal-100{ @apply via-teal-100;}
+ .bto-teal-100{ @apply to-teal-100 !important;}
+ .bfrom-teal-200{ @apply from-teal-200;}
+ .bvia-teal-200{ @apply via-teal-200;}
+ .bto-teal-200{ @apply to-teal-200 !important;}
+ .bfrom-teal-300{ @apply from-teal-300;}
+ .bvia-teal-300{ @apply via-teal-300;}
+ .bto-teal-300{ @apply to-teal-300 !important;}
+ .bfrom-teal-400{ @apply from-teal-400;}
+ .bvia-teal-400{ @apply via-teal-400;}
+ .bto-teal-400{ @apply to-teal-400 !important;}
+ .bfrom-teal-500{ @apply from-teal-500;}
+ .bvia-teal-500{ @apply via-teal-500;}
+ .bto-teal-500{ @apply to-teal-500 !important;}
+ .bfrom-teal-600{ @apply from-teal-600;}
+ .bvia-teal-600{ @apply via-teal-600;}
+ .bto-teal-600{ @apply to-teal-600 !important;}
+ .bfrom-teal-700{ @apply from-teal-700;}
+ .bvia-teal-700{ @apply via-teal-700;}
+ .bto-teal-700{ @apply to-teal-700 !important;}
+ .bfrom-teal-800{ @apply from-teal-800;}
+ .bvia-teal-800{ @apply via-teal-800;}
+ .bto-teal-800{ @apply to-teal-800 !important;}
+ .bfrom-teal-900{ @apply from-teal-900;}
+ .bvia-teal-900{ @apply via-teal-900;}
+ .bto-teal-900{ @apply to-teal-900 !important;}
+ .bfrom-cyan-50{ @apply from-cyan-50;}
+ .bvia-cyan-50{ @apply via-cyan-50;}
+ .bto-cyan-50{ @apply to-cyan-50 !important;}
+ .bfrom-cyan-100{ @apply from-cyan-100;}
+ .bvia-cyan-100{ @apply via-cyan-100;}
+ .bto-cyan-100{ @apply to-cyan-100 !important;}
+ .bfrom-cyan-200{ @apply from-cyan-200;}
+ .bvia-cyan-200{ @apply via-cyan-200;}
+ .bto-cyan-200{ @apply to-cyan-200 !important;}
+ .bfrom-cyan-300{ @apply from-cyan-300;}
+ .bvia-cyan-300{ @apply via-cyan-300;}
+ .bto-cyan-300{ @apply to-cyan-300 !important;}
+ .bfrom-cyan-400{ @apply from-cyan-400;}
+ .bvia-cyan-400{ @apply via-cyan-400;}
+ .bto-cyan-400{ @apply to-cyan-400 !important;}
+ .bfrom-cyan-500{ @apply from-cyan-500;}
+ .bvia-cyan-500{ @apply via-cyan-500;}
+ .bto-cyan-500{ @apply to-cyan-500 !important;}
+ .bfrom-cyan-600{ @apply from-cyan-600;}
+ .bvia-cyan-600{ @apply via-cyan-600;}
+ .bto-cyan-600{ @apply to-cyan-600 !important;}
+ .bfrom-cyan-700{ @apply from-cyan-700;}
+ .bvia-cyan-700{ @apply via-cyan-700;}
+ .bto-cyan-700{ @apply to-cyan-700 !important;}
+ .bfrom-cyan-800{ @apply from-cyan-800;}
+ .bvia-cyan-800{ @apply via-cyan-800;}
+ .bto-cyan-800{ @apply to-cyan-800 !important;}
+ .bfrom-cyan-900{ @apply from-cyan-900;}
+ .bvia-cyan-900{ @apply via-cyan-900;}
+ .bto-cyan-900{ @apply to-cyan-900 !important;}
+ .bfrom-sky-50{ @apply from-sky-50;}
+ .bvia-sky-50{ @apply via-sky-50;}
+ .bto-sky-50{ @apply to-sky-50 !important;}
+ .bfrom-sky-100{ @apply from-sky-100;}
+ .bvia-sky-100{ @apply via-sky-100;}
+ .bto-sky-100{ @apply to-sky-100 !important;}
+ .bfrom-sky-200{ @apply from-sky-200;}
+ .bvia-sky-200{ @apply via-sky-200;}
+ .bto-sky-200{ @apply to-sky-200 !important;}
+ .bfrom-sky-300{ @apply from-sky-300;}
+ .bvia-sky-300{ @apply via-sky-300;}
+ .bto-sky-300{ @apply to-sky-300 !important;}
+ .bfrom-sky-400{ @apply from-sky-400;}
+ .bvia-sky-400{ @apply via-sky-400;}
+ .bto-sky-400{ @apply to-sky-400 !important;}
+ .bfrom-sky-500{ @apply from-sky-500;}
+ .bvia-sky-500{ @apply via-sky-500;}
+ .bto-sky-500{ @apply to-sky-500 !important;}
+ .bfrom-sky-600{ @apply from-sky-600;}
+ .bvia-sky-600{ @apply via-sky-600;}
+ .bto-sky-600{ @apply to-sky-600 !important;}
+ .bfrom-sky-700{ @apply from-sky-700;}
+ .bvia-sky-700{ @apply via-sky-700;}
+ .bto-sky-700{ @apply to-sky-700 !important;}
+ .bfrom-sky-800{ @apply from-sky-800;}
+ .bvia-sky-800{ @apply via-sky-800;}
+ .bto-sky-800{ @apply to-sky-800 !important;}
+ .bfrom-sky-900{ @apply from-sky-900;}
+ .bvia-sky-900{ @apply via-sky-900;}
+ .bto-sky-900{ @apply to-sky-900 !important;}
+ .bfrom-blue-50{ @apply from-blue-50;}
+ .bvia-blue-50{ @apply via-blue-50;}
+ .bto-blue-50{ @apply to-blue-50 !important;}
+ .bfrom-blue-100{ @apply from-blue-100;}
+ .bvia-blue-100{ @apply via-blue-100;}
+ .bto-blue-100{ @apply to-blue-100 !important;}
+ .bfrom-blue-200{ @apply from-blue-200;}
+ .bvia-blue-200{ @apply via-blue-200;}
+ .bto-blue-200{ @apply to-blue-200 !important;}
+ .bfrom-blue-300{ @apply from-blue-300;}
+ .bvia-blue-300{ @apply via-blue-300;}
+ .bto-blue-300{ @apply to-blue-300 !important;}
+ .bfrom-blue-400{ @apply from-blue-400;}
+ .bvia-blue-400{ @apply via-blue-400;}
+ .bto-blue-400{ @apply to-blue-400 !important;}
+ .bfrom-blue-500{ @apply from-blue-500;}
+ .bvia-blue-500{ @apply via-blue-500;}
+ .bto-blue-500{ @apply to-blue-500 !important;}
+ .bfrom-blue-600{ @apply from-blue-600;}
+ .bvia-blue-600{ @apply via-blue-600;}
+ .bto-blue-600{ @apply to-blue-600 !important;}
+ .bfrom-blue-700{ @apply from-blue-700;}
+ .bvia-blue-700{ @apply via-blue-700;}
+ .bto-blue-700{ @apply to-blue-700 !important;}
+ .bfrom-blue-800{ @apply from-blue-800;}
+ .bvia-blue-800{ @apply via-blue-800;}
+ .bto-blue-800{ @apply to-blue-800 !important;}
+ .bfrom-blue-900{ @apply from-blue-900;}
+ .bvia-blue-900{ @apply via-blue-900;}
+ .bto-blue-900{ @apply to-blue-900 !important;}
+ .bfrom-indigo-50{ @apply from-indigo-50;}
+ .bvia-indigo-50{ @apply via-indigo-50;}
+ .bto-indigo-50{ @apply to-indigo-50 !important;}
+ .bfrom-indigo-100{ @apply from-indigo-100;}
+ .bvia-indigo-100{ @apply via-indigo-100;}
+ .bto-indigo-100{ @apply to-indigo-100 !important;}
+ .bfrom-indigo-200{ @apply from-indigo-200;}
+ .bvia-indigo-200{ @apply via-indigo-200;}
+ .bto-indigo-200{ @apply to-indigo-200 !important;}
+ .bfrom-indigo-300{ @apply from-indigo-300;}
+ .bvia-indigo-300{ @apply via-indigo-300;}
+ .bto-indigo-300{ @apply to-indigo-300 !important;}
+ .bfrom-indigo-400{ @apply from-indigo-400;}
+ .bvia-indigo-400{ @apply via-indigo-400;}
+ .bto-indigo-400{ @apply to-indigo-400 !important;}
+ .bfrom-indigo-500{ @apply from-indigo-500;}
+ .bvia-indigo-500{ @apply via-indigo-500;}
+ .bto-indigo-500{ @apply to-indigo-500 !important;}
+ .bfrom-indigo-600{ @apply from-indigo-600;}
+ .bvia-indigo-600{ @apply via-indigo-600;}
+ .bto-indigo-600{ @apply to-indigo-600 !important;}
+ .bfrom-indigo-700{ @apply from-indigo-700;}
+ .bvia-indigo-700{ @apply via-indigo-700;}
+ .bto-indigo-700{ @apply to-indigo-700 !important;}
+ .bfrom-indigo-800{ @apply from-indigo-800;}
+ .bvia-indigo-800{ @apply via-indigo-800;}
+ .bto-indigo-800{ @apply to-indigo-800 !important;}
+ .bfrom-indigo-900{ @apply from-indigo-900;}
+ .bvia-indigo-900{ @apply via-indigo-900;}
+ .bto-indigo-900{ @apply to-indigo-900 !important;}
+ .bfrom-violet-50{ @apply from-violet-50;}
+ .bvia-violet-50{ @apply via-violet-50;}
+ .bto-violet-50{ @apply to-violet-50 !important;}
+ .bfrom-violet-100{ @apply from-violet-100;}
+ .bvia-violet-100{ @apply via-violet-100;}
+ .bto-violet-100{ @apply to-violet-100 !important;}
+ .bfrom-violet-200{ @apply from-violet-200;}
+ .bvia-violet-200{ @apply via-violet-200;}
+ .bto-violet-200{ @apply to-violet-200 !important;}
+ .bfrom-violet-300{ @apply from-violet-300;}
+ .bvia-violet-300{ @apply via-violet-300;}
+ .bto-violet-300{ @apply to-violet-300 !important;}
+ .bfrom-violet-400{ @apply from-violet-400;}
+ .bvia-violet-400{ @apply via-violet-400;}
+ .bto-violet-400{ @apply to-violet-400 !important;}
+ .bfrom-violet-500{ @apply from-violet-500;}
+ .bvia-violet-500{ @apply via-violet-500;}
+ .bto-violet-500{ @apply to-violet-500 !important;}
+ .bfrom-violet-600{ @apply from-violet-600;}
+ .bvia-violet-600{ @apply via-violet-600;}
+ .bto-violet-600{ @apply to-violet-600 !important;}
+ .bfrom-violet-700{ @apply from-violet-700;}
+ .bvia-violet-700{ @apply via-violet-700;}
+ .bto-violet-700{ @apply to-violet-700 !important;}
+ .bfrom-violet-800{ @apply from-violet-800;}
+ .bvia-violet-800{ @apply via-violet-800;}
+ .bto-violet-800{ @apply to-violet-800 !important;}
+ .bfrom-violet-900{ @apply from-violet-900;}
+ .bvia-violet-900{ @apply via-violet-900;}
+ .bto-violet-900{ @apply to-violet-900 !important;}
+ .bfrom-purple-50{ @apply from-purple-50;}
+ .bvia-purple-50{ @apply via-purple-50;}
+ .bto-purple-50{ @apply to-purple-50 !important;}
+ .bfrom-purple-100{ @apply from-purple-100;}
+ .bvia-purple-100{ @apply via-purple-100;}
+ .bto-purple-100{ @apply to-purple-100 !important;}
+ .bfrom-purple-200{ @apply from-purple-200;}
+ .bvia-purple-200{ @apply via-purple-200;}
+ .bto-purple-200{ @apply to-purple-200 !important;}
+ .bfrom-purple-300{ @apply from-purple-300;}
+ .bvia-purple-300{ @apply via-purple-300;}
+ .bto-purple-300{ @apply to-purple-300 !important;}
+ .bfrom-purple-400{ @apply from-purple-400;}
+ .bvia-purple-400{ @apply via-purple-400;}
+ .bto-purple-400{ @apply to-purple-400 !important;}
+ .bfrom-purple-500{ @apply from-purple-500;}
+ .bvia-purple-500{ @apply via-purple-500;}
+ .bto-purple-500{ @apply to-purple-500 !important;}
+ .bfrom-purple-600{ @apply from-purple-600;}
+ .bvia-purple-600{ @apply via-purple-600;}
+ .bto-purple-600{ @apply to-purple-600 !important;}
+ .bfrom-purple-700{ @apply from-purple-700;}
+ .bvia-purple-700{ @apply via-purple-700;}
+ .bto-purple-700{ @apply to-purple-700 !important;}
+ .bfrom-purple-800{ @apply from-purple-800;}
+ .bvia-purple-800{ @apply via-purple-800;}
+ .bto-purple-800{ @apply to-purple-800 !important;}
+ .bfrom-purple-900{ @apply from-purple-900;}
+ .bvia-purple-900{ @apply via-purple-900;}
+ .bto-purple-900{ @apply to-purple-900 !important;}
+ .bfrom-fuchsia-50{ @apply from-fuchsia-50;}
+ .bvia-fuchsia-50{ @apply via-fuchsia-50;}
+ .bto-fuchsia-50{ @apply to-fuchsia-50 !important;}
+ .bfrom-fuchsia-100{ @apply from-fuchsia-100;}
+ .bvia-fuchsia-100{ @apply via-fuchsia-100;}
+ .bto-fuchsia-100{ @apply to-fuchsia-100 !important;}
+ .bfrom-fuchsia-200{ @apply from-fuchsia-200;}
+ .bvia-fuchsia-200{ @apply via-fuchsia-200;}
+ .bto-fuchsia-200{ @apply to-fuchsia-200 !important;}
+ .bfrom-fuchsia-300{ @apply from-fuchsia-300;}
+ .bvia-fuchsia-300{ @apply via-fuchsia-300;}
+ .bto-fuchsia-300{ @apply to-fuchsia-300 !important;}
+ .bfrom-fuchsia-400{ @apply from-fuchsia-400;}
+ .bvia-fuchsia-400{ @apply via-fuchsia-400;}
+ .bto-fuchsia-400{ @apply to-fuchsia-400 !important;}
+ .bfrom-fuchsia-500{ @apply from-fuchsia-500;}
+ .bvia-fuchsia-500{ @apply via-fuchsia-500;}
+ .bto-fuchsia-500{ @apply to-fuchsia-500 !important;}
+ .bfrom-fuchsia-600{ @apply from-fuchsia-600;}
+ .bvia-fuchsia-600{ @apply via-fuchsia-600;}
+ .bto-fuchsia-600{ @apply to-fuchsia-600 !important;}
+ .bfrom-fuchsia-700{ @apply from-fuchsia-700;}
+ .bvia-fuchsia-700{ @apply via-fuchsia-700;}
+ .bto-fuchsia-700{ @apply to-fuchsia-700 !important;}
+ .bfrom-fuchsia-800{ @apply from-fuchsia-800;}
+ .bvia-fuchsia-800{ @apply via-fuchsia-800;}
+ .bto-fuchsia-800{ @apply to-fuchsia-800 !important;}
+ .bfrom-fuchsia-900{ @apply from-fuchsia-900;}
+ .bvia-fuchsia-900{ @apply via-fuchsia-900;}
+ .bto-fuchsia-900{ @apply to-fuchsia-900 !important;}
+ .bfrom-pink-50{ @apply from-pink-50;}
+ .bvia-pink-50{ @apply via-pink-50;}
+ .bto-pink-50{ @apply to-pink-50 !important;}
+ .bfrom-pink-100{ @apply from-pink-100;}
+ .bvia-pink-100{ @apply via-pink-100;}
+ .bto-pink-100{ @apply to-pink-100 !important;}
+ .bfrom-pink-200{ @apply from-pink-200;}
+ .bvia-pink-200{ @apply via-pink-200;}
+ .bto-pink-200{ @apply to-pink-200 !important;}
+ .bfrom-pink-300{ @apply from-pink-300;}
+ .bvia-pink-300{ @apply via-pink-300;}
+ .bto-pink-300{ @apply to-pink-300 !important;}
+ .bfrom-pink-400{ @apply from-pink-400;}
+ .bvia-pink-400{ @apply via-pink-400;}
+ .bto-pink-400{ @apply to-pink-400 !important;}
+ .bfrom-pink-500{ @apply from-pink-500;}
+ .bvia-pink-500{ @apply via-pink-500;}
+ .bto-pink-500{ @apply to-pink-500 !important;}
+ .bfrom-pink-600{ @apply from-pink-600;}
+ .bvia-pink-600{ @apply via-pink-600;}
+ .bto-pink-600{ @apply to-pink-600 !important;}
+ .bfrom-pink-700{ @apply from-pink-700;}
+ .bvia-pink-700{ @apply via-pink-700;}
+ .bto-pink-700{ @apply to-pink-700 !important;}
+ .bfrom-pink-800{ @apply from-pink-800;}
+ .bvia-pink-800{ @apply via-pink-800;}
+ .bto-pink-800{ @apply to-pink-800 !important;}
+ .bfrom-pink-900{ @apply from-pink-900;}
+ .bvia-pink-900{ @apply via-pink-900;}
+ .bto-pink-900{ @apply to-pink-900 !important;}
+ .bfrom-rose-50{ @apply from-rose-50;}
+ .bvia-rose-50{ @apply via-rose-50;}
+ .bto-rose-50{ @apply to-rose-50 !important;}
+ .bfrom-rose-100{ @apply from-rose-100;}
+ .bvia-rose-100{ @apply via-rose-100;}
+ .bto-rose-100{ @apply to-rose-100 !important;}
+ .bfrom-rose-200{ @apply from-rose-200;}
+ .bvia-rose-200{ @apply via-rose-200;}
+ .bto-rose-200{ @apply to-rose-200 !important;}
+ .bfrom-rose-300{ @apply from-rose-300;}
+ .bvia-rose-300{ @apply via-rose-300;}
+ .bto-rose-300{ @apply to-rose-300 !important;}
+ .bfrom-rose-400{ @apply from-rose-400;}
+ .bvia-rose-400{ @apply via-rose-400;}
+ .bto-rose-400{ @apply to-rose-400 !important;}
+ .bfrom-rose-500{ @apply from-rose-500;}
+ .bvia-rose-500{ @apply via-rose-500;}
+ .bto-rose-500{ @apply to-rose-500 !important;}
+ .bfrom-rose-600{ @apply from-rose-600;}
+ .bvia-rose-600{ @apply via-rose-600;}
+ .bto-rose-600{ @apply to-rose-600 !important;}
+ .bfrom-rose-700{ @apply from-rose-700;}
+ .bvia-rose-700{ @apply via-rose-700;}
+ .bto-rose-700{ @apply to-rose-700 !important;}
+ .bfrom-rose-800{ @apply from-rose-800;}
+ .bvia-rose-800{ @apply via-rose-800;}
+ .bto-rose-800{ @apply to-rose-800 !important;}
+ .bfrom-rose-900{ @apply from-rose-900;}
+ .bvia-rose-900{ @apply via-rose-900;}
+ .bto-rose-900{ @apply to-rose-900;}
+
+ .bfrom-white{ @apply from-white;}
+ .bvia-white{ @apply via-white;}
+ .bto-white{ @apply to-white;}
+
+ .bfrom-black{ @apply from-black;}
+ .bvia-black{ @apply via-black;}
+ .bto-black{ @apply to-black;}
+
+ .bfrom-transparent{ @apply from-transparent;}
+ .bvia-transparent{ @apply via-transparent;}
+ .bto-transparent{ @apply to-transparent;}  
+
+
+.bbg-gradient-to-r{@apply bg-gradient-to-r;}
+.bbg-gradient-to-t{@apply bg-gradient-to-t;}
+.bbg-gradient-to-tr{@apply bg-gradient-to-tr;}
+.bbg-gradient-to-br{@apply bg-gradient-to-br;}
+.bbg-gradient-to-b{@apply bg-gradient-to-b;}
+.bbg-gradient-to-bl{@apply bg-gradient-to-bl;}
+.bbg-gradient-to-l{@apply bg-gradient-to-l;}
+.bbg-gradient-to-tl{@apply bg-gradient-to-tl;}
+.ttext-slate-50{ @apply text-slate-50 !important;}
+ .ttext-slate-100{ @apply text-slate-100 !important;}
+ .ttext-slate-200{ @apply text-slate-200 !important;}
+ .ttext-slate-300{ @apply text-slate-300 !important;}
+ .ttext-slate-400{ @apply text-slate-400 !important;}
+ .ttext-slate-500{ @apply text-slate-500 !important;}
+ .ttext-slate-600{ @apply text-slate-600 !important;}
+ .ttext-slate-700{ @apply text-slate-700 !important;}
+ .ttext-slate-800{ @apply text-slate-800 !important;}
+ .ttext-slate-900{ @apply text-slate-900 !important;}
+ .ttext-gray-50{ @apply text-gray-50 !important;}
+ .ttext-gray-100{ @apply text-gray-100 !important;}
+ .ttext-gray-200{ @apply text-gray-200 !important;}
+ .ttext-gray-300{ @apply text-gray-300 !important;}
+ .ttext-gray-400{ @apply text-gray-400 !important;}
+ .ttext-gray-500{ @apply text-gray-500 !important;}
+ .ttext-gray-600{ @apply text-gray-600 !important;}
+ .ttext-gray-700{ @apply text-gray-700 !important;}
+ .ttext-gray-800{ @apply text-gray-800 !important;}
+ .ttext-gray-900{ @apply text-gray-900 !important;}
+ .ttext-zinc-50{ @apply text-zinc-50 !important;}
+ .ttext-zinc-100{ @apply text-zinc-100 !important;}
+ .ttext-zinc-200{ @apply text-zinc-200 !important;}
+ .ttext-zinc-300{ @apply text-zinc-300 !important;}
+ .ttext-zinc-400{ @apply text-zinc-400 !important;}
+ .ttext-zinc-500{ @apply text-zinc-500 !important;}
+ .ttext-zinc-600{ @apply text-zinc-600 !important;}
+ .ttext-zinc-700{ @apply text-zinc-700 !important;}
+ .ttext-zinc-800{ @apply text-zinc-800 !important;}
+ .ttext-zinc-900{ @apply text-zinc-900 !important;}
+ .ttext-neutral-50{ @apply text-neutral-50 !important;}
+ .ttext-neutral-100{ @apply text-neutral-100 !important;}
+ .ttext-neutral-200{ @apply text-neutral-200 !important;}
+ .ttext-neutral-300{ @apply text-neutral-300 !important;}
+ .ttext-neutral-400{ @apply text-neutral-400 !important;}
+ .ttext-neutral-500{ @apply text-neutral-500 !important;}
+ .ttext-neutral-600{ @apply text-neutral-600 !important;}
+ .ttext-neutral-700{ @apply text-neutral-700 !important;}
+ .ttext-neutral-800{ @apply text-neutral-800 !important;}
+ .ttext-neutral-900{ @apply text-neutral-900 !important;}
+ .ttext-stone-50{ @apply text-stone-50 !important;}
+ .ttext-stone-100{ @apply text-stone-100 !important;}
+ .ttext-stone-200{ @apply text-stone-200 !important;}
+ .ttext-stone-300{ @apply text-stone-300 !important;}
+ .ttext-stone-400{ @apply text-stone-400 !important;}
+ .ttext-stone-500{ @apply text-stone-500 !important;}
+ .ttext-stone-600{ @apply text-stone-600 !important;}
+ .ttext-stone-700{ @apply text-stone-700 !important;}
+ .ttext-stone-800{ @apply text-stone-800 !important;}
+ .ttext-stone-900{ @apply text-stone-900 !important;}
+ .ttext-red-50{ @apply text-red-50 !important;}
+ .ttext-red-100{ @apply text-red-100 !important;}
+ .ttext-red-200{ @apply text-red-200 !important;}
+ .ttext-red-300{ @apply text-red-300 !important;}
+ .ttext-red-400{ @apply text-red-400 !important;}
+ .ttext-red-500{ @apply text-red-500 !important;}
+ .ttext-red-600{ @apply text-red-600 !important;}
+ .ttext-red-700{ @apply text-red-700 !important;}
+ .ttext-red-800{ @apply text-red-800 !important;}
+ .ttext-red-900{ @apply text-red-900 !important;}
+ .ttext-orange-50{ @apply text-orange-50 !important;}
+ .ttext-orange-100{ @apply text-orange-100 !important;}
+ .ttext-orange-200{ @apply text-orange-200 !important;}
+ .ttext-orange-300{ @apply text-orange-300 !important;}
+ .ttext-orange-400{ @apply text-orange-400 !important;}
+ .ttext-orange-500{ @apply text-orange-500 !important;}
+ .ttext-orange-600{ @apply text-orange-600 !important;}
+ .ttext-orange-700{ @apply text-orange-700 !important;}
+ .ttext-orange-800{ @apply text-orange-800 !important;}
+ .ttext-orange-900{ @apply text-orange-900 !important;}
+ .ttext-amber-50{ @apply text-amber-50 !important;}
+ .ttext-amber-100{ @apply text-amber-100 !important;}
+ .ttext-amber-200{ @apply text-amber-200 !important;}
+ .ttext-amber-300{ @apply text-amber-300 !important;}
+ .ttext-amber-400{ @apply text-amber-400 !important;}
+ .ttext-amber-500{ @apply text-amber-500 !important;}
+ .ttext-amber-600{ @apply text-amber-600 !important;}
+ .ttext-amber-700{ @apply text-amber-700 !important;}
+ .ttext-amber-800{ @apply text-amber-800 !important;}
+ .ttext-amber-900{ @apply text-amber-900 !important;}
+ .ttext-yellow-50{ @apply text-yellow-50 !important;}
+ .ttext-yellow-100{ @apply text-yellow-100 !important;}
+ .ttext-yellow-200{ @apply text-yellow-200 !important;}
+ .ttext-yellow-300{ @apply text-yellow-300 !important;}
+ .ttext-yellow-400{ @apply text-yellow-400 !important;}
+ .ttext-yellow-500{ @apply text-yellow-500 !important;}
+ .ttext-yellow-600{ @apply text-yellow-600 !important;}
+ .ttext-yellow-700{ @apply text-yellow-700 !important;}
+ .ttext-yellow-800{ @apply text-yellow-800 !important;}
+ .ttext-yellow-900{ @apply text-yellow-900 !important;}
+ .ttext-lime-50{ @apply text-lime-50 !important;}
+ .ttext-lime-100{ @apply text-lime-100 !important;}
+ .ttext-lime-200{ @apply text-lime-200 !important;}
+ .ttext-lime-300{ @apply text-lime-300 !important;}
+ .ttext-lime-400{ @apply text-lime-400 !important;}
+ .ttext-lime-500{ @apply text-lime-500 !important;}
+ .ttext-lime-600{ @apply text-lime-600 !important;}
+ .ttext-lime-700{ @apply text-lime-700 !important;}
+ .ttext-lime-800{ @apply text-lime-800 !important;}
+ .ttext-lime-900{ @apply text-lime-900 !important;}
+ .ttext-green-50{ @apply text-green-50 !important;}
+ .ttext-green-100{ @apply text-green-100 !important;}
+ .ttext-green-200{ @apply text-green-200 !important;}
+ .ttext-green-300{ @apply text-green-300 !important;}
+ .ttext-green-400{ @apply text-green-400 !important;}
+ .ttext-green-500{ @apply text-green-500 !important;}
+ .ttext-green-600{ @apply text-green-600 !important;}
+ .ttext-green-700{ @apply text-green-700 !important;}
+ .ttext-green-800{ @apply text-green-800 !important;}
+ .ttext-green-900{ @apply text-green-900 !important;}
+ .ttext-teal-50{ @apply text-teal-50 !important;}
+ .ttext-teal-100{ @apply text-teal-100 !important;}
+ .ttext-teal-200{ @apply text-teal-200 !important;}
+ .ttext-teal-300{ @apply text-teal-300 !important;}
+ .ttext-teal-400{ @apply text-teal-400 !important;}
+ .ttext-teal-500{ @apply text-teal-500 !important;}
+ .ttext-teal-600{ @apply text-teal-600 !important;}
+ .ttext-teal-700{ @apply text-teal-700 !important;}
+ .ttext-teal-800{ @apply text-teal-800 !important;}
+ .ttext-teal-900{ @apply text-teal-900 !important;}
+ .ttext-cyan-50{ @apply text-cyan-50 !important;}
+ .ttext-cyan-100{ @apply text-cyan-100 !important;}
+ .ttext-cyan-200{ @apply text-cyan-200 !important;}
+ .ttext-cyan-300{ @apply text-cyan-300 !important;}
+ .ttext-cyan-400{ @apply text-cyan-400 !important;}
+ .ttext-cyan-500{ @apply text-cyan-500 !important;}
+ .ttext-cyan-600{ @apply text-cyan-600 !important;}
+ .ttext-cyan-700{ @apply text-cyan-700 !important;}
+ .ttext-cyan-800{ @apply text-cyan-800 !important;}
+ .ttext-cyan-900{ @apply text-cyan-900 !important;}
+ .ttext-sky-50{ @apply text-sky-50 !important;}
+ .ttext-sky-100{ @apply text-sky-100 !important;}
+ .ttext-sky-200{ @apply text-sky-200 !important;}
+ .ttext-sky-300{ @apply text-sky-300 !important;}
+ .ttext-sky-400{ @apply text-sky-400 !important;}
+ .ttext-sky-500{ @apply text-sky-500 !important;}
+ .ttext-sky-600{ @apply text-sky-600 !important;}
+ .ttext-sky-700{ @apply text-sky-700 !important;}
+ .ttext-sky-800{ @apply text-sky-800 !important;}
+ .ttext-sky-900{ @apply text-sky-900 !important;}
+ .ttext-blue-50{ @apply text-blue-50 !important;}
+ .ttext-blue-100{ @apply text-blue-100 !important;}
+ .ttext-blue-200{ @apply text-blue-200 !important;}
+ .ttext-blue-300{ @apply text-blue-300 !important;}
+ .ttext-blue-400{ @apply text-blue-400 !important;}
+ .ttext-blue-500{ @apply text-blue-500 !important;}
+ .ttext-blue-600{ @apply text-blue-600 !important;}
+ .ttext-blue-700{ @apply text-blue-700 !important;}
+ .ttext-blue-800{ @apply text-blue-800 !important;}
+ .ttext-blue-900{ @apply text-blue-900 !important;}
+ .ttext-indigo-50{ @apply text-indigo-50 !important;}
+ .ttext-indigo-100{ @apply text-indigo-100 !important;}
+ .ttext-indigo-200{ @apply text-indigo-200 !important;}
+ .ttext-indigo-300{ @apply text-indigo-300 !important;}
+ .ttext-indigo-400{ @apply text-indigo-400 !important;}
+ .ttext-indigo-500{ @apply text-indigo-500 !important;}
+ .ttext-indigo-600{ @apply text-indigo-600 !important;}
+ .ttext-indigo-700{ @apply text-indigo-700 !important;}
+ .ttext-indigo-800{ @apply text-indigo-800 !important;}
+ .ttext-indigo-900{ @apply text-indigo-900 !important;}
+ .ttext-violet-50{ @apply text-violet-50 !important;}
+ .ttext-violet-100{ @apply text-violet-100 !important;}
+ .ttext-violet-200{ @apply text-violet-200 !important;}
+ .ttext-violet-300{ @apply text-violet-300 !important;}
+ .ttext-violet-400{ @apply text-violet-400 !important;}
+ .ttext-violet-500{ @apply text-violet-500 !important;}
+ .ttext-violet-600{ @apply text-violet-600 !important;}
+ .ttext-violet-700{ @apply text-violet-700 !important;}
+ .ttext-violet-800{ @apply text-violet-800 !important;}
+ .ttext-violet-900{ @apply text-violet-900 !important;}
+ .ttext-purple-50{ @apply text-purple-50 !important;}
+ .ttext-purple-100{ @apply text-purple-100 !important;}
+ .ttext-purple-200{ @apply text-purple-200 !important;}
+ .ttext-purple-300{ @apply text-purple-300 !important;}
+ .ttext-purple-400{ @apply text-purple-400 !important;}
+ .ttext-purple-500{ @apply text-purple-500 !important;}
+ .ttext-purple-600{ @apply text-purple-600 !important;}
+ .ttext-purple-700{ @apply text-purple-700 !important;}
+ .ttext-purple-800{ @apply text-purple-800 !important;}
+ .ttext-purple-900{ @apply text-purple-900 !important;}
+ .ttext-fuchsia-50{ @apply text-fuchsia-50 !important;}
+ .ttext-fuchsia-100{ @apply text-fuchsia-100 !important;}
+ .ttext-fuchsia-200{ @apply text-fuchsia-200 !important;}
+ .ttext-fuchsia-300{ @apply text-fuchsia-300 !important;}
+ .ttext-fuchsia-400{ @apply text-fuchsia-400 !important;}
+ .ttext-fuchsia-500{ @apply text-fuchsia-500 !important;}
+ .ttext-fuchsia-600{ @apply text-fuchsia-600 !important;}
+ .ttext-fuchsia-700{ @apply text-fuchsia-700 !important;}
+ .ttext-fuchsia-800{ @apply text-fuchsia-800 !important;}
+ .ttext-fuchsia-900{ @apply text-fuchsia-900 !important;}
+ .ttext-pink-50{ @apply text-pink-50 !important;}
+ .ttext-pink-100{ @apply text-pink-100 !important;}
+ .ttext-pink-200{ @apply text-pink-200 !important;}
+ .ttext-pink-300{ @apply text-pink-300 !important;}
+ .ttext-pink-400{ @apply text-pink-400 !important;}
+ .ttext-pink-500{ @apply text-pink-500 !important;}
+ .ttext-pink-600{ @apply text-pink-600 !important;}
+ .ttext-pink-700{ @apply text-pink-700 !important;}
+ .ttext-pink-800{ @apply text-pink-800 !important;}
+ .ttext-pink-900{ @apply text-pink-900 !important;}
+ .ttext-rose-50{ @apply text-rose-50 !important;}
+ .ttext-rose-100{ @apply text-rose-100 !important;}
+ .ttext-rose-200{ @apply text-rose-200 !important;}
+ .ttext-rose-300{ @apply text-rose-300 !important;}
+ .ttext-rose-400{ @apply text-rose-400 !important;}
+ .ttext-rose-500{ @apply text-rose-500 !important;}
+ .ttext-rose-600{ @apply text-rose-600 !important;}
+ .ttext-rose-700{ @apply text-rose-700 !important;}
+ .ttext-rose-800{ @apply text-rose-800 !important;}
+ .ttext-rose-900{ @apply text-rose-900 !important;}
+ .ttext-white{ @apply text-white !important;}
+ .ttext-black{ @apply text-black !important;}
+ .ttext-transparent{ @apply text-transparent !important;}
+ .bbgI-slate-50{ @apply bg-slate-50 !important;}
+ .bbgI-slate-100{ @apply bg-slate-100 !important;}
+ .bbgI-slate-200{ @apply bg-slate-200 !important;}
+ .bbgI-slate-300{ @apply bg-slate-300 !important;}
+ .bbgI-slate-400{ @apply bg-slate-400 !important;}
+ .bbgI-slate-500{ @apply bg-slate-500 !important;}
+ .bbgI-slate-600{ @apply bg-slate-600 !important;}
+ .bbgI-slate-700{ @apply bg-slate-700 !important;}
+ .bbgI-slate-800{ @apply bg-slate-800 !important;}
+ .bbgI-slate-900{ @apply bg-slate-900 !important;}
+ .bbgI-slate-950{ @apply bg-slate-950 !important;}
+ .bbgI-gray-50{ @apply bg-gray-50 !important;}
+ .bbgI-gray-100{ @apply bg-gray-100 !important;}
+ .bbgI-gray-200{ @apply bg-gray-200 !important;}
+ .bbgI-gray-300{ @apply bg-gray-300 !important;}
+ .bbgI-gray-400{ @apply bg-gray-400 !important;}
+ .bbgI-gray-500{ @apply bg-gray-500 !important;}
+ .bbgI-gray-600{ @apply bg-gray-600 !important;}
+ .bbgI-gray-700{ @apply bg-gray-700 !important;}
+ .bbgI-gray-800{ @apply bg-gray-800 !important;}
+ .bbgI-gray-900{ @apply bg-gray-900 !important;}
+ .bbgI-gray-950{ @apply bg-gray-950 !important;}
+ .bbgI-zinc-50{ @apply bg-zinc-50 !important;}
+ .bbgI-zinc-100{ @apply bg-zinc-100 !important;}
+ .bbgI-zinc-200{ @apply bg-zinc-200 !important;}
+ .bbgI-zinc-300{ @apply bg-zinc-300 !important;}
+ .bbgI-zinc-400{ @apply bg-zinc-400 !important;}
+ .bbgI-zinc-500{ @apply bg-zinc-500 !important;}
+ .bbgI-zinc-600{ @apply bg-zinc-600 !important;}
+ .bbgI-zinc-700{ @apply bg-zinc-700 !important;}
+ .bbgI-zinc-800{ @apply bg-zinc-800 !important;}
+ .bbgI-zinc-900{ @apply bg-zinc-900 !important;}
+ .bbgI-zinc-950{ @apply bg-zinc-950 !important;}
+ .bbgI-neutral-50{ @apply bg-neutral-50 !important;}
+ .bbgI-neutral-100{ @apply bg-neutral-100 !important;}
+ .bbgI-neutral-200{ @apply bg-neutral-200 !important;}
+ .bbgI-neutral-300{ @apply bg-neutral-300 !important;}
+ .bbgI-neutral-400{ @apply bg-neutral-400 !important;}
+ .bbgI-neutral-500{ @apply bg-neutral-500 !important;}
+ .bbgI-neutral-600{ @apply bg-neutral-600 !important;}
+ .bbgI-neutral-700{ @apply bg-neutral-700 !important;}
+ .bbgI-neutral-800{ @apply bg-neutral-800 !important;}
+ .bbgI-neutral-900{ @apply bg-neutral-900 !important;}
+ .bbgI-neutral-950{ @apply bg-neutral-950 !important;}
+ .bbgI-stone-50{ @apply bg-stone-50 !important;}
+ .bbgI-stone-100{ @apply bg-stone-100 !important;}
+ .bbgI-stone-200{ @apply bg-stone-200 !important;}
+ .bbgI-stone-300{ @apply bg-stone-300 !important;}
+ .bbgI-stone-400{ @apply bg-stone-400 !important;}
+ .bbgI-stone-500{ @apply bg-stone-500 !important;}
+ .bbgI-stone-600{ @apply bg-stone-600 !important;}
+ .bbgI-stone-700{ @apply bg-stone-700 !important;}
+ .bbgI-stone-800{ @apply bg-stone-800 !important;}
+ .bbgI-stone-900{ @apply bg-stone-900 !important;}
+ .bbgI-stone-950{ @apply bg-stone-950 !important;}
+ .bbgI-red-50{ @apply bg-red-50 !important;}
+ .bbgI-red-100{ @apply bg-red-100 !important;}
+ .bbgI-red-200{ @apply bg-red-200 !important;}
+ .bbgI-red-300{ @apply bg-red-300 !important;}
+ .bbgI-red-400{ @apply bg-red-400 !important;}
+ .bbgI-red-500{ @apply bg-red-500 !important;}
+ .bbgI-red-600{ @apply bg-red-600 !important;}
+ .bbgI-red-700{ @apply bg-red-700 !important;}
+ .bbgI-red-800{ @apply bg-red-800 !important;}
+ .bbgI-red-900{ @apply bg-red-900 !important;}
+ .bbgI-red-950{ @apply bg-red-950 !important;}
+ .bbgI-orange-50{ @apply bg-orange-50 !important;}
+ .bbgI-orange-100{ @apply bg-orange-100 !important;}
+ .bbgI-orange-200{ @apply bg-orange-200 !important;}
+ .bbgI-orange-300{ @apply bg-orange-300 !important;}
+ .bbgI-orange-400{ @apply bg-orange-400 !important;}
+ .bbgI-orange-500{ @apply bg-orange-500 !important;}
+ .bbgI-orange-600{ @apply bg-orange-600 !important;}
+ .bbgI-orange-700{ @apply bg-orange-700 !important;}
+ .bbgI-orange-800{ @apply bg-orange-800 !important;}
+ .bbgI-orange-900{ @apply bg-orange-900 !important;}
+ .bbgI-orange-950{ @apply bg-orange-950 !important;}
+ .bbgI-amber-50{ @apply bg-amber-50 !important;}
+ .bbgI-amber-100{ @apply bg-amber-100 !important;}
+ .bbgI-amber-200{ @apply bg-amber-200 !important;}
+ .bbgI-amber-300{ @apply bg-amber-300 !important;}
+ .bbgI-amber-400{ @apply bg-amber-400 !important;}
+ .bbgI-amber-500{ @apply bg-amber-500 !important;}
+ .bbgI-amber-600{ @apply bg-amber-600 !important;}
+ .bbgI-amber-700{ @apply bg-amber-700 !important;}
+ .bbgI-amber-800{ @apply bg-amber-800 !important;}
+ .bbgI-amber-900{ @apply bg-amber-900 !important;}
+ .bbgI-amber-950{ @apply bg-amber-950 !important;}
+ .bbgI-yellow-50{ @apply bg-yellow-50 !important;}
+ .bbgI-yellow-100{ @apply bg-yellow-100 !important;}
+ .bbgI-yellow-200{ @apply bg-yellow-200 !important;}
+ .bbgI-yellow-300{ @apply bg-yellow-300 !important;}
+ .bbgI-yellow-400{ @apply bg-yellow-400 !important;}
+ .bbgI-yellow-500{ @apply bg-yellow-500 !important;}
+ .bbgI-yellow-600{ @apply bg-yellow-600 !important;}
+ .bbgI-yellow-700{ @apply bg-yellow-700 !important;}
+ .bbgI-yellow-800{ @apply bg-yellow-800 !important;}
+ .bbgI-yellow-900{ @apply bg-yellow-900 !important;}
+ .bbgI-yellow-950{ @apply bg-yellow-950 !important;}
+ .bbgI-lime-50{ @apply bg-lime-50 !important;}
+ .bbgI-lime-100{ @apply bg-lime-100 !important;}
+ .bbgI-lime-200{ @apply bg-lime-200 !important;}
+ .bbgI-lime-300{ @apply bg-lime-300 !important;}
+ .bbgI-lime-400{ @apply bg-lime-400 !important;}
+ .bbgI-lime-500{ @apply bg-lime-500 !important;}
+ .bbgI-lime-600{ @apply bg-lime-600 !important;}
+ .bbgI-lime-700{ @apply bg-lime-700 !important;}
+ .bbgI-lime-800{ @apply bg-lime-800 !important;}
+ .bbgI-lime-900{ @apply bg-lime-900 !important;}
+ .bbgI-lime-950{ @apply bg-lime-950 !important;}
+ .bbgI-green-50{ @apply bg-green-50 !important;}
+ .bbgI-green-100{ @apply bg-green-100 !important;}
+ .bbgI-green-200{ @apply bg-green-200 !important;}
+ .bbgI-green-300{ @apply bg-green-300 !important;}
+ .bbgI-green-400{ @apply bg-green-400 !important;}
+ .bbgI-green-500{ @apply bg-green-500 !important;}
+ .bbgI-green-600{ @apply bg-green-600 !important;}
+ .bbgI-green-700{ @apply bg-green-700 !important;}
+ .bbgI-green-800{ @apply bg-green-800 !important;}
+ .bbgI-green-900{ @apply bg-green-900 !important;}
+ .bbgI-green-950{ @apply bg-green-950 !important;}
+ .bbgI-teal-50{ @apply bg-teal-50 !important;}
+ .bbgI-teal-100{ @apply bg-teal-100 !important;}
+ .bbgI-teal-200{ @apply bg-teal-200 !important;}
+ .bbgI-teal-300{ @apply bg-teal-300 !important;}
+ .bbgI-teal-400{ @apply bg-teal-400 !important;}
+ .bbgI-teal-500{ @apply bg-teal-500 !important;}
+ .bbgI-teal-600{ @apply bg-teal-600 !important;}
+ .bbgI-teal-700{ @apply bg-teal-700 !important;}
+ .bbgI-teal-800{ @apply bg-teal-800 !important;}
+ .bbgI-teal-900{ @apply bg-teal-900 !important;}
+ .bbgI-teal-950{ @apply bg-teal-950 !important;}
+ .bbgI-cyan-50{ @apply bg-cyan-50 !important;}
+ .bbgI-cyan-100{ @apply bg-cyan-100 !important;}
+ .bbgI-cyan-200{ @apply bg-cyan-200 !important;}
+ .bbgI-cyan-300{ @apply bg-cyan-300 !important;}
+ .bbgI-cyan-400{ @apply bg-cyan-400 !important;}
+ .bbgI-cyan-500{ @apply bg-cyan-500 !important;}
+ .bbgI-cyan-600{ @apply bg-cyan-600 !important;}
+ .bbgI-cyan-700{ @apply bg-cyan-700 !important;}
+ .bbgI-cyan-800{ @apply bg-cyan-800 !important;}
+ .bbgI-cyan-900{ @apply bg-cyan-900 !important;}
+ .bbgI-cyan-950{ @apply bg-cyan-950 !important;}
+ .bbgI-sky-50{ @apply bg-sky-50 !important;}
+ .bbgI-sky-100{ @apply bg-sky-100 !important;}
+ .bbgI-sky-200{ @apply bg-sky-200 !important;}
+ .bbgI-sky-300{ @apply bg-sky-300 !important;}
+ .bbgI-sky-400{ @apply bg-sky-400 !important;}
+ .bbgI-sky-500{ @apply bg-sky-500 !important;}
+ .bbgI-sky-600{ @apply bg-sky-600 !important;}
+ .bbgI-sky-700{ @apply bg-sky-700 !important;}
+ .bbgI-sky-800{ @apply bg-sky-800 !important;}
+ .bbgI-sky-900{ @apply bg-sky-900 !important;}
+ .bbgI-sky-950{ @apply bg-sky-950 !important;}
+ .bbgI-blue-50{ @apply bg-blue-50 !important;}
+ .bbgI-blue-100{ @apply bg-blue-100 !important;}
+ .bbgI-blue-200{ @apply bg-blue-200 !important;}
+ .bbgI-blue-300{ @apply bg-blue-300 !important;}
+ .bbgI-blue-400{ @apply bg-blue-400 !important;}
+ .bbgI-blue-500{ @apply bg-blue-500 !important;}
+ .bbgI-blue-600{ @apply bg-blue-600 !important;}
+ .bbgI-blue-700{ @apply bg-blue-700 !important;}
+ .bbgI-blue-800{ @apply bg-blue-800 !important;}
+ .bbgI-blue-900{ @apply bg-blue-900 !important;}
+ .bbgI-blue-950{ @apply bg-blue-950 !important;}
+ .bbgI-indigo-50{ @apply bg-indigo-50 !important;}
+ .bbgI-indigo-100{ @apply bg-indigo-100 !important;}
+ .bbgI-indigo-200{ @apply bg-indigo-200 !important;}
+ .bbgI-indigo-300{ @apply bg-indigo-300 !important;}
+ .bbgI-indigo-400{ @apply bg-indigo-400 !important;}
+ .bbgI-indigo-500{ @apply bg-indigo-500 !important;}
+ .bbgI-indigo-600{ @apply bg-indigo-600 !important;}
+ .bbgI-indigo-700{ @apply bg-indigo-700 !important;}
+ .bbgI-indigo-800{ @apply bg-indigo-800 !important;}
+ .bbgI-indigo-900{ @apply bg-indigo-900 !important;}
+ .bbgI-indigo-950{ @apply bg-indigo-950 !important;}
+ .bbgI-violet-50{ @apply bg-violet-50 !important;}
+ .bbgI-violet-100{ @apply bg-violet-100 !important;}
+ .bbgI-violet-200{ @apply bg-violet-200 !important;}
+ .bbgI-violet-300{ @apply bg-violet-300 !important;}
+ .bbgI-violet-400{ @apply bg-violet-400 !important;}
+ .bbgI-violet-500{ @apply bg-violet-500 !important;}
+ .bbgI-violet-600{ @apply bg-violet-600 !important;}
+ .bbgI-violet-700{ @apply bg-violet-700 !important;}
+ .bbgI-violet-800{ @apply bg-violet-800 !important;}
+ .bbgI-violet-900{ @apply bg-violet-900 !important;}
+ .bbgI-violet-950{ @apply bg-violet-950 !important;}
+ .bbgI-purple-50{ @apply bg-purple-50 !important;}
+ .bbgI-purple-100{ @apply bg-purple-100 !important;}
+ .bbgI-purple-200{ @apply bg-purple-200 !important;}
+ .bbgI-purple-300{ @apply bg-purple-300 !important;}
+ .bbgI-purple-400{ @apply bg-purple-400 !important;}
+ .bbgI-purple-500{ @apply bg-purple-500 !important;}
+ .bbgI-purple-600{ @apply bg-purple-600 !important;}
+ .bbgI-purple-700{ @apply bg-purple-700 !important;}
+ .bbgI-purple-800{ @apply bg-purple-800 !important;}
+ .bbgI-purple-900{ @apply bg-purple-900 !important;}
+ .bbgI-purple-950{ @apply bg-purple-950 !important;}
+ .bbgI-fuchsia-50{ @apply bg-fuchsia-50 !important;}
+ .bbgI-fuchsia-100{ @apply bg-fuchsia-100 !important;}
+ .bbgI-fuchsia-200{ @apply bg-fuchsia-200 !important;}
+ .bbgI-fuchsia-300{ @apply bg-fuchsia-300 !important;}
+ .bbgI-fuchsia-400{ @apply bg-fuchsia-400 !important;}
+ .bbgI-fuchsia-500{ @apply bg-fuchsia-500 !important;}
+ .bbgI-fuchsia-600{ @apply bg-fuchsia-600 !important;}
+ .bbgI-fuchsia-700{ @apply bg-fuchsia-700 !important;}
+ .bbgI-fuchsia-800{ @apply bg-fuchsia-800 !important;}
+ .bbgI-fuchsia-900{ @apply bg-fuchsia-900 !important;}
+ .bbgI-fuchsia-950{ @apply bg-fuchsia-950 !important;}
+ .bbgI-pink-50{ @apply bg-pink-50 !important;}
+ .bbgI-pink-100{ @apply bg-pink-100 !important;}
+ .bbgI-pink-200{ @apply bg-pink-200 !important;}
+ .bbgI-pink-300{ @apply bg-pink-300 !important;}
+ .bbgI-pink-400{ @apply bg-pink-400 !important;}
+ .bbgI-pink-500{ @apply bg-pink-500 !important;}
+ .bbgI-pink-600{ @apply bg-pink-600 !important;}
+ .bbgI-pink-700{ @apply bg-pink-700 !important;}
+ .bbgI-pink-800{ @apply bg-pink-800 !important;}
+ .bbgI-pink-900{ @apply bg-pink-900 !important;}
+ .bbgI-pink-950{ @apply bg-pink-950 !important;}
+ .bbgI-rose-50{ @apply bg-rose-50 !important;}
+ .bbgI-rose-100{ @apply bg-rose-100 !important;}
+ .bbgI-rose-200{ @apply bg-rose-200 !important;}
+ .bbgI-rose-300{ @apply bg-rose-300 !important;}
+ .bbgI-rose-400{ @apply bg-rose-400 !important;}
+ .bbgI-rose-500{ @apply bg-rose-500 !important;}
+ .bbgI-rose-600{ @apply bg-rose-600 !important;}
+ .bbgI-rose-700{ @apply bg-rose-700 !important;}
+ .bbgI-rose-800{ @apply bg-rose-800 !important;}
+ .bbgI-rose-900{ @apply bg-rose-900 !important;}
+ .bbgI-rose-950{ @apply bg-rose-950 !important;}
+
+ ::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: gray;
+}
+
+.bouncing-loader {
+  display: flex;
+  justify-content: center;
+}
+
+.bouncing-loader > div {
+  width: 16px;
+  height: 16px;
+  margin: 3px 6px;
+  border-radius: 50%;
+  background-color: #a3a1a1;
+  opacity: 1;
+  animation: bouncing-loader 0.6s infinite alternate;
+}
+
