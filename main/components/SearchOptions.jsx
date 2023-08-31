@@ -13,7 +13,7 @@ import {
 } from "@app/redux/slices/products";
 import SearchLoadingBar from "./SearchLoadingBar";
 
-const SearchOptions = ({}) => {
+const SearchOptions = ({setOptionSearch}) => {
   const { configuration } = useSelector((state) => state.searchoptions);
   const dispatch = useDispatch();
   const {  text } = useSelector(state => state.searchProperties.properties);
@@ -23,6 +23,11 @@ const SearchOptions = ({}) => {
 
   const { storeFullData } = useSelector((state) => state.products);
   const textSearchArray = text.toUpperCase().split(" ");
+
+  const expandCollapseOptionsBar = (expandOrCollapse) =>{
+    setOptionSearch(expandOrCollapse);
+    setShowSearchOptions(expandOrCollapse);
+  }
 
   const setSearchConfigProperty = (property) => {
     dispatch(setSearchOption(property));
@@ -37,13 +42,14 @@ const SearchOptions = ({}) => {
         dispatch(setMatchedProducts(textSearchArray));
         break;
       case "NEWSEARCH":
+        expandCollapseOptionsBar(false);
         dispatch(restartProducts());
         break;
     }
   };
 
   return (
-    <div className="fixed top-16 z-10 left-0 w-full bg-white">
+    <div className="fixed top-14 lg:top-16 z-10 left-0 w-full bg-white">
       {showSearchOptions && (
         <div className=" bg-white p-4">
           <div /*className=" overflow-x-auto grid grid-cols-1 grid-rows-1 lg:grid-cols-4 gap-2"*/
@@ -105,7 +111,7 @@ const SearchOptions = ({}) => {
         <div className="bg-primary flex items-center justify-center bg-white p-2">
          {showSearchOptions && <RiArrowUpSLine
             onClick={() => {
-              setShowSearchOptions(false);
+              expandCollapseOptionsBar(false);
             }}
             className="h-6 w-6"
             color="red"
@@ -113,7 +119,7 @@ const SearchOptions = ({}) => {
 
           {!showSearchOptions && <AiFillEdit
             onClick={() => {
-              setShowSearchOptions(true);
+              expandCollapseOptionsBar(true);
             }}
             className="h-6 w-6"
             color="black"

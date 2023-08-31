@@ -9,6 +9,7 @@ import {RiArrowDownSLine} from "react-icons/ri";
 const Search = () => {
   const { storeFullData } = useSelector((state) => state.products);
   const { loading } = useSelector(state =>state.siteloading);
+  const [isOptionSearchExpanded, setIsOptionSearchExpanded] = useState(false);
 
   return (
     <>
@@ -25,11 +26,11 @@ const Search = () => {
         </section>
       )}
 
-      {(storeFullData.length > 0 || loading) && (<SearchOptions />
+      {(storeFullData.length > 0 || loading) && (<SearchOptions setOptionSearch={setIsOptionSearchExpanded}/>
  
       )}
 
-      <ProductList searchOptionsVisible={true}/>
+      <ProductList isOptionSearchExpanded={isOptionSearchExpanded}/>
     </>
   );
 };
