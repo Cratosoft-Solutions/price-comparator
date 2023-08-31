@@ -6,6 +6,17 @@ import { setText, setCategory } from "@app/redux/slices/searchProperties";
 import { useDispatch } from 'react-redux';
 
 const AutoCompletableList = ({text}) => {
+    const isWindow = () => typeof window !== 'undefined'; 
+
+   const isBrowser = () => {
+        if (!isWindow())
+            return false;
+        if(isWindow()){
+            if(window.document.activeElement.id == 'txt-search')
+             return true;
+        }
+        return false;
+    }; 
    const [coincidencesList, setCoincidencesList]  = useState([]);
    const [tagsList, setTagsList]  = useState([]);
    const dispatch = useDispatch();
@@ -34,7 +45,7 @@ const AutoCompletableList = ({text}) => {
 
     return (
         <>
-            {document?.activeElement.id == 'txt-search' && text.length > 0 &&
+            {isBrowser() && text.length > 0 &&
                 <ul className="bg-white w-full">   
                     {coincidencesList.slice(0, 5).map((coincidence, index)=>(
                         <li onClick={()=>{dispatch(setText(coincidence.key)); dispatch(setCategory(coincidence.category));  setCoincidencesList([]);}} key={index} className="pl-8 pr-2 py-1 border border-gray-50 relative cursor-pointer hover:bg-gray-100 hover:text-gray-900 text-gray-500">
