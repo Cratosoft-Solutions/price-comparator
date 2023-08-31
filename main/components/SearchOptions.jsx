@@ -49,7 +49,7 @@ const SearchOptions = ({setOptionSearch}) => {
   };
 
   return (
-    <div className="fixed top-14 lg:top-16 z-10 left-0 w-full bg-white">
+    <div className="fixed top-16 lg:top-16 z-10 left-0 w-full bg-white">
       {showSearchOptions && (
         <div className=" bg-white p-4">
           <div /*className=" overflow-x-auto grid grid-cols-1 grid-rows-1 lg:grid-cols-4 gap-2"*/

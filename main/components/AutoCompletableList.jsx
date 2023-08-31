@@ -34,7 +34,7 @@ const AutoCompletableList = ({text}) => {
 
     return (
         <>
-            {document.activeElement.id == 'txt-search' && text.length > 0 &&
+            {document?.activeElement.id == 'txt-search' && text.length > 0 &&
                 <ul className="bg-white w-full">   
                     {coincidencesList.slice(0, 5).map((coincidence, index)=>(
                         <li onClick={()=>{dispatch(setText(coincidence.key)); dispatch(setCategory(coincidence.category));  setCoincidencesList([]);}} key={index} className="pl-8 pr-2 py-1 border border-gray-50 relative cursor-pointer hover:bg-gray-100 hover:text-gray-900 text-gray-500">

@@ -13,12 +13,12 @@ const ProductList = ({isOptionSearchExpanded}) => {
   const mergedProducts = configuration.MATCH? storeFullMatchedProducts:storeFullProducts;
 
   return (
-    <div className={`${isOptionSearchExpanded?'mt-32 lg:mt-8':'mt-12 lg:mt-0'}`}>
+    <div className={`${isOptionSearchExpanded?'mt-32 lg:mt-16':'mt-12 lg:mt-0'}`}>
         <div className='container mx-auto hidden lg:block '>
                 { mergedProducts && <HorizontalCardList mergedProducts={mergedProducts}/>} 
                 {loading && <HorizontalCardListLoading/>}
         </div>
-        <div className='container mx-auto block lg:hidden '>
+        <div className='container-fluid mx-auto block lg:hidden '>
           <MobileHorizontalCardList mergedProducts={mergedProducts} />
 
         {loading && <HorizontalCardListLoading/>}

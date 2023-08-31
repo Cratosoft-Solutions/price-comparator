@@ -38,7 +38,7 @@ const MobileProductCard = ({ product, index }) => {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <a href={product.vendorLink}>Ver producto</a>
+            <a href={product.vendorLink} target="_blank">Ver producto</a>
           </span>
         </div>
       </div>
