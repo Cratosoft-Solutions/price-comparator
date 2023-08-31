@@ -12,11 +12,12 @@ const ScrollToTopButton  =() => {
     }
 
     const onScroll = (e) => {
+        if (!isBrowser()) return;
         setScrollYPosition(window.scrollY);
       }
 
     useEffect(() => {
-      if (typeof window != undefined)
+        if (!isBrowser()) return;
         window.addEventListener('scroll', onScroll);
     },[]);
 
