@@ -32,36 +32,27 @@ export const GET = async (request, { params }) => {
             //**************************************************************************************** */
             //**************************************************************************************** */
             if (company.indHowToScrape == 'JSDOM') {
-/*                 console.log('MARCA JM - JSDOM - COMPANY NAME',company.name);
+                /*console.log('MARCA JM - JSDOM - COMPANY NAME',company.name);
                 console.log('MARCA JM - JSDOM - URL',urlToScrap);      */           
 
                 const dom = await JSDOM.fromURL(urlToScrap, /* {
                     runScripts: 'dangerously'
-                } */);
-                //console.log('MARCA JM - JSDOM - 1');      
+                } */);     
                 const document = dom.window.document;
-                //const mapHtml = dom.serialize();
-                //console.log('MARCA JM - JSDOM - 2');    
-                const companyProducts = document.querySelectorAll(company.mainSelector);
-                //console.log('MARCA JM - JSDOM - 3 - companyProducts.length', companyProducts.length);    
+                //const mapHtml = dom.serialize(); 
+                const companyProducts = document.querySelectorAll(company.mainSelector);  
                 if (companyProducts.length === 0) {
                     console.log('MARCA JM - JSDOM - 6 - element probably not exists',company.name);
-                    //return new Response(JSON.stringify(products[0]), { status: 200 })
                     return new Response(JSON.stringify(products), { status: 200 })
                 }                             
-                //console.log('MARCA JM - JSDOM - 4');  
                 let companyLogo = undefined;
                 if (company.indLogoSelector) {
-                    //console.log('MARCA JM - JSDOM - 4.0 - attributeLogoSelector ', attributeLogoSelector);  
                     companyLogo = document.querySelector(company.logoSelector)?.getAttribute(company.attributeLogoSelector);
-                    //console.log('MARCA JM - JSDOM - 4.1 - LOGO ', companyLogo);  
-                    companyLogo = String(companyLogo).search(regex) == -1 ? urlToScrap.match(regex)[0] + companyLogo : companyLogo;
-                    //console.log('MARCA JM - JSDOM - 4.2 - LOGO ', companyLogo);  
+                    companyLogo = String(companyLogo).search(regex) == -1 ? urlToScrap.match(regex)[0] + companyLogo : companyLogo; 
                 } else (
                     companyLogo = company.logoSelector
                 )
-                let currentProducts = [];
-                //console.log('MARCA JM - JSDOM - 5');                  
+                let currentProducts = [];                
                 companyProducts.forEach((product, index) => {
                     const temProduct = {};
                     //Going through the fields configuration
@@ -97,13 +88,11 @@ export const GET = async (request, { params }) => {
                         currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice) * 1;
                     });
                 }
-                //console.log('MARCA JM - JSDOM - 6');  
                 products.push({
                     companyName: company.name,
                     companyLogo: companyLogo,
                     companyProducts: currentProducts
                 });
-                //console.log('MARCA JM - JSDOM - 7');  
                 //**************************************************************************************** */
                 //**************************************************************************************** */
                 //**************************************************************************************** */
@@ -112,7 +101,7 @@ export const GET = async (request, { params }) => {
                 //**************************************************************************************** */
                 //**************************************************************************************** */
             } else if (company.indHowToScrape == 'PUPPETEER') {
-/*                 console.log('MARCA JM - PUPPETEER - COMPANY NAME',company.name);
+                /*console.log('MARCA JM - PUPPETEER - COMPANY NAME',company.name);
                 console.log('MARCA JM - PUPPETEER - URL',urlToScrap); */
                 const browser = await puppeteer.launch({
                     headless: 'new',
@@ -123,16 +112,17 @@ export const GET = async (request, { params }) => {
                 //console.log('MARCA JM - 2');
                 // // Add Headers 
                 // HAY QUE PROBAR ESTOS HEADERS
-                await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36');
+                //await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36');
                 //('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36');                
-                // await page.setExtraHTTPHeaders({ 
-                //     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 
-                //     //'upgrade-insecure-requests': '1', 
-                //     'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8', 
-                //     'accept-encoding': 'gzip, deflate, br', 
-                //     'accept-language': 'en-US,en;q=0.9,en;q=0.8' 
-                // });
-                await page.goto(urlToScrap);//, { waitUntil: 'networkidle0' }); //UNDEFINED> load:12, domcontentloaded:12, networkidle0:6, networkidle2:6
+                await page.setExtraHTTPHeaders({ 
+                    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 
+                    //'upgrade-insecure-requests': '1', 
+                    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8', 
+                    'accept-encoding': 'gzip, deflate, br', 
+                    'accept-language': 'en-US,en;q=0.9,en;q=0.8' 
+                 });
+                //await page.goto(urlToScrap, { waitUntil: 'domcontentloaded' }); //UNDEFINED> load:12, domcontentloaded:12, networkidle0:6, networkidle2:6
+                await page.goto(urlToScrap, { waitUntil: 'load' }); //UNDEFINED> load:12, domcontentloaded:12, networkidle0:6, networkidle2:6
                 //console.log('MARCA JM - 3');
                 //Blocking Images and CSS. turns request interceptor on
                 await page.setRequestInterception(true);
@@ -167,11 +157,12 @@ export const GET = async (request, { params }) => {
                     }); */
 
                 try {
-                    await page.waitForSelector(company.mainSelector,{visible: true, timeout: 3000 });
+                    await page.waitForSelector(company.mainSelector,{visible: true, timeout: 5000 });
                     // do what you have to do here
                     } catch (e) {
                         console.log('MARCA JM - PUPPETEER - element probably not exists',company.name);
                         //return new Response(JSON.stringify(products[0]), { status: 200 })
+                        await browser.close();
                         return new Response(JSON.stringify(products), { status: 200 })
                     }
                 //await page.waitForSelector(company.mainSelector,{visible: true, timeout: 5000 });
