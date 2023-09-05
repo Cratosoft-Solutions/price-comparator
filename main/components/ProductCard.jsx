@@ -39,6 +39,7 @@ const ProductCard = ({ logo, product , index}) => {
             href={product.vendorLink}
             className="inline-flex items-center font-medium text-orange-500 dark:text-blue-500 hover:underline"
             target="_blank"
+            rel="noreferrer noopener"
           >
             Ver producto
             <svg
