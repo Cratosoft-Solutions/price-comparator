@@ -57,11 +57,19 @@ const printDBStorageData = (data, saveOnStorage)=>{
   });
 }
 
-const processIndividualResponse =(response, saveOnStorage, saveOnDatabase, error = false)=>{
-  dispatch(setLoading(false));
+const processIndividualResponse = (response, saveOnStorage, saveOnDatabase, error = false)=>{
+  
   searchCounter = searchCounter + 1;
 
-  if (!error) {
+  if(error && searchCounter == storeToSearhCount){
+    dispatch(setLoading(false));
+  }
+  
+  if (!error){
+    dispatch(setLoading(false));
+  }
+
+  if (!error && response.companyProducts.length > 0) {
     dispatch(pushProduct(response));
     if (!saveOnStorage)
       setStorageData(formatKeyForStorage(category, text), response);

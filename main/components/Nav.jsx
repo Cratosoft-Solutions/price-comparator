@@ -28,7 +28,7 @@ const Nav = () => {
           height={60}
           className="object-contain"
         />
-        <p className="text-medium font-bold text-black">Comparador de Precios</p>
+        <p className="text-medium font-bold text-black">Comparando precios</p>
       </Link>
       
       {/* Desktop navitation */}
