@@ -62,23 +62,22 @@ const processIndividualResponse = (response, saveOnStorage, saveOnDatabase, erro
   searchCounter = searchCounter + 1;
 
   if(error && searchCounter == storeToSearhCount){
-    alert("error");
-    dispatch(setLoading(false));
-  }
-
-  if (!error){
     dispatch(setLoading(false));
   }
 
   if (!error && response.companyProducts.length > 0) {
+    dispatch(setLoading(false));
     dispatch(pushProduct(response));
     if (!saveOnStorage)
       setStorageData(formatKeyForStorage(category, text), response);
   }
   
-  if((searchCounter == storeToSearhCount) && !saveOnDatabase){
-      dispatch(setSearching(false));  
-      saveSearchOnDB(key);
+  if(searchCounter == storeToSearhCount){
+      dispatch(setSearching(false));
+      dispatch(setLoading(false)); 
+      
+      if(!saveOnDatabase) 
+        saveSearchOnDB(key);
     }
 }
 
