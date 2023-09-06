@@ -62,9 +62,10 @@ const processIndividualResponse = (response, saveOnStorage, saveOnDatabase, erro
   searchCounter = searchCounter + 1;
 
   if(error && searchCounter == storeToSearhCount){
+    alert("error");
     dispatch(setLoading(false));
   }
-  
+
   if (!error){
     dispatch(setLoading(false));
   }
