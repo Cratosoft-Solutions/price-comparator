@@ -1,5 +1,5 @@
 
-"use client"
+"use client";
 import React, {useState} from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import {RiArrowUpSLine} from "react-icons/ri";
@@ -12,6 +12,8 @@ import {
   orderProducts,
 } from "@app/redux/slices/products";
 import SearchLoadingBar from "./SearchLoadingBar";
+import { useRouter } from "next/navigation";
+
 
 const SearchOptions = ({setOptionSearch}) => {
   const { configuration } = useSelector((state) => state.searchoptions);
@@ -20,9 +22,11 @@ const SearchOptions = ({setOptionSearch}) => {
   const { loading } = useSelector(state =>state.siteloading);
   const { searching } = useSelector(state =>state.productSearching);
   const [showSearchOptions, setShowSearchOptions] = useState(false);
+  const router = useRouter();
 
   const { storeFullData } = useSelector((state) => state.products);
   const textSearchArray = text.toUpperCase().split(" ");
+
 
   const expandCollapseOptionsBar = (expandOrCollapse) =>{
     setOptionSearch(expandOrCollapse);
@@ -44,7 +48,7 @@ const SearchOptions = ({setOptionSearch}) => {
       case "NEWSEARCH":
         expandCollapseOptionsBar(false);
         dispatch(restartProducts());
-        break;
+        router.push('/search/newsearch');
     }
   };
 
