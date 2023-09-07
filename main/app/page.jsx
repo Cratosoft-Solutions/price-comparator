@@ -11,7 +11,7 @@ const Home = () => {
         <p className="desc text-center">
             Cratosoft Price Comparator, te ayuda en la búsqueda de la mejor opción para obtener tu producto o servicio Soñado.
         </p>
-        <Link href="/search" className="black_btn mx-auto mt-10 flex max-w-fit space-x-4" onClick={()=>{console.log("me llamaron")}}>Iniciar búsqueda</Link>
+        <Link href="/search/newsearch" className="black_btn mx-auto mt-10 flex max-w-fit space-x-4" onClick={()=>{console.log("me llamaron")}}>Iniciar búsqueda</Link>
     </section>
   )
 }
