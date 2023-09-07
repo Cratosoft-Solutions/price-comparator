@@ -9,8 +9,8 @@ export const scrapCompanyConfiguration = [
         indLogoSelector: false,
         logoSelector: "https://walmartcr.vtexassets.com/assets/vtex/assets-builder/walmartcr.store-theme/0.1.35/waltmart-logo___a095e1f47875aea1c10fcc867f8ac7ac.png",
         //logoSelector: ".vtex-store-components-3-x-logoImage",
-        attributeLogoSelector: 'src', 
-		mainSelector: '.vtex-product-summary-2-x-container',
+        attributeLogoSelector: 'src',
+        mainSelector: '.vtex-product-summary-2-x-container',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -77,8 +77,8 @@ export const scrapCompanyConfiguration = [
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: "#logo img",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.product-layout.has-extra-button',
+        attributeLogoSelector: 'src',
+        mainSelector: '.product-layout.has-extra-button',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -151,8 +151,8 @@ export const scrapCompanyConfiguration = [
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: ".logo img",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.product-item',
+        attributeLogoSelector: 'src',
+        mainSelector: '.product-item',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -219,8 +219,8 @@ export const scrapCompanyConfiguration = [
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: ".logo.px-0 img",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.search-product-box',
+        attributeLogoSelector: 'src',
+        mainSelector: '.search-product-box',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -284,8 +284,8 @@ export const scrapCompanyConfiguration = [
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: ".logo.img-responsive",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.product-container.product-block',
+        attributeLogoSelector: 'src',
+        mainSelector: '.product-container.product-block',
 
         scrapingFields: [
             {
@@ -359,8 +359,8 @@ export const scrapCompanyConfiguration = [
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: ".logo img",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.products.wrapper.grid.products-grid ol li',
+        attributeLogoSelector: 'src',
+        mainSelector: '.products.wrapper.grid.products-grid ol li',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -442,8 +442,8 @@ export const scrapCompanyConfiguration = [
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: ".logo.fitThisOnMenu",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.row.grid div article',
+        attributeLogoSelector: 'src',
+        mainSelector: '.row.grid div article',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -504,8 +504,8 @@ export const scrapCompanyConfiguration = [
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: ".logo picture img",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.products.wrapper.grid.products-grid ol li',
+        attributeLogoSelector: 'src',
+        mainSelector: '.products.wrapper.grid.products-grid ol li',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -572,8 +572,8 @@ export const scrapCompanyConfiguration = [
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: ".logo img",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.products.wrapper.grid.products-grid ol li',
+        attributeLogoSelector: 'src',
+        mainSelector: '.products.wrapper.grid.products-grid ol li',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -637,11 +637,21 @@ export const scrapCompanyConfiguration = [
         url: 'https://www.tiendamonge.com/catalogsearch/result/?q=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'PUPPETEER',
+        rejectRequestPattern: ['api.ocularsolution.com',
+            'cm.teads.tv',
+            'content.syndigo.com',
+            'dpm.demdex.net',
+            'ocular-prod.api.rocio.ai',
+            'rum-collector-2.pingdom.net',
+            'stats.g.doubleclick.net',
+            'google-analytics.com',
+            'wlt832ea3j-2.algolianet.com'
+        ],
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: ".logo img",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.result-wrapper',
+        attributeLogoSelector: 'src',
+        mainSelector: '.result-wrapper',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -711,11 +721,23 @@ export const scrapCompanyConfiguration = [
         url: 'https://www.verdugotienda.com/catalogsearch/result/?q=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'PUPPETEER',
+        rejectRequestPattern: ['assets.adobedtm.com',
+            'widget.ocularsolution.com',
+            'connect.facebook.net',
+            'googleads.g.doubleclick.net',
+            'polyfill.io',
+            'wlt832ea3j-2.algolianet.com',
+            'wlt832ea3j-2.algolianet.com',
+            'facebook.com',
+            'google-analytics.com',
+            'google.co.cr',
+            'googletagmanager.com'
+        ],
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: ".logo img",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.result-wrapper',
+        attributeLogoSelector: 'src',
+        mainSelector: '.result-wrapper',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -785,11 +807,24 @@ export const scrapCompanyConfiguration = [
         url: 'https://cr.siman.com/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'PUPPETEER',
+        rejectRequestPattern: [
+            'af-origin.vtex.com',
+            'analytics.google.com',
+            'cdn.frizbit.com',
+            'd.la4-c1-ia5.salesforceliveagent.com',
+            'fonts.googleapis.com',
+            'rc.vtex.com',
+            'service.force.com',
+            'stats.g.doubleclick.net',
+            'strapi-prod-2.onrender.com',
+            'google.co.cr',
+            'google.com'
+        ],
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: false,
         logoSelector: 'https://simancrc.vtexassets.com/arquivos/logo-footer.png',
-        attributeLogoSelector: 'src',  
-		mainSelector: '.vtex-product-summary-2-x-container',
+        attributeLogoSelector: 'src',
+        mainSelector: '.vtex-product-summary-2-x-container',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -851,15 +886,24 @@ export const scrapCompanyConfiguration = [
         id: 13,
         name: 'UNIVERSAL',
         url: 'https://tiendauniversal.com/search?type=product&q=SEARCH_TEXT',
-            //'https://tiendauniversal.com/pages/search-results-page?q=SEARCH_TEXT',
+        //'https://tiendauniversal.com/pages/search-results-page?q=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'PUPPETEER',
+        rejectRequestPattern: [
+            'api.speedien.com',
+            'pagead2.googlesyndication.com',
+            'codeblackbelt.com',
+            'a.mailmunch.co',
+            'forms.mailmunch.co',
+            'stats.g.doubleclick.net',
+            'codeblackbelt.com'            
+        ],        
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: false,
         logoSelector: 'https://tiendauniversal.com/cdn/shop/files/universal-logotipo_d4fbc676-9771-47f0-919f-49e8b8eb65c3_180x.png',
-        attributeLogoSelector: 'src',  
-		mainSelector: '.product-item.product-item--vertical',
-		scrapingFields: [
+        attributeLogoSelector: 'src',
+        mainSelector: '.product-item.product-item--vertical',
+        scrapingFields: [
             {
                 fieldName: 'productPrice',
                 type: 'Numeric',
@@ -872,7 +916,7 @@ export const scrapCompanyConfiguration = [
                     },
                     {
                         order: 2,
-						selector: '.price',
+                        selector: '.price',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -925,8 +969,8 @@ export const scrapCompanyConfiguration = [
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: ".logo img",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.products.wrapper.grid.products-grid.columns4 ol li',
+        attributeLogoSelector: 'src',
+        mainSelector: '.products.wrapper.grid.products-grid.columns4 ol li',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -983,7 +1027,7 @@ export const scrapCompanyConfiguration = [
                 ],
             },
         ]
-    }, 
+    },
     {
         id: 15,
         name: "Ferreteria EPA",
@@ -993,8 +1037,8 @@ export const scrapCompanyConfiguration = [
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: ".logo img",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.products.wrapper.grid.products-grid ol li',
+        attributeLogoSelector: 'src',
+        mainSelector: '.products.wrapper.grid.products-grid ol li',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -1066,11 +1110,17 @@ export const scrapCompanyConfiguration = [
         url: 'https://www.ellagar.com/ECOMMERCE/ItemSearch?search=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'PUPPETEER',
+        rejectRequestPattern: [
+            'maps.googleapis.com',
+            'scontent.fsjo11-1.fna.fbcdn.net',
+            'static.xx.fbcdn.net',
+            'facebook.com'              
+        ],         
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: false,
         logoSelector: 'https://www.ellagar.com/SERV_ADMIN_FILES/Archivos/Imagenes/Parametro/Suc_1/LOGO LAGAR.png',//".img-fluid",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.item',
+        attributeLogoSelector: 'src',
+        mainSelector: '.item',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -1138,8 +1188,8 @@ export const scrapCompanyConfiguration = [
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: false,
         logoSelector: 'https://www.officedepot.co.cr/_ui/responsive/theme-officedepot/images/header-footer/footer2022/LG_ODMX2lineas.svg',//".hidden-md.hidden-lg.js-mobile-logo a img",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.product-cnt.clearfix',
+        attributeLogoSelector: 'src',
+        mainSelector: '.product-cnt.clearfix',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -1197,11 +1247,24 @@ export const scrapCompanyConfiguration = [
         url: 'https://www.construplaza.com/Construplaza/Pedidos?busqueda=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'PUPPETEER',
+        rejectRequestPattern: [
+            'accounts.google.com',
+            'analytics.google.com',
+            'cdn.jsdelivr.net',
+            'fonts.gstatic.com',
+            'insights.algolia.io',
+            'mucjnsqczh-dsn.algolia.net',
+            'play.google.com',
+            'stats.g.doubleclick.net',
+            'google-analytics.com',
+            'google.co.cr',
+            'googletagmanager.com'                      
+        ],                 
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: false,
         logoSelector: "https://www.construplaza.com/Content/Images/logo.webp",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.Producto',
+        attributeLogoSelector: 'src',
+        mainSelector: '.Producto',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -1259,11 +1322,32 @@ export const scrapCompanyConfiguration = [
         url: 'https://novex.cr/search?term=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'PUPPETEER',
+        rejectRequestPattern: [
+            'app.b2chat.io',
+            'b2chat-filesrepo.s3.amazonaws.com',
+            'c.tenor.com',
+            'cdn.jsdelivr.net',
+            'chimpstatic.com',
+            'code.jquery.com',
+            'connect.facebook.net',
+            'connect.nosto.com',
+            'd1cocw0250tpxv.cloudfront.net',
+            'fonts.googleapis.com',
+            'livechat.b2chat.io',
+            'pagead2.googlesyndication.com',
+            'livechat.b2chat.io',
+            'script.hotjar.com',
+            'static.hotjar.com',
+            'thumbs.nosto.com',
+            'use.fontawesome.com',
+            'google-analytics.com',
+            'googletagmanager.com'                               
+        ],             
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: ".Logo_img",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.productCardGrid-container',
+        attributeLogoSelector: 'src',
+        mainSelector: '.productCardGrid-container',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -1389,11 +1473,66 @@ export const scrapCompanyConfiguration = [
         url: 'https://www.automercado.cr/buscar?q=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'PUPPETEER',
+        rejectRequestPattern: [
+            'ad.360yield.com',
+            'ade.clmbtech.com',
+            'ads.stickyadstv.com',
+            'analytics.clickdimensions.com',
+            'c.bing.com',
+            'cdnjs.cloudflare.com',
+            'cl.qualaroo.com',
+            'cm.g.doubleclick.net',
+            'cm.adgrx.com',
+            'cms-production.azurewebsites.net',
+            'connect.facebook.net',
+            'contextual.media.net',
+            'criteo-partners.tremorhub.com',
+            'criteo-sync.teads.tv',
+            'd27c6j8064skg9.cloudfront.net',
+            'dev.visualwebsiteoptimizer.com',
+            'dntcl.qualaroo.com',
+            'dpm.demdex.net',
+            'dynamic.criteo.com',
+            'eb2.3lift.com',
+            'edge.fullstory.com',
+            'exchange.mediavine.com',
+            'firebase.googleapis.com',
+            'firebaseinstallations.googleapis.com',
+            'fledge.us.criteo.com',
+            'fu5xfx7knl-dsn.algolia.net',
+            'gum.criteo.com',
+            'i.liadm.com',
+            'ib.adnxs.com',
+            'ka-f.fontawesome.com',
+            'maps.googleapis.com',
+            'match.sharethrough.com',
+            'matching.ivitrack.com',
+            'measurement-api.criteo.com',
+            'pixel.rubiconproject.com',
+            'r.casalemedia.com',
+            'rs.fullstory.com',
+            'rtb-csync.smartadserver.com',
+            's.ad.smaato.net',
+            'secure.adnxs.com',
+            'simage2.pubmatic.com',
+            'stats.g.doubleclick.net',
+            'sync-criteo.ads.yieldmo.com',
+            'sync-t1.taboola.com',
+            'sync.outbrain.com',
+            'tags.bluekai.com',
+            'tg.socdm.com',
+            'trends.revcontent.com',
+            'ups.analytics.yahoo.com',
+            'visitor.omnitagjs.com',
+            'google-analytics.com',
+            'googletagmanager.com',
+            'x.bidswitch.net'                                         
+        ],             
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: ".navbar-brand img",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.card-body',
+        attributeLogoSelector: 'src',
+        mainSelector: '.card-body',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -1457,11 +1596,17 @@ export const scrapCompanyConfiguration = [
         url: 'https://www.fischelenlinea.com/busqueda?p=SEARCH_TEXT&c=0',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'PUPPETEER',
+        rejectRequestPattern: [
+            'maps.googleapis.com',
+            'y.clarity.ms/collect',
+            'cms.salesmanago.com',
+            'stats.g.doubleclick.net'                             
+        ],         
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: '.logo img',
-        attributeLogoSelector: 'src',  
-		mainSelector: '.card.col-4.ng-scope',
+        attributeLogoSelector: 'src',
+        mainSelector: '.card.col-4.ng-scope',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -1525,11 +1670,16 @@ export const scrapCompanyConfiguration = [
         url: 'https://farmacialabomba.com/busqueda?p=SEARCH_TEXT&c=0',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'PUPPETEER',
+        rejectRequestPattern: ['cms.salesmanago.com',
+            'script.crazyegg.com',
+            'stackpath.bootstrapcdn.com',
+            't.clarity.ms',
+            'clarity.ms'],
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: '.logo img',
-        attributeLogoSelector: 'src',  
-		mainSelector: '.flex-col.card.ng-scope',
+        attributeLogoSelector: 'src',
+        mainSelector: '.flex-col.card.ng-scope',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -1596,8 +1746,8 @@ export const scrapCompanyConfiguration = [
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: '.logo img',
-        attributeLogoSelector: 'src',  
-		mainSelector: '.product-item-info',
+        attributeLogoSelector: 'src',
+        mainSelector: '.product-item-info',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -1655,11 +1805,17 @@ export const scrapCompanyConfiguration = [
         url: 'https://hibeautycr.com/search?q=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'PUPPETEER',
+        rejectRequestPattern: [
+            'cdn.shopify.com',
+            'code.jquery.com',
+            'vaultcdn.electricapps.net',
+            'cloudflare.com'                                      
+        ],         
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: false, //true,
         logoSelector: 'https://hibeautycr.com/cdn/shop/files/phonto_03d167e9-aca5-4063-8d43-08961074f97a.jpg',//'.logo__image img',
-        attributeLogoSelector: 'src',  
-		mainSelector: '.product-item.easylockdown-item',
+        attributeLogoSelector: 'src',
+        mainSelector: '.product-item.easylockdown-item',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -1726,8 +1882,8 @@ export const scrapCompanyConfiguration = [
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: ".attachment-full.size-full.wp-image-464763",
-        attributeLogoSelector: 'src',  
-		mainSelector: '.products.elementor-grid.columns-4 li',
+        attributeLogoSelector: 'src',
+        mainSelector: '.products.elementor-grid.columns-4 li',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -1779,4 +1935,4 @@ export const scrapCompanyConfiguration = [
             },
         ]
     }
- ]
+]
