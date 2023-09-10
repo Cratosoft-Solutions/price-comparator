@@ -33,9 +33,7 @@ const MyResults = () => {
         }
         
         if(searchCounter == storeToSearhCount){
-            dispatch(setSearching(false));
             dispatch(setLoading(false)); 
-      
             if(!saveOnDatabase) 
               saveSearchOnDB(key);
           }
@@ -47,8 +45,13 @@ const MyResults = () => {
         });
       }
 
+    const setInternalSearching = () => {
+        dispatch(setSearching(false))
+    }
+
     useEffect(()=>{
         const executeSearch = async () =>{
+                setTimeout(setInternalSearching, 15000);
                 dispatch(restartProducts());
                 dispatch(setLoading(true));
                 dispatch(setSearching(true));
