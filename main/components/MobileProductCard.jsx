@@ -4,7 +4,7 @@ const MobileProductCard = ({ product, index }) => {
   return (
     <div key={product.productName + index} className="container-fluid mx-auto w-full">
       <div
-        className="flex bg-white border border-gray-300  overflow-hidden items-center justify-start"
+        className="relative flex bg-white border border-gray-300  overflow-hidden items-center justify-start"
         style={{ cursor: "auto" }}
       >
         <div className="relative w-32 h-32 !max-h-32 flex-shrink-0">
@@ -18,6 +18,17 @@ const MobileProductCard = ({ product, index }) => {
           </div>
         </div>
 
+          {product.companyLogo && (
+            <img
+              className="absolute z-100 object-contain h-6 rounded-full max-w-[5rem] button-0 right-2"
+              src={
+                product.companyLogo == undefined 
+                  ? "https://www.edelar.com.ar/static/theme/images/sin_imagen.jpg"
+                  : product.companyLogo
+              }
+              alt={product.companyLogo}
+            />
+          )}
         <div className="p-4">
           <p className="text-sm ">{product.productName}</p>
 

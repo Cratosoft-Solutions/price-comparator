@@ -14,7 +14,7 @@ const productsSlice = createSlice({
         pushProduct: (state, action) => {
             state.storeFullData.push(action.payload);
             action.payload.companyProducts.forEach(element => {
-                state.storeFullProducts.push(element);
+                state.storeFullProducts.push({...element, companyLogo: action.payload.companyLogo});
             });
         },
         restartProducts: (state) => {
