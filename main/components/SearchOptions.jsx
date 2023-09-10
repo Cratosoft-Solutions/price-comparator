@@ -19,7 +19,6 @@ const SearchOptions = ({setOptionSearch}) => {
   const { configuration } = useSelector((state) => state.searchoptions);
   const dispatch = useDispatch();
   const {  text } = useSelector(state => state.searchProperties.properties);
-  const { loading } = useSelector(state =>state.siteloading);
   const { searching } = useSelector(state =>state.productSearching);
   const [showSearchOptions, setShowSearchOptions] = useState(false);
   const router = useRouter();
