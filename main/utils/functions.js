@@ -174,3 +174,22 @@ export const formatAutoCompletableItem = (category, text) => {
     return "Unknow Category" + " - " + text;
   }
 }
+
+export const getNestedPropertyValue = (obj, path) => {
+  const keys = path.split('.');
+  let current = obj;
+
+ for (const key of keys) {
+    if (current.hasOwnProperty(key)) {
+      current = current[key];
+      if (Array.isArray(current)) {
+        // Si encontramos un array, asumimos que queremos el primer elemento.
+        current = current[0];
+      }
+    } else {
+      return undefined; // Devuelve undefined si la propiedad no existe en la ruta.
+    }
+  } 
+  
+  return current;
+}

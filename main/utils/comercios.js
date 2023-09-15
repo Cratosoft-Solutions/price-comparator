@@ -978,7 +978,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: '.product-item-info div .price-box.price-final_price .special-price .price-wrapper .price',
+                        selector: '.price',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
@@ -1928,6 +1928,74 @@ export const scrapCompanyConfiguration = [
                     {
                         order: 1,
                         selector: '.woocommerce-loop-product__title',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 91,
+        name: 'SIMAN',
+        url: 'https://cr.siman.com/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft',
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: 'https://simancrc.vtexassets.com/arquivos/logo-footer.png',
+        attributeLogoSelector: 'src',
+        mainSelector: 'queryData',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '0.data.productSearch.products.priceRange.sellingPrice.lowPrice',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: '0.data.productSearch.products.priceRange.sellingPrice.highPrice',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '0.data.productSearch.products.link',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '0.data.productSearch.products.item.images[0].imageUrl',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: 'src'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'product.productName',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
