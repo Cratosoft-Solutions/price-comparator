@@ -138,7 +138,7 @@ export function comparePrice( property, order ) {
             result:data
           });
     } catch (error) {
-      console.log("Guardando en BD" + error);
+      //console.log("Guardando en BD" + error);
     }
   }
 
@@ -176,20 +176,40 @@ export const formatAutoCompletableItem = (category, text) => {
 }
 
 export const getNestedPropertyValue = (obj, path) => {
-  const keys = path.split('.');
-  let current = obj;
 
- for (const key of keys) {
-    if (current.hasOwnProperty(key)) {
-      current = current[key];
-      if (Array.isArray(current)) {
-        // Si encontramos un array, asumimos que queremos el primer elemento.
-        current = current[0];
-      }
-    } else {
-      return undefined; // Devuelve undefined si la propiedad no existe en la ruta.
-    }
-  } 
+  try {
+    console.log("RANDALL OBJETO:");
+    console.log(obj);
+    console.log("RANDALL PATH:");
   
-  return current;
+    console.log(path);
+    
+  
+    const keys = path.split('.');
+    let current = obj;
+  
+   for (const key of keys) {
+    console.log(typeof current);  
+    if (typeof current =="object" && current.hasOwnProperty(key)) {
+        console.log("tiene propiedad" + key);
+        current = current[key];
+        if (Array.isArray(current)) {
+          // Si encontramos un array, asumimos que queremos el primer elemento.
+          current = current[0];
+        }
+      }else if(typeof current == "string" && JSON.parse(current).hasOwnProperty(key)){
+        current = JSON.parse(current)[key];        
+      } 
+      else {
+        
+        console.log("no tiene propiedad" + key);
+        console.log(current);
+        return undefined; // Devuelve undefined si la propiedad no existe en la ruta.
+      }
+    } 
+    
+    return current;
+  } catch (error) {
+    console.log(error)
+  }
 }

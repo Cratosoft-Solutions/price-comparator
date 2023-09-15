@@ -339,8 +339,8 @@ export const GET = async (request, { params }) => {
                                             break;
                                         case "TEXTCONTENT":
                                             console.log("#PASER JSON - 7 - Tiempo en responder -currentSelector.selector",currentSelector.selector);  
-                                            const productName = getNestedPropertyValue(queryData,currentSelector.selector);
-                                            fieldValue = getNestedPropertyValue(queryData,currentSelector.selector);//product.querySelector(currentSelector.selector)?.textContent.replace(/(\r\n|\n|\r)/gm, "").trim().slice();
+                                            //const productName = getNestedPropertyValue(queryData,"0.data.productSearch.products.productName"/*currentSelector.selector*/);
+                                            fieldValue = getNestedPropertyValue(queryData,"0.data.productSearch.products.productName"/*currentSelector.selector*/);//product.querySelector(currentSelector.selector)?.textContent.replace(/(\r\n|\n|\r)/gm, "").trim().slice();
                                             console.log("#PASER JSON - 8 - Tiempo en responder ",fieldValue);  
                                             break;
                                         case "INNERHTML":
