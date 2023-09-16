@@ -1938,14 +1938,16 @@ export const scrapCompanyConfiguration = [
     {
         id: 91,
         name: 'SIMAN',
-        url: 'https://cr.siman.com/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft',
+        url:'https://cr.siman.com/SEARCH_TEXT/s?_q=SEARCH_TEXT&map=ft&__pickRuntime=Cquery%2CqueryData',
+        referrerUrl:'https://cr.siman.com/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft',
+        requestMethod:'GET',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSON',
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: false,
         logoSelector: 'https://simancrc.vtexassets.com/arquivos/logo-footer.png',
         attributeLogoSelector: 'src',
-        mainSelector: 'queryData',
+        mainSelector: 'queryData.data.productSearch.products',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -1953,13 +1955,14 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: '0.data.productSearch.products.priceRange.sellingPrice.lowPrice',
+                        //selector: '0.data.productSearch.products.priceRange.sellingPrice.lowPrice',
+                        selector: 'priceRange.sellingPrice.lowPrice',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 2,
-                        selector: '0.data.productSearch.products.priceRange.sellingPrice.highPrice',
+                        selector: 'priceRange.sellingPrice.highPrice',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -1971,7 +1974,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: '0.data.productSearch.products.link',
+                        selector: 'link',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: 'href'
                     }
@@ -1983,7 +1986,8 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: '0.data.productSearch.products.item.images[0].imageUrl',
+                        //selector: 'items.images[0].imageUrl',
+                        selector: 'items.images.imageUrl',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: 'src'
                     }
@@ -1995,12 +1999,98 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: 'product.productName',
+                        selector: 'productName',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
                 ],
             },
         ]
-    }
+    },
+    {
+        id: 92,
+        name: "MONGE",
+        url:'https://wlt832ea3j-dsn.algolia.net/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20JavaScript%20(4.13.1)%3B%20Browser%3B%20instantsearch.js%20(4.41.0)%3B%20Magento2%20integration%20(3.9.0)%3B%20JS%20Helper%20(3.8.2)',
+        referrerUrl:'https://cr.siman.com/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft',
+        requestMethod:'GET',
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        rejectRequestPattern: ['api.ocularsolution.com',
+            'cm.teads.tv',
+            'content.syndigo.com',
+            'dpm.demdex.net',
+            'ocular-prod.api.rocio.ai',
+            'rum-collector-2.pingdom.net',
+            'stats.g.doubleclick.net',
+            'google-analytics.com',
+            'wlt832ea3j-2.algolianet.com'
+        ],
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: true,
+        logoSelector: ".logo img",
+        attributeLogoSelector: 'src',
+        mainSelector: '.result-wrapper',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.after_special.promotion ',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: '.before_special',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 3,
+                        selector: '.after_special ',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.result',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.result-thumbnail img',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'src'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.result-title',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    }    
 ]

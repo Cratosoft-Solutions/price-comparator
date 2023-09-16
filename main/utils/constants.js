@@ -18,6 +18,7 @@ export const CATEGORIES = [
   {value:10, label:"Juguetería"},
   {value:11, label:"Escolar"},
   {value:12, label:"Ropa / Calzado"},
+  {value:13, label:"RESPONSE-JSON"},
 ]
 
 //PUPPETEER
@@ -40,5 +41,7 @@ export const STORE_BY_CATEGORY = [
 {category:10, stores:[12,13,1,4,6,8,14]},
 {category:11, stores:[13,1,8,14,17]},
 //{category:11, stores:[13]},
-{category:12, stores:[12,1,4,6,8]}
+//{category:12, stores:[12,1,4,6,8]},
+{category:12, stores:[12]},
+{category:13, stores:[91]}
 ]
