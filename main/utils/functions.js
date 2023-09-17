@@ -185,8 +185,8 @@ export const getNestedPropertyValue = (obj, path, index) => {
     let current = obj[index];
     let productsList = [];
     let i = 0;
-    //console.log('#####################################');
-    //console.log("#PASER 3 - JSON - iteracion :", index);
+/*     console.log('#####################################');
+    console.log("#PASER 3 - JSON - iteracion :", index); */
     for (const key of keys) {
       //console.log('iteracion',i);  
       //console.log(typeof current);

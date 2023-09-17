@@ -19,7 +19,7 @@ export const GET = async (request, { params }) => {
             switch (company.scrapType) {
                 case 'QUERY_PARAMETER':
                     urlToScrap = (company.url).replace(/SEARCH_TEXT/g, params.text);
-                    console.log('Control JM - URL ', urlToScrap);
+                    //console.log('Control JM - URL ', urlToScrap);
                     break;
                 default:
                     urlToScrap = '';
@@ -237,7 +237,7 @@ export const GET = async (request, { params }) => {
                     });
                     console.log(products);
                     t1 = performance.now();
-                   //console.log("#PASER 8 - PUPPETEER - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);
+                    //console.log("#PASER 8 - PUPPETEER - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);
                 } catch (error) {
                     //await browser.close();
                     console.log('Puppeteer process failed - company.id ' + params.company + ' - ERROR ', error);
@@ -270,24 +270,29 @@ export const GET = async (request, { params }) => {
                             "sec-fetch-dest": "empty",
                             "sec-fetch-mode": "cors",
                             "sec-fetch-site": "same-origin",
-                            "x-requested-with": "XMLHttpRequest",
+/*                             "x-requested-with": "XMLHttpRequest",
+                            "x-algolia-api-key": "YTYwZjI3ODFjOTI3YWQ0MjJmYzQ3ZjBiNmY1Y2FiYjRhZjNiMmM3NmMxYTMyNDUwOGUxYjhkMWFhMzFlOGExNnRhZ0ZpbHRlcnM9",
+                            */ "x-algolia-api-key": company.apiKey,
+                            "x-algolia-application-id": company.applicationId,
                         },
-                        "referrer": (company.referrerUrl).replace(/SEARCH_TEXT/g, params.text),
+                        "referrer": (company.referrerUrl)?.replace(/SEARCH_TEXT/g, params.text),
                         "referrerPolicy": "strict-origin-when-cross-origin",
-                        "body": null,
+                        "body": (company.body)?.replace(/SEARCH_TEXT/g, params.text),
                         "method": company.requestMethod,
                         "mode": "cors",
                         "credentials": "omit"
                     });
-                    console.log('referrerUrl',(company.referrerUrl).replace(/SEARCH_TEXT/g, params.text));
-                    t1 = performance.now();
+                    //console.log('referrerUrl',(company.referrerUrl).replace(/SEARCH_TEXT/g, params.text));
+                    //t1 = performance.now();
                     //console.log("#PASER JSON - 3 - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);
                     //console.log('MARCA 2.0.2',companyStoreHTML);
                     let companyStoreBody = await companyStoreHTML.text();
-                    t1 = performance.now();
+                    //companyStoreBody = companyStoreBody.replace(/^[^(]+\(/, '').replace(/\)\s*$/, '')//.replace(/^[^)]+\)/, '');
+                    //console.log("#PASER JSON - 4 - JSON ", companyStoreBody);
+                    //t1 = performance.now();
                     //console.log("#PASER JSON - 4 - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);
                     const companyStoreJson = JSON.parse(companyStoreBody);
-                    //console.log('#PASER JSON - 5 - companyStoreBody ', JSON.parse(companyStoreBody));//JSON.stringify(companyStoreBody));      
+                    //console.log('#PASER JSON - 5 - companyStoreJson ', companyStoreJson);//JSON.stringify(companyStoreBody));      
                     //mainSelector
                     //let queryData = companyStoreJson[company.mainSelector];
                     //console.log(queryData);
@@ -305,49 +310,56 @@ export const GET = async (request, { params }) => {
 
                     //console.log("#PASER JSON - 3 - Tiempo en responder ");                    
                     let currentProducts = [];
-                    //console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
-                    let productList = getProductList(companyStoreJson,company.mainSelector);
+                    let productList = getProductList(companyStoreJson, company.mainSelector);
                     //console.log('--------> productList ',productList)
-                    //console.log('--------> productList ',productList.length)
-                    //console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
-                    productList.forEach((product,index) => {
-                        //console.log("#PASER JSON - 4 - Tiempo en responder ");  
-                        const temProduct = {};
-                        //Going through the fields configuration
-                        company.scrapingFields.forEach((field) => {
-                            let fieldValue = undefined;
-                            //console.log("#PASER JSON - 5 - Tiempo en responder ");  
-                            field.fieldSelectors.forEach(currentSelector => {
-                                //console.log("#PASER JSON - 6 - Tiempo en responder ");  
-                                if (fieldValue == undefined) {
-                                    switch (currentSelector.selectorValueFrom) {
-                                        case "ATTRIBUTE":
-                                            const pattern =
-                                                /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?\/[a-zA-Z0-9]{2,}|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)|(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})?/g;
-                                            fieldValue = product.querySelector(currentSelector.selector)?.getAttribute(currentSelector.attribute);
-                                            fieldValue = regex.test(fieldValue) ? fieldValue : urlToScrap.match(regex)[0] + fieldValue;
-                                            break;
-                                        case "TEXTCONTENT":
-                                            fieldValue = getNestedPropertyValue(productList,currentSelector.selector,index);
-                                            //console.log("#PASER JSON - 7 - "+ field.fieldName + " : ",fieldValue);   
-                                            break;
-                                        case "INNERHTML":
-                                            fieldValue = product.querySelector(currentSelector.selector)?.innerHTML;
-                                            break;
-                                        default:
-                                            break;
+                    if (productList.length > 0) {
+                        console.log('$$$$$$$$$$$$$$$$$')
+                        console.log('ECOMMERCE ' + company.name);                        
+                        console.log('--------> productList ', productList.length);
+                        productList.forEach((product, index) => {
+                            //console.log("#PASER JSON - 4 - Tiempo en responder ");  
+                            const temProduct = {};
+                            //Going through the fields configuration
+                            company.scrapingFields.forEach((field) => {
+                                let fieldValue = undefined;
+                                //console.log("#PASER JSON - 5 - Tiempo en responder ");  
+                                field.fieldSelectors.forEach(currentSelector => {
+                                    //console.log("#PASER JSON - 6 - Tiempo en responder ");  
+                                    if (fieldValue == undefined) {
+                                        switch (currentSelector.selectorValueFrom) {
+                                            case "ATTRIBUTE":
+                                                const pattern =
+                                                    /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?\/[a-zA-Z0-9]{2,}|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)|(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})?/g;
+                                                fieldValue = product.querySelector(currentSelector.selector)?.getAttribute(currentSelector.attribute);
+                                                fieldValue = regex.test(fieldValue) ? fieldValue : urlToScrap.match(regex)[0] + fieldValue;
+                                                break;
+                                            case "TEXTCONTENT":
+                                                fieldValue = getNestedPropertyValue(productList, currentSelector.selector, index);
+                                                //PONER UNA CONDICION PARA EVALUAR LOS LINKS DE LAS TIENDAS, VERIFICAR SI SE VA A TOMAR referrerUrl o se define una nueva propiedad
+                                                if (field.fieldName == 'vendorLink' || field.fieldName == 'productImage') {
+                                                    fieldValue = regex.test(fieldValue) ? fieldValue : company.referrerUrl.match(regex)[0] + fieldValue;
+                                                }
+                                                //console.log("#PASER JSON - 7 - "+ field.fieldName + " : ",fieldValue);   
+                                                break;
+                                            case "INNERHTML":
+                                                fieldValue = product.querySelector(currentSelector.selector)?.innerHTML;
+                                                break;
+                                            default:
+                                                break;
+                                        }
                                     }
-                                }
-                            });
-                            temProduct[field.fieldName] = fieldValue;
-                        })
-                        currentProducts.push(temProduct);
-                    });
-                    //console.log(currentProducts);
-                    if (currentProducts.length > 0) {
-                        currentProducts.forEach((element, index) => {
-                            currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice) * 1;
+                                });
+                                temProduct[field.fieldName] = fieldValue;
+                            })
+                            currentProducts.push(temProduct);
                         });
+
+                        //console.log(currentProducts);
+                        if (currentProducts.length > 0) {
+                            currentProducts.forEach((element, index) => {
+                                currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice) * 1;
+                            });
+                        }
                     }
                     products.push({
                         companyName: company.name,
@@ -369,7 +381,7 @@ export const GET = async (request, { params }) => {
         return new Response(JSON.stringify(products[0]), { status: 200 })
     } catch (error) {
         //await browser.close();
-        console.log("#PASER 10 - error",error);
+        console.log("#PASER 10 - error", error);
         return new Response("Failed to fetch prompts created by user COMPANY.ID " + params.company + 'ERROR: ' + error, { status: 500 })
     }
 }

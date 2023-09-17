@@ -1936,11 +1936,16 @@ export const scrapCompanyConfiguration = [
         ]
     },
     {
-        id: 91,
+        id: 912,
         name: 'SIMAN',
         url:'https://cr.siman.com/SEARCH_TEXT/s?_q=SEARCH_TEXT&map=ft&__pickRuntime=Cquery%2CqueryData',
         referrerUrl:'https://cr.siman.com/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft',
+        //normalizar estos parametros en todas las tiendas        
         requestMethod:'GET',
+        body: null,
+        apiKey: null,
+        applicationId: null, 
+        //         
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSON',
         replaceTextOnURL: 'SEARCH_TEXT',
@@ -2008,28 +2013,23 @@ export const scrapCompanyConfiguration = [
         ]
     },
     {
-        id: 92,
+        id: 910,
         name: "MONGE",
         url:'https://wlt832ea3j-dsn.algolia.net/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20JavaScript%20(4.13.1)%3B%20Browser%3B%20instantsearch.js%20(4.41.0)%3B%20Magento2%20integration%20(3.9.0)%3B%20JS%20Helper%20(3.8.2)',
-        referrerUrl:'https://cr.siman.com/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft',
-        requestMethod:'GET',
+        referrerUrl:'https://www.tiendamonge.com/',
+        //normalizar estos parametros en todas las tiendas        
+        requestMethod:'POST',
+        body: "{\"requests\":[{\"indexName\":\"monge_upgrade_prod_default_products\",\"params\":\"highlightPreTag=__ais-highlight__&highlightPostTag=__%2Fais-highlight__&hitsPerPage=9&query=SEARCH_TEXT&page=0&maxValuesPerFacet=40&facets=%5B%22price.CRC.default%22%2C%22categoria%22%2C%22tipo_de_producto%22%2C%22marca%22%2C%22tamano_pantallas%22%5D&tagFilters=&numericFilters=%5B%22visibility_search%3D1%22%5D\"}]}",
+        apiKey: "YTYwZjI3ODFjOTI3YWQ0MjJmYzQ3ZjBiNmY1Y2FiYjRhZjNiMmM3NmMxYTMyNDUwOGUxYjhkMWFhMzFlOGExNnRhZ0ZpbHRlcnM9",
+        applicationId: "WLT832EA3J", 
+        //       
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSON',
-        rejectRequestPattern: ['api.ocularsolution.com',
-            'cm.teads.tv',
-            'content.syndigo.com',
-            'dpm.demdex.net',
-            'ocular-prod.api.rocio.ai',
-            'rum-collector-2.pingdom.net',
-            'stats.g.doubleclick.net',
-            'google-analytics.com',
-            'wlt832ea3j-2.algolianet.com'
-        ],
         replaceTextOnURL: 'SEARCH_TEXT',
-        indLogoSelector: true,
-        logoSelector: ".logo img",
+        indLogoSelector: false,
+        logoSelector: "https://www.tiendamonge.com/static/version1694655550/frontend/Omnipro/monge/es_CR/images/logo.svg",
         attributeLogoSelector: 'src',
-        mainSelector: '.result-wrapper',
+        mainSelector: 'results.hits',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -2037,19 +2037,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: '.after_special.promotion ',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    },
-                    {
-                        order: 2,
-                        selector: '.before_special',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    },
-                    {
-                        order: 3,
-                        selector: '.after_special ',
+                        selector: 'price.CRC.default',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -2061,8 +2049,8 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: '.result',
-                        selectorValueFrom: "ATTRIBUTE",
+                        selector: 'url',
+                        selectorValueFrom: "TEXTCONTENT",
                         attribute: 'href'
                     }
                 ],
@@ -2073,8 +2061,8 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: '.result-thumbnail img',
-                        selectorValueFrom: "ATTRIBUTE",
+                        selector: 'image_url',
+                        selectorValueFrom: "TEXTCONTENT",
                         attribute: 'src'
                     }
                 ],
@@ -2085,7 +2073,147 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: '.result-title',
+                        selector: 'name',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 911,
+        name: "EL VERDUGO",
+        url:'https://wlt832ea3j-1.algolianet.com/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20JavaScript%20(4.13.1)%3B%20Browser%3B%20instantsearch.js%20(4.41.0)%3B%20Magento2%20integration%20(3.9.0)%3B%20JS%20Helper%20(3.8.2)',
+        referrerUrl:'https://www.verdugotienda.com/',
+        requestMethod:'POST',
+        //normalizar estos parametros en todas las tiendas
+        body: "{\"requests\":[{\"indexName\":\"monge_upgrade_prod_verdugo_products\",\"params\":\"highlightPreTag=__ais-highlight__&highlightPostTag=__%2Fais-highlight__&hitsPerPage=9&query=SEARCH_TEXT&page=0&maxValuesPerFacet=40&facets=%5B%22price.CRC.default%22%2C%22categoria%22%2C%22tipo_de_producto%22%2C%22marca%22%2C%22tamano_pantallas%22%5D&tagFilters=&numericFilters=%5B%22visibility_search%3D1%22%5D\"}]}",
+              //"{\"requests\":[{\"indexName\":\"monge_upgrade_prod_verdugo_products\",\"params\":\"highlightPreTag=__ais-highlight__&highlightPostTag=__%2Fais-highlight__&hitsPerPage=9&query=REFRIGERADOR&page=0&maxValuesPerFacet=40&facets=%5B%22price.CRC.default%22%2C%22categoria%22%2C%22tipo_de_producto%22%2C%22marca%22%2C%22tamano_pantallas%22%5D&tagFilters=&numericFilters=%5B%22visibility_search%3D1%22%5D\"}]}",
+        apiKey: "YTYwZjI3ODFjOTI3YWQ0MjJmYzQ3ZjBiNmY1Y2FiYjRhZjNiMmM3NmMxYTMyNDUwOGUxYjhkMWFhMzFlOGExNnRhZ0ZpbHRlcnM9",
+        applicationId: "WLT832EA3J",
+        //       
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: "https://www.verdugotienda.com/static/version1694655550/frontend/Omnipro/verdugo/es_CR/images/logo.svg",
+        attributeLogoSelector: 'src',
+        mainSelector: 'results.hits',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'price.CRC.default',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'url',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'image_url',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: 'src'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'name',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 913,
+        name: "UNIVERSAL",
+        url: "https://searchserverapi.com/getresults?api_key=7H5U4o0w1P&q=SEARCH_TEXT&sortBy=relevance&sortOrder=desc&startIndex=0&maxResults=15&items=true&pages=true&categories=true&suggestions=true&queryCorrection=true&suggestionsMaxResults=3&pageStartIndex=0&pagesMaxResults=20&categoryStartIndex=0&categoriesMaxResults=20&facets=true&facetsShowUnavailableOptions=true&recentlyViewedProducts=7021400883283%2C7015115980883%2C7015399194707%2C7015455457363%2C6953829826643%2C6815284953171%2C6869979496531%2C6932114702419%2C6852126310483&recentlyAddedToCartProducts=&recentlyPurchasedProducts=&ResultsTitleStrings=2&ResultsDescriptionStrings=2&timeZoneName=America%2FCosta_Rica&output=jsonp",
+        //url: "https://searchserverapi.com/getresults?api_key=7H5U4o0w1P&q=SEARCH_TEXT&sortBy=relevance&sortOrder=desc&startIndex=0&maxResults=15&items=true&pages=true&categories=true&suggestions=true&queryCorrection=true&suggestionsMaxResults=3&pageStartIndex=0&pagesMaxResults=20&categoryStartIndex=0&categoriesMaxResults=20&facets=true&facetsShowUnavailableOptions=true&recentlyViewedProducts=7021400883283%2C7015115980883%2C7015399194707%2C7015455457363%2C6953829826643%2C6815284953171%2C6869979496531%2C6932114702419%2C6852126310483&recentlyAddedToCartProducts=&recentlyPurchasedProducts=&ResultsTitleStrings=2&ResultsDescriptionStrings=2&timeZoneName=America%2FCosta_Rica&output=jsonp&callback=jQuery36006702242308187536_1694490457791&_=1694490457792",
+        referrerUrl:'https://tiendauniversal.com/',
+        requestMethod:'GET',
+        //normalizar estos parametros en todas las tiendas
+        body: null,
+        apiKey: null,
+        applicationId: null,
+        //       
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: 'https://tiendauniversal.com/cdn/shop/files/universal-logotipo_d4fbc676-9771-47f0-919f-49e8b8eb65c3_180x.png',
+        attributeLogoSelector: 'src',
+        mainSelector: 'items',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'price',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'link',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'image_link',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'title',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }

@@ -18,14 +18,14 @@ export const CATEGORIES = [
   {value:10, label:"Juguetería"},
   {value:11, label:"Escolar"},
   {value:12, label:"Ropa / Calzado"},
-  {value:13, label:"RESPONSE-JSON"},
+  {value:13, label:"Otro Metodo Scraping"},
 ]
 
 //PUPPETEER
 //10,11,12,13,16,18,19,21,22,23,25
 
 export const STORE_BY_CATEGORY = [
-//{category:1, stores:[1]},
+//{category:1, stores:[1,92]},
 {category:1, stores:[10,11,12,13,1,2,3,4,5,6,7,8,9]},
 //{category:1, stores:[10,11,12,13]},
 {category:2, stores:[10,11,12,13,16,1,2,3,4,5,7,8,9,14,15]},
@@ -43,5 +43,5 @@ export const STORE_BY_CATEGORY = [
 //{category:11, stores:[13]},
 //{category:12, stores:[12,1,4,6,8]},
 {category:12, stores:[12]},
-{category:13, stores:[91]}
+{category:13, stores:[910,911,912,913]}
 ]
