@@ -185,8 +185,8 @@ export const getNestedPropertyValue = (obj, path, index) => {
     let current = obj[index];
     let productsList = [];
     let i = 0;
-/*     console.log('#####################################');
-    console.log("#PASER 3 - JSON - iteracion :", index); */
+    /*     console.log('#####################################');
+        console.log("#PASER 3 - JSON - iteracion :", index); */
     for (const key of keys) {
       //console.log('iteracion',i);  
       //console.log(typeof current);
@@ -200,13 +200,13 @@ export const getNestedPropertyValue = (obj, path, index) => {
           //console.log("#PASER 5 - JSON - tiene propiedad - encontramos un array - current :", current.length);
           productsList = current;
           //console.log("#PASER 5 - JSON - tiene propiedad - encontramos un array - product :",product);
-/*           productsList.forEach((product, index) => {
-            console.log('#PASER 5.1 - JSON - forEach - index: ' + index + ' - product.productName :', product.productName);
-          });
-
-          for (let i = 0; i < productsList.length; i++) {
-            console.log('#PASER 5.2 - JSON - for - index: ' + i + '  product.productName :', productsList[1].productName);
-          } */
+          /*           productsList.forEach((product, index) => {
+                      console.log('#PASER 5.1 - JSON - forEach - index: ' + index + ' - product.productName :', product.productName);
+                    });
+          
+                    for (let i = 0; i < productsList.length; i++) {
+                      console.log('#PASER 5.2 - JSON - for - index: ' + i + '  product.productName :', productsList[1].productName);
+                    } */
           current = current[0];
           //console.log("0.1 tiene propiedad " + key.length);
           //console.log("#PASER 7 - JSON - tiene propiedad :", key.length);
@@ -244,13 +244,18 @@ export const getProductList = (obj, path) => {
     let current = obj;
     let productsLength = 0;
     let productsList = [];
+    let elementList = [];
     let i = 0;
     //console.log("#PASER 2.1 - JSON - keys.length :", keys.length);
     for (const key of keys) {
       //console.log('##################################### key', key);
       //console.log("#PASER 3 - JSON - iteracion :", i);
       //console.log("#PASER 4 - JSON - typeof current :", typeof current);
-      if (typeof current == "object" && current.hasOwnProperty(key)) {
+      //console.log("#PASER 4 - JSON - current :", current);
+      //console.log("#PASER 4 - JSON - current.length :", current.length);
+      //console.log("#PASER 4.0 - JSON - typeof current.hasOwnProperty(key) :", current.hasOwnProperty(key));
+      
+      if (typeof current == "object" && current != null && current.hasOwnProperty(key)) {
         //console.log("#PASER 4.1 - JSON - tiene propiedad - key :", key);
         //console.log("0 tiene propiedad " + key);
         current = current[key];
@@ -263,15 +268,15 @@ export const getProductList = (obj, path) => {
             productsLength = current.length;
             productsList = current;
             //console.log("#PASER 5.0 - JSON - tiene propiedad - encontramos un array - productsList :", productsList);
-          }else {
+          } /* else {
             //console.log("#PASER 6 - JSON - getProductList - key:", key);
-          }
+          } */
           current = current[0];
-          //console.log("#PASER 7 - JSON - tiene propiedad :", key.length);
+          //console.log("#PASER 7 - JSON - tiene propiedad :", current);
         }
       } else if (typeof current == "string" && JSON.parse(current).hasOwnProperty(key)) {
         current = JSON.parse(current)[key];
-        //console.log("#PASER 8 - JSON - tiene propiedad :", key.length);
+        //console.log("#PASER 8 - JSON - tiene propiedad :", current);
       }
       else {
         //console.log("#PASER 8 - JSON - no tiene propiedad :", key);
@@ -282,6 +287,31 @@ export const getProductList = (obj, path) => {
     //console.log("#PASER 9 - JSON - tiene propiedad productsLength:", productsLength);
     return productsList;
   } catch (error) {
-    console.log(error)
+    //console.log('#PASER 10 - JSON - ERROR',error)
+  }
+}
+
+
+export async function checkImage(url) {
+  let apiRes = true;
+  try {
+    const response = await axios.get(url);
+    if (response.status == 200) //if(statusText == OK)
+    {
+      //console.log("image exists");
+      apiRes = true;
+    } else {
+      //console.log("image doesn't exist");
+      apiRes = false;
+    }
+  } catch (err) {
+    //console.error("Error response:",apiRes);
+    //console.error(err.response.data);    // ***
+    apiRes = false;
+    //console.error(err.response.status);  // ***
+    //console.error(err.response.headers); // ***
+  } finally {
+    //console.log('image exist:', apiRes);
+    return apiRes;
   }
 }
