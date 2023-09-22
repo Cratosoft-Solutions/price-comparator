@@ -254,7 +254,6 @@ export const getProductList = (obj, path) => {
       //console.log("#PASER 4 - JSON - current :", current);
       //console.log("#PASER 4 - JSON - current.length :", current.length);
       //console.log("#PASER 4.0 - JSON - typeof current.hasOwnProperty(key) :", current.hasOwnProperty(key));
-      
       if (typeof current == "object" && current != null && current.hasOwnProperty(key)) {
         //console.log("#PASER 4.1 - JSON - tiene propiedad - key :", key);
         //console.log("0 tiene propiedad " + key);
