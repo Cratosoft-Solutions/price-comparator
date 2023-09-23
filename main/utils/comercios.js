@@ -1,73 +1,73 @@
 export const scrapCompanyConfiguration = [
-    {
-        id: 1,
-        name: "WALMART CR",
-        url: 'https://www.walmart.co.cr/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft',
-        scrapType: 'QUERY_PARAMETER',
-        indHowToScrape: 'JSDOM',
-        replaceTextOnURL: 'SEARCH_TEXT',
-        indLogoSelector: false,
-        logoSelector: "https://walmartcr.vtexassets.com/assets/vtex/assets-builder/walmartcr.store-theme/0.1.35/waltmart-logo___a095e1f47875aea1c10fcc867f8ac7ac.png",
-        //logoSelector: ".vtex-store-components-3-x-logoImage",
-        attributeLogoSelector: 'src',
-        mainSelector: '.vtex-product-summary-2-x-container',
-        scrapingFields: [
-            {
-                fieldName: 'productPrice',
-                type: 'Numeric',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.vtex-store-components-3-x-sellingPrice',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    },
-                    {
-                        order: 2,
-                        selector: '.vtex-store-components-3-x-listPrice',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-            {
-                fieldName: 'vendorLink',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.vtex-product-summary-2-x-clearLink',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'href'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productImage',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.vtex-product-summary-2-x-imageNormal',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'src'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productName',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.vtex-product-summary-2-x-productBrand',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-        ]
-    },
+    /*     {
+            id: 1,
+            name: "WALMART CR",
+            url: 'https://www.walmart.co.cr/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft',
+            scrapType: 'QUERY_PARAMETER',
+            indHowToScrape: 'JSDOM',
+            replaceTextOnURL: 'SEARCH_TEXT',
+            indLogoSelector: false,
+            logoSelector: "https://walmartcr.vtexassets.com/assets/vtex/assets-builder/walmartcr.store-theme/0.1.35/waltmart-logo___a095e1f47875aea1c10fcc867f8ac7ac.png",
+            //logoSelector: ".vtex-store-components-3-x-logoImage",
+            attributeLogoSelector: 'src',
+            mainSelector: '.vtex-product-summary-2-x-container',
+            scrapingFields: [
+                {
+                    fieldName: 'productPrice',
+                    type: 'Numeric',
+                    fieldSelectors: [
+                        {
+                            order: 1,
+                            selector: '.vtex-store-components-3-x-sellingPrice',
+                            selectorValueFrom: "TEXTCONTENT",
+                            attribute: null
+                        },
+                        {
+                            order: 2,
+                            selector: '.vtex-store-components-3-x-listPrice',
+                            selectorValueFrom: "TEXTCONTENT",
+                            attribute: null
+                        }
+                    ],
+                },
+                {
+                    fieldName: 'vendorLink',
+                    type: 'String',
+                    fieldSelectors: [
+                        {
+                            order: 1,
+                            selector: '.vtex-product-summary-2-x-clearLink',
+                            selectorValueFrom: "ATTRIBUTE",
+                            attribute: 'href'
+                        }
+                    ],
+                },
+                {
+                    fieldName: 'productImage',
+                    type: 'String',
+                    fieldSelectors: [
+                        {
+                            order: 1,
+                            selector: '.vtex-product-summary-2-x-imageNormal',
+                            selectorValueFrom: "ATTRIBUTE",
+                            attribute: 'src'
+                        }
+                    ],
+                },
+                {
+                    fieldName: 'productName',
+                    type: 'String',
+                    fieldSelectors: [
+                        {
+                            order: 1,
+                            selector: '.vtex-product-summary-2-x-productBrand',
+                            selectorValueFrom: "TEXTCONTENT",
+                            attribute: null
+                        }
+                    ],
+                },
+            ]
+        }, */
     {
         id: 2,
         name: "INTELEC",
@@ -630,7 +630,7 @@ export const scrapCompanyConfiguration = [
                 ],
             },
         ]
-    },
+    }/* ,
     {
         id: 10,
         name: "MONGE",
@@ -896,8 +896,8 @@ export const scrapCompanyConfiguration = [
             'a.mailmunch.co',
             'forms.mailmunch.co',
             'stats.g.doubleclick.net',
-            'codeblackbelt.com'            
-        ],        
+            'codeblackbelt.com'
+        ],
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: false,
         logoSelector: 'https://tiendauniversal.com/cdn/shop/files/universal-logotipo_d4fbc676-9771-47f0-919f-49e8b8eb65c3_180x.png',
@@ -959,7 +959,7 @@ export const scrapCompanyConfiguration = [
                 ],
             },
         ]
-    },
+    } */,
     {
         id: 14,
         name: "Pequeño Mundo",
@@ -978,7 +978,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: '.product-item-info div .price-box.price-final_price .special-price .price-wrapper .price',
+                        selector: '.price',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
@@ -1104,7 +1104,7 @@ export const scrapCompanyConfiguration = [
             },
         ]
     },
-    {
+    /* {
         id: 16,
         name: "EL LAGAR",
         url: 'https://www.ellagar.com/ECOMMERCE/ItemSearch?search=SEARCH_TEXT',
@@ -1114,8 +1114,8 @@ export const scrapCompanyConfiguration = [
             'maps.googleapis.com',
             'scontent.fsjo11-1.fna.fbcdn.net',
             'static.xx.fbcdn.net',
-            'facebook.com'              
-        ],         
+            'facebook.com'
+        ],
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: false,
         logoSelector: 'https://www.ellagar.com/SERV_ADMIN_FILES/Archivos/Imagenes/Parametro/Suc_1/LOGO LAGAR.png',//".img-fluid",
@@ -1177,7 +1177,7 @@ export const scrapCompanyConfiguration = [
                 ],
             },
         ]
-    },
+    }, */
     {
         id: 17,
         name: "Office Depot",
@@ -1241,7 +1241,7 @@ export const scrapCompanyConfiguration = [
             },
         ]
     },
-    {
+    /* {
         id: 18,
         name: "CONSTRUPLAZA",
         url: 'https://www.construplaza.com/Construplaza/Pedidos?busqueda=SEARCH_TEXT',
@@ -1258,8 +1258,8 @@ export const scrapCompanyConfiguration = [
             'stats.g.doubleclick.net',
             'google-analytics.com',
             'google.co.cr',
-            'googletagmanager.com'                      
-        ],                 
+            'googletagmanager.com'
+        ],
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: false,
         logoSelector: "https://www.construplaza.com/Content/Images/logo.webp",
@@ -1315,7 +1315,7 @@ export const scrapCompanyConfiguration = [
                 ],
             },
         ]
-    },
+    }, */
     {
         id: 19,
         name: "NOVEX",
@@ -1341,8 +1341,8 @@ export const scrapCompanyConfiguration = [
             'thumbs.nosto.com',
             'use.fontawesome.com',
             'google-analytics.com',
-            'googletagmanager.com'                               
-        ],             
+            'googletagmanager.com'
+        ],
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: ".Logo_img",
@@ -1399,7 +1399,7 @@ export const scrapCompanyConfiguration = [
             },
         ]
     },
-    {
+    /* {
         id: 20,
         name: "MASXMENOS",
         url: 'https://www.masxmenos.cr/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft',
@@ -1526,8 +1526,8 @@ export const scrapCompanyConfiguration = [
             'visitor.omnitagjs.com',
             'google-analytics.com',
             'googletagmanager.com',
-            'x.bidswitch.net'                                         
-        ],             
+            'x.bidswitch.net'
+        ],
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: ".navbar-brand img",
@@ -1600,8 +1600,8 @@ export const scrapCompanyConfiguration = [
             'maps.googleapis.com',
             'y.clarity.ms/collect',
             'cms.salesmanago.com',
-            'stats.g.doubleclick.net'                             
-        ],         
+            'stats.g.doubleclick.net'
+        ],
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: true,
         logoSelector: '.logo img',
@@ -1736,7 +1736,7 @@ export const scrapCompanyConfiguration = [
                 ],
             },
         ]
-    },
+    }, */
     {
         id: 24,
         name: 'SUCRE EN LINEA',
@@ -1809,8 +1809,8 @@ export const scrapCompanyConfiguration = [
             'cdn.shopify.com',
             'code.jquery.com',
             'vaultcdn.electricapps.net',
-            'cloudflare.com'                                      
-        ],         
+            'cloudflare.com'
+        ],
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: false, //true,
         logoSelector: 'https://hibeautycr.com/cdn/shop/files/phonto_03d167e9-aca5-4063-8d43-08961074f97a.jpg',//'.logo__image img',
@@ -1928,6 +1928,1023 @@ export const scrapCompanyConfiguration = [
                     {
                         order: 1,
                         selector: '.woocommerce-loop-product__title',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 912,
+        name: 'SIMAN',
+        url: 'https://cr.siman.com/SEARCH_TEXT/s?_q=SEARCH_TEXT&map=ft&__pickRuntime=Cquery%2CqueryData',
+        //PARAMETROS REQUEST
+        //HEADERS
+        accept: "application/json",
+        acceptLanguage: null,
+        contentType: null,
+        secChUa: "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"",
+        secChUaMobile: "?0",
+        secChUaPlatform: "\"Windows\"",
+        secFetchDest: "empty",
+        secFetchMode: "cors",
+        secFetchSite: "same-origin",
+        xRequestedWith: "XMLHttpRequest",
+        xAlgoliaApiKey: null,
+        xAlgoliaApplicationId: null,
+        //OTROS
+        referrer: "https://cr.siman.com/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: null,
+        method: "GET",
+        mode: "cors",
+        credentials: "omit",
+        //FIN PARAMETROS REQUEST
+        linkUrl: 'https://cr.siman.com/',
+        imageUrl: null,
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: 'https://simancrc.vtexassets.com/arquivos/logo-footer.png',
+        attributeLogoSelector: 'src',
+        mainSelector: 'queryData.data.productSearch.products',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'priceRange.sellingPrice.lowPrice',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: 'priceRange.sellingPrice.highPrice',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'link',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        //selector: 'items.images[0].imageUrl',
+                        selector: 'items.images.imageUrl',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: 'src'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'productName',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 910,
+        name: "MONGE",
+        url: 'https://wlt832ea3j-dsn.algolia.net/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20JavaScript%20(4.13.1)%3B%20Browser%3B%20instantsearch.js%20(4.41.0)%3B%20Magento2%20integration%20(3.9.0)%3B%20JS%20Helper%20(3.8.2)',
+        //PARAMETROS REQUEST
+        //HEADERS
+        accept: "*/*",
+        acceptLanguage: "en-US,en;q=0.9,es-CR;q=0.8,es;q=0.7",
+        contentType: "application/x-www-form-urlencoded",
+        secChUa: "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"",
+        secChUaMobile: "?0",
+        secChUaPlatform: "\"Windows\"",
+        secFetchDest: "empty",
+        secFetchMode: "cors",
+        secFetchSite: "cross-site",
+        xRequestedWith: null,
+        xAlgoliaApiKey: "YTYwZjI3ODFjOTI3YWQ0MjJmYzQ3ZjBiNmY1Y2FiYjRhZjNiMmM3NmMxYTMyNDUwOGUxYjhkMWFhMzFlOGExNnRhZ0ZpbHRlcnM9",
+        xAlgoliaApplicationId: "WLT832EA3J",
+        //OTROS
+        referrer: "https://www.tiendamonge.com/",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: "{\"requests\":[{\"indexName\":\"monge_upgrade_prod_default_products\",\"params\":\"highlightPreTag=__ais-highlight__&highlightPostTag=__%2Fais-highlight__&hitsPerPage=9&query=SEARCH_TEXT&page=0&maxValuesPerFacet=40&facets=%5B%22price.CRC.default%22%2C%22categoria%22%2C%22tipo_de_producto%22%2C%22marca%22%2C%22tamano_pantallas%22%5D&tagFilters=&numericFilters=%5B%22visibility_search%3D1%22%5D\"}]}",
+        method: "POST",
+        mode: "cors",
+        credentials: "omit",
+        //FIN PARAMETROS REQUEST    
+        linkUrl: 'https://www.tiendamonge.com/',
+        imageUrl: null,
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: "https://www.tiendamonge.com/static/version1694655550/frontend/Omnipro/monge/es_CR/images/logo.svg",
+        attributeLogoSelector: 'src',
+        mainSelector: 'results.hits',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'price.CRC.default',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'url',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'image_url',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: 'src'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'name',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 911,
+        name: "EL VERDUGO",
+        url: 'https://wlt832ea3j-1.algolianet.com/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20JavaScript%20(4.13.1)%3B%20Browser%3B%20instantsearch.js%20(4.41.0)%3B%20Magento2%20integration%20(3.9.0)%3B%20JS%20Helper%20(3.8.2)',
+        //PARAMETROS REQUEST
+        //HEADERS
+        accept: "*/*",
+        acceptLanguage: "en-US,en;q=0.9,es-CR;q=0.8,es;q=0.7",
+        contentType: "application/x-www-form-urlencoded",
+        secChUa: "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"",
+        secChUaMobile: "?0",
+        secChUaPlatform: "\"Windows\"",
+        secFetchDest: "empty",
+        secFetchMode: "cors",
+        secFetchSite: "cross-site",
+        xRequestedWith: null,
+        xAlgoliaApiKey: "YTYwZjI3ODFjOTI3YWQ0MjJmYzQ3ZjBiNmY1Y2FiYjRhZjNiMmM3NmMxYTMyNDUwOGUxYjhkMWFhMzFlOGExNnRhZ0ZpbHRlcnM9",
+        xAlgoliaApplicationId: "WLT832EA3J",
+        //OTROS
+        referrer: "https://www.verdugotienda.com/",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: "{\"requests\":[{\"indexName\":\"monge_upgrade_prod_verdugo_products\",\"params\":\"highlightPreTag=__ais-highlight__&highlightPostTag=__%2Fais-highlight__&hitsPerPage=9&query=SEARCH_TEXT&page=0&maxValuesPerFacet=40&facets=%5B%22price.CRC.default%22%2C%22categoria%22%2C%22tipo_de_producto%22%2C%22marca%22%2C%22tamano_pantallas%22%5D&tagFilters=&numericFilters=%5B%22visibility_search%3D1%22%5D\"}]}",
+        method: "POST",
+        mode: "cors",
+        credentials: "omit",
+        //FIN PARAMETROS REQUEST    
+        linkUrl: 'https://www.verdugotienda.com/',
+        imageUrl: null,
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: "https://www.verdugotienda.com/static/version1694655550/frontend/Omnipro/verdugo/es_CR/images/logo.svg",
+        attributeLogoSelector: 'src',
+        mainSelector: 'results.hits',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'price.CRC.default',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'url',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'image_url',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: 'src'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'name',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 913,
+        name: "UNIVERSAL",
+        url: "https://searchserverapi.com/getresults?api_key=7H5U4o0w1P&q=SEARCH_TEXT&sortBy=relevance&sortOrder=desc&startIndex=0&maxResults=15&items=true&pages=true&categories=true&suggestions=true&queryCorrection=true&suggestionsMaxResults=3&pageStartIndex=0&pagesMaxResults=20&categoryStartIndex=0&categoriesMaxResults=20&facets=true&facetsShowUnavailableOptions=true&recentlyViewedProducts=7021400883283%2C7015115980883%2C7015399194707%2C7015455457363%2C6953829826643%2C6815284953171%2C6869979496531%2C6932114702419%2C6852126310483&recentlyAddedToCartProducts=&recentlyPurchasedProducts=&ResultsTitleStrings=2&ResultsDescriptionStrings=2&timeZoneName=America%2FCosta_Rica&output=jsonp",
+        //url: "https://searchserverapi.com/getresults?api_key=7H5U4o0w1P&q=SEARCH_TEXT&sortBy=relevance&sortOrder=desc&startIndex=0&maxResults=15&items=true&pages=true&categories=true&suggestions=true&queryCorrection=true&suggestionsMaxResults=3&pageStartIndex=0&pagesMaxResults=20&categoryStartIndex=0&categoriesMaxResults=20&facets=true&facetsShowUnavailableOptions=true&recentlyViewedProducts=7021400883283%2C7015115980883%2C7015399194707%2C7015455457363%2C6953829826643%2C6815284953171%2C6869979496531%2C6932114702419%2C6852126310483&recentlyAddedToCartProducts=&recentlyPurchasedProducts=&ResultsTitleStrings=2&ResultsDescriptionStrings=2&timeZoneName=America%2FCosta_Rica&output=jsonp&callback=jQuery36006702242308187536_1694490457791&_=1694490457792",
+        //PARAMETROS REQUEST
+        //HEADERS
+        accept: "*/*",
+        acceptLanguage: "en-US,en;q=0.9,es-CR;q=0.8,es;q=0.7",
+        contentType: null,
+        secChUa: "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"",
+        secChUaMobile: "?0",
+        secChUaPlatform: "\"Windows\"",
+        secFetchDest: "script",
+        secFetchMode: "no-cors",
+        secFetchSite: "cross-site",
+        xRequestedWith: null,
+        xAlgoliaApiKey: null,
+        xAlgoliaApplicationId: null,
+        //OTROS
+        referrer: "https://tiendauniversal.com/",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: null,
+        method: "GET",
+        mode: "cors",
+        credentials: "omit",
+        //FIN PARAMETROS REQUEST
+        linkUrl: 'https://tiendauniversal.com',
+        imageUrl: null,
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: 'https://tiendauniversal.com/cdn/shop/files/universal-logotipo_d4fbc676-9771-47f0-919f-49e8b8eb65c3_180x.png',
+        attributeLogoSelector: 'src',
+        mainSelector: 'items',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'price',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'link',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'image_link',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'title',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 916,
+        name: "EL LAGAR",
+        url: "https://www.ellagar.com/ECOMMERCE/API/Articulo/ObtenerArticulosPorNombre",
+        //PARAMETROS REQUEST
+        //HEADERS
+        accept: "*/*",
+        acceptLanguage: "en-US,en;q=0.9,es-CR;q=0.8,es;q=0.7",
+        contentType: "application/json",
+        secChUa: "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"",
+        secChUaMobile: "?0",
+        secChUaPlatform: "\"Windows\"",
+        secFetchDest: "empty",
+        secFetchMode: "cors",
+        secFetchSite: "same-origin",
+        xRequestedWith: null,
+        xAlgoliaApiKey: null,
+        xAlgoliaApplicationId: null,
+        //OTROS
+        referrer: "https://www.ellagar.com/ECOMMERCE/ItemSearch?search=SEARCH_TEXT",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: "{\"ArticuloNombre\":\"SEARCH_TEXT\",\"CategoriaIds\":null,\"Pagina\":1,\"TamanoPagina\":\"24\",\"Ordenamiento\":\"5\"}",
+        method: "POST",
+        mode: "cors",
+        credentials: "include",
+        //FIN PARAMETROS REQUEST  
+        linkUrl: "https://www.ellagar.com/ECOMMERCE/ItemDetail?id=",
+        imageUrl: null,
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: 'https://www.ellagar.com/SERV_ADMIN_FILES/Archivos/Imagenes/Parametro/Suc_1/LOGO LAGAR.png',//".img-fluid",
+        attributeLogoSelector: 'src',
+        mainSelector: 'Data.PaginaItems',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'Precio',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'ID',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'URLImagen',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'Nombre',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 918,
+        name: "CONSTRUPLAZA",
+        url: "https://mucjnsqczh-3.algolianet.com/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20JavaScript%20(4.5.1)%3B%20Browser%20(lite)%3B%20instantsearch.js%20(4.56.7)%3B%20JS%20Helper%20(3.13.5)&x-algolia-api-key=548b5dedba445fcdb9435d2dd720562a&x-algolia-application-id=MUCJNSQCZH",
+        //PARAMETROS REQUEST
+        //HEADERS
+        accept: "*/*",
+        acceptLanguage: "en-US,en;q=0.9,es-CR;q=0.8,es;q=0.7",//NO CAMBIAN
+        contentType: "application/x-www-form-urlencoded",
+        secChUa: "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"",//NO CAMBIAN
+        secChUaMobile: "?0",//NO CAMBIA
+        secChUaPlatform: "\"Windows\"",//NO CAMBIA
+        secFetchDest: "empty",
+        secFetchMode: "cors",
+        secFetchSite: "cross-site",
+        xRequestedWith: null,
+        xAlgoliaApiKey: null,
+        xAlgoliaApplicationId: null,
+        //OTROS
+        referrer: "https://www.construplaza.com/",
+        referrerPolicy: "strict-origin-when-cross-origin",   //NO CAMBIA
+        body: "{\"requests\":[{\"indexName\":\"Products\",\"params\":\"clickAnalytics=true&facets=%5B%22Marca%22%2C%22Unidad%22%2C%22Precio%22%2C%22Departamento%22%5D&highlightPostTag=__%2Fais-highlight__&highlightPreTag=__ais-highlight__&hitsPerPage=28&maxValuesPerFacet=10000&page=0&query=SEARCH_TEXT&tagFilters=&userToken=anonymous-592540cc-6bbd-482d-8ea7-9fd6a5e354d4\"}]}",
+        method: "POST",
+        mode: "cors",
+        credentials: "omit",
+        //FIN PARAMETROS REQUEST  
+        linkUrl: "https://www.construplaza.com/Construplaza/Pedidos?busqueda=",
+        imageUrl: null,
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: "https://www.construplaza.com/Content/Images/logo.webp",
+        attributeLogoSelector: 'src',
+        mainSelector: 'results.hits',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'Precio',//PrecioDescuento
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'Descripcion',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'Image',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'Descripcion',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 923,
+        name: "FARMACIA LA BOMBA",
+        url: "https://farmacialabomba.com/GetSearchDocumentProduct",
+        //PARAMETROS REQUEST
+        //HEADERS
+        accept: "application/json, text/plain, */*",
+        acceptLanguage: "en-US,en;q=0.9,es-CR;q=0.8,es;q=0.7",
+        contentType: "application/json",
+        secChUa: "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"",
+        secChUaMobile: "?0",
+        secChUaPlatform: "\"Windows\"",
+        secFetchDest: "empty",
+        secFetchMode: "cors",
+        secFetchSite: "same-origin",
+        xRequestedWith: "XMLHttpRequest",
+        xAlgoliaApiKey: null,
+        xAlgoliaApplicationId: null,
+        //OTROS
+        referrer: "https://farmacialabomba.com/busqueda?p=SEARCH_TEXT&c=0",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: "{\"jsonData\":\"{\\\"brandName\\\":null,\\\"catName\\\":\\\"0\\\",\\\"subCatName\\\":null,\\\"tagName\\\":null,\\\"productName\\\":\\\"SEARCH_TEXT\\\"}\"}",
+        method: "POST",
+        mode: "cors",
+        credentials: "include",
+        //FIN PARAMETROS REQUEST  
+        linkUrl: "https://farmacialabomba.com/detalle-producto/",
+        imageUrl: null,
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: "https://farmacialabomba.com/LaBombaResources/img/logos/logo-full-color.svg",
+        attributeLogoSelector: 'src',
+        mainSelector: 'product.productsList',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'ProductAttributes.PriceWithDiscount',//AddedPrice
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'URL',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'ProductImages.WebPath',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'Name',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 921,
+        name: "AUTOMERCADO",
+        url: "https://fu5xfx7knl-dsn.algolia.net/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20JavaScript%20(4.12.0)%3B%20Browser%20(lite)&x-algolia-api-key=113941a18a90ae0f17d602acd16f91b2&x-algolia-application-id=FU5XFX7KNL",
+        //PARAMETROS REQUEST
+        //HEADERS
+        accept: "*/*",
+        acceptLanguage: "en-US,en;q=0.9,es-CR;q=0.8,es;q=0.7",
+        contentType: "application/x-www-form-urlencoded",
+        secChUa: "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"",
+        secChUaMobile: "?0",
+        secChUaPlatform: "\"Windows\"",
+        secFetchDest: "empty",
+        secFetchMode: "cors",
+        secFetchSite: "cross-site",
+        xRequestedWith: null,
+        xAlgoliaApiKey: null,
+        xAlgoliaApplicationId: null,
+        //OTROS
+        referrer: "https://www.automercado.cr/",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: "{\"requests\":[{\"indexName\":\"Product_CatalogueV2\",\"params\":\"query=SEARCH_TEXT&optionalWords=%5B%22SEARCH_TEXT%22%5D\"}]}",
+        //"{\"requests\":[{\"indexName\":\"Product_CatalogueV2\",\"params\":\"query=SEARCH_TEXT&optionalWords=%5B%22SEARCH_TEXT%22%5D&filters=NOT%20marca%3AMASTERCHEF&getRankingInfo=true&facets=%5B%22marca%22%2C%22addedSugarFree%22%2C%22fiberSource%22%2C%22lactoseFree%22%2C%22lfGlutemFree%22%2C%22lfOrganic%22%2C%22lfVegan%22%2C%22lowFat%22%2C%22lowSodium%22%2C%22preservativeFree%22%2C%22sweetenersFree%22%2C%22parentProductid%22%2C%22parentProductid2%22%2C%22parentProductid_URL%22%2C%22catecom%22%5D&facetFilters=%5B%5B%22storeDetail.06.storeid%3A06%22%5D%5D\",\"clickAnalytics\":true}]}",
+        method: "POST",
+        mode: "cors",
+        credentials: "omit",
+        //FIN PARAMETROS REQUEST  
+        linkUrl: "https://www.automercado.cr/p/productName/id/vendorLink",//"https://www.automercado.cr/buscar?q=", 
+        imageUrl: null,
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: "https://www.automercado.cr/content/images/logoAM.svg",
+        attributeLogoSelector: 'src',
+        mainSelector: 'results.hits',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'storeDetail.09.amount',//AddedPrice
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: 'storeDetail.03.amount',//AddedPrice
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: 'storeDetail.04.amount',//AddedPrice
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: 'storeDetail.21.amount',//AddedPrice
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: 'storeDetail.08.amount',//AddedPrice
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'ecomDescription',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'objectID',//'ecomDescription',//
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: 'specialLink'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'imageUrl',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 922,
+        name: "FISCHEL",
+        url: "https://www.fischelenlinea.com/SearchProductsByQueryParam",
+        //PARAMETROS REQUEST
+        //HEADERS
+        accept: "application/json, text/plain, */*",
+        acceptLanguage: "en-US,en;q=0.9,es-CR;q=0.8,es;q=0.7",
+        contentType: "application/json",
+        secChUa: "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"",
+        secChUaMobile: "?0",
+        secChUaPlatform: "\"Windows\"",
+        secFetchDest: "empty",
+        secFetchMode: "cors",
+        secFetchSite: "same-origin",
+        xRequestedWith: "XMLHttpRequest",
+        xAlgoliaApiKey: null,
+        xAlgoliaApplicationId: null,
+        //OTROS
+        referrer: "https://www.fischelenlinea.com/busqueda?p=SEARCH_TEXT&c=0",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: "{\"jsonData\":\"{\\\"productName\\\":\\\"SEARCH_TEXT\\\"}\"}",
+        method: "POST",
+        mode: "cors",
+        credentials: "include",
+        //FIN PARAMETROS REQUEST  
+        linkUrl: "https://www.fischelenlinea.com/detalle-producto/detalle-producto/",
+        imageUrl: null,
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: "https://www.fischelenlinea.com/FishelResources/img/fischel.png",
+        attributeLogoSelector: 'src',
+        mainSelector: 'product.productsList',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'ProductAttributes.PriceWithTaxes',//AddedPrice
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'URL',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'ProductImages.WebPath',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'Name',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 901,
+        name: "WALMART",
+        url: "https://www.walmart.co.cr/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft&__pickRuntime=query%2CqueryData",
+        //  url: "https://www.walmart.co.cr/_v/segment/graphql/v1?workspace=master&maxAge=short&appsEtag=remove&domain=store&locale=es-CR&__bindingId=17dd0832-2127-4686-ad3a-09850b413565&operationName=productSearchV3&variables=%7B%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%225582a05af7ee7b8a43406c6041335d5e4f0a6eea4a16f4bef9d2599218766e82%22%2C%22sender%22%3A%22vtex.store-resources%400.x%22%2C%22provider%22%3A%22vtex.search-graphql%400.x%22%7D%7D",
+        //url: "https://www.walmart.co.cr/_v/segment/graphql/v1?workspace=master&maxAge=short&appsEtag=remove&domain=store&locale=es-CR&__bindingId=17dd0832-2127-4686-ad3a-09850b413565&operationName=productSearchV3&variables=%7B%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%225582a05af7ee7b8a43406c6041335d5e4f0a6eea4a16f4bef9d2599218766e82%22%2C%22sender%22%3A%22vtex.store-resources%400.x%22%2C%22provider%22%3A%22vtex.search-graphql%400.x%22%7D%2C%22variables%22%3A%22eyJoaWRlVW5hdmFpbGFibGVJdGVtcyI6ZmFsc2UsInNrdXNGaWx0ZXIiOiJBTEwiLCJzaW11bGF0aW9uQmVoYXZpb3IiOiJkZWZhdWx0IiwiaW5zdGFsbG1lbnRDcml0ZXJpYSI6Ik1BWF9XSVRIT1VUX0lOVEVSRVNUIiwicHJvZHVjdE9yaWdpblZ0ZXgiOmZhbHNlLCJtYXAiOiJmdCIsInF1ZXJ5IjoiYWNldGFtaW5vZmVuIiwib3JkZXJCeSI6Ik9yZGVyQnlTY29yZURFU0MiLCJmcm9tIjowLCJ0byI6OSwic2VsZWN0ZWRGYWNldHMiOlt7ImtleSI6ImZ0IiwidmFsdWUiOiJhY2V0YW1pbm9mZW4ifV0sImZ1bGxUZXh0IjoiYWNldGFtaW5vZmVuIiwiZmFjZXRzQmVoYXZpb3IiOiJTdGF0aWMiLCJjYXRlZ29yeVRyZWVCZWhhdmlvciI6ImRlZmF1bHQiLCJ3aXRoRmFjZXRzIjpmYWxzZSwidmFyaWFudCI6IiJ9%22%7D",
+        //PARAMETROS REQUEST
+        //HEADERS
+        accept: "application/json",
+        acceptLanguage: null,
+        contentType: null,
+        secChUa: "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"",
+        secChUaMobile: "?0",
+        secChUaPlatform: "\"Windows\"",
+        secFetchDest: null,
+        secFetchMode: null,
+        secFetchSite: null,
+        xRequestedWith: null,
+        xAlgoliaApiKey: null,
+        xAlgoliaApplicationId: null,
+        //OTROS
+        referrer: "https://www.walmart.co.cr/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: null,
+        method: "GET",
+        mode: "cors",
+        credentials: "omit",
+        //FIN PARAMETROS REQUEST  
+        linkUrl: "https://www.walmart.co.cr",
+        imageUrl: null,
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: "https://walmartcr.vtexassets.com/assets/vtex/assets-builder/walmartcr.store-theme/1.0.417/waltmart-logo___e887a7c223ca5d5111202f45453db619.png",
+        attributeLogoSelector: 'src',
+        mainSelector: 'queryData.data.productSearch.products',//'data.productSearch.products',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'priceRange.sellingPrice.lowPrice',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: 'priceRange.sellingPrice.highPrice',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 3,
+                        selector: 'priceRange.listPrice.lowPrice',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 4,
+                        selector: 'priceRange.listPrice.highPrice',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'link',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'items.images.imageUrl',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'productName',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 920,
+        name: "MASXMENOS",
+        url: "https://www.masxmenos.cr/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft&__pickRuntime=query%2CqueryData",
+        //PARAMETROS REQUEST
+        //HEADERS
+        accept: "application/json",
+        acceptLanguage: null,
+        contentType: null,
+        secChUa: "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"",
+        secChUaMobile: "?0",
+        secChUaPlatform: "\"Windows\"",
+        secFetchDest: null,
+        secFetchMode: null,
+        secFetchSite: null,
+        xRequestedWith: null,
+        xAlgoliaApiKey: null,
+        xAlgoliaApplicationId: null,
+        //OTROS
+        referrer: "https://www.masxmenos.cr/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: null,
+        method: "GET",
+        mode: "cors",
+        credentials: "omit",
+        //FIN PARAMETROS REQUEST  
+        linkUrl: null,
+        imageUrl: null,
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: "https://supermxmcr.vtexassets.com/assets/vtex.file-manager-graphql/images/3ded2a1c-d612-4f03-8a2b-45ed6cbc7ca4___cfba4950414c4e5734e110da25e4900b.svg",
+        attributeLogoSelector: 'src',
+        mainSelector: 'queryData.data.productSearch.products',//'data.productSearch.products',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'priceRange.sellingPrice.lowPrice',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: 'priceRange.sellingPrice.highPrice',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 3,
+                        selector: 'priceRange.listPrice.lowPrice',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 4,
+                        selector: 'priceRange.listPrice.highPrice',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'link',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'items.images.imageUrl',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'productName',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
