@@ -1880,10 +1880,10 @@ export const scrapCompanyConfiguration = [
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSDOM',
         replaceTextOnURL: 'SEARCH_TEXT',
-        indLogoSelector: true,
-        logoSelector: ".attachment-full.size-full.wp-image-464763",
+        indLogoSelector: false,
+        logoSelector: "https://mauroenlinea.com/wp-content/uploads/2022/10/Logo-Mauro-300x300.png",
         attributeLogoSelector: 'src',
-        mainSelector: '.products.elementor-grid.columns-4 li',
+        mainSelector: '.elementor.elementor-465875 div',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -1903,7 +1903,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: '.ast-loop-product__link',
+                        selector: '.product_title.entry-title a',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'href'
                     }
@@ -1915,7 +1915,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: '.attachment-woocommerce_thumbnail.size-woocommerce_thumbnail',
+                        selector: '.elementor-widget-container a img',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'src'
                     }
@@ -1927,7 +1927,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: '.woocommerce-loop-product__title',
+                        selector: '.product_title.entry-title a',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -1961,7 +1961,7 @@ export const scrapCompanyConfiguration = [
         mode: "cors",
         credentials: "omit",
         //FIN PARAMETROS REQUEST
-        linkUrl: 'https://cr.siman.com/',
+        linkUrl: "https://cr.siman.com/productName/p", //'https://cr.siman.com/',
         imageUrl: null,
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSON',
@@ -1995,9 +1995,9 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: 'link',
+                        selector: 'linkText',
                         selectorValueFrom: "TEXTCONTENT",
-                        attribute: 'href'
+                        attribute: 'specialLink'
                     }
                 ],
             },
@@ -2059,6 +2059,7 @@ export const scrapCompanyConfiguration = [
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSON',
         replaceTextOnURL: 'SEARCH_TEXT',
+        indRoundNumber: true,        
         indLogoSelector: false,
         logoSelector: "https://www.tiendamonge.com/static/version1694655550/frontend/Omnipro/monge/es_CR/images/logo.svg",
         attributeLogoSelector: 'src',
@@ -2145,6 +2146,7 @@ export const scrapCompanyConfiguration = [
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSON',
         replaceTextOnURL: 'SEARCH_TEXT',
+        indRoundNumber: true,
         indLogoSelector: false,
         logoSelector: "https://www.verdugotienda.com/static/version1694655550/frontend/Omnipro/verdugo/es_CR/images/logo.svg",
         attributeLogoSelector: 'src',
@@ -2404,6 +2406,7 @@ export const scrapCompanyConfiguration = [
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSON',
         replaceTextOnURL: 'SEARCH_TEXT',
+        indRoundNumber: true,
         indLogoSelector: false,
         logoSelector: "https://www.construplaza.com/Content/Images/logo.webp",
         attributeLogoSelector: 'src',
@@ -2415,10 +2418,16 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
+                        selector: 'PrecioDescuento',//PrecioDescuento
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
                         selector: 'Precio',//PrecioDescuento
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
-                    }
+                    }                    
                 ],
             },
             {
@@ -2427,7 +2436,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: 'Descripcion',
+                        selector: 'CodBarras',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -2682,7 +2691,7 @@ export const scrapCompanyConfiguration = [
         mode: "cors",
         credentials: "include",
         //FIN PARAMETROS REQUEST  
-        linkUrl: "https://www.fischelenlinea.com/detalle-producto/detalle-producto/",
+        linkUrl: "https://www.fischelenlinea.com/detalle-producto/",
         imageUrl: null,
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSON',
@@ -2874,7 +2883,7 @@ export const scrapCompanyConfiguration = [
         mode: "cors",
         credentials: "omit",
         //FIN PARAMETROS REQUEST  
-        linkUrl: null,
+        linkUrl: "https://www.masxmenos.cr/productName/p",
         imageUrl: null,
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSON',
@@ -2920,9 +2929,9 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: 'link',
+                        selector: 'linkText',
                         selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
+                        attribute: 'specialLink'
                     }
                 ],
             },
@@ -2951,5 +2960,291 @@ export const scrapCompanyConfiguration = [
                 ],
             },
         ]
-    }
+    },
+    {
+        id: 927,
+        name: "LA BOTICA",
+        url: "https://laboticacrapi.clavisco.com/api/Items/GetItems?ItmsGrpCod=0&searchItem=SEARCH_TEXT&SubMenu=&selectedCategory=Todos&userId=&currentLang=es&selectedSubCategory=&selectedLaboratory=&StartPos=1&StepPos=12&priceFromFC=0&priceToFC=0&order=SD",
+        //PARAMETROS REQUEST
+        //HEADERS
+        accept: "application/json, text/plain, */*",
+        acceptLanguage: "en-US,en;q=0.9,es-CR;q=0.8,es;q=0.7",
+        contentType: "application/json",
+        secChUa: "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"",
+        secChUaMobile: "?0",
+        secChUaPlatform: "\"Windows\"",
+        secFetchDest:"empty",
+        secFetchMode: "cors",
+        secFetchSite: "cross-site",
+        xRequestedWith: null,
+        xAlgoliaApiKey: null,
+        xAlgoliaApplicationId: null,
+        //OTROS
+        referrer: "https://laboticacr.com/",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: null,
+        method: "GET",
+        mode: "cors",
+        credentials: "omit",
+        //FIN PARAMETROS REQUEST  
+        linkUrl: "https://laboticacr.com/#/products/vendorLink/productName",
+        imageUrl: null,
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: "https://clvsapps.blob.core.windows.net/appfiles/GrupoMontecristo/ICEM/ECM/notfound.png",
+        attributeLogoSelector: 'src',
+        mainSelector: 'ItemsList',//'data.productSearch.products',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'PriceFCWithTax',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: 'PriceMSFCWithTax',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'ItemName',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },            
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'ItemCode',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: 'specialLink'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'Url',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            }
+        ]
+    },
+    {
+        id: 28,
+        name: "TOYS",
+        url: 'https://www.tiendatoys.com/search/?field=SEARCH_TEXT',
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSDOM',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: true,
+        logoSelector: ".logo.fitThisOnMenu",
+        attributeLogoSelector: 'src',
+        mainSelector: '.product-item',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.price ins .amount',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: '.price del .amount',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.buttons a',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.product-overlay img',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'src'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.product-body h2',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 29,
+        name: "ISHOP",
+        url: 'https://tiendasishop.com/cr/catalogsearch/result/?q=SEARCH_TEXT',
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSDOM',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        //indRigthAmountFormat: true,
+        indLogoSelector: true,
+        logoSelector: ".logo img",
+        attributeLogoSelector: 'src',
+        mainSelector: '.product-item-info',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.price',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.product-item-link',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.product-image-wrapper img',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'srcset'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.product-item-link',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 30,
+        name: "ICON",
+        url: 'https://www.icon.co.cr/?s=SEARCH_TEXT&post_type=product',
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSDOM',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        //indRigthAmountFormat: true,
+        indLogoSelector: true,
+        logoSelector: ".logo img",
+        attributeLogoSelector: 'src',
+        mainSelector: '.product.type-product',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.woocommerce-Price-amount.amount',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.woocommerce-LoopProduct-link.woocommerce-loop-product__link',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.woocommerce-LoopProduct-link.woocommerce-loop-product__link img',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'srcset'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.woocommerce-loop-product__title',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    }        
 ]

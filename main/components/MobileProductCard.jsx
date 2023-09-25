@@ -33,7 +33,7 @@ const MobileProductCard = ({ product, index }) => {
           <p className="text-sm ">{product.productName}</p>
 
           <p className="text-sm text-gray-500 mt-1 line-clamp-2 mb-2">
-            {product.productPrice}
+            {product.formatedPrice}
           </p>
 
           <span className="flex items-center justify-start text-gray-500">

@@ -87,12 +87,13 @@ export const GET = async (request, { params }) => {
                     })
                     currentProducts.push(temProduct);
                 });
-
-                if (currentProducts.length > 0) {
-                    currentProducts.forEach((element, index) => {
-                        currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice) * 1;
-                    });
-                }
+                //if (!company.indRigthAmountFormat) {
+                    if (currentProducts.length > 0) {
+                        currentProducts.forEach((element, index) => {
+                            currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice, company.indRoundNumber)/*  * 1 */;
+                        });
+                    }
+                //}
                 products.push({
                     companyName: company.name,
                     companyLogo: companyLogo,
@@ -198,7 +199,7 @@ export const GET = async (request, { params }) => {
                     //console.log("#PASER 7 - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);
                     if (productList.currentProducts.length > 0) {
                         productList.currentProducts.forEach((element, index) => {
-                            productList.currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice) * 1;
+                            productList.currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice)/* * 1 */;
                         });
                     }
                     t1 = performance.now();
@@ -208,7 +209,7 @@ export const GET = async (request, { params }) => {
                         companyLogo: productList.companyLogo,
                         companyProducts: productList.currentProducts
                     });
-                    console.log(products);
+                    //console.log(products);
                     t1 = performance.now();
                     //console.log("#PASER 8 - PUPPETEER - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);
                 } catch (error) {
@@ -261,7 +262,7 @@ export const GET = async (request, { params }) => {
                     const companyStoreJson = JSON.parse(companyStoreBody);
                     //console.log('#PASER JSON - 5 - companyStoreJson ', companyStoreJson);//JSON.stringify(companyStoreBody));      
                     let companyLogo = undefined;
-                    companyLogo = company.logoSelector;                
+                    companyLogo = company.logoSelector;
                     let currentProducts = [];
                     let productList = getProductList(companyStoreJson, company.mainSelector);
                     if (productList?.length > 0) {
@@ -282,24 +283,42 @@ export const GET = async (request, { params }) => {
                                         switch (currentSelector.selectorValueFrom) {
                                             case "TEXTCONTENT":
                                                 fieldValue = getNestedPropertyValue(productList, currentSelector.selector, index);
+                                                //MIGRAR ESTOS  IF A UNA FUNCION PARA QUE SE HAGA TODO EL MANEJO EN LA FUNCIÓN. SE DEBE ENVIAR POR PARAMETRO LO SIGUIENTE:
+                                                //company.name
+                                                //fieldValue
+                                                //field.fieldName
+                                                //currentSelector.attribute        
+                                                //MANEJO PRODUCT_NAME                                        
                                                 if (field.fieldName == 'productName') {
                                                     tmpNameForUrl = fieldValue;
                                                     //console.log("#PASER JSON - 7 - "+ field.fieldName + " : ",tmpNameForUrl); 
                                                 }
-                                                //PONER UNA CONDICION PARA EVALUAR LOS LINKS DE LAS TIENDAS, VERIFICAR SI SE VA A TOMAR referrerUrl o se define una nueva propiedad
-                                                //Evaluar si se debe separar este IF para cada fieldName, separandolos e independizar sus condiciones.
+                                                //MANEJO PRODUCT_IMAGE
                                                 if (field.fieldName == 'productImage') {
                                                     fieldValue = regex.test(fieldValue) ? fieldValue : company.linkUrl + fieldValue;
-                                                    //console.log("#PASER JSON - 7 - "+ field.fieldName + " : ",fieldValue); 
                                                 }
-                                                //CASO MUY PARTICULAR PARA AUTOMERCADO
+                                                //MANEJO VENDOR_LINK
+                                                //CASO PARTICULARES PARA AUTOMERCADO Y MASXMENOS
+                                                //AUTOMERCADO USA 2 PROPIEDADES DIFERENTES EN LA URL
                                                 if (field.fieldName == 'vendorLink' && currentSelector.attribute == 'specialLink') {
-                                                    tmpNameForUrl = tmpNameForUrl.replace(/\s/g, "-").replace(/\%/g, "%2525");
-                                                    fieldValue = (company.linkUrl)?.replace(/productName/g, tmpNameForUrl).replace(/vendorLink/g, fieldValue);
+                                                    //
+                                                    if (company.name == "AUTOMERCADO") {
+                                                        tmpNameForUrl = tmpNameForUrl.replace(/\s/g, "-").replace(/\%/g, "%2525");
+                                                        fieldValue = (company.linkUrl)?.replace(/productName/g, tmpNameForUrl).replace(/vendorLink/g, fieldValue);
+                                                    }
+                                                    //
+                                                    else if (company.name == "MASXMENOS" || company.name == "SIMAN") {
+                                                        fieldValue = (company.linkUrl).replace(/productName/g, fieldValue);
+                                                    }
+                                                    //
+                                                    else if (company.name == "LA BOTICA") {
+                                                        tmpNameForUrl = tmpNameForUrl.replace(/\%/g, "%2525").replace(/\(/g, "%28").replace(/\)/g, "%29").replace(/\//g, "%2F");
+                                                        //console.log("#PASER JSON - 7 - "+ field.fieldName + " : ",tmpNameForUrl); 
+                                                        fieldValue = (company.linkUrl)?.replace(/productName/g, tmpNameForUrl).replace(/vendorLink/g, fieldValue);
+                                                    }
+                                                    //
                                                 } else if (field.fieldName == 'vendorLink') {
                                                     fieldValue = regex.test(fieldValue) ? fieldValue : company.linkUrl + fieldValue;
-                                                    //console.log("#PASER JSON - 7 - tmpNameForUrl",tmpNameForUrl); 
-                                                    //console.log("#PASER JSON - 7 - tmpNameForUrl",fieldValue); 
                                                 }
                                                 break;
                                             default:
@@ -309,14 +328,17 @@ export const GET = async (request, { params }) => {
                                 });
                                 temProduct[field.fieldName] = fieldValue;
                             })
-                            currentProducts.push(temProduct);
+                            //Solo mapeamos productos con precio
+                            if (temProduct['productPrice'] > 0) {
+                                currentProducts.push(temProduct);
+                            }
                         });
-                        //console.log(currentProducts);
                         if (currentProducts.length > 0) {
                             currentProducts.forEach((element, index) => {
-                                currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice) * 1;
+                                currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice, company.indRoundNumber)/*  * 1 */;
                             });
                         }
+                        //console.log(currentProducts);
                         products.push({
                             companyName: company.name,
                             companyLogo: companyLogo,
@@ -335,7 +357,7 @@ export const GET = async (request, { params }) => {
         //console.log("#PASER 9 - Tiempo en responder - GENERAL " + (t1 - t0) + " milliseconds." + params.company);
         return new Response(JSON.stringify(products[0]), { status: 200 })
     } catch (error) {
-        console.log("#PASER 10 - error", error);
+        console.log("#PASER 10 - params.company  " + params.company + " error: " + error);
         return new Response("Failed to fetch prompts created by user COMPANY.ID " + params.company + 'ERROR: ' + error, { status: 500 })
     }
 }
