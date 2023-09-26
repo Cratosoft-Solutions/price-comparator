@@ -78,7 +78,7 @@ const MyResults = () => {
                    }
                 }
         }
-        if(text != "NO_TEXT"){ 
+        if(text != ''){ 
           executeSearch();
         }else{
           router.push('/search/newsearch');
