@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { CATEGORIES } from "@utils/constants";
 
 const initialState = {
-  properties: { text: '', category: CATEGORIES[0].value},
+  properties: { text: 'NO_TEXT', category: CATEGORIES[0].value},
 };
 
 const searchProperties = createSlice({

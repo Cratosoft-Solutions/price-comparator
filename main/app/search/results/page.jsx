@@ -8,8 +8,11 @@ import { fetchWithTimeout, formatKeyForStorage, getSearchDataFromDataBase, local
 import { pushProduct, restartProducts } from "@app/redux/slices/products";
 import { setLoading } from "@app/redux/slices/loading";
 import { setSearching } from "@app/redux/slices/searching";
+import { useRouter } from 'next/navigation';
+
 
 const MyResults = () => {
+    const router = useRouter();
     const [isOptionSearchExpanded, setIsOptionSearchExpanded] = useState(false); 
     const dispatch = useDispatch();
     const { text, category } = useSelector(state => state.searchProperties.properties)
@@ -49,6 +52,7 @@ const MyResults = () => {
         dispatch(setSearching(false))
     }
 
+
     useEffect(()=>{
         const executeSearch = async () =>{
                 setTimeout(setInternalSearching, 15000);
@@ -65,6 +69,7 @@ const MyResults = () => {
                    const existsOnDB =  dbData.dataBaseData;
                    
                    if(existsOnDB){
+                     dispatch(setSearching(false));  
                      printDBStorageData(dbData.data, saveOnStorage);
                    }else{
                      STORE_BY_CATEGORY.filter((item)=> item.category == category)[0].stores.map((storeID) => {
@@ -73,10 +78,15 @@ const MyResults = () => {
                    }
                 }
         }
-
-        executeSearch();
+        if(text != "NO_TEXT"){ 
+          executeSearch();
+        }else{
+          router.push('/search/newsearch');
+        }
     }, [])
- 
+    
+
+
 return (
     <>
       <SearchOptions setOptionSearch={setIsOptionSearchExpanded}/>
