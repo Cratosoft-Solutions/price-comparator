@@ -38,7 +38,7 @@ const ProductCard = ({ logo, product, index }) => {
           {product.productName}
         </p>
         <p className="mb-4 text-base text-bold dark:text-neutral-200">
-          {product.productPrice}
+          {product.formatedPrice}
         </p>
         <a
           href={product.vendorLink}

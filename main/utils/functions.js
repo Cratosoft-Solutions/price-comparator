@@ -16,17 +16,70 @@ export const returnToLogin = () => {
   return redirect("/api/auth/signin");
 }
 
-export const paseStoreNumber = (number) => {
+function isNumber(char) {
+  return /^\d$/.test(char);
+}
+
+
+function formatNumber(monto) {
+  // Eliminar cualquier separador de miles, si los hay, y reemplazar puntos decimales con comas
+  monto = monto.replace(/,/g, '.');
+  
+  // Comprobar si el monto es un número
+  if (isNaN(monto)) {
+    monto = monto.replace(/\./g, '').replace(/,/g, '.');
+    // Redondear el monto a dos decimales y convertirlo a una cadena
+    monto = parseFloat(monto).toFixed(2);
+    var partes = monto.split('.');
+    var parteEntera = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    var resultado = parteEntera + '.' + partes[1];
+    return resultado;
+  }
+
+  // Redondear el monto a dos decimales y convertirlo a una cadena
+  monto = parseFloat(monto).toFixed(2);
+
+  var partes = monto.split('.');
+  var parteEntera = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  var resultado = parteEntera + '.' + partes[1];
+
+  return resultado;
+}
+
+export const paseStoreNumber = (number, indRoundNumber) => {
   try {
-    let tempNumber = number.trim().replace(/[^a-zA-Z0-9,.]/g, '');
+    if (indRoundNumber) {
+      number = Math.round(number);
+    }
+    let tempNumber;
+    if (typeof number == 'string') {
+      tempNumber = number.trim().replace(/[^0-9,.]/g, '');
+    } else {
+      tempNumber = String(number);
+    }
     if (tempNumber.charAt(tempNumber.length - 3) == ".") {
+      //FORMATO MONTO 4000.00
       tempNumber = tempNumber.replaceAll(",", "");
     } else if (tempNumber.charAt(tempNumber.length - 3) == ",") {
+      //FORMATO MONTO 4000,00
       tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", ".");
+    } else if (tempNumber.charAt(tempNumber.length - 2) == ".") {
+      //FORMATO MONTO 2000.0
+      tempNumber = tempNumber.replaceAll(",", "");
+    } else if (tempNumber.charAt(tempNumber.length - 7) == ".") {
+      //FORMATO MONTO 4000.0000000
+      tempNumber = tempNumber.replaceAll(",", "");
+    } else if (tempNumber.charAt(tempNumber.length - 8) == ".") {
+      //FORMATO MONTO 4000.0000000
+      tempNumber = tempNumber.replaceAll(",", "");
     } else {
+      //OTRO FORMATO
       tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", "")
     }
-    return tempNumber.trim();
+    /*  console.log("#PASER JSON - 000 - paseStoreNumber - tempNumber", tempNumber);
+     console.log("#PASER JSON - 333 - paseStoreNumber - formatNumber(tempNumber.trim())",  formatNumber(tempNumber.trim())); */
+    tempNumber = formatNumber(tempNumber.trim());
+    return tempNumber;
   } catch (error) {
     return -1;
   }
@@ -39,13 +92,16 @@ export function comparePrice(property, order) {
     property = property.substr(1);
   }
   return function (a, b) {
-    var result = (a[property] < b[property]) ? -1 * order : (a[property] > b[property]) ? 1 * order : 0;
+    // Función para convertir el monto con comas en un número y poder ordenarlo
+    a = parseFloat(a[property].replace(/,/g, ''));
+    b = parseFloat(b[property].replace(/,/g, ''));
+    var result = (a < b) ? -1 * order : (a > b) ? 1 * order : 0;
     return result * sortOrder;
   }
 }
 
 export async function fetchWithTimeout(resource, options = {}) {
-  const { timeout = 25000 } = options;
+  const { timeout = 10000 } = options;
 
   const controller = new AbortController();
   const id = setTimeout(() => { controller.abort(); }, timeout);
