@@ -23,7 +23,7 @@ const SearchOptions = ({setOptionSearch}) => {
   const [showSearchOptions, setShowSearchOptions] = useState(false);
   const router = useRouter();
 
-  const { storeFullData } = useSelector((state) => state.products);
+  const { storeFullData, storeFullProducts } = useSelector((state) => state.products);
   const textSearchArray = text.toUpperCase().split(" ");
 
 
@@ -109,7 +109,7 @@ const SearchOptions = ({setOptionSearch}) => {
           </div>
         )}
         <div className="bg-primary p-4 pl-2 flex items-center justify-center bg-white">
-          Resultados en {storeFullData.length} tienda(s)
+          {`${storeFullProducts.length} coincidencia(s)/${storeFullData.length} tienda(s).`}
         </div>
         <div className="bg-primary flex items-center justify-center bg-white p-2">
          {showSearchOptions && <RiArrowUpSLine
