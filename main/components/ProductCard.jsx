@@ -12,6 +12,8 @@ const ProductCard = ({ logo, product, index }) => {
         data-te-ripple-init
         data-te-ripple-color="light"
       >
+       <div
+        className="">
         <img
           className="object-contain h-60 w-60"
           src={
@@ -21,6 +23,7 @@ const ProductCard = ({ logo, product, index }) => {
           }
           alt={product.productName}
         />
+        </div>
         {product.companyLogo && (
           <img
             className="absolute z-90 object-contain h-6 rounded-full max-w-[5rem] top-0 left-4"
