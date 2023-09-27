@@ -13,9 +13,9 @@ const ProductCard = ({ logo, product, index }) => {
         data-te-ripple-color="light"
       >
        <div
-        className="">
+        className="p-8">
         <img
-          className="object-contain h-60 w-60"
+          className="object-contain max-w-full max-h-full"
           src={
             product.productImage == ""
               ? "https://www.edelar.com.ar/static/theme/images/sin_imagen.jpg"
