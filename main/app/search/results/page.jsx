@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { STORE_BY_CATEGORY } from "@utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWithTimeout, formatKeyForStorage, getSearchDataFromDataBase, localDataExists, saveSearchOnDB, setStorageData } from "@utils/functions";
-import { pushProduct, restartProducts } from "@app/redux/slices/products";
+import { pushProduct, restartProducts, setMatchedProducts } from "@app/redux/slices/products";
 import { setLoading } from "@app/redux/slices/loading";
 import { setSearching } from "@app/redux/slices/searching";
 import { useRouter } from 'next/navigation';
@@ -19,11 +19,12 @@ const MyResults = () => {
     let searchCounter = 0;
     let storeToSearhCount = STORE_BY_CATEGORY.filter((item)=> item.category == category)[0]?.stores.length;
     const key = formatKeyForStorage(category, text);  
-    
+    const textSearchArray = text.toUpperCase().split(" ");
+
     const processIndividualResponse = (response, saveOnStorage, saveOnDatabase, error = false)=>{
   
         searchCounter = searchCounter + 1;
-      
+        dispatch(setMatchedProducts(textSearchArray));
         if(error && searchCounter == storeToSearhCount){
           dispatch(setLoading(false));
         }

@@ -93,7 +93,7 @@ const SearchOptions = ({setOptionSearch}) => {
                 configuration.MATCH ? "outline_btn_orange" : "outline_btn"
               }  min-w-[10rem]`}
             >
-              Coincidencia Exacta
+              {configuration.MATCH ?"Todos los productos":"Coincidencia Exacta"}
             </button>
           </div>
         </div>
@@ -109,7 +109,7 @@ const SearchOptions = ({setOptionSearch}) => {
           </div>
         )}
         <div className="bg-primary p-4 pl-2 flex items-center justify-center bg-white">
-          {`${storeFullProducts.length} coincidencia(s)/${storeFullData.length} tienda(s).`}
+          {`${storeFullProducts.length} producto(s)/${storeFullData.length} tienda(s).`}
         </div>
         <div className="bg-primary flex items-center justify-center bg-white p-2">
          {showSearchOptions && <RiArrowUpSLine
