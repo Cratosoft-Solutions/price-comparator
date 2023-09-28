@@ -5,6 +5,7 @@ import HorizontalCardListLoading from './HorizontalCardListLoading';
 import MobileHorizontalCardList from './MobileHorizontalCardList';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchOption } from '@app/redux/slices/configOptions';
+import ShowAllResults from './ShowAllResults';
 
 
 const ProductList = ({isOptionSearchExpanded}) => {
@@ -35,12 +36,7 @@ const ProductList = ({isOptionSearchExpanded}) => {
       {configuration.MATCH &&
       storeFullProducts.length > 0 &&
       storeFullMatchedProducts.length == 0 ? (
-        <div className="flex w-full justify-center items-center mt-10">
-          <div className='grid grid-cols-1 grid-rows-2'>
-            <div>No se encontraron productos con coincidencia exacta. </div>
-            <button className = "black_btn w-sm" onClick={()=>{dispatch(setSearchOption("MATCH"));}}>Ver todos los resultados</button>
-          </div>
-        </div>
+        <ShowAllResults/>
       ) : null}
     </div>
   );
