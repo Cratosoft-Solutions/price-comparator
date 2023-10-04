@@ -8,13 +8,14 @@ const MobileProductCard = ({ product, index }) => {
         style={{ cursor: "auto" }}
       >
         <div className="relative w-32 h-32 !max-h-32 flex-shrink-0">
-          <div className="absolute left-0 top-0 w-full h-full flex items-center justify-center">
+          <div className="absolute left-0 top-0 w-full h-full flex items-center justify-center container-blur">
             <img
               alt="Placeholder Photo"
               className="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50"
               loading="lazy"
               src={product.productImage}
             />
+            <div class="centered-blur">{product.companyName}</div>
           </div>
         </div>
 

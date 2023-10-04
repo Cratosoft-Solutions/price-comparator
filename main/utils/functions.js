@@ -67,10 +67,7 @@ export const paseStoreNumber = (number, indRoundNumber) => {
       //FORMATO MONTO 2000.0
       tempNumber = tempNumber.replaceAll(",", "");
     } else if (tempNumber.charAt(tempNumber.length - 5) == ".") {
-      //FORMATO MONTO 11990.0000
-      tempNumber = tempNumber.replaceAll(",", "");
-    }else if (tempNumber.charAt(tempNumber.length - 6) == ".") {
-      //FORMATO MONTO 11990.00000
+      //FORMATO MONTO 2000.0
       tempNumber = tempNumber.replaceAll(",", "");
     } else if (tempNumber.charAt(tempNumber.length - 7) == ".") {
       //FORMATO MONTO 4000.0000000
@@ -107,7 +104,7 @@ export function comparePrice(property, order) {
 }
 
 export async function fetchWithTimeout(resource, options = {}) {
-  const { timeout = 10000 } = options;
+  const { timeout = 15000 } = options;
 
   const controller = new AbortController();
   const id = setTimeout(() => { controller.abort(); }, timeout);

@@ -42,13 +42,17 @@ export const GET = async (request, { params }) => {
                 const dom = await JSDOM.fromURL(urlToScrap, /* {
                     runScripts: 'dangerously'
                 } */);
+                //console.log('#PASER 3 - JSDOM');
                 const document = dom.window.document;
+                //console.log('#PASER 4 - JSDOM');
                 //const mapHtml = dom.serialize(); 
                 const companyProducts = document.querySelectorAll(company.mainSelector);
+                //console.log('#PASER 5 - JSDOM');
                 if (companyProducts.length === 0) {
-                    console.log('#PASER 3 - JSDOM - element probably not exists', company.name);
+                    console.log('#PASER 6 - JSDOM - element probably not exists', company.name);
                     return new Response(JSON.stringify(products), { status: 200 })
                 }
+                //console.log('#PASER 7 - JSDOM');
                 let companyLogo = undefined;
                 if (company.indLogoSelector) {
                     companyLogo = document.querySelector(company.logoSelector)?.getAttribute(company.attributeLogoSelector);
@@ -56,8 +60,10 @@ export const GET = async (request, { params }) => {
                 } else (
                     companyLogo = company.logoSelector
                 )
+                //console.log('#PASER 8 - JSDOM');
                 //console.log('#PASER 4 - JSDOM - urlToScrap', urlToScrap);
                 let currentProducts = [];
+                //console.log('#PASER 9 - JSDOM');
                 companyProducts.forEach((product, index) => {
                     const temProduct = {};
                     //Going through the fields configuration
@@ -99,6 +105,8 @@ export const GET = async (request, { params }) => {
                     companyLogo: companyLogo,
                     companyProducts: currentProducts
                 });
+                //t1 = performance.now();
+                //console.log("#PASER 10 - JSDOM - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);
                 //**************************************************************************************** */
                 //**************************************************************************************** */
                 //**************************************************************************************** */
@@ -210,7 +218,7 @@ export const GET = async (request, { params }) => {
                         companyProducts: productList.currentProducts
                     });
                     //console.log(products);
-                    t1 = performance.now();
+                    //t1 = performance.now();
                     //console.log("#PASER 8 - PUPPETEER - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);
                 } catch (error) {
                     //await browser.close();
@@ -349,6 +357,7 @@ export const GET = async (request, { params }) => {
                     //t1 = performance.now();
                     //console.log("#PASER JSON - 9999 - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);  
                 } catch (error) {
+                    console.log("#PASER 999 - params.company  " + params.company + " error: " + error);
                     return new Response(" 1 EXCEPTION - CATCH - Failed to fetch prompts created by user " + error, { status: 500 })
                 }
             }

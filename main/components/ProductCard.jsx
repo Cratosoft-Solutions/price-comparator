@@ -12,23 +12,23 @@ const ProductCard = ({ logo, product, index }) => {
         data-te-ripple-init
         data-te-ripple-color="light"
       >
-       <div
-        className="p-8">
-        <img
-          className="object-contain max-w-full max-h-full"
-          src={
-            product.productImage == ""
-              ? "https://www.edelar.com.ar/static/theme/images/sin_imagen.jpg"
-              : product.productImage
-          }
-          alt={product.productName}
-        />
+        <div class="container-blur">
+          <img
+            className="object-contain h-60 w-60"
+            src={
+              product.productImage == ""
+                ? "https://www.edelar.com.ar/static/theme/images/sin_imagen.jpg"
+                : product.productImage
+            }
+            alt={product.productName}
+          />
+          <div class="centered-blur">{product.companyName}</div>
         </div>
         {product.companyLogo && (
           <img
             className="absolute z-90 object-contain h-6 rounded-full max-w-[5rem] top-0 left-4"
             src={
-              product.companyLogo == undefined 
+              product.companyLogo == undefined
                 ? "https://www.edelar.com.ar/static/theme/images/sin_imagen.jpg"
                 : product.companyLogo
             }
