@@ -70,7 +70,7 @@ export const scrapCompanyConfiguration = [
         }, */
     {
         id: 2,
-        name: "INTELEC",
+        name: "Intelec",
         url: 'https://www.intelec.co.cr/index.php?route=product/search&search=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSDOM',
@@ -144,7 +144,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 3,
-        name: "MEXPRESS",
+        name: "MExpress",
         url: 'https://www.tiendamexpress.com/filterSearch?q=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSDOM',
@@ -277,7 +277,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 5,
-        name: "EXTREMETECH",
+        name: "Extremetech",
         url: 'https://extremetechcr.com/tienda/index.php?fc=module&module=leoproductsearch&controller=productsearch&orderby=position&orderway=desc&cate=&search_query=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSDOM',
@@ -352,7 +352,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 6,
-        name: "EKONO",
+        name: "Ekono",
         url: 'https://www.tiendasekono.com/catalogsearch/result/?q=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSDOM',
@@ -565,7 +565,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 9,
-        name: "Gollo Tiendas",
+        name: "Gollo",
         url: 'https://www.gollo.com/catalogsearch/result/?q=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSDOM',
@@ -1030,7 +1030,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 15,
-        name: "Ferreteria EPA",
+        name: "Epa",
         url: 'https://cr.epaenlinea.com/catalogsearch/result/?q=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSDOM',
@@ -1318,7 +1318,7 @@ export const scrapCompanyConfiguration = [
     }, */
     {
         id: 19,
-        name: "NOVEX",
+        name: "Novex",
         url: 'https://novex.cr/search?term=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'PUPPETEER',
@@ -1739,7 +1739,7 @@ export const scrapCompanyConfiguration = [
     }, */
     {
         id: 24,
-        name: 'SUCRE EN LINEA',
+        name: 'Sucre',
         url: 'https://sucreenlinea.com/catalogsearch/result/?q=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSDOM',
@@ -1801,7 +1801,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 25,
-        name: 'HI BEAUTY COSMETICS',
+        name: 'Hi Beauty',
         url: 'https://hibeautycr.com/search?q=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'PUPPETEER',
@@ -1875,7 +1875,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 26,
-        name: "ALMACEN MAURO",
+        name: "Almacen Mauro",
         url: 'https://mauroenlinea.com/?s=SEARCH_TEXT&post_type=product',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSDOM',
@@ -1937,7 +1937,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 912,
-        name: 'SIMAN',
+        name: 'Siman',
         url: 'https://cr.siman.com/SEARCH_TEXT/s?_q=SEARCH_TEXT&map=ft&__pickRuntime=Cquery%2CqueryData',
         //PARAMETROS REQUEST
         //HEADERS
@@ -2030,7 +2030,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 910,
-        name: "MONGE",
+        name: "Monge",
         url: 'https://wlt832ea3j-dsn.algolia.net/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20JavaScript%20(4.13.1)%3B%20Browser%3B%20instantsearch.js%20(4.41.0)%3B%20Magento2%20integration%20(3.9.0)%3B%20JS%20Helper%20(3.8.2)',
         //PARAMETROS REQUEST
         //HEADERS
@@ -2117,7 +2117,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 911,
-        name: "EL VERDUGO",
+        name: "El Verdugo",
         url: 'https://wlt832ea3j-1.algolianet.com/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20JavaScript%20(4.13.1)%3B%20Browser%3B%20instantsearch.js%20(4.41.0)%3B%20Magento2%20integration%20(3.9.0)%3B%20JS%20Helper%20(3.8.2)',
         //PARAMETROS REQUEST
         //HEADERS
@@ -2204,7 +2204,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 913,
-        name: "UNIVERSAL",
+        name: "Universal",
         url: "https://searchserverapi.com/getresults?api_key=7H5U4o0w1P&q=SEARCH_TEXT&sortBy=relevance&sortOrder=desc&startIndex=0&maxResults=15&items=true&pages=true&categories=true&suggestions=true&queryCorrection=true&suggestionsMaxResults=3&pageStartIndex=0&pagesMaxResults=20&categoryStartIndex=0&categoriesMaxResults=20&facets=true&facetsShowUnavailableOptions=true&recentlyViewedProducts=7021400883283%2C7015115980883%2C7015399194707%2C7015455457363%2C6953829826643%2C6815284953171%2C6869979496531%2C6932114702419%2C6852126310483&recentlyAddedToCartProducts=&recentlyPurchasedProducts=&ResultsTitleStrings=2&ResultsDescriptionStrings=2&timeZoneName=America%2FCosta_Rica&output=jsonp",
         //url: "https://searchserverapi.com/getresults?api_key=7H5U4o0w1P&q=SEARCH_TEXT&sortBy=relevance&sortOrder=desc&startIndex=0&maxResults=15&items=true&pages=true&categories=true&suggestions=true&queryCorrection=true&suggestionsMaxResults=3&pageStartIndex=0&pagesMaxResults=20&categoryStartIndex=0&categoriesMaxResults=20&facets=true&facetsShowUnavailableOptions=true&recentlyViewedProducts=7021400883283%2C7015115980883%2C7015399194707%2C7015455457363%2C6953829826643%2C6815284953171%2C6869979496531%2C6932114702419%2C6852126310483&recentlyAddedToCartProducts=&recentlyPurchasedProducts=&ResultsTitleStrings=2&ResultsDescriptionStrings=2&timeZoneName=America%2FCosta_Rica&output=jsonp&callback=jQuery36006702242308187536_1694490457791&_=1694490457792",
         //PARAMETROS REQUEST
@@ -2291,7 +2291,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 916,
-        name: "EL LAGAR",
+        name: "El Lagar",
         url: "https://www.ellagar.com/ECOMMERCE/API/Articulo/ObtenerArticulosPorNombre",
         //PARAMETROS REQUEST
         //HEADERS
@@ -2377,7 +2377,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 918,
-        name: "CONSTRUPLAZA",
+        name: "Construplaza",
         url: "https://mucjnsqczh-3.algolianet.com/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20JavaScript%20(4.5.1)%3B%20Browser%20(lite)%3B%20instantsearch.js%20(4.56.7)%3B%20JS%20Helper%20(3.13.5)&x-algolia-api-key=548b5dedba445fcdb9435d2dd720562a&x-algolia-application-id=MUCJNSQCZH",
         //PARAMETROS REQUEST
         //HEADERS
@@ -2470,7 +2470,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 923,
-        name: "FARMACIA LA BOMBA",
+        name: "La Bomba",
         url: "https://farmacialabomba.com/GetSearchDocumentProduct",
         //PARAMETROS REQUEST
         //HEADERS
@@ -2556,7 +2556,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 921,
-        name: "AUTOMERCADO",
+        name: "Automercado",
         url: "https://fu5xfx7knl-dsn.algolia.net/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20JavaScript%20(4.12.0)%3B%20Browser%20(lite)&x-algolia-api-key=113941a18a90ae0f17d602acd16f91b2&x-algolia-application-id=FU5XFX7KNL",
         //PARAMETROS REQUEST
         //HEADERS
@@ -2667,7 +2667,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 922,
-        name: "FISCHEL",
+        name: "Fischel",
         url: "https://www.fischelenlinea.com/SearchProductsByQueryParam",
         //PARAMETROS REQUEST
         //HEADERS
@@ -2753,7 +2753,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 901,
-        name: "WALMART",
+        name: "Walmart",
         url: "https://www.walmart.co.cr/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft&__pickRuntime=query%2CqueryData",
         //  url: "https://www.walmart.co.cr/_v/segment/graphql/v1?workspace=master&maxAge=short&appsEtag=remove&domain=store&locale=es-CR&__bindingId=17dd0832-2127-4686-ad3a-09850b413565&operationName=productSearchV3&variables=%7B%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%225582a05af7ee7b8a43406c6041335d5e4f0a6eea4a16f4bef9d2599218766e82%22%2C%22sender%22%3A%22vtex.store-resources%400.x%22%2C%22provider%22%3A%22vtex.search-graphql%400.x%22%7D%7D",
         //url: "https://www.walmart.co.cr/_v/segment/graphql/v1?workspace=master&maxAge=short&appsEtag=remove&domain=store&locale=es-CR&__bindingId=17dd0832-2127-4686-ad3a-09850b413565&operationName=productSearchV3&variables=%7B%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%225582a05af7ee7b8a43406c6041335d5e4f0a6eea4a16f4bef9d2599218766e82%22%2C%22sender%22%3A%22vtex.store-resources%400.x%22%2C%22provider%22%3A%22vtex.search-graphql%400.x%22%7D%2C%22variables%22%3A%22eyJoaWRlVW5hdmFpbGFibGVJdGVtcyI6ZmFsc2UsInNrdXNGaWx0ZXIiOiJBTEwiLCJzaW11bGF0aW9uQmVoYXZpb3IiOiJkZWZhdWx0IiwiaW5zdGFsbG1lbnRDcml0ZXJpYSI6Ik1BWF9XSVRIT1VUX0lOVEVSRVNUIiwicHJvZHVjdE9yaWdpblZ0ZXgiOmZhbHNlLCJtYXAiOiJmdCIsInF1ZXJ5IjoiYWNldGFtaW5vZmVuIiwib3JkZXJCeSI6Ik9yZGVyQnlTY29yZURFU0MiLCJmcm9tIjowLCJ0byI6OSwic2VsZWN0ZWRGYWNldHMiOlt7ImtleSI6ImZ0IiwidmFsdWUiOiJhY2V0YW1pbm9mZW4ifV0sImZ1bGxUZXh0IjoiYWNldGFtaW5vZmVuIiwiZmFjZXRzQmVoYXZpb3IiOiJTdGF0aWMiLCJjYXRlZ29yeVRyZWVCZWhhdmlvciI6ImRlZmF1bHQiLCJ3aXRoRmFjZXRzIjpmYWxzZSwidmFyaWFudCI6IiJ9%22%7D",
@@ -2859,7 +2859,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 920,
-        name: "MASXMENOS",
+        name: "Masxmenos",
         url: "https://www.masxmenos.cr/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft&__pickRuntime=query%2CqueryData",
         //PARAMETROS REQUEST
         //HEADERS
@@ -2963,7 +2963,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 927,
-        name: "LA BOTICA",
+        name: "La Botica",
         url: "https://laboticacrapi.clavisco.com/api/Items/GetItems?ItmsGrpCod=0&searchItem=SEARCH_TEXT&SubMenu=&selectedCategory=Todos&userId=&currentLang=es&selectedSubCategory=&selectedLaboratory=&StartPos=1&StepPos=12&priceFromFC=0&priceToFC=0&order=SD",
         //PARAMETROS REQUEST
         //HEADERS
@@ -3055,7 +3055,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 28,
-        name: "TOYS",
+        name: "Toys",
         url: 'https://www.tiendatoys.com/search/?field=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSDOM',
@@ -3123,7 +3123,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 29,
-        name: "ISHOP",
+        name: "Ishop",
         url: 'https://tiendasishop.com/cr/catalogsearch/result/?q=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSDOM',
@@ -3186,7 +3186,325 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 30,
-        name: "ICON",
+        name: "Aliss",
+        url: 'https://aliss.cr/catalogsearch/result/?q=SEARCH_TEXT',
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSDOM',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: "https://i.imgur.com/kfxM1gN.png",
+        attributeLogoSelector: 'src',
+        mainSelector: '.products.wrapper.grid.products-grid ol li',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        //selector:'.result-wrapper div .price-wrapper .after_special.promotion',
+                        selector: '.special-price span span span',
+                        //selector:'.row span span .amount',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: '.old-price span span span',
+                        //selector:'.result-wrapper div .price-wrapper .before_special',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 3,
+                        selector: '.normal-price span span span',
+                        //selector:'.result-wrapper div .price-wrapper .before_special',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 4,
+                        selector: '.price-container-group span span span',
+                        //selector:'.result-wrapper div .price-wrapper .before_special',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        //selector:'.product.name.product-item-name a',
+                        selector: '.product-item-link',//'.product-item-info a',
+                        //selector:'.result-wrapper a',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        //selector:'.col-md-4.col-sm-6 meta div meta a div div img',
+                        selector: '.product-image-photo',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'src'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        //selector:'.col-md-4.col-sm-6 meta div meta a div div div h3',
+                        //selector:'.product.details.product-item-detail strong a',
+                        selector: '.product-item-link',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 31,
+        name: "CEMACO",
+        url: 'https://www.cemaco.co.cr/search/?field=SEARCH_TEXT',
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSDOM',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: true,
+        logoSelector: ".logo.fitThisOnMenu",
+        attributeLogoSelector: 'src',
+        mainSelector: '.product-item',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        //selector:'.result-wrapper div .price-wrapper .after_special.promotion',
+                        selector: '.product-body.price ins span',
+                        //selector:'.row span span .amount',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: '.price ins span',
+                        //selector:'.result-wrapper div .price-wrapper .before_special',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        //selector:'.product.name.product-item-name a',
+                        selector: '.buttons a',//'.product-item-info a',
+                        //selector:'.result-wrapper a',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        //selector:'.col-md-4.col-sm-6 meta div meta a div div img',
+                        selector: '.img-responsive',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'src'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        //selector:'.col-md-4.col-sm-6 meta div meta a div div div h3',
+                        //selector:'.product.details.product-item-detail strong a',
+                        selector: '.product-body h2',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 32,
+        name: "RADIOSHACK",
+        url: 'https://www.radioshackcr.com/buscar?s=SEARCH_TEXT&c=0&resultsPerPage=24',
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSDOM',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: true,
+        logoSelector: ".elementor-image a img",
+        attributeLogoSelector: 'src',
+        mainSelector: '.item',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        //selector:'.result-wrapper div .price-wrapper .after_special.promotion',
+                        selector: '.price',
+                        //selector:'.row span span .amount',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: '.price ins span',
+                        //selector:'.result-wrapper div .price-wrapper .before_special',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        //selector:'.product.name.product-item-name a',
+                        selector: '.product_name a',//'.product-item-info a',
+                        //selector:'.result-wrapper a',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        //selector:'.col-md-4.col-sm-6 meta div meta a div div img',
+                        selector: '.img-placeholder.home_default img',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'data-src'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        //selector:'.col-md-4.col-sm-6 meta div meta a div div div h3',
+                        //selector:'.product.details.product-item-detail strong a',
+                        selector: '.product_name a',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 9999,
+        name: "Adn Tienda",
+        url: 'https://www.adntienda.com/shop?search=SEARCH_TEXT',
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSDOM',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: true,
+        logoSelector: ".img.img-fluid",
+        attributeLogoSelector: 'src',
+        mainSelector: '.asp-inner',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        //selector:'.result-wrapper div .price-wrapper .after_special.promotion',
+                        selector: '.oe_currency_value',
+                        //selector:'.row span span .amount',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: '.old-price span span span',
+                        //selector:'.result-wrapper div .price-wrapper .before_special',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        //selector:'.product.name.product-item-name a',
+                        selector: '.o_wsale_products_item_title a',//'.product-item-info a',
+                        //selector:'.result-wrapper a',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        //selector:'.col-md-4.col-sm-6 meta div meta a div div img',
+                        selector: '.img.img-fluid',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'src'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        //selector:'.col-md-4.col-sm-6 meta div meta a div div div h3',
+                        //selector:'.product.details.product-item-detail strong a',
+                        selector: '.o_wsale_products_item_title a',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },    
+    {
+        id: 9999,
+        name: "Icon",
         url: 'https://www.icon.co.cr/?s=SEARCH_TEXT&post_type=product',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSDOM',

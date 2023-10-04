@@ -1553,3 +1553,47 @@
 .blur img{
   filter: blur(0px);
 }
+
+.watermarked {
+  position: relative;
+  overflow: hidden;
+}
+
+.watermarked img {
+  width: 100%;
+}
+
+.watermarked::before {
+  position: absolute;
+  top: -75%;
+  left: -75%;
+  
+  display: block;
+  width: 150%;
+  height: 150%;
+  
+  transform: rotate(-45deg);
+  content: attr(data-watermark);
+  
+  opacity: 0.7;
+  line-height: 3em;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.container-blur {
+  position: relative;
+  text-align: center;
+}
+
+.centered-blur {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-family: Arial Black, Arial Bold, sans-serif,bold;
+  font-size: 25px;
+  -webkit-text-fill-color: transparent;    
+  -webkit-text-stroke: 1.5px rgb(255, 255, 255);
+  
+}
