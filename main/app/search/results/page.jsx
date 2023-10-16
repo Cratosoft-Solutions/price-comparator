@@ -9,10 +9,12 @@ import { pushProduct, restartProducts, setMatchedProducts } from "@app/redux/sli
 import { setLoading } from "@app/redux/slices/loading";
 import { setSearching } from "@app/redux/slices/searching";
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 
 const MyResults = () => {
     const router = useRouter();
+    const {data:session} = useSession();
     const [isOptionSearchExpanded, setIsOptionSearchExpanded] = useState(false); 
     const dispatch = useDispatch();
     const { text, category } = useSelector(state => state.searchProperties.properties);
@@ -66,7 +68,7 @@ const MyResults = () => {
                  dispatch(setSearching(false));  
                 }
                 else{
-                   const dbData = await getSearchDataFromDataBase(key);
+                   const dbData = await getSearchDataFromDataBase(key, session);
                    const existsOnDB =  dbData.dataBaseData;
                    
                    if(existsOnDB){

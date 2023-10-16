@@ -1,6 +1,5 @@
 import { connectToDB } from "@utils/database";
 import Search from "@models/search";
-import Tags from "@models/searchTags";
 
 export const POST = async (req) => {
   try {
@@ -21,17 +20,6 @@ export const POST = async (req) => {
         result:searchToSave.result
       });
       createdID = result._id.toString();
-      
-      const tagData =  searchToSave.key.replaceAll(".", " ").split("-").slice(-2);
-      console.log(tagData);
-      const tagExists = await Tags.findOne({
-        category: tagData[0], key:tagData[1]
-      });
-
-      if(!tagExists){
-        result = Tags.create({category: tagData[0], key:tagData[1]})
-      }
-
     } else {
       console.log("ingrese aca");
       await Search.updateOne(
@@ -43,6 +31,11 @@ export const POST = async (req) => {
         }
       );
     }
+
+    //***********************************TAG CREATION AND USERSEARCH CREATION***************/
+    //const tagData =  searchToSave.key.replaceAll(".", " ").split("-").slice(-2);
+    //await saveUserSearch(Tags, UserSearch, tagData, "randal")
+
     return new Response(JSON.stringify({ id: createdID }), { status: 200 });
   } catch (error) {
     return new Response(JSON.stringify({ message: error.message }), {

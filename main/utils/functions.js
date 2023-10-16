@@ -363,3 +363,49 @@ export async function checkImage(url) {
     return apiRes;
   }
 }
+
+export const genericDatabaseOperation = async (model, params, type) => {
+  try {
+    let result;
+    switch (type) {
+      case "CREATE":
+        result = await model.create(params);
+        break;
+      case "FINDONE":
+          result = await model.findOne(params);
+          break;
+      default:
+        break;
+    }
+    //console.log(type + " " + result._id);
+
+    return result;
+  } catch (error) {
+      console.log("Error al guardar búsqueda por usuario" + error);
+      return null;
+  }
+}
+
+export const saveUserSearch = async (Tags, UserSearch, tagData, user) => {
+  try {
+    const tagExists = await genericDatabaseOperation(Tags, {category: tagData[0], key:tagData[1]}, "FINDONE");
+    
+    let tagID;
+    
+    if(!tagExists){
+      const result = await genericDatabaseOperation(Tags, {category: tagData[0], key:tagData[1]}, "CREATE"); 
+      tagID =  result._id;
+    }else{
+      tagID =  tagExists._id;
+    }
+    //USER SEARCH IS SAVED ON DATABASE
+    if(user){
+      const userSearchExits = await genericDatabaseOperation(UserSearch, {tagID: tagID}, "FINDONE");
+      if (!userSearchExits){ 
+        genericDatabaseOperation(UserSearch, {user:user, tagID:tagID}, "CREATE");
+      }
+    }
+  } catch (error) {
+    console.log("Loguear error"+ error);
+  }
+}

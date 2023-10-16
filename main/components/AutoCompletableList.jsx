@@ -46,7 +46,7 @@ const AutoCompletableList = ({text}) => {
     return (
         <>
             {isBrowser() && text.length > 0 &&
-                <ul className="bg-white w-full">   
+                <ul className="bg-white w-full lg:w-1/2 absolute">   
                     {coincidencesList.slice(0, 5).map((coincidence, index)=>(
                         <li onClick={()=>{dispatch(setText(coincidence.key)); dispatch(setCategory(coincidence.category));  setCoincidencesList([]);}} key={index} className="pl-8 pr-2 py-1 border border-gray-50 relative cursor-pointer hover:bg-gray-100 hover:text-gray-900 text-gray-500">
                             <svg className="absolute w-4 h-4 left-2 top-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

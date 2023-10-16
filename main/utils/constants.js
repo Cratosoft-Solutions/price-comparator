@@ -1,5 +1,5 @@
 export const SEARCH_DEFAULT_OPTIONS = {
-  configuration: { MINTOMAX: false, MAXTOMIN: false, MATCH: true },
+  configuration: { MINTOMAX: false, MAXTOMIN: false, MATCH: false },
 };
 
 export const COINCIDENCES = "COINCIDENCES";

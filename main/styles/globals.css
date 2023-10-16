@@ -94,6 +94,11 @@
   @apply bg-gradient-to-r from-purple-500 via-pink-600 to-orange-400 bg-clip-text text-transparent;
 }
 
+.search_gradient {
+  @apply bg-gradient-to-r from-purple-500 via-pink-500 to-orange-200 bg-clip-text text-transparent;
+}
+
+
 .orange_gradient_scroll {
   @apply bg-gradient-to-r from-purple-500 via-pink-600 to-orange-400  stroke-transparent;
 }

@@ -5,14 +5,20 @@ import { CATEGORIES } from "@utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { restartProducts } from "@app/redux/slices/products";
 import { setText, setCategory } from "@app/redux/slices/searchProperties";
-import Link from "next/link";
 import AutoCompletableList from "./AutoCompletableList";
 import { useRouter } from "next/navigation";
+import { HiOutlineDocumentSearch } from "react-icons/hi";
+import { useState, useEffect } from "react";
+import { getSession } from "next-auth/react";
+import UserSearches from "./UserSearches";
+
 
 const SearchButton = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { text, category } = useSelector(state => state.searchProperties.properties)
+  const { text, category } = useSelector(state => state.searchProperties.properties);
+  const [userIsConnected, setUserIsConnected] = useState(false);
+  const [showMySearchs, setShowMySearchs] = useState(false);
   
   const setInternalCategory = (category) => {
     dispatch(setCategory(category));
@@ -27,6 +33,19 @@ const SearchButton = () => {
     e.preventDefault();
     router.push('/search/results');
   }
+
+
+  useEffect(()=>{
+    const getUserSearch = async ()=>{
+      const session = await getSession();
+      const user =  session?.user;
+      if (typeof user != 'undefined'){
+        setUserIsConnected(true);
+      }
+    }
+      getUserSearch();
+  }, 
+  []);
 
   return (
       <div className="mb-1 w-full sm:w-1/2 justify-center mr-4 ml-4">
@@ -50,6 +69,11 @@ const SearchButton = () => {
             <div className="grid grid-cols-1 grid-rows-1 w-full">
               <AutoCompletableList text={text}/>
             </div>
+            {userIsConnected &&
+            <button onClick={()=>{setShowMySearchs(true)}} className="flex w-full justify-left mb-2 lg:mb-6 text-medium text-gray-600 items-center">
+            <HiOutlineDocumentSearch/>Ver mis búsquedas anteriores 
+          </button>}
+            {showMySearchs&&<UserSearches onHideSearch={setShowMySearchs}/>}
         </div>
       </div>
     
