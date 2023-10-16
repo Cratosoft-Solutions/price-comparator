@@ -1,73 +1,4 @@
 export const scrapCompanyConfiguration = [
-    /*     {
-            id: 1,
-            name: "WALMART CR",
-            url: 'https://www.walmart.co.cr/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft',
-            scrapType: 'QUERY_PARAMETER',
-            indHowToScrape: 'JSDOM',
-            replaceTextOnURL: 'SEARCH_TEXT',
-            indLogoSelector: false,
-            logoSelector: "https://walmartcr.vtexassets.com/assets/vtex/assets-builder/walmartcr.store-theme/0.1.35/waltmart-logo___a095e1f47875aea1c10fcc867f8ac7ac.png",
-            //logoSelector: ".vtex-store-components-3-x-logoImage",
-            attributeLogoSelector: 'src',
-            mainSelector: '.vtex-product-summary-2-x-container',
-            scrapingFields: [
-                {
-                    fieldName: 'productPrice',
-                    type: 'Numeric',
-                    fieldSelectors: [
-                        {
-                            order: 1,
-                            selector: '.vtex-store-components-3-x-sellingPrice',
-                            selectorValueFrom: "TEXTCONTENT",
-                            attribute: null
-                        },
-                        {
-                            order: 2,
-                            selector: '.vtex-store-components-3-x-listPrice',
-                            selectorValueFrom: "TEXTCONTENT",
-                            attribute: null
-                        }
-                    ],
-                },
-                {
-                    fieldName: 'vendorLink',
-                    type: 'String',
-                    fieldSelectors: [
-                        {
-                            order: 1,
-                            selector: '.vtex-product-summary-2-x-clearLink',
-                            selectorValueFrom: "ATTRIBUTE",
-                            attribute: 'href'
-                        }
-                    ],
-                },
-                {
-                    fieldName: 'productImage',
-                    type: 'String',
-                    fieldSelectors: [
-                        {
-                            order: 1,
-                            selector: '.vtex-product-summary-2-x-imageNormal',
-                            selectorValueFrom: "ATTRIBUTE",
-                            attribute: 'src'
-                        }
-                    ],
-                },
-                {
-                    fieldName: 'productName',
-                    type: 'String',
-                    fieldSelectors: [
-                        {
-                            order: 1,
-                            selector: '.vtex-product-summary-2-x-productBrand',
-                            selectorValueFrom: "TEXTCONTENT",
-                            attribute: null
-                        }
-                    ],
-                },
-            ]
-        }, */
     {
         id: 2,
         name: "Intelec",
@@ -368,23 +299,19 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.result-wrapper div .price-wrapper .after_special.promotion',
                         selector: '.special-price span span span',
-                        //selector:'.row span span .amount',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 2,
                         selector: '.old-price span span span',
-                        //selector:'.result-wrapper div .price-wrapper .before_special',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 3,
                         selector: '.normal-price span span span',
-                        //selector:'.result-wrapper div .price-wrapper .before_special',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -396,9 +323,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.product.name.product-item-name a',
-                        selector: '.product.photo.product-item-photo',//'.product-item-info a',
-                        //selector:'.result-wrapper a',
+                        selector: '.product.photo.product-item-photo',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'href'
                     }
@@ -410,7 +335,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.col-md-4.col-sm-6 meta div meta a div div img',
                         selector: '.product.photo.product-item-photo img',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'src'
@@ -423,8 +347,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.col-md-4.col-sm-6 meta div meta a div div div h3',
-                        //selector:'.product.details.product-item-detail strong a',
                         selector: '.product.details.product-item-details a',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
@@ -630,336 +552,7 @@ export const scrapCompanyConfiguration = [
                 ],
             },
         ]
-    }/* ,
-    {
-        id: 10,
-        name: "MONGE",
-        url: 'https://www.tiendamonge.com/catalogsearch/result/?q=SEARCH_TEXT',
-        scrapType: 'QUERY_PARAMETER',
-        indHowToScrape: 'PUPPETEER',
-        rejectRequestPattern: ['api.ocularsolution.com',
-            'cm.teads.tv',
-            'content.syndigo.com',
-            'dpm.demdex.net',
-            'ocular-prod.api.rocio.ai',
-            'rum-collector-2.pingdom.net',
-            'stats.g.doubleclick.net',
-            'google-analytics.com',
-            'wlt832ea3j-2.algolianet.com'
-        ],
-        replaceTextOnURL: 'SEARCH_TEXT',
-        indLogoSelector: true,
-        logoSelector: ".logo img",
-        attributeLogoSelector: 'src',
-        mainSelector: '.result-wrapper',
-        scrapingFields: [
-            {
-                fieldName: 'productPrice',
-                type: 'Numeric',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.after_special.promotion ',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    },
-                    {
-                        order: 2,
-                        selector: '.before_special',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    },
-                    {
-                        order: 3,
-                        selector: '.after_special ',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-            {
-                fieldName: 'vendorLink',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.result',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'href'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productImage',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.result-thumbnail img',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'src'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productName',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.result-title',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-        ]
     },
-    {
-        id: 11,
-        name: "EL VERDUGO",
-        url: 'https://www.verdugotienda.com/catalogsearch/result/?q=SEARCH_TEXT',
-        scrapType: 'QUERY_PARAMETER',
-        indHowToScrape: 'PUPPETEER',
-        rejectRequestPattern: ['assets.adobedtm.com',
-            'widget.ocularsolution.com',
-            'connect.facebook.net',
-            'googleads.g.doubleclick.net',
-            'polyfill.io',
-            'wlt832ea3j-2.algolianet.com',
-            'wlt832ea3j-2.algolianet.com',
-            'facebook.com',
-            'google-analytics.com',
-            'google.co.cr',
-            'googletagmanager.com'
-        ],
-        replaceTextOnURL: 'SEARCH_TEXT',
-        indLogoSelector: true,
-        logoSelector: ".logo img",
-        attributeLogoSelector: 'src',
-        mainSelector: '.result-wrapper',
-        scrapingFields: [
-            {
-                fieldName: 'productPrice',
-                type: 'Numeric',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.after_special.promotion ',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    },
-                    {
-                        order: 2,
-                        selector: '.before_special',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    },
-                    {
-                        order: 3,
-                        selector: '.after_special ',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-            {
-                fieldName: 'vendorLink',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.result',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'href'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productImage',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.result-thumbnail img',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'src'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productName',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.result-title',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-        ]
-    },
-    {
-        id: 12,
-        name: 'SIMAN',
-        url: 'https://cr.siman.com/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft',
-        scrapType: 'QUERY_PARAMETER',
-        indHowToScrape: 'PUPPETEER',
-        rejectRequestPattern: [
-            'af-origin.vtex.com',
-            'analytics.google.com',
-            'cdn.frizbit.com',
-            'd.la4-c1-ia5.salesforceliveagent.com',
-            'fonts.googleapis.com',
-            'rc.vtex.com',
-            'service.force.com',
-            'stats.g.doubleclick.net',
-            'strapi-prod-2.onrender.com',
-            'google.co.cr',
-            'google.com'
-        ],
-        replaceTextOnURL: 'SEARCH_TEXT',
-        indLogoSelector: false,
-        logoSelector: 'https://simancrc.vtexassets.com/arquivos/logo-footer.png',
-        attributeLogoSelector: 'src',
-        mainSelector: '.vtex-product-summary-2-x-container',
-        scrapingFields: [
-            {
-                fieldName: 'productPrice',
-                type: 'Numeric',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.vtex-store-components-3-x-sellingPrice',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    },
-                    {
-                        order: 2,
-                        selector: '.vtex-store-components-3-x-listPrice',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-            {
-                fieldName: 'vendorLink',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.vtex-product-summary-2-x-clearLink',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'href'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productImage',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.vtex-product-summary-2-x-imageNormal',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'src'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productName',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.ProductNameCard',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-        ]
-    },
-    {
-        id: 13,
-        name: 'UNIVERSAL',
-        url: 'https://tiendauniversal.com/search?type=product&q=SEARCH_TEXT',
-        //'https://tiendauniversal.com/pages/search-results-page?q=SEARCH_TEXT',
-        scrapType: 'QUERY_PARAMETER',
-        indHowToScrape: 'PUPPETEER',
-        rejectRequestPattern: [
-            'api.speedien.com',
-            'pagead2.googlesyndication.com',
-            'codeblackbelt.com',
-            'a.mailmunch.co',
-            'forms.mailmunch.co',
-            'stats.g.doubleclick.net',
-            'codeblackbelt.com'
-        ],
-        replaceTextOnURL: 'SEARCH_TEXT',
-        indLogoSelector: false,
-        logoSelector: 'https://tiendauniversal.com/cdn/shop/files/universal-logotipo_d4fbc676-9771-47f0-919f-49e8b8eb65c3_180x.png',
-        attributeLogoSelector: 'src',
-        mainSelector: '.product-item.product-item--vertical',
-        scrapingFields: [
-            {
-                fieldName: 'productPrice',
-                type: 'Numeric',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.price.price--highlight',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    },
-                    {
-                        order: 2,
-                        selector: '.price',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-            {
-                fieldName: 'vendorLink',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.product-item__title.text--strong.link',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'href'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productImage',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.product-item__primary-image.image--fade-in.lazyautosizes.lazyloaded',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'srcset'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productName',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.product-item__title.text--strong.link',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-        ]
-    } */,
     {
         id: 14,
         name: "Pequeño Mundo",
@@ -1046,16 +639,13 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.result-wrapper div .price-wrapper .after_special.promotion',
                         selector: '.product.details.product-item-details span .price-wrapper ',
-                        //selector:'.row span span .amount',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 2,
                         selector: '.product.details.product-item-details span .price',
-                        //selector:'.result-wrapper div .price-wrapper .before_special',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -1067,9 +657,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.product.name.product-item-name a',
                         selector: '.product-item-info a',
-                        //selector:'.result-wrapper a',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'href'
                     }
@@ -1081,7 +669,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.col-md-4.col-sm-6 meta div meta a div div img',
                         selector: '.product-item-info img',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'src'
@@ -1094,8 +681,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.col-md-4.col-sm-6 meta div meta a div div div h3',
-                        //selector:'.product.details.product-item-detail strong a',
                         selector: '.product.name.product-item-name a',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
@@ -1104,85 +689,10 @@ export const scrapCompanyConfiguration = [
             },
         ]
     },
-    /* {
-        id: 16,
-        name: "EL LAGAR",
-        url: 'https://www.ellagar.com/ECOMMERCE/ItemSearch?search=SEARCH_TEXT',
-        scrapType: 'QUERY_PARAMETER',
-        indHowToScrape: 'PUPPETEER',
-        rejectRequestPattern: [
-            'maps.googleapis.com',
-            'scontent.fsjo11-1.fna.fbcdn.net',
-            'static.xx.fbcdn.net',
-            'facebook.com'
-        ],
-        replaceTextOnURL: 'SEARCH_TEXT',
-        indLogoSelector: false,
-        logoSelector: 'https://www.ellagar.com/SERV_ADMIN_FILES/Archivos/Imagenes/Parametro/Suc_1/LOGO LAGAR.png',//".img-fluid",
-        attributeLogoSelector: 'src',
-        mainSelector: '.item',
-        scrapingFields: [
-            {
-                fieldName: 'productPrice',
-                type: 'Numeric',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.product-price-discount',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    },
-                    {
-                        order: 2,
-                        selector: '.precio',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-            {
-                fieldName: 'vendorLink',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.item a',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'href'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productImage',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.imagen img',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'src'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productName',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.name',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-        ]
-    }, */
     {
         id: 17,
         name: "Office Depot",
         url: 'https://www.officedepot.co.cr/officedepotCR/en/search/?text=SEARCH_TEXT',
-        //absoluteUrl:'https://www.officedepot.co.cr',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSDOM',
         replaceTextOnURL: 'SEARCH_TEXT',
@@ -1241,81 +751,6 @@ export const scrapCompanyConfiguration = [
             },
         ]
     },
-    /* {
-        id: 18,
-        name: "CONSTRUPLAZA",
-        url: 'https://www.construplaza.com/Construplaza/Pedidos?busqueda=SEARCH_TEXT',
-        scrapType: 'QUERY_PARAMETER',
-        indHowToScrape: 'PUPPETEER',
-        rejectRequestPattern: [
-            'accounts.google.com',
-            'analytics.google.com',
-            'cdn.jsdelivr.net',
-            'fonts.gstatic.com',
-            'insights.algolia.io',
-            'mucjnsqczh-dsn.algolia.net',
-            'play.google.com',
-            'stats.g.doubleclick.net',
-            'google-analytics.com',
-            'google.co.cr',
-            'googletagmanager.com'
-        ],
-        replaceTextOnURL: 'SEARCH_TEXT',
-        indLogoSelector: false,
-        logoSelector: "https://www.construplaza.com/Content/Images/logo.webp",
-        attributeLogoSelector: 'src',
-        mainSelector: '.Producto',
-        scrapingFields: [
-            {
-                fieldName: 'productPrice',
-                type: 'Numeric',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.Precio p',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-            {
-                fieldName: 'vendorLink',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.Descripcion a',
-                        selectorValueFrom: "TEXTCONTENT",//"ATTRIBUTE",
-                        attribute: null//'href'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productImage',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.Foto img',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'src'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productName',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.Descripcion a',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-        ]
-    }, */
     {
         id: 19,
         name: "Novex",
@@ -1399,344 +834,6 @@ export const scrapCompanyConfiguration = [
             },
         ]
     },
-    /* {
-        id: 20,
-        name: "MASXMENOS",
-        url: 'https://www.masxmenos.cr/SEARCH_TEXT?_q=SEARCH_TEXT&map=ft',
-        scrapType: 'QUERY_PARAMETER',
-        indHowToScrape: 'JSDOM',
-        replaceTextOnURL: 'SEARCH_TEXT',
-        indLogoSelector: true,
-        logoSelector: ".vtex-store-components-3-x-logoImage",
-        attributeLogoSelector: 'data-src',
-        mainSelector: '.vtex-product-summary-2-x-container',
-        scrapingFields: [
-            {
-                fieldName: 'productPrice',
-                type: 'Numeric',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.vtex-store-components-3-x-sellingPrice',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    },
-                    {
-                        order: 2,
-                        selector: '.vtex-store-components-3-x-listPrice',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-            {
-                fieldName: 'vendorLink',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.vtex-product-summary-2-x-clearLink',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'href'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productImage',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.vtex-product-summary-2-x-imageNormal',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'src'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productName',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.vtex-product-summary-2-x-productBrand',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-        ]
-    },
-    {
-        id: 21,
-        name: "AUTOMERCADO",
-        url: 'https://www.automercado.cr/buscar?q=SEARCH_TEXT',
-        scrapType: 'QUERY_PARAMETER',
-        indHowToScrape: 'PUPPETEER',
-        rejectRequestPattern: [
-            'ad.360yield.com',
-            'ade.clmbtech.com',
-            'ads.stickyadstv.com',
-            'analytics.clickdimensions.com',
-            'c.bing.com',
-            'cdnjs.cloudflare.com',
-            'cl.qualaroo.com',
-            'cm.g.doubleclick.net',
-            'cm.adgrx.com',
-            'cms-production.azurewebsites.net',
-            'connect.facebook.net',
-            'contextual.media.net',
-            'criteo-partners.tremorhub.com',
-            'criteo-sync.teads.tv',
-            'd27c6j8064skg9.cloudfront.net',
-            'dev.visualwebsiteoptimizer.com',
-            'dntcl.qualaroo.com',
-            'dpm.demdex.net',
-            'dynamic.criteo.com',
-            'eb2.3lift.com',
-            'edge.fullstory.com',
-            'exchange.mediavine.com',
-            'firebase.googleapis.com',
-            'firebaseinstallations.googleapis.com',
-            'fledge.us.criteo.com',
-            'fu5xfx7knl-dsn.algolia.net',
-            'gum.criteo.com',
-            'i.liadm.com',
-            'ib.adnxs.com',
-            'ka-f.fontawesome.com',
-            'maps.googleapis.com',
-            'match.sharethrough.com',
-            'matching.ivitrack.com',
-            'measurement-api.criteo.com',
-            'pixel.rubiconproject.com',
-            'r.casalemedia.com',
-            'rs.fullstory.com',
-            'rtb-csync.smartadserver.com',
-            's.ad.smaato.net',
-            'secure.adnxs.com',
-            'simage2.pubmatic.com',
-            'stats.g.doubleclick.net',
-            'sync-criteo.ads.yieldmo.com',
-            'sync-t1.taboola.com',
-            'sync.outbrain.com',
-            'tags.bluekai.com',
-            'tg.socdm.com',
-            'trends.revcontent.com',
-            'ups.analytics.yahoo.com',
-            'visitor.omnitagjs.com',
-            'google-analytics.com',
-            'googletagmanager.com',
-            'x.bidswitch.net'
-        ],
-        replaceTextOnURL: 'SEARCH_TEXT',
-        indLogoSelector: true,
-        logoSelector: ".navbar-brand img",
-        attributeLogoSelector: 'src',
-        mainSelector: '.card-body',
-        scrapingFields: [
-            {
-                fieldName: 'productPrice',
-                type: 'Numeric',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.text-currency.h5-am',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    },
-                    {
-                        order: 2,
-                        selector: '.ng-star-inserted',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-            {
-                fieldName: 'vendorLink',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.title-product',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'href'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productImage',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.img-product img',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'src'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productName',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.title-product',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-        ]
-    },
-    {
-        id: 22,
-        name: 'FISCHEL',
-        url: 'https://www.fischelenlinea.com/busqueda?p=SEARCH_TEXT&c=0',
-        scrapType: 'QUERY_PARAMETER',
-        indHowToScrape: 'PUPPETEER',
-        rejectRequestPattern: [
-            'maps.googleapis.com',
-            'y.clarity.ms/collect',
-            'cms.salesmanago.com',
-            'stats.g.doubleclick.net'
-        ],
-        replaceTextOnURL: 'SEARCH_TEXT',
-        indLogoSelector: true,
-        logoSelector: '.logo img',
-        attributeLogoSelector: 'src',
-        mainSelector: '.card.col-4.ng-scope',
-        scrapingFields: [
-            {
-                fieldName: 'productPrice',
-                type: 'Numeric',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.price.txt-lightred.ng-binding',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    },
-                    {
-                        order: 2,
-                        selector: '.price.off.ng-binding.ng-scope',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-            {
-                fieldName: 'vendorLink',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.card-body a',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'href'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productImage',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: 'figure a .card-img-top.lazyload.ng-scope',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'src'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productName',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.title.ng-binding',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-        ]
-    },
-    {
-        id: 23,
-        name: 'LA BOMBA FARMACIA',
-        url: 'https://farmacialabomba.com/busqueda?p=SEARCH_TEXT&c=0',
-        scrapType: 'QUERY_PARAMETER',
-        indHowToScrape: 'PUPPETEER',
-        rejectRequestPattern: ['cms.salesmanago.com',
-            'script.crazyegg.com',
-            'stackpath.bootstrapcdn.com',
-            't.clarity.ms',
-            'clarity.ms'],
-        replaceTextOnURL: 'SEARCH_TEXT',
-        indLogoSelector: true,
-        logoSelector: '.logo img',
-        attributeLogoSelector: 'src',
-        mainSelector: '.flex-col.card.ng-scope',
-        scrapingFields: [
-            {
-                fieldName: 'productPrice',
-                type: 'Numeric',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.h5.fw-700.text-light-blue.ng-binding',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    },
-                    {
-                        order: 2,
-                        selector: '.p-small.text-light-blue.ng-binding.ng-scope',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-            {
-                fieldName: 'vendorLink',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.card-body a',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'href'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productImage',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: 'figure a .card-img-top.lazyload.ng-scope',
-                        selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'src'
-                    }
-                ],
-            },
-            {
-                fieldName: 'productName',
-                type: 'String',
-                fieldSelectors: [
-                    {
-                        order: 1,
-                        selector: '.text-blue.ng-binding',
-                        selectorValueFrom: "TEXTCONTENT",
-                        attribute: null
-                    }
-                ],
-            },
-        ]
-    }, */
     {
         id: 24,
         name: 'Sucre',
@@ -1800,7 +897,7 @@ export const scrapCompanyConfiguration = [
         ]
     },
     {
-        id: 25,
+        id: 9999,
         name: 'Hi Beauty',
         url: 'https://hibeautycr.com/search?q=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
@@ -1812,8 +909,8 @@ export const scrapCompanyConfiguration = [
             'cloudflare.com'
         ],
         replaceTextOnURL: 'SEARCH_TEXT',
-        indLogoSelector: false, //true,
-        logoSelector: 'https://hibeautycr.com/cdn/shop/files/phonto_03d167e9-aca5-4063-8d43-08961074f97a.jpg',//'.logo__image img',
+        indLogoSelector: false,
+        logoSelector: 'https://hibeautycr.com/cdn/shop/files/phonto_03d167e9-aca5-4063-8d43-08961074f97a.jpg',
         attributeLogoSelector: 'src',
         mainSelector: '.product-item.easylockdown-item',
         scrapingFields: [
@@ -1961,7 +1058,7 @@ export const scrapCompanyConfiguration = [
         mode: "cors",
         credentials: "omit",
         //FIN PARAMETROS REQUEST
-        linkUrl: "https://cr.siman.com/productName/p", //'https://cr.siman.com/',
+        linkUrl: "https://cr.siman.com/productName/p",
         imageUrl: null,
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSON',
@@ -2007,7 +1104,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector: 'items.images[0].imageUrl',
                         selector: 'items.images.imageUrl',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: 'src'
@@ -2117,7 +1213,7 @@ export const scrapCompanyConfiguration = [
     },
     {
         id: 911,
-        name: "El Verdugo",
+        name: "Verdugo",
         url: 'https://wlt832ea3j-1.algolianet.com/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20JavaScript%20(4.13.1)%3B%20Browser%3B%20instantsearch.js%20(4.41.0)%3B%20Magento2%20integration%20(3.9.0)%3B%20JS%20Helper%20(3.8.2)',
         //PARAMETROS REQUEST
         //HEADERS
@@ -2382,11 +1478,11 @@ export const scrapCompanyConfiguration = [
         //PARAMETROS REQUEST
         //HEADERS
         accept: "*/*",
-        acceptLanguage: "en-US,en;q=0.9,es-CR;q=0.8,es;q=0.7",//NO CAMBIAN
+        acceptLanguage: "en-US,en;q=0.9,es-CR;q=0.8,es;q=0.7",
         contentType: "application/x-www-form-urlencoded",
-        secChUa: "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"",//NO CAMBIAN
-        secChUaMobile: "?0",//NO CAMBIA
-        secChUaPlatform: "\"Windows\"",//NO CAMBIA
+        secChUa: "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"",
+        secChUaMobile: "?0",
+        secChUaPlatform: "\"Windows\"",
         secFetchDest: "empty",
         secFetchMode: "cors",
         secFetchSite: "cross-site",
@@ -2418,13 +1514,13 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: 'PrecioDescuento',//PrecioDescuento
+                        selector: 'PrecioDescuento',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 2,
-                        selector: 'Precio',//PrecioDescuento
+                        selector: 'Precio',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }                    
@@ -2510,7 +1606,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: 'ProductAttributes.PriceWithDiscount',//AddedPrice
+                        selector: 'ProductAttributes.PriceWithDiscount',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -2581,7 +1677,7 @@ export const scrapCompanyConfiguration = [
         mode: "cors",
         credentials: "omit",
         //FIN PARAMETROS REQUEST  
-        linkUrl: "https://www.automercado.cr/p/productName/id/vendorLink",//"https://www.automercado.cr/buscar?q=", 
+        linkUrl: "https://www.automercado.cr/p/productName/id/vendorLink",
         imageUrl: null,
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSON',
@@ -2597,31 +1693,31 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: 'storeDetail.09.amount',//AddedPrice
+                        selector: 'storeDetail.09.amount',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 2,
-                        selector: 'storeDetail.03.amount',//AddedPrice
+                        selector: 'storeDetail.03.amount',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 2,
-                        selector: 'storeDetail.04.amount',//AddedPrice
+                        selector: 'storeDetail.04.amount',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 2,
-                        selector: 'storeDetail.21.amount',//AddedPrice
+                        selector: 'storeDetail.21.amount',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 2,
-                        selector: 'storeDetail.08.amount',//AddedPrice
+                        selector: 'storeDetail.08.amount',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -2645,7 +1741,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: 'objectID',//'ecomDescription',//
+                        selector: 'objectID',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: 'specialLink'
                     }
@@ -2668,7 +1764,7 @@ export const scrapCompanyConfiguration = [
     {
         id: 922,
         name: "Fischel",
-        url: "https://www.fischelenlinea.com/SearchProductsByQueryParam",
+        url: "https://fischelenlinea.com/GetSearchDocumentProduct",
         //PARAMETROS REQUEST
         //HEADERS
         accept: "application/json, text/plain, */*",
@@ -2684,9 +1780,9 @@ export const scrapCompanyConfiguration = [
         xAlgoliaApiKey: null,
         xAlgoliaApplicationId: null,
         //OTROS
-        referrer: "https://www.fischelenlinea.com/busqueda?p=SEARCH_TEXT&c=0",
+        referrer: "https://fischelenlinea.com/busqueda?p=SEARCH_TEXT&c=0",
         referrerPolicy: "strict-origin-when-cross-origin",
-        body: "{\"jsonData\":\"{\\\"productName\\\":\\\"SEARCH_TEXT\\\"}\"}",
+        body: "{\"jsonData\":\"{\\\"brandName\\\":null,\\\"catName\\\":\\\"0\\\",\\\"subCatName\\\":null,\\\"tagName\\\":null,\\\"productName\\\":\\\"SEARCH_TEXT\\\"}\"}",// "{\"jsonData\":\"{\\\"productName\\\":\\\"SEARCH_TEXT\\\"}\"}",
         method: "POST",
         mode: "cors",
         credentials: "include",
@@ -2707,7 +1803,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: 'ProductAttributes.PriceWithTaxes',//AddedPrice
+                        selector: 'ProductAttributes.PriceWithTaxes',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -2787,7 +1883,7 @@ export const scrapCompanyConfiguration = [
         indLogoSelector: false,
         logoSelector: "https://walmartcr.vtexassets.com/assets/vtex/assets-builder/walmartcr.store-theme/1.0.417/waltmart-logo___e887a7c223ca5d5111202f45453db619.png",
         attributeLogoSelector: 'src',
-        mainSelector: 'queryData.data.productSearch.products',//'data.productSearch.products',
+        mainSelector: 'queryData.data.productSearch.products',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -2891,7 +1987,7 @@ export const scrapCompanyConfiguration = [
         indLogoSelector: false,
         logoSelector: "https://supermxmcr.vtexassets.com/assets/vtex.file-manager-graphql/images/3ded2a1c-d612-4f03-8a2b-45ed6cbc7ca4___cfba4950414c4e5734e110da25e4900b.svg",
         attributeLogoSelector: 'src',
-        mainSelector: 'queryData.data.productSearch.products',//'data.productSearch.products',
+        mainSelector: 'queryData.data.productSearch.products',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -2995,7 +2091,7 @@ export const scrapCompanyConfiguration = [
         indLogoSelector: false,
         logoSelector: "https://clvsapps.blob.core.windows.net/appfiles/GrupoMontecristo/ICEM/ECM/notfound.png",
         attributeLogoSelector: 'src',
-        mainSelector: 'ItemsList',//'data.productSearch.products',
+        mainSelector: 'ItemsList',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -3202,30 +2298,25 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.result-wrapper div .price-wrapper .after_special.promotion',
                         selector: '.special-price span span span',
-                        //selector:'.row span span .amount',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 2,
                         selector: '.old-price span span span',
-                        //selector:'.result-wrapper div .price-wrapper .before_special',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 3,
                         selector: '.normal-price span span span',
-                        //selector:'.result-wrapper div .price-wrapper .before_special',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 4,
                         selector: '.price-container-group span span span',
-                        //selector:'.result-wrapper div .price-wrapper .before_special',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -3237,9 +2328,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.product.name.product-item-name a',
-                        selector: '.product-item-link',//'.product-item-info a',
-                        //selector:'.result-wrapper a',
+                        selector: '.product-item-link',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'href'
                     }
@@ -3251,7 +2340,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.col-md-4.col-sm-6 meta div meta a div div img',
                         selector: '.product-image-photo',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'src'
@@ -3264,8 +2352,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.col-md-4.col-sm-6 meta div meta a div div div h3',
-                        //selector:'.product.details.product-item-detail strong a',
                         selector: '.product-item-link',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
@@ -3292,16 +2378,13 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.result-wrapper div .price-wrapper .after_special.promotion',
                         selector: '.product-body.price ins span',
-                        //selector:'.row span span .amount',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 2,
                         selector: '.price ins span',
-                        //selector:'.result-wrapper div .price-wrapper .before_special',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -3313,9 +2396,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.product.name.product-item-name a',
-                        selector: '.buttons a',//'.product-item-info a',
-                        //selector:'.result-wrapper a',
+                        selector: '.buttons a',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'href'
                     }
@@ -3327,7 +2408,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.col-md-4.col-sm-6 meta div meta a div div img',
                         selector: '.img-responsive',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'src'
@@ -3340,8 +2420,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.col-md-4.col-sm-6 meta div meta a div div div h3',
-                        //selector:'.product.details.product-item-detail strong a',
                         selector: '.product-body h2',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
@@ -3368,16 +2446,13 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.result-wrapper div .price-wrapper .after_special.promotion',
                         selector: '.price',
-                        //selector:'.row span span .amount',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 2,
                         selector: '.price ins span',
-                        //selector:'.result-wrapper div .price-wrapper .before_special',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -3389,9 +2464,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.product.name.product-item-name a',
-                        selector: '.product_name a',//'.product-item-info a',
-                        //selector:'.result-wrapper a',
+                        selector: '.product_name a',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'href'
                     }
@@ -3403,7 +2476,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.col-md-4.col-sm-6 meta div meta a div div img',
                         selector: '.img-placeholder.home_default img',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'data-src'
@@ -3416,8 +2488,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.col-md-4.col-sm-6 meta div meta a div div div h3',
-                        //selector:'.product.details.product-item-detail strong a',
                         selector: '.product_name a',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
@@ -3426,6 +2496,340 @@ export const scrapCompanyConfiguration = [
             },
         ]
     },
+    {
+        id: 933,
+        name: "Unimart",
+        url: "https://services.mybcapps.com/bc-sf-filter/search?q=SEARCH_TEXT&_=pf&shop=comprasmax.myshopify.com&page=1&limit=48&product_available=true",
+        //PARAMETROS REQUEST
+        //HEADERS
+        accept: "*/*",
+        acceptLanguage: "en-US,en;q=0.9,es-CR;q=0.8,es;q=0.7",
+        contentType: null,
+        secChUa: "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"",
+        secChUaMobile: "?0",
+        secChUaPlatform: "\"Windows\"",
+        secFetchDest:"script",
+        secFetchMode: "no-cors",
+        secFetchSite: "cross-site",
+        xRequestedWith: null,
+        xAlgoliaApiKey: null,
+        xAlgoliaApplicationId: null,
+        //OTROS
+        referrer: "https://www.unimart.com/",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: null,
+        method: "GET",
+        mode: "cors",
+        credentials: "omit",
+        //FIN PARAMETROS REQUEST  
+        linkUrl: "https://www.unimart.com/products/",
+        imageUrl: null,
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: "https://www.unimart.com/cdn/shop/t/60/assets/logo.png",
+        attributeLogoSelector: null,
+        mainSelector: 'products',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'price_min',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: 'price_max',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'title',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },            
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'handle',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'images.1',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            }
+        ]
+    },
+    {
+        id: 934,
+        name: "Cococo",
+        url: "https://cococo.co.cr/api/shop/products?page=1&productName=SEARCH_TEXT&sort=name&order=asc&currency=2",
+        //PARAMETROS REQUEST
+        //HEADERS
+        accept: "application/json, text/plain, */*",
+        acceptLanguage: "en",
+        secChUa: "\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"",
+        secChUaMobile: "?0",
+        secChUaPlatform: "\"Windows\"",
+        secFetchDest:"empty",
+        secFetchMode: "cors",
+        secFetchSite: "same-origin",
+        xRequestedWith: "XMLHttpRequest",
+        xAlgoliaApiKey: null,
+        xAlgoliaApplicationId: null,
+        xXsrfToken : "eyJpdiI6IlBSQjNvSzF5TVdsNDV2ckJMYXEyYWc9PSIsInZhbHVlIjoicVc2RStKTHBhdVdJVTRxUThzVlJSKzhUd0U4M1JFNlA5cjd1d0Z2eEdFZlg5d1Z5UnZwamFWSitqRXUwS0pLSXlNbWNqVVlJeGMrT2dXVnNrZ3hmMkY5UEJHR3ZNQmtDc3hLVDlpeHBqUlJueVU4K3R1OUNVdkpHU1dEUWtyb2QiLCJtYWMiOiJlN2E0ZGU1NGM3YzFlNGNkOGVlZWMyMDE5YjU2NTk0MTNkM2ViNjkzMGM3MTcyZWRhYzE4YzNhZmFiZGMyNzMyIiwidGFnIjoiIn0=",
+        //OTROS
+        referrer: "https://cococo.co.cr/shop",
+        referrerPolicy: "strict-origin-when-cross-origin",
+        body: null,
+        method: "GET",
+        mode: "cors",
+        credentials: "include",
+        //FIN PARAMETROS REQUEST  
+        linkUrl: "https://cococo.co.cr/shop/producto/productName/vendorLink",
+        imageUrl: null,
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSON',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: "https://cococo.co.cr/img/cococo_Store_full-color.png",
+        attributeLogoSelector: 'src',
+        mainSelector: 'data',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'price',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: 'price_original',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'name',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },            
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'id',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: 'specialLink'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'featured_image.url',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            }
+        ]
+    },
+    {
+        id: 35,
+        name: "Vicortech",
+        url: 'https://www.vicortechcr.com/?s=SEARCH_TEXT',
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSDOM',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: true,
+        logoSelector: ".site-logo",
+        attributeLogoSelector: 'src',
+        mainSelector: '.wrap-product-loop-content',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.price ins .woocommerce-Price-amount.amount',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: '.price del .woocommerce-Price-amount.amount',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 3,
+                        selector: '.price .woocommerce-Price-amount.amount',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.product-loop-title a',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.wrap-img img',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'src'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+
+                        selector: '.product-loop-title a',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 36,
+        name: "Edrop",
+        url: 'https://edropcr.com/?s=SEARCH_TEXT&&post_type=product&search_limit_to_post_titles=0&fs=1&post_type=product',
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSDOM',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: "https://edropcr.com/wp-content/uploads/2021/12/logoeDrop-1-300x120.png",
+        attributeLogoSelector: 'src',
+        mainSelector: '.fusion-product-wrapper',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.price ins .woocommerce-Price-amount.amount',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: '.price del .woocommerce-Price-amount.amount',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 3,
+                        selector: '.price .woocommerce-Price-amount.amount',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.product-title a',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.attachment-shop_catalog.size-shop_catalog',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'src'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+
+                        selector: '.product-title a',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },        
     {
         id: 9999,
         name: "Adn Tienda",
@@ -3444,16 +2848,13 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.result-wrapper div .price-wrapper .after_special.promotion',
                         selector: '.oe_currency_value',
-                        //selector:'.row span span .amount',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 2,
                         selector: '.old-price span span span',
-                        //selector:'.result-wrapper div .price-wrapper .before_special',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -3465,9 +2866,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.product.name.product-item-name a',
-                        selector: '.o_wsale_products_item_title a',//'.product-item-info a',
-                        //selector:'.result-wrapper a',
+                        selector: '.o_wsale_products_item_title a',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'href'
                     }
@@ -3479,7 +2878,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.col-md-4.col-sm-6 meta div meta a div div img',
                         selector: '.img.img-fluid',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'src'
@@ -3492,8 +2890,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.col-md-4.col-sm-6 meta div meta a div div div h3',
-                        //selector:'.product.details.product-item-detail strong a',
                         selector: '.o_wsale_products_item_title a',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
@@ -3503,17 +2899,17 @@ export const scrapCompanyConfiguration = [
         ]
     },    
     {
-        id: 9999,
+        id: 99999,
         name: "Icon",
         url: 'https://www.icon.co.cr/?s=SEARCH_TEXT&post_type=product',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSDOM',
         replaceTextOnURL: 'SEARCH_TEXT',
         //indRigthAmountFormat: true,
-        indLogoSelector: true,
-        logoSelector: ".logo img",
+        indLogoSelector: false,
+        logoSelector: "https://i.imgur.com/JBIG8qE.png",
         attributeLogoSelector: 'src',
-        mainSelector: '.product.type-product',
+        mainSelector: '.elementor-widget-container ul li',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -3522,6 +2918,12 @@ export const scrapCompanyConfiguration = [
                     {
                         order: 1,
                         selector: '.woocommerce-Price-amount.amount',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: '.price',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -3545,9 +2947,9 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: '.woocommerce-LoopProduct-link.woocommerce-loop-product__link img',
+                        selector: '.attachment-woocommerce_thumbnail.size-woocommerce_thumbnail.wvs-archive-product-image',
                         selectorValueFrom: "ATTRIBUTE",
-                        attribute: 'srcset'
+                        attribute: 'src'
                     }
                 ],
             },
