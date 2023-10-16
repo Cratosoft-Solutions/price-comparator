@@ -22,7 +22,7 @@ const ProductCard = ({ logo, product, index }) => {
             }
             alt={product.productName}
           />
-          <div class="centered-blur">{product.companyName}</div>
+          <div class="centered-blur">REFERENCIA</div>
         </div>
         {product.companyLogo && (
           <img

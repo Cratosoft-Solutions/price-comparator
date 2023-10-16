@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import { compress, decompress } from 'compress-json';
 import axios from 'axios';
 import { CATEGORIES } from './constants';
+import { scrapCompanyConfiguration } from "@utils/comercios";
 
 
 export const isUserAuthenticathed = (status) => {
@@ -16,8 +17,8 @@ export const returnToLogin = () => {
   return redirect("/api/auth/signin");
 }
 
-function isNumber(char) {
-  return /^\d$/.test(char);
+export const getCompanyConfiguration = (companyID) => {
+  return scrapCompanyConfiguration.filter(element => element.id == companyID);
 }
 
 
@@ -57,17 +58,20 @@ export const paseStoreNumber = (number, indRoundNumber) => {
     } else {
       tempNumber = String(number);
     }
-    if (tempNumber.charAt(tempNumber.length - 3) == ".") {
+    if (tempNumber.charAt(tempNumber.length - 2) == ".") {
+      //FORMATO MONTO 4000.0
+      tempNumber = tempNumber.replaceAll(",", "");
+    } else if (tempNumber.charAt(tempNumber.length - 3) == ".") {
       //FORMATO MONTO 4000.00
       tempNumber = tempNumber.replaceAll(",", "");
-    } else if (tempNumber.charAt(tempNumber.length - 3) == ",") {
-      //FORMATO MONTO 4000,00
-      tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", ".");
-    } else if (tempNumber.charAt(tempNumber.length - 2) == ".") {
-      //FORMATO MONTO 2000.0
+    } else if (tempNumber.charAt(tempNumber.length - 4) == ".") {
+      //FORMATO MONTO 2000.000
       tempNumber = tempNumber.replaceAll(",", "");
     } else if (tempNumber.charAt(tempNumber.length - 5) == ".") {
-      //FORMATO MONTO 2000.0
+      //FORMATO MONTO 2000.0000
+      tempNumber = tempNumber.replaceAll(",", "");
+    } else if (tempNumber.charAt(tempNumber.length - 6) == ".") {
+      //FORMATO MONTO 2000.00000
       tempNumber = tempNumber.replaceAll(",", "");
     } else if (tempNumber.charAt(tempNumber.length - 7) == ".") {
       //FORMATO MONTO 4000.0000000
@@ -75,12 +79,14 @@ export const paseStoreNumber = (number, indRoundNumber) => {
     } else if (tempNumber.charAt(tempNumber.length - 8) == ".") {
       //FORMATO MONTO 4000.0000000
       tempNumber = tempNumber.replaceAll(",", "");
-    } else {
+    } else if (tempNumber.charAt(tempNumber.length - 3) == ",") {
+      //FORMATO MONTO 4000,00
+      tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", ".");
+    } 
+    else {
       //OTRO FORMATO
       tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", "")
     }
-    /*  console.log("#PASER JSON - 000 - paseStoreNumber - tempNumber", tempNumber);
-     console.log("#PASER JSON - 333 - paseStoreNumber - formatNumber(tempNumber.trim())",  formatNumber(tempNumber.trim())); */
     tempNumber = formatNumber(tempNumber.trim());
     return tempNumber;
   } catch (error) {
@@ -236,59 +242,44 @@ export const formatAutoCompletableItem = (category, text) => {
 
 export const getNestedPropertyValue = (obj, path, index) => {
   try {
+    //console.log('#####################################');
     //console.log("#PASER 1 - JSON - getNestedPropertyValue");
-    //console.log(obj);
-    //console.log("#PASER 2 - JSON - path :",path);
+    ////console.log(obj);
+    //console.log("#PASER 2 - JSON - getNestedPropertyValue - path :",path);
     //console.log(path);
     const keys = path.split('.');
     let current = obj[index];
     let productsList = [];
-    let i = 0;
-    /*     console.log('#####################################');
-        console.log("#PASER 3 - JSON - iteracion :", index); */
+        //console.log('#####################################');
+        //console.log("#PASER 3 - JSON - getNestedPropertyValue - iteracion :", index);
     for (const key of keys) {
-      //console.log('iteracion',i);  
-      //console.log(typeof current);
-      //console.log("#PASER 4 - JSON - typeof current :", typeof current);
+      //console.log("#PASER 4 - JSON - getNestedPropertyValue - typeof current :", typeof current);
       if (typeof current == "object" && current.hasOwnProperty(key)) {
-        //console.log("#PASER 4.1 - JSON - tiene propiedad - key :", key);
-        //console.log("0 tiene propiedad " + key);
+        //console.log("#PASER 4.1 - JSON - getNestedPropertyValue - tiene propiedad - key :", key);
         current = current[key];
+        //console.log("#PASER 4.2 - JSON - getNestedPropertyValue - tiene propiedad - key :", current);        
         if (Array.isArray(current)) {
           // Si encontramos un array, asumimos que queremos el primer elemento.
-          //console.log("#PASER 5 - JSON - tiene propiedad - encontramos un array - current :", current.length);
+          //console.log("#PASER 5 - JSON - getNestedPropertyValue - tiene propiedad - encontramos un array - current :", current.length);
           productsList = current;
-          //console.log("#PASER 5 - JSON - tiene propiedad - encontramos un array - product :",product);
-          /*           productsList.forEach((product, index) => {
-                      console.log('#PASER 5.1 - JSON - forEach - index: ' + index + ' - product.productName :', product.productName);
-                    });
-          
-                    for (let i = 0; i < productsList.length; i++) {
-                      console.log('#PASER 5.2 - JSON - for - index: ' + i + '  product.productName :', productsList[1].productName);
-                    } */
+          //console.log("#PASER 6 - JSON - getNestedPropertyValue - tiene propiedad - encontramos un array - product :",productsList);
           current = current[0];
-          //console.log("0.1 tiene propiedad " + key.length);
-          //console.log("#PASER 7 - JSON - tiene propiedad :", key.length);
+          //console.log("#PASER 7 - JSON - getNestedPropertyValue - tiene propiedad :", key.length);
+          //console.log("#PASER 7.1 - JSON - getNestedPropertyValue - tiene propiedad :", current);
         }
       } else if (typeof current == "string" && JSON.parse(current).hasOwnProperty(key)) {
         current = JSON.parse(current)[key];
-        //console.log("1. tiene propiedad " + key.length);  
-        //console.log("#PASER 8 - JSON - tiene propiedad :", key.length);
-        /*current = getNestedPropertyValue  (current, key);
-          console.log("1.1 tiene propiedad " + current);   */
+        //console.log("#PASER 8 - JSON - getNestedPropertyValue - tiene propiedad :", key.length);
       }
       else {
-        // console.log("no tiene propiedad " + key);
-        //console.log("#PASER 9 - JSON - no tiene propiedad :", key);
-        //console.log(current);
+        //console.log("#PASER 9 - JSON - getNestedPropertyValue - no tiene propiedad :", key);
         return undefined; // Devuelve undefined si la pr0 opiedad no existe en la ruta.
       }
-      //i = i + 1;
+      //console.log("#PASER 10 - JSON - getNestedPropertyValue - return current :", current);
     }
-
     return current;
   } catch (error) {
-    console.log(error)
+    console.log('EXCEPXION CONTROLADA ',error)
   }
 }
 
@@ -315,7 +306,6 @@ export const getProductList = (obj, path) => {
       //console.log("#PASER 4.0 - JSON - typeof current.hasOwnProperty(key) :", current.hasOwnProperty(key));
       if (typeof current == "object" && current != null && current.hasOwnProperty(key)) {
         //console.log("#PASER 4.1 - JSON - tiene propiedad - key :", key);
-        //console.log("0 tiene propiedad " + key);
         current = current[key];
         if (Array.isArray(current)) {
           // Si encontramos un array, asumimos que queremos el primer elemento.
