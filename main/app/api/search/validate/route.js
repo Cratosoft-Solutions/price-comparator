@@ -2,7 +2,7 @@ import { connectToDB } from "@utils/database";
 import Search from '@models/search';
 import Tags from "@models/searchTags";
 import UserSearch from "@models/userSearch";
-import { saveUserSearch } from "@utils/functions";
+import { genericDatabaseOperation, saveUserSearch } from "@utils/functions";
 
 
 export const POST = async (req) => {
@@ -12,9 +12,13 @@ export const POST = async (req) => {
          await connectToDB();
 
         //Check if Searchs exists
-        const SearchExists = await Search.findOne({
-                                key: searchToSearch.key
-                            });
+        const SearchExists = await genericDatabaseOperation(
+          Search,
+          {
+            key: searchToSearch.key,
+          },
+          "FINDONE"
+        );
          
         const tagData =  searchToSearch.key.replaceAll(".", " ").split("-").slice(-2);
         await saveUserSearch(Tags, UserSearch, tagData, searchToSearch.user)   

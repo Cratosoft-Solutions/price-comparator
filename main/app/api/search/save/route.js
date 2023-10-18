@@ -1,5 +1,6 @@
 import { connectToDB } from "@utils/database";
 import Search from "@models/search";
+import { genericDatabaseOperation } from "@utils/functions";
 
 export const POST = async (req) => {
   try {
@@ -9,23 +10,26 @@ export const POST = async (req) => {
     await connectToDB();
 
     //check if Search exists
-    const searchExists = await Search.findOne({
-      key: searchToSave.key
-    });
+    const searchExists = await genericDatabaseOperation(Search, {key: searchToSave.key}, "FINDONE");
 
     //if not, create new Search
     if (!searchExists) {
-      let result = await Search.create({
-        key:searchToSave.key,
-        result:searchToSave.result
-      });
+      let result = await genericDatabaseOperation(
+        Search,
+        {
+          key: searchToSave.key,
+          result: searchToSave.result,
+        },
+        "CREATE"
+      ); 
       createdID = result._id.toString();
     } else {
-      console.log("ingrese aca");
-      await Search.updateOne(
+      await genericDatabaseOperation(
+        Search,
         {
-          key: searchToSave.key
+          key: searchToSave.key,
         },
+        "UPDATEONE",
         {
           result: searchToSave.result,
         }

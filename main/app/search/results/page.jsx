@@ -68,7 +68,7 @@ const MyResults = () => {
                  dispatch(setSearching(false));  
                 }
                 else{
-                   const dbData = await getSearchDataFromDataBase(key, session);
+                   const dbData = await getSearchDataFromDataBase(key, session?.user?.email);
                    const existsOnDB =  dbData.dataBaseData;
                    
                    if(existsOnDB){

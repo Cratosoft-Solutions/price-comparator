@@ -35,7 +35,6 @@ export const GET = async (request, { params }) => {
             }
         };
         //let t1 = performance.now();
-        //console.log("#PASER 9 - Tiempo en responder - GENERAL " + (t1 - t0) + " milliseconds." + params.company);
         return new Response(JSON.stringify(products[0]), { status: 200 })
     } catch (error) {
         console.log("#PASER 10 - params.company  " + params.company + " error: " + error);
