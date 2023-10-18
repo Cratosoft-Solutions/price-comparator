@@ -9,7 +9,7 @@ export const GET = async (req, { params }) => {
          //DB
         await connectToDB();
         //Check if Searchs exists
-        const SearchExists = await UserSearch.find({user: params.user});
+        const SearchExists = await genericDatabaseOperation(UserSearch, {user: params.user}, "FIND");
         const searches = await getTagsDescription(SearchExists);
 
         return new Response(JSON.stringify(searches), { status: 200 })

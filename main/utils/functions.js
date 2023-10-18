@@ -203,14 +203,15 @@ export const saveSearchOnDB = (key) => {
       result: data
     });
   } catch (error) {
-    //console.log("Guardando en BD" + error);
+    //TODO Verify log management
   }
 }
 
-export const getSearchDataFromDataBase = async (key) => {
+export const getSearchDataFromDataBase = async (key, user) => {
   try {
     const response = await axios.post(`/api/search/validate`, {
-      key: key
+      key: key,
+      user: user
     });
 
     const compressedData = await response.data.result;
@@ -364,7 +365,7 @@ export async function checkImage(url) {
   }
 }
 
-export const genericDatabaseOperation = async (model, params, type) => {
+export const genericDatabaseOperation = async (model, params, type, updateValue=null) => {
   try {
     let result;
     switch (type) {
@@ -374,6 +375,15 @@ export const genericDatabaseOperation = async (model, params, type) => {
       case "FINDONE":
           result = await model.findOne(params);
           break;
+      case "FIND_NO_PARAMS":
+        result = await model.find();
+        break;    
+      case "FIND":
+        result = await model.find(params);
+        break;  
+      case "UPDATEONE":
+        result = await model.updateOne(params, updateValue);
+        break;            
       default:
         break;
     }
@@ -389,7 +399,6 @@ export const genericDatabaseOperation = async (model, params, type) => {
 export const saveUserSearch = async (Tags, UserSearch, tagData, user) => {
   try {
     const tagExists = await genericDatabaseOperation(Tags, {category: tagData[0], key:tagData[1]}, "FINDONE");
-    
     let tagID;
     
     if(!tagExists){
@@ -402,6 +411,7 @@ export const saveUserSearch = async (Tags, UserSearch, tagData, user) => {
     if(user){
       const userSearchExits = await genericDatabaseOperation(UserSearch, {tagID: tagID}, "FINDONE");
       if (!userSearchExits){ 
+        console.log("Busqueda no existe");
         genericDatabaseOperation(UserSearch, {user:user, tagID:tagID}, "CREATE");
       }
     }

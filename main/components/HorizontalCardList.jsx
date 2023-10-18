@@ -19,7 +19,6 @@ const HorizontalCardList = ({mergedProducts }) => {
         }
         scrollAmount += step;
         if (scrollAmount >= distance) {
-          console.log('sdf');
           window.clearInterval(scrollInterval);
         }
       }, speed)

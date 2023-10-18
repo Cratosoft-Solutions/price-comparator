@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Modal = ({modalActionInfo, onCancel, onConfirm}) => {
-    console.log(modalActionInfo);
   
     const {message="", showCancelButton=true, okText="OK", cancelText="Cancel"} = modalActionInfo;
 

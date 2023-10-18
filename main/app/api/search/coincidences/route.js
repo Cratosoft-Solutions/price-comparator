@@ -1,16 +1,14 @@
 import Tags from "@models/searchTags";
 import { connectToDB } from "@utils/database";
-
-
+import { genericDatabaseOperation } from "@utils/functions";
 
 export const GET = async (req) => {
     try {
-        let invertedIndex = {}
-        //DB
+        //DB Connection
         await connectToDB();
 
         //Check if store exists
-        const tags  = await Tags.find(/*{key: { $regex: '.*' + params.text + '.*' } }*/)/*.limit(5)*/;  
+        const tags  = await genericDatabaseOperation(Tags, null, "FIND_NO_PARAMS");  
         return new Response(JSON.stringify(tags), { status: 200 })
          
     } catch (error) {
