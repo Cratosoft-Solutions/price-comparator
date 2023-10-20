@@ -18,6 +18,7 @@ const MyResults = () => {
     const [isOptionSearchExpanded, setIsOptionSearchExpanded] = useState(false); 
     const dispatch = useDispatch();
     const { text, category } = useSelector(state => state.searchProperties.properties);
+
     let searchCounter = 0;
     let storeToSearhCount = STORE_BY_CATEGORY.filter((item)=> item.category == category)[0]?.stores.length;
     const key = formatKeyForStorage(category, text);  

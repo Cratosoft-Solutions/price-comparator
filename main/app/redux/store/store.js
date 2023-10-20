@@ -4,6 +4,7 @@ import configOptions from "../slices/configOptions";
 import loading from "../slices/loading";
 import searchProperties from "../slices/searchProperties";
 import searching from "../slices/searching";
+import pagination from "../slices/pagination";
 
 const store = configureStore({
     reducer:{
@@ -11,7 +12,8 @@ const store = configureStore({
         searchoptions: configOptions,
         siteloading: loading, 
         searchProperties: searchProperties,
-        productSearching:searching
+        productSearching:searching,
+        sitepagination:pagination
     },
 });
 

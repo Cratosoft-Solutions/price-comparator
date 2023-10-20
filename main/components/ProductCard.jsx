@@ -5,14 +5,14 @@ const ProductCard = ({ logo, product, index }) => {
   return (
     <div
       key={product.productName + index}
-      className="block bg-transparent p-2 shadow-none w-64"
+      className="block bg-transparent p-2 shadow-none w-60"
     >
       <div
         className="relative overflow-hidden bg-cover bg-no-repeat"
         data-te-ripple-init
         data-te-ripple-color="light"
       >
-        <div class="container-blur">
+        <div className="container-blur">
           <img
             className="object-contain h-60 w-60"
             src={
@@ -22,7 +22,7 @@ const ProductCard = ({ logo, product, index }) => {
             }
             alt={product.productName}
           />
-          <div class="centered-blur">REFERENCIA</div>
+          <div className="centered-blur">REFERENCIA</div>
         </div>
         {product.companyLogo && (
           <img
