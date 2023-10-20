@@ -1,5 +1,5 @@
 "use client"
-import { BsArrowUpCircle } from "react-icons/bs";
+import { BiUpArrowAlt } from "react-icons/bi";
 import {useState, useEffect} from "react";
 
 const ScrollToTopButton  =() => {
@@ -26,8 +26,8 @@ const ScrollToTopButton  =() => {
     return (
       <>
         {scrollYPosition > 100 ? (
-          <button className="fixed bottom-4 right-4" onClick={scrollToTop}>
-            <BsArrowUpCircle className="h-14 w-14 " color="F97316" />
+          <button className="fixed bottom-2 right-2" onClick={scrollToTop}>
+            <BiUpArrowAlt className="h-14 w-14 " color="F97316" />
           </button>
         ) : null}
       </>

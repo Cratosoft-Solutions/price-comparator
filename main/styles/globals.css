@@ -72,6 +72,18 @@
   @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
 }
 
+.selected_pagination_button {
+  @apply rounded border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
+}
+
+.nonselected_pagination_button {
+  @apply rounded bg-white py-1.5 px-5 text-black transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
+}
+
+.nonselected_pagination_button:hover {
+  @apply bg-gray-200;
+}
+
 .orange_btn {
   @apply  rounded border border-orange-500 bg-orange-500 py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
 }

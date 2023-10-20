@@ -419,3 +419,19 @@ export const saveUserSearch = async (Tags, UserSearch, tagData, user) => {
     console.log("Loguear error"+ error);
   }
 }
+
+export const numberToArray = (pageSize, size) =>{
+  try {
+    let counter = 0;
+    let index = 1;
+    const arrayToReturn = [];
+    while (counter < size) {
+      arrayToReturn.push(index);
+      counter = counter + pageSize;
+      index++;
+    }
+    return arrayToReturn;
+  } catch (error) {
+    return [];
+  }
+}
