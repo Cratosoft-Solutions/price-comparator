@@ -15,7 +15,7 @@ const MobileProductCard = ({ product, index }) => {
               loading="lazy"
               src={product.productImage}
             />
-          <div class="centered-blur">REFERENCIA</div>
+          <div className="centered-blur">REFERENCIA</div>
           </div>
         </div>
 
