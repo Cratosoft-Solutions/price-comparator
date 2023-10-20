@@ -1,1 +1,1 @@
-# prince-comparator
+# price-comparator
