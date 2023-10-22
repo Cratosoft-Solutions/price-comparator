@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "mocha --timeout 999999 --colors 'test/**/*.spec.js' "
   },
   "dependencies": {
     "@headlessui/react": "^1.7.15",
@@ -15,11 +16,13 @@
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
+    "chai": "^4.3.10",
     "cheerio": "^1.0.0-rc.12",
     "compress-json": "^2.1.2",
     "imask": "^7.1.2",
     "jsdom": "^22.1.0",
     "keen-slider": "^6.8.6",
+    "mocha": "^10.2.0",
     "mongodb": "^5.6.0",
     "mongoose": "^7.3.1",
     "next": "13.4.7",
@@ -38,5 +41,16 @@
     "supports-color": "^8.1.1",
     "tailwindcss": "3.3.2",
     "text-mask-addons": "^3.8.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.23.0",
+    "@babel/core": "^7.23.2",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-transform-runtime": "^7.23.2",
+    "@babel/preset-env": "^7.23.2",
+    "babel-preset-react-app": "*",
+    "@babel/register": "^7.22.15",
+    "@types/node": "^20.8.7",
+    "jest-cli": "^29.7.0"
   }
 }
