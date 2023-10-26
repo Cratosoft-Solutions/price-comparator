@@ -76,7 +76,7 @@ export const scrapCompanyConfiguration = [
     {
         id: 3,
         name: "MExpress",
-        url: 'https://www.tiendamexpress.com/filterSearch?q=SEARCH_TEXT',
+        url: 'https://www.tiendamexpress.com/filterSearch?adv=true&q=SEARCH_TEXT&sid=true',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSDOM',
         replaceTextOnURL: 'SEARCH_TEXT',
@@ -183,7 +183,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.col-md-4.col-sm-6 meta div meta a div div img',
                         selector: '.search-product-image img',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'src'
@@ -196,8 +195,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.col-md-4.col-sm-6 meta div meta a div div div h3',
-                        //selector:'.product.details.product-item-detail strong a',
                         selector: '.search-product-description',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
@@ -225,14 +222,12 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.product-container.product-block div div div div .content_price .price.product-price',
                         selector: '.price.product-price',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 2,
-                        //selector:'.product-container.product-block div div div div .content_price .old-price.product-price',
                         selector: '.old-price.product-price',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
@@ -245,8 +240,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.product.name.product-item-name a',
-                        //selector:'.product-container.product-block div .product-image-container.image a',
                         selector: '.product_img_link',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'href'
@@ -259,7 +252,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.product-container.product-block div .product-image-container.image a img',
                         selector: '.replace-2x.img-responsive',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'src'
@@ -272,7 +264,6 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        //selector:'.product-container.product-block div div div h5 a',
                         selector: '.product-name',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
@@ -697,7 +688,7 @@ export const scrapCompanyConfiguration = [
         indHowToScrape: 'JSDOM',
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: false,
-        logoSelector: 'https://www.officedepot.co.cr/_ui/responsive/theme-officedepot/images/header-footer/footer2022/LG_ODMX2lineas.svg',//".hidden-md.hidden-lg.js-mobile-logo a img",
+        logoSelector: 'https://www.officedepot.co.cr/_ui/responsive/theme-officedepot/images/header-footer/footer2022/LG_ODMX2lineas.svg',
         attributeLogoSelector: 'src',
         mainSelector: '.product-cnt.clearfix',
         scrapingFields: [
@@ -1417,7 +1408,7 @@ export const scrapCompanyConfiguration = [
         indHowToScrape: 'JSON',
         replaceTextOnURL: 'SEARCH_TEXT',
         indLogoSelector: false,
-        logoSelector: 'https://www.ellagar.com/SERV_ADMIN_FILES/Archivos/Imagenes/Parametro/Suc_1/LOGO LAGAR.png',//".img-fluid",
+        logoSelector: 'https://www.ellagar.com/SERV_ADMIN_FILES/Archivos/Imagenes/Parametro/Suc_1/LOGO LAGAR.png',
         attributeLogoSelector: 'src',
         mainSelector: 'Data.PaginaItems',
         scrapingFields: [
@@ -1532,7 +1523,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: 'CodBarras',
+                        selector: 'Descripcion',//'CodBarras',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -1672,7 +1663,6 @@ export const scrapCompanyConfiguration = [
         referrer: "https://www.automercado.cr/",
         referrerPolicy: "strict-origin-when-cross-origin",
         body: "{\"requests\":[{\"indexName\":\"Product_CatalogueV2\",\"params\":\"query=SEARCH_TEXT&optionalWords=%5B%22SEARCH_TEXT%22%5D\"}]}",
-        //"{\"requests\":[{\"indexName\":\"Product_CatalogueV2\",\"params\":\"query=SEARCH_TEXT&optionalWords=%5B%22SEARCH_TEXT%22%5D&filters=NOT%20marca%3AMASTERCHEF&getRankingInfo=true&facets=%5B%22marca%22%2C%22addedSugarFree%22%2C%22fiberSource%22%2C%22lactoseFree%22%2C%22lfGlutemFree%22%2C%22lfOrganic%22%2C%22lfVegan%22%2C%22lowFat%22%2C%22lowSodium%22%2C%22preservativeFree%22%2C%22sweetenersFree%22%2C%22parentProductid%22%2C%22parentProductid2%22%2C%22parentProductid_URL%22%2C%22catecom%22%5D&facetFilters=%5B%5B%22storeDetail.06.storeid%3A06%22%5D%5D\",\"clickAnalytics\":true}]}",
         method: "POST",
         mode: "cors",
         credentials: "omit",
@@ -1704,19 +1694,19 @@ export const scrapCompanyConfiguration = [
                         attribute: null
                     },
                     {
-                        order: 2,
+                        order: 3,
                         selector: 'storeDetail.04.amount',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
-                        order: 2,
+                        order: 4,
                         selector: 'storeDetail.21.amount',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
-                        order: 2,
+                        order: 5,
                         selector: 'storeDetail.08.amount',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
