@@ -12,6 +12,7 @@ const apiRequesterEmail = 'maxwellmasis@gmail.com';
 const apiToken = 'EMXLXIL3ES';
 const DOLAR_BUY_EXCHANGE_INDICATOR = 317;
 const DOLAR_SALE_EXCHANGE_INDICATOR = 318;
+const TWO_DECIMAL_FORMAT = '0,0.00';
 
 /**
  * Get Dollar sale exchante rate from BCCR
@@ -44,7 +45,8 @@ async function getDollarExchangeRate(indicator) {
     const jsonData = JSON.parse(JSON.stringify(parseResponse, null, 2));
     // Get main key 
     const diffgram = jsonData.DataSet['diffgr:diffgram'];
-    currencyValue = numeral(diffgram[0].Datos_de_INGC011_CAT_INDICADORECONOMIC[0].INGC011_CAT_INDICADORECONOMIC[0].NUM_VALOR[0]).format('0.00');
+    currencyValue = numeral(diffgram[0].Datos_de_INGC011_CAT_INDICADORECONOMIC[0].INGC011_CAT_INDICADORECONOMIC[0].NUM_VALOR[0])
+      .format(TWO_DECIMAL_FORMAT);
   } catch (error) {
     console.log("Error while getting sale value", error);
     throw error;
@@ -71,7 +73,23 @@ async function parse(data) {
   return promise;
 }
 
+/**
+ * Get price formatted
+ * @param {*} price Price
+ */
+function getFormattedPrice(price) {
+  try {
+    if (null != price) {
+      return numeral(price).format(TWO_DECIMAL_FORMAT);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+  return price;
+}
+
 module.exports = {
   getDollarSaleExchangeRate,
   getDollarBuyExchangeRate,
+  getFormattedPrice
 };
