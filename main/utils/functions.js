@@ -439,31 +439,3 @@ export const numberToArray = (pageSize, size, currentPosition) =>{
     return { pagesArray: [], lastPage: 0 };
   }
 }
-
-export const numberToArray = (pageSize, size) =>{
-  try {
-    let counter = 0;
-    let index = 1;
-    const arrayToReturn = [];
-    while (counter < size) {
-      arrayToReturn.push(index);
-      counter = counter + pageSize;
-      index++;
-    }
-    return arrayToReturn;
-  } catch (error) {
-    return [];
-  }
-}
-
-export const saveSearchOnDB = (key) => {
-  try {
-    const { data } = localDataExists(key, true);
-    axios.post(`/api/search/save`, {
-      key: key,
-      result: data
-    });
-  } catch (error) {
-    //TODO Verify log management
-  }
-}
