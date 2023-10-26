@@ -22,29 +22,26 @@ export const getCompanyConfiguration = (companyID) => {
 }
 
 
-function formatNumber(monto) {
+function formatNumber(price) {
   // Eliminar cualquier separador de miles, si los hay, y reemplazar puntos decimales con comas
-  monto = monto.replace(/,/g, '.');
-  
-  // Comprobar si el monto es un número
-  if (isNaN(monto)) {
-    monto = monto.replace(/\./g, '').replace(/,/g, '.');
-    // Redondear el monto a dos decimales y convertirlo a una cadena
-    monto = parseFloat(monto).toFixed(2);
-    var partes = monto.split('.');
-    var parteEntera = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    var resultado = parteEntera + '.' + partes[1];
-    return resultado;
+  price = price.replace(/,/g, '.');
+  // Comprobar si el price es un número
+  if (isNaN(price)) {
+    price = price.replace(/\./g, '').replace(/,/g, '.');
+    // Redondear el price a dos decimales y convertirlo a una cadena
+    price = parseFloat(price).toFixed(2);
+    var parts = price.split('.');
+    var integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    var result = integerPart + '.' + parts[1];
+    return result;
   }
 
-  // Redondear el monto a dos decimales y convertirlo a una cadena
-  monto = parseFloat(monto).toFixed(2);
-
-  var partes = monto.split('.');
-  var parteEntera = partes[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  var resultado = parteEntera + '.' + partes[1];
-
-  return resultado;
+  // Redondear el price a dos decimales y convertirlo a una cadena
+  price = parseFloat(price).toFixed(2);
+  var parts = price.split('.');
+  var integerPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  var result = integerPart + '.' + parts[1];
+  return result;
 }
 
 export const paseStoreNumber = (number, indRoundNumber) => {
@@ -61,13 +58,16 @@ export const paseStoreNumber = (number, indRoundNumber) => {
     if (tempNumber.charAt(tempNumber.length - 2) == ".") {
       //FORMATO MONTO 4000.0
       tempNumber = tempNumber.replaceAll(",", "");
+    } else if (tempNumber.charAt(tempNumber.length - 2) == ",") {
+      //FORMATO MONTO 4000.0
+      tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", ".");
     } else if (tempNumber.charAt(tempNumber.length - 3) == ".") {
       //FORMATO MONTO 4000.00
-      tempNumber = tempNumber.replaceAll(",", "");
-    } else if (tempNumber.charAt(tempNumber.length - 4) == ".") {
-      //FORMATO MONTO 2000.000
-      tempNumber = tempNumber.replaceAll(",", "");
-    } else if (tempNumber.charAt(tempNumber.length - 5) == ".") {
+      tempNumber = tempNumber.replaceAll(",", "");     
+    } else if (tempNumber.charAt(tempNumber.length - 3) == ",") {
+      //FORMATO MONTO 4000,00
+      tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", ".");
+    }else if (tempNumber.charAt(tempNumber.length - 5) == ".") {
       //FORMATO MONTO 2000.0000
       tempNumber = tempNumber.replaceAll(",", "");
     } else if (tempNumber.charAt(tempNumber.length - 6) == ".") {
@@ -76,13 +76,13 @@ export const paseStoreNumber = (number, indRoundNumber) => {
     } else if (tempNumber.charAt(tempNumber.length - 7) == ".") {
       //FORMATO MONTO 4000.0000000
       tempNumber = tempNumber.replaceAll(",", "");
-    } else if (tempNumber.charAt(tempNumber.length - 8) == ".") {
+    } else if (tempNumber.charAt(tempNumber.length - 9) == ".") {
       //FORMATO MONTO 4000.0000000
       tempNumber = tempNumber.replaceAll(",", "");
-    } else if (tempNumber.charAt(tempNumber.length - 3) == ",") {
-      //FORMATO MONTO 4000,00
-      tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", ".");
-    } 
+    } else if (tempNumber.charAt(tempNumber.length - 10) == ".") {
+      //FORMATO MONTO 4000.0000000
+      tempNumber = tempNumber.replaceAll(",", "");
+    }   
     else {
       //OTRO FORMATO
       tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", "")
