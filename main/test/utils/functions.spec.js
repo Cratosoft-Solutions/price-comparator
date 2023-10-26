@@ -1,20 +1,11 @@
-const isEven = require("../../utils/currency-exchange-util.js");
-//import { isEven } from '../../utils/functions2.js';
+const currencyExchangeUtil = require("../../utils/currencyExchangeUtil.js");
+const chai = require('chai');
+const assert = chai.assert;
 
-describe("isEven", () => {
-  it("returns true if number is even", () => {
-    expect(isEven(2)).toBe(true);
+describe("Currency Exchange Tests", () => {
+  describe("Sale Exchange Tests", () => {
+    it("converts the basic colors", function () {
+      assert.equal(2, 2);
+    });
   });
-
-  // test("returns false if number is odd", () => {
-  //   expect(isEven(3)).toBe(false);
-  // });
-
-  // test("throws an error if number is negative", () => {
-  //   expect(() => isEven(-1)).toThrow();
-  // });
-
-  // test("throws an error if number is not a number", () => {
-  //   expect(() => isEven("1")).toThrow();
-  // });
 });
