@@ -28,7 +28,7 @@ const ProductList = ({isOptionSearchExpanded}) => {
         {!loading && mergedProducts && (
           <>
             <HorizontalCardList mergedProducts={mergedProducts} />
-            <PaginationControls tableItemsAmount={mergedProducts.length} size={size}/>
+            <PaginationControls tableItemsAmount={mergedProducts.length} size={size} />
           </>
         )}
         {loading && <HorizontalCardListLoading />}

@@ -9,7 +9,7 @@ import { numberToArray } from "@utils/functions";
 const PaginationControls = ({size, tableItemsAmount}) => {
   const [active, setActive] = React.useState(1);
   const dispatch = useDispatch();
-  const pagesArray = numberToArray(size,tableItemsAmount);
+  const {pagesArray, lastPage} = numberToArray(size, tableItemsAmount, active);
 
   const getItemProps = (index) => ({
     variant: active === index ? "filled" : "text",
@@ -22,7 +22,7 @@ const PaginationControls = ({size, tableItemsAmount}) => {
   });
 
   const next = () => {
-    if (active === pagesArray.length) return;
+    if (active === lastPage) return;
 
     setActive(active + 1);
     dispatch(setPage(active + 1));
@@ -56,7 +56,7 @@ const PaginationControls = ({size, tableItemsAmount}) => {
           variant="text"
           className="flex items-center gap-2"
           onClick={next}
-          disabled={active === pagesArray.length}
+          disabled={active === lastPage}
         >
           Siguiente
           <AiOutlineArrowRight strokeWidth={2} className="h-4 w-4" />

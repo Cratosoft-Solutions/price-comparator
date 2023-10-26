@@ -420,19 +420,23 @@ export const saveUserSearch = async (Tags, UserSearch, tagData, user) => {
   }
 }
 
-export const numberToArray = (pageSize, size) =>{
+export const numberToArray = (pageSize, size, currentPosition) =>{
   try {
-    let counter = 0;
-    let index = 1;
+    const lastPage = Math.ceil(size / pageSize);
+    const margin =
+      currentPosition == lastPage ? 4 : currentPosition > lastPage - 2 ? 3 : 2;
+    let initialPosition =
+      currentPosition - margin < 1 ? 1 : currentPosition - margin;
+
     const arrayToReturn = [];
-    while (counter < size) {
-      arrayToReturn.push(index);
-      counter = counter + pageSize;
-      index++;
+
+    for (var i = 0; i < 5; i++) {
+      if (initialPosition <= lastPage) arrayToReturn.push(initialPosition);
+      initialPosition++;
     }
-    return arrayToReturn;
+    return { pagesArray: arrayToReturn, lastPage: lastPage };
   } catch (error) {
-    return [];
+    return { pagesArray: [], lastPage: 0 };
   }
 }
 
