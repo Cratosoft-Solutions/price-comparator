@@ -84,7 +84,7 @@ export async function scrapingWithJsdom(urlToScrap, company, params) {
     //if (!company.indRigthAmountFormat) {
     if (currentProducts.length > 0) {
       currentProducts.forEach((element, index) => {
-        currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice, company.indRoundNumber)/*  * 1 */;
+        currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice)/*  * 1 */;
       });
     }
     //console.log('#PASER 10 - JSDOM');
@@ -228,7 +228,7 @@ export async function scrapingWithHttpRequest(urlToScrap, company, params) {
       });
       if (currentProducts.length > 0) {
         currentProducts.forEach((element, index) => {
-          currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice, company.indRoundNumber)/*  * 1 */;
+          currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice)/*  * 1 */;
         });
       }
       //console.log(currentProducts);
