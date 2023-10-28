@@ -4,6 +4,8 @@ import axios from 'axios';
 import { CATEGORIES } from './constants';
 import { scrapCompanyConfiguration } from "@utils/comercios";
 
+const currencyExchangeUtil = require('./currencyExchangeUtil');
+
 
 export const isUserAuthenticathed = (status) => {
   try {
@@ -44,54 +46,58 @@ function formatNumber(price) {
   return result;
 }
 
-export const paseStoreNumber = (number, indRoundNumber) => {
-  try {
-    if (indRoundNumber) {
-      number = Math.round(number);
-    }
-    let tempNumber;
-    if (typeof number == 'string') {
-      tempNumber = number.trim().replace(/[^0-9,.]/g, '');
-    } else {
-      tempNumber = String(number);
-    }
-    if (tempNumber.charAt(tempNumber.length - 2) == ".") {
-      //FORMATO MONTO 4000.0
-      tempNumber = tempNumber.replaceAll(",", "");
-    } else if (tempNumber.charAt(tempNumber.length - 2) == ",") {
-      //FORMATO MONTO 4000.0
-      tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", ".");
-    } else if (tempNumber.charAt(tempNumber.length - 3) == ".") {
-      //FORMATO MONTO 4000.00
-      tempNumber = tempNumber.replaceAll(",", "");     
-    } else if (tempNumber.charAt(tempNumber.length - 3) == ",") {
-      //FORMATO MONTO 4000,00
-      tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", ".");
-    }else if (tempNumber.charAt(tempNumber.length - 5) == ".") {
-      //FORMATO MONTO 2000.0000
-      tempNumber = tempNumber.replaceAll(",", "");
-    } else if (tempNumber.charAt(tempNumber.length - 6) == ".") {
-      //FORMATO MONTO 2000.00000
-      tempNumber = tempNumber.replaceAll(",", "");
-    } else if (tempNumber.charAt(tempNumber.length - 7) == ".") {
-      //FORMATO MONTO 4000.0000000
-      tempNumber = tempNumber.replaceAll(",", "");
-    } else if (tempNumber.charAt(tempNumber.length - 9) == ".") {
-      //FORMATO MONTO 4000.0000000
-      tempNumber = tempNumber.replaceAll(",", "");
-    } else if (tempNumber.charAt(tempNumber.length - 10) == ".") {
-      //FORMATO MONTO 4000.0000000
-      tempNumber = tempNumber.replaceAll(",", "");
-    }   
-    else {
-      //OTRO FORMATO
-      tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", "")
-    }
-    tempNumber = formatNumber(tempNumber.trim());
-    return tempNumber;
-  } catch (error) {
-    return -1;
-  }
+// export const paseStoreNumber = (number, indRoundNumber) => {
+//   try {
+//     if (indRoundNumber) {
+//       number = Math.round(number);
+//     }
+//     let tempNumber;
+//     if (typeof number == 'string') {
+//       tempNumber = number.trim().replace(/[^0-9,.]/g, '');
+//     } else {
+//       tempNumber = String(number);
+//     }
+//     if (tempNumber.charAt(tempNumber.length - 2) == ".") {
+//       //FORMATO MONTO 4000.0
+//       tempNumber = tempNumber.replaceAll(",", "");
+//     } else if (tempNumber.charAt(tempNumber.length - 2) == ",") {
+//       //FORMATO MONTO 4000.0
+//       tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", ".");
+//     } else if (tempNumber.charAt(tempNumber.length - 3) == ".") {
+//       //FORMATO MONTO 4000.00
+//       tempNumber = tempNumber.replaceAll(",", "");     
+//     } else if (tempNumber.charAt(tempNumber.length - 3) == ",") {
+//       //FORMATO MONTO 4000,00
+//       tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", ".");
+//     }else if (tempNumber.charAt(tempNumber.length - 5) == ".") {
+//       //FORMATO MONTO 2000.0000
+//       tempNumber = tempNumber.replaceAll(",", "");
+//     } else if (tempNumber.charAt(tempNumber.length - 6) == ".") {
+//       //FORMATO MONTO 2000.00000
+//       tempNumber = tempNumber.replaceAll(",", "");
+//     } else if (tempNumber.charAt(tempNumber.length - 7) == ".") {
+//       //FORMATO MONTO 4000.0000000
+//       tempNumber = tempNumber.replaceAll(",", "");
+//     } else if (tempNumber.charAt(tempNumber.length - 9) == ".") {
+//       //FORMATO MONTO 4000.0000000
+//       tempNumber = tempNumber.replaceAll(",", "");
+//     } else if (tempNumber.charAt(tempNumber.length - 10) == ".") {
+//       //FORMATO MONTO 4000.0000000
+//       tempNumber = tempNumber.replaceAll(",", "");
+//     }   
+//     else {
+//       //OTRO FORMATO
+//       tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", "")
+//     }
+//     tempNumber = formatNumber(tempNumber.trim());
+//     return tempNumber;
+//   } catch (error) {
+//     return -1;
+//   }
+// }
+
+export const paseStoreNumber = (number) => {
+  return currencyExchangeUtil.getFormattedPrice(number);
 }
 
 export function comparePrice(property, order) {
