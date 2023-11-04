@@ -1,14 +1,17 @@
 "use client";
-import React from 'react';
+import React, {useEffect} from 'react';
 import Search from '@components/Search';
-import UserSearches from '@components/UserSearches';
+import withAuth from '@app/HOCs/AuthHOC';
 
 
-const MySearch = () => {
-
+const MySearch = ({refreshToken}) => {
+  useEffect(() => {
+    refreshToken();
+  }, [])
+  
   return (
       <Search />
   );
 }
 
-export default MySearch;
+export default withAuth(MySearch);

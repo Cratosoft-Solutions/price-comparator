@@ -3,10 +3,15 @@ import Search from '@models/search';
 import Tags from "@models/searchTags";
 import UserSearch from "@models/userSearch";
 import { genericDatabaseOperation, saveUserSearch } from "@utils/functions";
+import { isTokenValid } from '@utils/authFunctionsServer';
 
 
 export const POST = async (req) => {
     try {
+        //Endpoint Token Validation
+        const tokenStatus = await isTokenValid();
+        if(!tokenStatus) return new Response("Unauthorized Access " + req.method, { status: 401});
+        
         const searchToSearch = await req.json();
          //DB
          await connectToDB();

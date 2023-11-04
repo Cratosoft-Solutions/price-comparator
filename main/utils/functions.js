@@ -1,8 +1,9 @@
 import { redirect } from 'next/navigation';
 import { compress, decompress } from 'compress-json';
 import axios from 'axios';
-import { CATEGORIES } from './constants';
+import { AUTH_MESSAGES, CATEGORIES, NOT_CONTROLED_ERROR, PASSWORD_REGEX_VAL } from './constants';
 import { scrapCompanyConfiguration } from "@utils/comercios";
+import Swal from 'sweetalert2';
 
 const currencyExchangeUtil = require('./currencyExchangeUtil');
 
@@ -443,5 +444,68 @@ export const numberToArray = (pageSize, size, currentPosition) =>{
     return { pagesArray: arrayToReturn, lastPage: lastPage };
   } catch (error) {
     return { pagesArray: [], lastPage: 0 };
+  }
+}
+
+export const mapErrorToMessage =(id)=>{
+  try {
+    
+    return AUTH_MESSAGES.filter(element => element.id == id)[0].message||NOT_CONTROLED_ERROR;
+  } catch (error) {
+    return NOT_CONTROLED_ERROR;
+  }
+}
+
+export const processMessageAlert =(message, type, timeToClose=5000, html="Ventana se cerrará en <b></b> segundos.")=>{
+try {
+  if(type=="TIMER"){
+      let timerInterval
+      Swal.fire({
+        title: message,
+        html: html,
+        timer: timeToClose,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading()
+          const b = Swal.getHtmlContainer().querySelector('b')
+          timerInterval = setInterval(() => {
+            b.textContent = Math.ceil(Swal.getTimerLeft()/1000) 
+          }, 1000)
+        },
+        willClose: () => {
+          clearInterval(timerInterval)
+        }
+      }).then((result) => {
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log('Cerrado por el timer')
+        }
+      })
+  }
+} catch (error) {
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Se dio un error no controlado: ' + error.message
+  })
+}
+}
+
+export const validateCredentials = (formData)=>{
+  try {
+    console.log(formData);
+      const {email, password} = formData;
+      if(email===password)
+        return false;
+
+        //Minimo 8 caracteres, al menos una letra, un numero y un caracter especial
+        const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]).{8,}$/;
+        
+        if (!regex.test(password)) 
+          return false;
+
+        return true; 
+  } catch (error) {
+    console.log(error);
+    return false;
   }
 }

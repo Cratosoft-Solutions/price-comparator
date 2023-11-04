@@ -1,4 +1,13 @@
-export default function Loading() {
+import ReactLoading from "react-loading";
+
+export default function Loading({message}) {
+  if(message)
+    return (    
+      <div className="container flex justify-center items-center w-full h-screen gap-3">
+          <ReactLoading type="bars" color="orange"/>
+          <p>{message}</p>
+      </div>)
+
   return (
     <div className="grid h-screen place-items-center">
       <div
