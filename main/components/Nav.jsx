@@ -3,11 +3,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { useRouter } from 'next/navigation';
+
 
 const Nav = () => {
   const { data: session } = useSession();
+  const router = useRouter();
   const [providers, setProviders] = useState(null);
   const [toogleDropDown, setToogleDropDown] = useState(false);
+  const [toogleDropDownNotSession, setToogleDropDownNotSession] = useState(false);
+
 
   useEffect(() => {
     const setUpProviders = async () => {
@@ -31,51 +36,12 @@ const Nav = () => {
         <p className="text-medium font-bold text-black">Comparando precios</p>
       </Link>
       
-      {/* Desktop navitation */}
-      <div className="sm:flex hidden">
-        {session?.user ? (
-          <div className="flex gap-3 md:gap-5">
-            <Link href="/adminStore" className="black_btn">
-              Mi tienda
-            </Link>
-            <button type="button" onClick={(e)=>{e.preventDefault(); signOut(); }} className="outline_btn">
-              Salir
-            </button>
-            <Link href="/profile">
-              <Image
-                src={session?.user.image}
-                width={37}
-                height={37}
-                className="rounded-full"
-                alt="profile"
-              />
-            </Link>
-          </div>
-        ) : (
-          <>
-            {providers &&
-              Object.values(providers).map((provider) => (
-                <button
-                  type="button"
-                  key={provider.name}
-                  onClick={(e) => {
-                    e.preventDefault(); 
-                    signIn(provider.id);
-                  }}
-                  className="black_btn"
-                >
-                  Ingresar
-                </button>
-              ))}
-          </>
-        )}
-      </div>
       {/* Mobile navigation*/}
-      <div className="sm:hidden flex relative">
+      <div className="flex relative">
         {session?.user ? (
           <div className="flex">
             <Image
-              src={session?.user.image}
+              src={session?.user?.image? session.user.image:"/assets/images/userProfile.png"}
               width={37}
               height={37}
               className="rounded-full"
@@ -87,43 +53,42 @@ const Nav = () => {
                 <Link
                   href="/profile"
                   className="dropdown_link"
-                  onClick={() => setToogleDropDown(false)}
-                >
-                  Mi perfil
-                </Link>
-                <Link href="/adminStore" className="black_btn">
-                  Mi tienda
-                </Link>
-                <button
-                  type="button"
                   onClick={(e) => {
                     e.preventDefault(); 
                     setToogleDropDown(false);
                     signOut();
-                  }}
-                  className="mt-5 w-full black_btn"
-                >
-                  Sign Out
-                </button>
+                  }}                >
+                  Cerrar Sesión
+                </Link> 
               </div>
             )}
           </div>
         ) : (
           <>
-            {providers &&
-              Object.values(providers).map((provider) => (
-                <button
-                  type="button"
-                  key={provider.name}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    signIn(provider.id);
-                  }}
-                  className="black_btn"
+          <div className="flex">
+            <Image
+              src={'/assets/images/userProfile.png'}
+              width={37}
+              height={37}
+              className="rounded-full bg-gray-50"
+              alt="profile"
+              onClick={() => setToogleDropDownNotSession((prev) => !prev)}
+            />
+            {toogleDropDownNotSession && (
+              <div className="dropdown">
+                <Link
+                  href="/login"
+                  className="dropdown_link"
+                  onClick={() => setToogleDropDownNotSession(false)}
                 >
-                  Sign In
-                </button>
-              ))}
+                  Ingresar
+                </Link>
+                <Link href="/register" className="dropdown_link">
+                  Registrarme
+                </Link>
+              </div>
+            )}
+          </div>
           </>
         )}
       </div>

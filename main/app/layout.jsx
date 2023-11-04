@@ -1,8 +1,10 @@
+"use client";
 import "@styles/globals.css";
 import Nav from "@components/Nav";
 import Provider from "@components/Provider";
 import ScrollToTopButton from "@components/ScrollToTop";
 import ProviderRedux from "./redux/provider/provider";
+import { usePathname } from "next/navigation";
 
 export const medatada = {
   title: "Cratosoft Comparador de Precios",
@@ -10,19 +12,25 @@ export const medatada = {
 };
 
 const RootLayout = ({ children }) => {
+  const pathname = usePathname();
   return (
     <html lang="en">
       <ProviderRedux>
         <body className="__variable_7dbc08 __variable_20951f">
           <Provider>
-            <div  className="site-background">
+            <div className="site-background">
               <div />
             </div>
             <main className="app">
-              <Nav />
-              <div className="mt-[7rem]" />
-                {children}
-                <ScrollToTopButton/>
+              {(pathname != "/login" && pathname != "/register") ? (
+                <>
+                  <Nav />
+                  <div className="mt-[7rem]" />
+                </>
+              ) : null}
+
+              {children}
+              <ScrollToTopButton />
             </main>
           </Provider>
         </body>

@@ -36,3 +36,64 @@ export const STORE_BY_CATEGORY = [
 {category:12, stores:[912,901,4,6,8,30]},
  {category:13, stores:[901,2,4,6,35,8,912,913,14,30,933,910,911]} 
 ] 
+
+const checkIcon=`<div class="checkIcon"><svg class="w-3.5 h-3.5 mr-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+</svg></div>`
+
+export const AUTH_MESSAGES = [
+  {
+    id: "CredentialsSignin",
+    title:"Ocurrió un error al autenticarse, favor verifique.",
+    time:5000,
+    type:"TIMER",
+    message: "Ventana se cerrará en <b></b> segundos.",
+  },
+  {
+    id:"UserDoesNotExist",
+    title:"Usuario no existe, favor verifique.",
+    time:5000,
+    type:"TIMER",
+    message: "Ventana se cerrará en <b></b> segundos.",
+  },
+  {
+    id:"AuthBadProvider",
+    title:"Utilizaste otro proveedor para la autenticación, favor verifica.",
+    time:5000,
+    type:"TIMER",
+    message: "Ventana se cerrará en <b></b> segundos.",
+  },
+  {
+    id:"BadPassword",
+    title:"Credenciales incorrectas, favor verifica.",
+    time:5000,
+    type:"TIMER",
+    message: "Ventana se cerrará en <b></b> segundos.",
+  },
+  {
+    id:"UserDoesExist",
+    title:"Usuario ya existe, favor verifica.",
+    time:5000,
+    type:"TIMER",
+    message: "Ventana se cerrará en <b></b> segundos.",
+  },
+  {
+    id: "PasswordValidationFormat",
+    title:"Error en formato de contraseña",
+    time:7000,
+    type:"TIMER",
+    message:
+      `<h2 class="mb-2 text-lg font-semibold text-gray-900" >Su contraseña no cumple con las siguientes condiciones:</h2> <br/>
+      <ul class="max-w-md space-y-1 text-red-500 list-disc ">
+      <li class="li-list"> ${checkIcon} <p>Al menos una letra mayúscula</p></li>
+      <li class="li-list" > ${checkIcon}Al menos una letra minúscula</li>
+      <li class="li-list"> ${checkIcon}Al menos un número del 1 al 9</li>
+      <li class="li-list"> ${checkIcon}Al menos una caracter especial</li>
+      <li class="li-list"> ${checkIcon}Longitud mínima de 8 caracteres</li>
+      </ul> <br/> Ventana se cerrará en <b></b> segundos.`,
+  },
+];  
+
+export const NOT_CONTROLED_ERROR = "Error no controlado, favor intente nuevamente."
+
+export const PASSWORD_VAL_MESSAGE = ""
