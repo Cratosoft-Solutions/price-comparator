@@ -8,7 +8,13 @@ const MobileProductCard = ({ product, index }) => {
         style={{ cursor: "auto" }}
       >
         <div className="relative w-32 h-32 !max-h-32 flex-shrink-0">
-          <div className="absolute left-0 top-0 w-full h-full flex items-center justify-center container-blur">
+          <div className="absolute left-0 top-0 w-full h-full flex items-center justify-center container-blur product-image">
+          <a
+            href={product.vendorLink}
+            className="inline-flex items-center font-medium text-orange-500 dark:text-blue-500 hover:underline"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             <img
               alt="Placeholder Photo"
               className="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50"
@@ -16,7 +22,9 @@ const MobileProductCard = ({ product, index }) => {
               src={product.productImage}
             />
           <div className="centered-blur">REFERENCIA</div>
+          </a>
           </div>
+          
         </div>
 
           {product.companyLogo && (

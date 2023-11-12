@@ -6,6 +6,7 @@ import { genericDatabaseOperation, saveUserSearch } from "@utils/functions";
 import { isTokenValid } from '@utils/authFunctionsServer';
 
 
+
 export const POST = async (req) => {
     try {
         //Endpoint Token Validation

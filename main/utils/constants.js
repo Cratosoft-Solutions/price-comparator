@@ -97,3 +97,5 @@ export const AUTH_MESSAGES = [
 export const NOT_CONTROLED_ERROR = "Error no controlado, favor intente nuevamente."
 
 export const PASSWORD_VAL_MESSAGE = ""
+
+export const AUTH_CREDENTIALS = "QZqynwDHyoKNAWWhnpydAkCBFYDtjOoSVHwPlwOuRRX2pcXPQFu0Sw1DGxdyoKzl2jjeKiplxE+QhxETejPRxhE4RkWh+UL13ufMZ0a4SDouzz3Uf1sS9ULpaUeG31fYlAabT9CUmV8z24fszNUqAPSHNJl62v7tREVZA+7SqAo=";

@@ -490,7 +490,7 @@ try {
 }
 }
 
-export const validateCredentials = (formData)=>{
+export const validateCredentials = (formData, isLogin)=>{
   try {
     console.log(formData);
       const {email, password} = formData;
@@ -500,7 +500,7 @@ export const validateCredentials = (formData)=>{
         //Minimo 8 caracteres, al menos una letra, un numero y un caracter especial
         const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]).{8,}$/;
         
-        if (!regex.test(password)) 
+        if (!regex.test(password) && !isLogin) 
           return false;
 
         return true; 

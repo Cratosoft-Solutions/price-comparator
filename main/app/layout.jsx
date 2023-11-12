@@ -28,7 +28,6 @@ const RootLayout = ({ children }) => {
                   <div className="mt-[7rem]" />
                 </>
               ) : null}
-
               {children}
               <ScrollToTopButton />
             </main>

@@ -8,13 +8,19 @@ const ProductCard = ({ logo, product, index }) => {
       className="block bg-transparent p-2 shadow-none w-60"
     >
       <div
-        className="relative overflow-hidden bg-cover bg-no-repeat"
+        className="relative overflow-hidden bg-cover bg-no-repeat product-image"
         data-te-ripple-init
         data-te-ripple-color="light"
       >
+        <a
+          href={product.vendorLink}
+          className="inline-flex items-center font-medium text-orange-500 dark:text-blue-500 hover:underline"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
         <div className="container-blur">
           <img
-            className="object-contain h-60 w-60"
+            className="object-contain h-60 w-60 "
             src={
               product.productImage == ""
                 ? "https://www.edelar.com.ar/static/theme/images/sin_imagen.jpg"
@@ -35,6 +41,7 @@ const ProductCard = ({ logo, product, index }) => {
             alt={product.productName}
           />
         )}
+       </a>
       </div>
       <div className="p-6">
         <p className="text-gray-800 dark:text-orange-600 w-full max-h-20 h-20 text-ellipsis overflow-hidden">
