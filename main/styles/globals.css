@@ -171,7 +171,16 @@
 }
 
 .dropdown {
-  @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
+  @apply absolute border right-0 top-full mt-3 w-full p-5 rounded-lg bg-white shadow w-fit flex flex-col gap-2 justify-end items-end;
+}
+
+.dropdown:hover{
+  @apply transition ease-in-out delay-150 -translate-y-1 scale-110 bg-gray-50 duration-300
+}
+
+.product-image:hover{
+  @apply transition ease-in-out delay-150 -translate-y-1 scale-125  duration-300
+
 }
 
 .dropdown_link {

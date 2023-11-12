@@ -21,10 +21,9 @@ const LoginRegister = ({isLogin=true}) => {
 
     const executeOnCredentialLogin = (e)=>{
       e.preventDefault();
-      const passValidation = validateCredentials(formData);
+      const passValidation =  validateCredentials(formData, isLogin);
       if(!passValidation){
         const {title, message, time, type} = AUTH_MESSAGES.filter(element => element.id == "PasswordValidationFormat")[0];
-        alert(title);
         processMessageAlert(title, type, time,message)} 
         else{
           executeSign();
@@ -69,7 +68,7 @@ const LoginRegister = ({isLogin=true}) => {
     <section className="bg-white">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a
-          href="/login"
+          href="/"
           className="orange_gradient flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         >
           <img
@@ -124,7 +123,7 @@ const LoginRegister = ({isLogin=true}) => {
               <div className="flex items-center justify-between">
                 <div className="flex items-start">
                   <div className="flex items-center h-5">
-                    {isLogin? <span>¿Sin cuenta? <Link className="dropdown_link" href={'/login'}>Registrarme</Link> </span>:<span>¿Ya tienes cuenta? <Link className="dropdown_link" href={'/login'}>Ingresar</Link> </span>}
+                    {isLogin? <span>¿Sin cuenta? <Link className="dropdown_link" href={'/register'}>Registrarme</Link> </span>:<span>¿Ya tienes cuenta? <Link className="dropdown_link" href={'/login'}>Ingresar</Link> </span>}
                   </div>
                 </div>
                 <a
