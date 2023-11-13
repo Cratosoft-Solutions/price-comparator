@@ -1,7 +1,10 @@
 const crypto = require("crypto");
 const fs = require("fs");
+import path from "path";
 
-const privateKey = fs.readFileSync("./utils/security/private-key.pem", "utf-8");
+const directoryPath = path.resolve('./utils/security/private-key.pem'); 
+
+const privateKey = fs.readFileSync(directoryPath, "utf-8");
 
 export const decryptData = (base64EncryptedText) => {
   // Decode base64
