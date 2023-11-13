@@ -19,6 +19,7 @@ export const POST = async (req) => {
         {
           key: searchToSave.key,
           result: searchToSave.result,
+          expireAt: searchToSave.expireAt
         },
         "CREATE"
       ); 

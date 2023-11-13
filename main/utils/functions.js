@@ -174,7 +174,8 @@ export const saveSearchOnDB = (key) => {
     const { data } = localDataExists(key, true);
     axios.post(`/api/search/save`, {
       key: key,
-      result: data
+      result: data,
+      expireAt: new Date()
     });
   } catch (error) {
     //TODO Verify log management
