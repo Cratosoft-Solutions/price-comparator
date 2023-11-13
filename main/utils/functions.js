@@ -6,6 +6,8 @@ import { scrapCompanyConfiguration } from "@utils/comercios";
 
 const currencyExchangeUtil = require('./currencyExchangeUtil');
 
+import {closest} from 'fastest-levenshtein';
+
 
 export const isUserAuthenticathed = (status) => {
   try {
@@ -45,56 +47,6 @@ function formatNumber(price) {
   var result = integerPart + '.' + parts[1];
   return result;
 }
-
-// export const paseStoreNumber = (number, indRoundNumber) => {
-//   try {
-//     if (indRoundNumber) {
-//       number = Math.round(number);
-//     }
-//     let tempNumber;
-//     if (typeof number == 'string') {
-//       tempNumber = number.trim().replace(/[^0-9,.]/g, '');
-//     } else {
-//       tempNumber = String(number);
-//     }
-//     if (tempNumber.charAt(tempNumber.length - 2) == ".") {
-//       //FORMATO MONTO 4000.0
-//       tempNumber = tempNumber.replaceAll(",", "");
-//     } else if (tempNumber.charAt(tempNumber.length - 2) == ",") {
-//       //FORMATO MONTO 4000.0
-//       tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", ".");
-//     } else if (tempNumber.charAt(tempNumber.length - 3) == ".") {
-//       //FORMATO MONTO 4000.00
-//       tempNumber = tempNumber.replaceAll(",", "");     
-//     } else if (tempNumber.charAt(tempNumber.length - 3) == ",") {
-//       //FORMATO MONTO 4000,00
-//       tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", ".");
-//     }else if (tempNumber.charAt(tempNumber.length - 5) == ".") {
-//       //FORMATO MONTO 2000.0000
-//       tempNumber = tempNumber.replaceAll(",", "");
-//     } else if (tempNumber.charAt(tempNumber.length - 6) == ".") {
-//       //FORMATO MONTO 2000.00000
-//       tempNumber = tempNumber.replaceAll(",", "");
-//     } else if (tempNumber.charAt(tempNumber.length - 7) == ".") {
-//       //FORMATO MONTO 4000.0000000
-//       tempNumber = tempNumber.replaceAll(",", "");
-//     } else if (tempNumber.charAt(tempNumber.length - 9) == ".") {
-//       //FORMATO MONTO 4000.0000000
-//       tempNumber = tempNumber.replaceAll(",", "");
-//     } else if (tempNumber.charAt(tempNumber.length - 10) == ".") {
-//       //FORMATO MONTO 4000.0000000
-//       tempNumber = tempNumber.replaceAll(",", "");
-//     }   
-//     else {
-//       //OTRO FORMATO
-//       tempNumber = tempNumber.replaceAll(".", "").replaceAll(",", "")
-//     }
-//     tempNumber = formatNumber(tempNumber.trim());
-//     return tempNumber;
-//   } catch (error) {
-//     return -1;
-//   }
-// }
 
 export const paseStoreNumber = (number) => {
   return currencyExchangeUtil.getFormattedPrice(number);
@@ -167,23 +119,38 @@ export const deleteStorageData = (key,) => {
 }
 
 export const formatKeyForStorage = (category, searchText) => {
-  const today = new Date();
-  const yyyy = today.getFullYear();
-  let mm = today.getMonth() + 1;
-  let dd = today.getDate();
-  return yyyy + "-" + mm + "-" + dd + "-" + category + "-" + searchText.toUpperCase().split(" ").join('.');
+  return searchText.toUpperCase();
 }
 
 export const localDataExists = (key, resultDecompressed = false) => {
   try {
-    const item = window.sessionStorage.getItem(key);
-    if (item != null) {
-      const decompressed = decompressObject(JSON.parse(item));
-      return { localData: true, data: resultDecompressed ? item : decompressed, saveOnStorage: decompressed.length > 0 ? true : false }
-    } else {
-      return { localData: false, data: null, saveOnStorage: false }
+    console.log("Starting checking data");
+    const sessionKeywords = Object.keys(window.sessionStorage);
+    // Validate data
+    if (sessionKeywords != null && sessionKeywords.length > 0) {
+      const regex = new RegExp(key, "i"); // 'i' for case-insensitive search
+      // Find keywords that match with search key
+      const matchedKeys = sessionKeywords.filter((word) => regex.test(word));
+      console.log("Values found: " + JSON.stringify(matchedKeys));
+      if (matchedKeys != null && matchedKeys.length > 0) {
+        // Get more accurate result
+        const closestKey = closest(key, matchedKeys);
+        console.log("Session closest key" + closestKey);
+        const item = window.sessionStorage.getItem(closestKey);
+        if (item != null) {
+          console.log("Item exists on memory");
+          const decompressed = decompressObject(JSON.parse(item));
+          return {
+            localData: true,
+            data: resultDecompressed ? item : decompressed,
+            saveOnStorage: decompressed.length > 0 ? true : false,
+          };
+        }
+      }
     }
+    return { localData: false, data: null, saveOnStorage: false };
   } catch (error) {
+    console.log('Error', error);
     return { localData: false, data: null, saveOnStorage: null };
   }
 }
@@ -203,6 +170,7 @@ const decompressObject = (storageObject) => {
 
 export const saveSearchOnDB = (key) => {
   try {
+    console.log('Starting saving' + key)
     const { data } = localDataExists(key, true);
     axios.post(`/api/search/save`, {
       key: key,
@@ -215,6 +183,7 @@ export const saveSearchOnDB = (key) => {
 
 export const getSearchDataFromDataBase = async (key, user) => {
   try {
+    console.log("Redirect to validate");
     const response = await axios.post(`/api/search/validate`, {
       key: key,
       user: user
@@ -371,7 +340,7 @@ export async function checkImage(url) {
   }
 }
 
-export const genericDatabaseOperation = async (model, params, type, updateValue=null) => {
+export const genericDatabaseOperation = async (model, params, type, updateValue=null, projection = null) => {
   try {
     let result;
     switch (type) {
@@ -387,6 +356,9 @@ export const genericDatabaseOperation = async (model, params, type, updateValue=
       case "FIND":
         result = await model.find(params);
         break;  
+      case "FIND_WITH_PROJECTION":
+          result = await model.find(params, projection);
+          break;  
       case "UPDATEONE":
         result = await model.updateOne(params, updateValue);
         break;            
@@ -444,4 +416,18 @@ export const numberToArray = (pageSize, size, currentPosition) =>{
   } catch (error) {
     return { pagesArray: [], lastPage: 0 };
   }
+}
+
+export function escapeRegex(searchText) {
+  try {
+    return searchText.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+  } catch (err) {
+    console.log(err);
+    return searchText;
+  }
+};
+
+export function containsOnlyNumbers(inputString) {
+  const numberRegex = /^\s*\d+\s*$/;
+  return numberRegex.test(inputString);
 }

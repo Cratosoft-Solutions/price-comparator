@@ -19,6 +19,7 @@
     "chai": "^4.3.10",
     "cheerio": "^1.0.0-rc.12",
     "compress-json": "^2.1.2",
+    "fuzzy-comparison": "^2.0.0",
     "imask": "^7.1.2",
     "jsdom": "^22.1.0",
     "keen-slider": "^6.8.6",
