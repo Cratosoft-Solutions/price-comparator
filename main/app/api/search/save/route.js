@@ -1,9 +1,14 @@
 import { connectToDB } from "@utils/database";
 import Search from "@models/search";
 import { genericDatabaseOperation } from "@utils/functions";
+import { isTokenValid } from '@utils/authFunctionsServer';
 
 export const POST = async (req) => {
   try {
+    //Endpoint Token Validation
+    const tokenStatus = await isTokenValid();
+    if(!tokenStatus) return new Response("Unauthorized Access " + req.method, { status: 401});
+    
     const searchToSave = await req.json();
     let createdID;
     //SERVERLESS LAMBDA DYNAMODB

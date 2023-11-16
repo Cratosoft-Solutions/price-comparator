@@ -2,10 +2,16 @@ import { connectToDB } from "@utils/database";
 import UserSearch from "@models/userSearch";
 import Tags from "@models/searchTags";
 import { genericDatabaseOperation } from "@utils/functions";
+import { isTokenValid } from '@utils/authFunctionsServer';
 
 
 export const GET = async (req, { params }) => {
     try {
+
+        //Endpoint Token Validation
+        const tokenStatus = await isTokenValid();
+        if(!tokenStatus) return new Response("Unauthorized Access " + req.method, { status: 401});
+
          //DB
         await connectToDB();
         //Check if Searchs exists

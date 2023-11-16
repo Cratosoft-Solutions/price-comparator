@@ -3,24 +3,31 @@ import Search from '@models/search';
 import Tags from "@models/searchTags";
 import UserSearch from "@models/userSearch";
 import { genericDatabaseOperation, saveUserSearch, escapeRegex,containsOnlyNumbers } from "@utils/functions";
-
 import {closest} from 'fastest-levenshtein';
+import { isTokenValid } from '@utils/authFunctionsServer';
 
 
 export const POST = async (req) => {
   try {
     console.log("Starting validate");
 
+    //Endpoint Token Validation
+    const tokenStatus = await isTokenValid();
+    if (!tokenStatus)
+      return new Response("Unauthorized Access " + req.method, { status: 401 });
+
     const searchToSearch = await req.json();
     //DB
     await connectToDB();
 
-    // Get key words 
+    // Get key words
     let searchKeywords = searchToSearch.key.split(/\s+/);
-    if(searchKeywords.length > 10){
-      searchKeywords = searchKeywords.splice(0,9);
+    if (searchKeywords.length > 10) {
+      searchKeywords = searchKeywords.splice(0, 9);
     }
-    const filteredWords = searchKeywords.filter((word) => !containsOnlyNumbers(word) );
+    const filteredWords = searchKeywords.filter(
+      (word) => !containsOnlyNumbers(word)
+    );
 
     console.log("Filtered keywords" + filteredWords);
 
@@ -28,13 +35,17 @@ export const POST = async (req) => {
     const SearchExists = await genericDatabaseOperation(
       Search,
       {
-        key: { $in: searchKeywords.map(keyword => new RegExp(escapeRegex(keyword, "gi"))) }
+        key: {
+          $in: searchKeywords.map(
+            (keyword) => new RegExp(escapeRegex(keyword, "gi"))
+          ),
+        },
       },
       "FIND_WITH_PROJECTION",
       null,
       { _id: 0, key: 1 }
     );
-    
+
     // Get final search
     const finalSearch = await getSearch(
       searchToSearch.key,

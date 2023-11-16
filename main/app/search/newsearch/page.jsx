@@ -1,14 +1,17 @@
 "use client";
-import React from 'react';
-import Search from '@components/Search';
-import UserSearches from '@components/UserSearches';
+import React, { useEffect } from "react";
+import Search from "@components/Search";
+import withAuth from "@app/HOCs/AuthHOC";
+import Loading from "@app/loading";
 
-
-const MySearch = () => {
-
+const MySearch = ({ refreshToken, isLoading }) => {
+  useEffect(() => {
+    refreshToken();
+  }, []);
+  
   return (
-      <Search />
+    <>{!isLoading ? <Search /> : <Loading message={"Por favor espere..."} />}</>
   );
-}
+};
 
-export default MySearch;
+export default withAuth(MySearch);

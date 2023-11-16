@@ -72,6 +72,10 @@
   @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
 }
 
+.google_btn {
+  @apply rounded-full border border-black bg-white border py-1.5 px-5 text-black transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
+}
+
 .selected_pagination_button {
   @apply rounded border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
 }
@@ -167,11 +171,20 @@
 }
 
 .dropdown {
-  @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
+  @apply absolute border right-0 top-full mt-3 w-full p-5 rounded-lg bg-white shadow w-fit flex flex-col gap-2 justify-end items-end;
+}
+
+.dropdown:hover{
+  @apply transition ease-in-out delay-150 -translate-y-1 scale-110 bg-gray-50 duration-300
+}
+
+.product-image:hover{
+  @apply transition ease-in-out delay-150 -translate-y-1 scale-125  duration-300
+
 }
 
 .dropdown_link {
-  @apply text-sm font-inter text-gray-700 hover:text-gray-500 font-medium;
+  @apply text-sm font-inter text-blue-700 hover:text-gray-500 font-medium;
 }
 
 /* PromptCard Component */
@@ -1613,4 +1626,52 @@
   -webkit-text-fill-color: transparent;    
   -webkit-text-stroke: 1.5px rgb(255, 255, 255);
   
+}
+
+.checkIcon{
+  min-width: 30px;
+  min-height: 30px;
+  color: green;
+}
+
+.li-list{
+  display:flex;
+  align-items: center;
+  margin-left: 4rem;
+}
+
+.line{
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  margin: 20px 0px;
+}
+
+.line span{
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: normal;
+  color: rgb(92, 108, 117);
+  text-align: center;
+}
+
+.line::before{
+  content: "";
+    flex: 1 1 10%;
+    border-bottom: 1px solid rgb(193, 199, 198);
+    margin: 0px 10px;
+    transform: translateY(-50%);
+    margin-left: 0px;
+}
+
+.line::after{
+  content: "";
+  flex: 1 1 10%;
+  border-bottom: 1px solid rgb(193, 199, 198);
+  margin: 0px 10px;
+  transform: translateY(-50%);
+}
+
+.orange_btn_nav{
+  @apply  rounded-full border border-orange-500 bg-white py-1.5 px-5 text-black transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
 }
