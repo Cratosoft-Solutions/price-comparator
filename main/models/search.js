@@ -10,7 +10,8 @@ const SearchSchema = new Schema({
     result:{
         type: String,
         required: [true, 'result is required'],
-    }
+    },
+    expireAt: { type: Date,  expires: 86400 } 
 });
 
 
