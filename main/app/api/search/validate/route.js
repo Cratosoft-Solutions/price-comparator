@@ -2,38 +2,110 @@ import { connectToDB } from "@utils/database";
 import Search from '@models/search';
 import Tags from "@models/searchTags";
 import UserSearch from "@models/userSearch";
-import { genericDatabaseOperation, saveUserSearch } from "@utils/functions";
+import { genericDatabaseOperation, saveUserSearch, escapeRegex,containsOnlyNumbers } from "@utils/functions";
+import {closest} from 'fastest-levenshtein';
 import { isTokenValid } from '@utils/authFunctionsServer';
 
 
-
 export const POST = async (req) => {
-    try {
-        //Endpoint Token Validation
-        const tokenStatus = await isTokenValid();
-        if(!tokenStatus) return new Response("Unauthorized Access " + req.method, { status: 401});
-        
-        const searchToSearch = await req.json();
-         //DB
-         await connectToDB();
+  try {
+    console.log("Starting validate");
 
-        //Check if Searchs exists
-        const SearchExists = await genericDatabaseOperation(
+    //Endpoint Token Validation
+    const tokenStatus = await isTokenValid();
+    if (!tokenStatus)
+      return new Response("Unauthorized Access " + req.method, { status: 401 });
+
+    const searchToSearch = await req.json();
+    //DB
+    await connectToDB();
+
+    // Get key words
+    let searchKeywords = searchToSearch.key.split(/\s+/);
+    if (searchKeywords.length > 10) {
+      searchKeywords = searchKeywords.splice(0, 9);
+    }
+    const filteredWords = searchKeywords.filter(
+      (word) => !containsOnlyNumbers(word)
+    );
+
+    console.log("Filtered keywords" + filteredWords);
+
+    //Check if Searchs exists
+    const SearchExists = await genericDatabaseOperation(
+      Search,
+      {
+        key: {
+          $in: searchKeywords.map(
+            (keyword) => new RegExp(escapeRegex(keyword, "gi"))
+          ),
+        },
+      },
+      "FIND_WITH_PROJECTION",
+      null,
+      { _id: 0, key: 1 }
+    );
+
+    // Get final search
+    const finalSearch = await getSearch(
+      searchToSearch.key,
+      SearchExists,
+      Search
+    );
+
+    console.log(finalSearch);
+    // Save user searrcg
+    await saveUserSearch(
+      Tags,
+      UserSearch,
+      searchToSearch.key,
+      searchToSearch.user
+    );
+
+    return new Response(JSON.stringify(finalSearch), { status: 200 });
+  } catch (error) {
+    return new Response(JSON.stringify({ message: error.message }), {
+      status: 500,
+    });
+  }
+};
+
+/**
+ * Apply levenshtein to get closest keyword
+ * @param {*} searchKey Search key
+ * @param {*} searches results from db
+ * @param {*} Search Mongo model
+ * @returns final search
+ */
+const getSearch = async (searchKey, searches, Search) => {
+  try {
+    if (searches != null && searches.length > 0) {
+      const searches2 = [];
+      console.log(searches.length);
+      for (const search of searches) {
+        console.log(search.key);
+        searches2.push(search.key);
+      }
+      // Get closest key
+      const closestKey = closest(searchKey, searches2);
+      console.log(closestKey);
+      if (closestKey != null) {
+        return await genericDatabaseOperation(
           Search,
           {
-            key: searchToSearch.key,
+            key: closestKey,
           },
           "FINDONE"
         );
-         
-        const tagData =  searchToSearch.key.replaceAll(".", " ").split("-").slice(-2);
-        await saveUserSearch(Tags, UserSearch, tagData, searchToSearch.user)   
-
-        return new Response(JSON.stringify(SearchExists? SearchExists: {}), { status: 200 })
-         
-    } catch (error) {
-        return new Response(JSON.stringify({message:error.message}), { status: 500 })
-
+      } else {
+        return searches[0];
+      }
+    } else {
+      console.log("No results found")
+      return {};
     }
-    
-}
+  } catch (error) {
+    console.log("Error getting closest search" + err);
+    return {};
+  }
+};
