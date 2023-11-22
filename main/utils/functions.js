@@ -168,16 +168,16 @@ const decompressObject = (storageObject) => {
   }
 }
 
-
 export const saveSearchOnDB = (key) => {
   try {
-    console.log('Starting saving' + key)
     const { data } = localDataExists(key, true);
-    axios.post(`/api/search/save`, {
-      key: key,
-      result: data,
-      expireAt: new Date()
-    });
+    if (data && data.length > 0){
+      console.log('Starting saving' + key)
+      axios.post(`/api/search/save`, {
+        key: key,
+        result: data
+      });
+  }
   } catch (error) {
     //TODO Verify log management
   }

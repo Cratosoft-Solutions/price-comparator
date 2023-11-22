@@ -5,6 +5,7 @@ import Provider from "@components/Provider";
 import ScrollToTopButton from "@components/ScrollToTop";
 import ProviderRedux from "./redux/provider/provider";
 import { usePathname } from "next/navigation";
+import Terms from "@components/Terms";
 
 export const medatada = {
   title: "Cratosoft Comparador de Precios",
@@ -13,6 +14,7 @@ export const medatada = {
 
 const RootLayout = ({ children }) => {
   const pathname = usePathname();
+
   return (
     <html lang="en">
       <ProviderRedux>
@@ -30,6 +32,7 @@ const RootLayout = ({ children }) => {
               ) : null}
               {children}
               <ScrollToTopButton />
+              {pathname != "/termsandconditions"?<Terms/>:null}
             </main>
           </Provider>
         </body>
