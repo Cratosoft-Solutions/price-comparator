@@ -1,5 +1,6 @@
 import { isTokenValid } from '@utils/authFunctionsServer';
 import { getCompanyConfiguration } from '@utils/functions';
+import { tokenizeSearch } from '@utils/search/utils';
 import { scrapingWithJsdom } from '@utils/webScrapingFunctions';
 import { scrapingWithHttpRequest } from '@utils/webScrapingFunctions';
 import { scrapingWithPuppeteer } from '@utils/webScrapingFunctions';
@@ -39,6 +40,10 @@ export const GET = async (request, { params }) => {
             }
         };
         //let t1 = performance.now();
+        const productFiltered = await tokenizeSearch(params.text,products[0].companyProducts);
+        products[0].companyProducts = productFiltered;
+        console.log("voy a retornar", productFiltered);
+
         return new Response(JSON.stringify(products[0]), { status: 200 })
     } catch (error) {
         //console.log("#PASER 10 - params.company  " + params.company + " error: " + error);

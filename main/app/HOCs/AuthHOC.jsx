@@ -47,11 +47,11 @@ function withAuth(Component, isSecure = false) {
     };
 
     return (
-      <Component
-        refreshToken={refreshToken}
-        userIsAuthenticated={userIsAuthenticated}
-        isLoading={loading}
-      />
+        <Component
+          refreshToken={refreshToken}
+          userIsAuthenticated={userIsAuthenticated}
+          isLoading={loading}
+        />
     );
   }
 

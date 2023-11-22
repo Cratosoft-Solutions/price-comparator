@@ -3,7 +3,7 @@ import ReactLoading from "react-loading";
 export default function Loading({message}) {
   if(message)
     return (    
-      <div className="container flex justify-center items-center w-full h-screen gap-3">
+      <div className="container flex justify-center items-center w-full h-full mt-8 gap-3  text-2xl lg:text-3xl orange_gradient">
           <ReactLoading type="bars" color="orange"/>
           <p>{message}</p>
       </div>)
