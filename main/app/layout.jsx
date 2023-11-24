@@ -27,7 +27,7 @@ const RootLayout = ({ children }) => {
               {(pathname != "/login" && pathname != "/register") ? (
                 <>
                   <Nav />
-                  <div className="mt-[7rem]" />
+                  <div className="mt-[4rem]" />
                 </>
               ) : null}
               {children}

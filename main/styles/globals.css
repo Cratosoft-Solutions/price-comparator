@@ -1679,6 +1679,36 @@
   transform: translateY(-50%);
 }
 
-.orange_btn_nav{
-  @apply  rounded-full border border-orange-500 bg-white py-1.5 px-5 text-black transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
+.btn_nav_orange{
+  @apply   bg-orange-500 py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-10;
+}
+
+.btn_nav_orange:hover{
+  @apply bg-orange-600 
+}
+
+
+.btn_nav{
+  @apply  text-left bg-white  px-5 text-black transition-all  text-sm font-inter  items-center  h-10;
+}
+
+.btn_nav:hover{
+  @apply bg-gray-100 rounded
+}
+
+.btn_nav_selected{
+  @apply text-left bg-gray-200  px-5  text-black transition-all text-sm font-inter font-bold items-center h-10;
+}
+
+.btn_nav_selected:hover{
+  @apply bg-gray-300 rounded
+}
+
+.nav_transition{
+  -moz-transition-property: visibility;
+	-moz-transition-duration: 10s;
+	-webkit-transition-property: visibility;
+	-webkit-transition-duration: 10s;
+	transition-property: visibility;
+	transition-duration: 10s;
 }
