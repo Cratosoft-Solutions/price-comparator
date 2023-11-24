@@ -39,13 +39,13 @@ const MobileProductCard = ({ product, index }) => {
             />
           )}
         <div className="p-4">
-          <p className="text-sm ">{product.productName}</p>
+          <p className="text-sm text-black font-[500]">{product.productName}</p>
 
-          <p className="text-sm text-gray-500 mt-1 line-clamp-2 mb-2">
+          <p className="text-sm text-gray-500  mt-1 line-clamp-2 mb-2">
             {product.formatedPrice}
           </p>
 
-          <span className="flex items-center justify-start text-gray-500">
+          <span className="flex items-center justify-start text-orange-500">
             <svg
               className="w-4 h-4 mr-1"
               fill="currentColor"

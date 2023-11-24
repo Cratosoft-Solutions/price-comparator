@@ -31,7 +31,7 @@ const Terms = () => {
     return;
 
   return (
-    <div className="fixed bottom-0 !bg-white border   border-orange-100 p-4 shadow-md lg:w-100">
+    <div className="fixed bottom-0 !bg-white border   border-gray-200 p-4 shadow-md lg:w-100 rounded  mx-0.5 mb-1">
       <h2 className="mb-2 text-xl font-heading orange_gradient">Términos de Servicio y Uso de Cookies</h2>
       <p className="mb-4 leading-relaxed text-black">
       Nuestro sitio utiliza cookies, lo que nos permite para ofrecer el mejor servicio y experiencia al cliente posible.  {" "}

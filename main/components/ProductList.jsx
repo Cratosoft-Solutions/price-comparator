@@ -21,10 +21,10 @@ const ProductList = ({isOptionSearchExpanded}) => {
   return (
     <div
       className={`${
-        isOptionSearchExpanded ? "mt-32 lg:mt-16" : "mt-12 lg:mt-0"
+        isOptionSearchExpanded ? "ml-0 lg:ml-52" : "ml-0 lg:ml-10"
       }`}
     >
-      <div className="relative container mx-auto hidden lg:block ">
+      <div className="relative container mx-auto hidden lg:block">
         {!loading && mergedProducts && (
           <>
             <HorizontalCardList mergedProducts={mergedProducts} />

@@ -20,7 +20,7 @@ const ProductCard = ({ logo, product, index }) => {
         >
         <div className="container-blur">
           <img
-            className="object-contain h-60 w-60 "
+            className="h-fit w-60 shadow border border-gray-200 shadow-lg rounded p-8"
             src={
               product.productImage == ""
                 ? "https://www.edelar.com.ar/static/theme/images/sin_imagen.jpg"
@@ -32,7 +32,7 @@ const ProductCard = ({ logo, product, index }) => {
         </div>
         {product.companyLogo && (
           <img
-            className="absolute z-90 object-contain h-6 rounded-full max-w-[5rem] top-0 left-4"
+            className="absolute z-90 object-contain h-6 rounded-full max-w-[5rem] top-2 left-4"
             src={
               product.companyLogo == undefined
                 ? "https://www.edelar.com.ar/static/theme/images/sin_imagen.jpg"
@@ -43,11 +43,11 @@ const ProductCard = ({ logo, product, index }) => {
         )}
        </a>
       </div>
-      <div className="p-6">
-        <p className="text-gray-800 dark:text-orange-600 w-full max-h-20 h-20 text-ellipsis overflow-hidden">
+      <div className="p-1">
+        <p className="text-black font-[500] w-full max-h-10 h-fit truncate overflow-hidden">
           {product.productName}
         </p>
-        <p className="mb-4 text-base text-bold dark:text-neutral-200">
+        <p className="text-base text-bold dark:text-neutral-200">
           {product.formatedPrice}
         </p>
         <a
