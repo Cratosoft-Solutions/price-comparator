@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { page: 1, size: 15 };
+const initialState = { page: 1, size: 16 };
 const paginationSlice = createSlice({
     name:"sitepagination",
     initialState,

@@ -17,6 +17,7 @@ const RootLayout = ({ children }) => {
 
   return (
     <html lang="en">
+
       <ProviderRedux>
         <body className="__variable_7dbc08 __variable_20951f">
           <Provider>

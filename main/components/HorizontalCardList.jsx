@@ -50,7 +50,7 @@ const HorizontalCardList = ({mergedProducts }) => {
       <div className="w-full items-center justify-left p-6 mb-8">
         <p className="text-3xl font-[800]">Busca el producto perfecto para ti.</p>
       </div>
-      <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 mt-2 mb-20' >
+      <div className='grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 mt-2 mb-20' >
               {mergedProducts.slice(FIRSTPOSITION, LASTPOSITION).map((product, index) => (
                 <ProductCard key={index} product = {product} index={index}/>
               ))}
