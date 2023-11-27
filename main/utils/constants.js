@@ -7,7 +7,7 @@ export const COINCIDENCES = "COINCIDENCES";
 export const CATEGORIES = [
   {value:-1, label:"Seleccione una categoria"},
   {value:1, label:"Tecnología / Electrónica"},
-  {value:2, label:"Hogar / Linea Blanca"},
+  /* {value:2, label:"Hogar / Linea Blanca"},
   {value:3, label:"Celulares"},
   {value:4, label:"Computación"},
   {value:5, label:"Ferreteria"},
@@ -18,11 +18,12 @@ export const CATEGORIES = [
   {value:10, label:"Juguetería"},
   {value:11, label:"Escolar"},
   {value:12, label:"Ropa / Calzado"},
-  {value:13, label:"Fitness"},
+  {value:13, label:"Fitness"}, */
 ]
 
 export const STORE_BY_CATEGORY = [
-{category:1, stores:[912,913,901,2,3,4,5,6,7,8,9,17,29,30,32,933,934,35,910,911]},
+  {category:1, stores:[2,7,14,918,32,35]}
+  /* {category:1, stores:[912,913,901,2,3,4,5,6,7,8,9,17,29,30,32,933,934,35,910,911]},
 {category:2, stores:[912,913,916,901,2,3,4,5,7,8,9,14,15,30,31,32,933,35,910,911]},
 {category:3, stores:[912,901,2,3,4,5,7,9,29,32,933,934,35,910,911]},
 {category:4, stores:[912,901,2,3,4,5,17,29,32,933,934,35,910,911]},
@@ -34,7 +35,7 @@ export const STORE_BY_CATEGORY = [
 {category:10, stores:[28,912,913,901,4,6,8,14,30,933]},
 {category:11, stores:[913,901,8,14,17,30]},
 {category:12, stores:[912,901,4,6,8,30]},
- {category:13, stores:[901,2,4,6,35,8,912,913,14,30,933,910,911]} 
+ {category:13, stores:[901,2,4,6,35,8,912,913,14,30,933,910,911]} */ 
 ] 
 
 const checkIcon=`<div class="checkIcon"><svg class="w-3.5 h-3.5 mr-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
