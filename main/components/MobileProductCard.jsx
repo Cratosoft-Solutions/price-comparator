@@ -11,13 +11,13 @@ const MobileProductCard = ({ product, index }) => {
           <div className="absolute left-0 top-0 w-full h-full flex items-center justify-center container-blur product-image">
           <a
             href={product.vendorLink}
-            className="inline-flex items-center font-medium text-orange-500 dark:text-blue-500 hover:underline"
+            className="inline-flex items-center font-medium text-orange-500 hover:underline"
             target="_blank"
             rel="noreferrer noopener"
           >
             <img
               alt="Placeholder Photo"
-              className="absolute left-0 top-0 w-full h-full object-cover object-center transition duration-50"
+              className="absolute left-0 top-0 max-h-[95%] w-full h-full object-cover object-center transition duration-50"
               loading="lazy"
               src={product.productImage}
             />
