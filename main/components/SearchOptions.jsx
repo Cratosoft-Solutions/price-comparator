@@ -64,7 +64,7 @@ const SearchOptions = ({ setOptionSearch }) => {
             /*className="bg-red-800 flex flex-row overflow-x-auto overflow-x-visible space-x-4 lg:space-x-12 no-scrollbar lg:no-scroll justify-left lg:justify-center overflow-scroll">*/
             className="grid grid-rows-6 gap-2"
           >
-            <div className="grid grid-cols-[20%_80%] grid-rows-1 items-center  btn_nav  border-b-[1px] border-gray-300">
+            <div className="grid grid-cols-[20%_80%] grid-rows-1 items-center  btn_nav  border-b-[1px] border-orange-500">
               <AiOutlineSearch className="w-6 h-6 " color="gray"/>
               <button
                 onClick={() => {

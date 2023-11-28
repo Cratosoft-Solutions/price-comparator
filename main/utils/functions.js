@@ -212,9 +212,9 @@ export const searchArrayCoincidences = (tags, text) => {
 export const formatAutoCompletableItem = (category, text) => {
   const categoryInfo = CATEGORIES.filter(element => element.value == category);
   if (categoryInfo.length > 0) {
-    return categoryInfo[0].label + " - " + text;
+    return /*categoryInfo[0].label + " - " + */text;
   } else {
-    return "Unknow Category" + " - " + text;
+    return /*"Unknow Category" + " - " + */ text;
   }
 }
 
