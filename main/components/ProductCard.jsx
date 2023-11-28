@@ -1,11 +1,12 @@
 "use client";
+
 import Link from "next/link";
 
 const ProductCard = ({ logo, product, index }) => {
   return (
     <div
       key={product.productName + index}
-      className="block bg-transparent p-2 shadow-none w-60"
+      className={`block bg-transparent p-2 shadow-none`}
     >
       <div
         className="relative overflow-hidden bg-cover bg-no-repeat product-image"
@@ -14,13 +15,13 @@ const ProductCard = ({ logo, product, index }) => {
       >
         <a
           href={product.vendorLink}
-          className="inline-flex items-center font-medium text-orange-500 dark:text-blue-500 hover:underline"
+          className="inline-flex items-center font-medium text-orange-500  hover:underline"
           target="_blank"
           rel="noreferrer noopener"
         >
         <div className="container-blur">
           <img
-            className="h-fit w-60 shadow border border-gray-200 shadow-lg rounded p-8"
+            className="w-60 h-60 shadow border border-gray-200 shadow-lg rounded p-8"
             src={
               product.productImage == ""
                 ? "https://www.edelar.com.ar/static/theme/images/sin_imagen.jpg"
@@ -28,7 +29,7 @@ const ProductCard = ({ logo, product, index }) => {
             }
             alt={product.productName}
           />
-          <div className="centered-blur">REFERENCIA</div>
+          <div className="centered-blur">REFERENCIA </div>
         </div>
         {product.companyLogo && (
           <img
@@ -47,12 +48,12 @@ const ProductCard = ({ logo, product, index }) => {
         <p className="text-black font-[500] w-full max-h-10 h-fit truncate overflow-hidden">
           {product.productName}
         </p>
-        <p className="text-base text-bold dark:text-neutral-200">
+        <p className="text-base text-bold ">
           {product.formatedPrice}
         </p>
         <a
           href={product.vendorLink}
-          className="inline-flex items-center font-medium text-orange-500 dark:text-blue-500 hover:underline"
+          className="inline-flex items-center font-medium text-orange-500 hover:underline"
           target="_blank"
           rel="noreferrer noopener"
         >

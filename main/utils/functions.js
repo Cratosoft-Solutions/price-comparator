@@ -496,3 +496,13 @@ export const validateCredentials = (formData, isLogin)=>{
     return false;
   }
 }
+
+
+export const getRandom =(min, max) =>  {
+  const floatRandom = Math.random()
+  const difference = max - min
+  const random = Math.round(difference * floatRandom)
+  const randomWithinRange = random + min
+  console.log(randomWithinRange)
+  return randomWithinRange
+}
