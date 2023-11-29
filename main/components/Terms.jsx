@@ -1,9 +1,11 @@
-import React from "react";
+"use client"
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setConfiguration } from "@app/redux/slices/termsConditions";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { genericStorageManagement } from "@utils/functions";
 const Terms = () => {
   const router = useRouter();
   const pathname = usePathname();
@@ -11,6 +13,7 @@ const Terms = () => {
   const dispatch = useDispatch();
 
   const setOption = (option) =>{
+    genericStorageManagement("add", "terms", option);
     switch (option) {
         case 1:
             dispatch(setConfiguration({userReviewedTerms:true, allCookies:true}))
@@ -26,6 +29,13 @@ const Terms = () => {
             break;
     }
   }
+
+  useEffect(()=>{
+      const termsPreviousAccepted = genericStorageManagement("get", "terms");
+      if(termsPreviousAccepted.result && termsPreviousAccepted.value){
+        setOption(Number(termsPreviousAccepted.value));
+      }
+  }, [])
 
   if(userTerms.userReviewedTerms)
     return;
