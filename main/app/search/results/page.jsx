@@ -21,7 +21,7 @@ const MyResults = () => {
 
     let searchCounter = 0;
     let storeToSearhCount = STORE_BY_CATEGORY.filter((item)=> item.category == category)[0]?.stores.length;
-    const key = formatKeyForStorage(category, text);  
+    const key = formatKeyForStorage(category, text); 
     const textSearchArray = text.toUpperCase().split(" ");
 
     const processIndividualResponse = (response, saveOnStorage, saveOnDatabase, error = false)=>{
