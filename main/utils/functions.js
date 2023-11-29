@@ -97,7 +97,6 @@ export const filterArrayBySearchText = (arrayToFilter, textSearchArray) => {
     })
     return arrayToReturn;
   } catch (error) {
-    alert(error);
     return [];
   }
 }
@@ -397,11 +396,11 @@ export const genericDatabaseOperation = async (model, params, type, updateValue=
 
 export const saveUserSearch = async (Tags, UserSearch, tagData, user) => {
   try {
-    const tagExists = await genericDatabaseOperation(Tags, {category: tagData[0], key:tagData[1]}, "FINDONE");
+    const tagExists = await genericDatabaseOperation(Tags, {category: 1/*tagData[0]*/, key:tagData/*tagData[1]*/}, "FINDONE");
     let tagID;
     
     if(!tagExists){
-      const result = await genericDatabaseOperation(Tags, {category: tagData[0], key:tagData[1]}, "CREATE"); 
+      const result = await genericDatabaseOperation(Tags, {category: 1/*tagData[0]*/, key:tagData/*tagData[1]*/}, "CREATE"); 
       tagID =  result._id;
     }else{
       tagID =  tagExists._id;

@@ -5,7 +5,7 @@ export const SEARCH_DEFAULT_OPTIONS = {
 export const COINCIDENCES = "COINCIDENCES";
 
 export const CATEGORIES = [
-  {value:-1, label:"Seleccione una categoria"},
+  /*{value:-1, label:"Seleccione una categoria"},*/
   {value:1, label:"Tecnología / Electrónica"},
   /* {value:2, label:"Hogar / Linea Blanca"},
   {value:3, label:"Celulares"},
