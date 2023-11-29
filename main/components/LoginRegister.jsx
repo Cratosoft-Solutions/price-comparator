@@ -71,14 +71,16 @@ const LoginRegister = ({isLogin=true}) => {
           href="/"
           className="orange_gradient flex items-center mb-6 text-2xl font-semibold text-gray-900"
         >
-          <img
-            className="w-8 h-8 mr-2"
-            src="/assets/images/comparator-logo.png"
-            alt="logo"
-          />
+          <div className="w-full flex items-center justify-center mt-4">
+            <img
+              className="max-w-[80%]"
+              src="/assets/images/comparator-logo.png"
+              alt="logo"
+            />
+          </div>
 
         </a>
-        <div className="w-full bg-white rounded-lg shadow ">
+        <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="h-8 lg:h-12 orange_gradient text-xl font-bold leading-tight tracking-tight text-orange-500 md:text-4xl">
               {isLogin?"Ingresa tus credenciales":"Crea tu cuenta"}
