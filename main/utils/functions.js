@@ -115,13 +115,32 @@ export const setStorageCoincidences = (key, dataToSet) => {
   window.sessionStorage.setItem(key, JSON.stringify([compress(dataToSet)]));
 }
 
-export const deleteStorageData = (key,) => {
+export const deleteStorageData = (key) => {
   window.sessionStorage.removeItem(key);
 }
+
+export const genericStorageManagement = (action, key, value=null) => {
+  try {
+    switch (action) {
+      case "get":
+        return {result:true, value: localStorage.getItem(key)}
+      case "add":
+        localStorage.setItem(key, value);
+        return {result:true}
+      default:
+        break;  
+      }
+  } catch (error) {
+      return {result:false, value: null, message: error.message}
+  }
+}
+
 
 export const formatKeyForStorage = (category, searchText) => {
   return searchText.toUpperCase();
 }
+
+
 
 export const localDataExists = (key, resultDecompressed = false) => {
   try {
