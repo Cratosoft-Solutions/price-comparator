@@ -6,10 +6,10 @@ const ProductCard = ({ logo, product, index }) => {
   return (
     <div
       key={product.productName + index}
-      className={`block bg-transparent p-2 shadow-none`}
+      className={`product-image block bg-white rounded-lg p-2 shadow shadow-gray-100 border border-gray-200 hover:border-orange-200 `}
     >
       <div
-        className="relative overflow-hidden bg-cover bg-no-repeat product-image"
+        className="relative overflow-hidden bg-cover bg-no-repeat"
         data-te-ripple-init
         data-te-ripple-color="light"
       >
@@ -21,7 +21,7 @@ const ProductCard = ({ logo, product, index }) => {
         >
         <div className="container-blur">
           <img
-            className="w-60 h-60 shadow border border-gray-200 shadow-lg rounded p-8"
+            className="w-60 h-60 rounded"
             src={
               product.productImage == ""
                 ? "https://www.edelar.com.ar/static/theme/images/sin_imagen.jpg"

@@ -186,8 +186,16 @@
 }
 
 .product-image:hover{
-  @apply transition ease-in-out delay-150 -translate-y-1 scale-125  duration-300
+  @apply transition ease-in-out delay-150 -translate-y-1 scale-105  duration-300
 
+}
+
+.searchoptions:hover{
+  @apply transition ease-in-out delay-150 -translate-y-1 scale-105  duration-300 shadow-lg border border-orange-200 shadow-orange-100
+}
+
+.paginationcontroler:hover{
+  @apply transition ease-in-out delay-150  -translate-y-1 duration-300 shadow-lg border border-orange-200 shadow-orange-100
 }
 
 .dropdown_link {
@@ -1691,6 +1699,8 @@
 .btn_nav{
   @apply  text-left bg-white  px-5 text-black transition-all  text-sm font-inter  items-center  h-10;
 }
+
+
 
 .btn_nav:hover{
   @apply bg-gray-100 rounded

@@ -24,7 +24,7 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 w-full flex-between p-3 z-40 bg-white border-b-[1px]  border-gray-300">
+    <nav className="fixed top-0 w-full flex-between p-3 z-40 bg-white border-b-1 shadow  border-gray-300">
       <Link href="/" className="flex gap-2 flex-center">
         <Image
           src="/assets/images/comparator-logo.png"
