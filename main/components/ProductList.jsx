@@ -20,7 +20,7 @@ const ProductList = ({isOptionSearchExpanded}) => {
 
   return (
     <div
-      className={`${
+      className={`lg:bg-gray-100 lg:pl-6 lg:pt-2 lg:pr-6 ${
         isOptionSearchExpanded ? "ml-0 lg:ml-52" : "ml-0 lg:ml-10"
       }`}
     >
@@ -28,7 +28,7 @@ const ProductList = ({isOptionSearchExpanded}) => {
         {!loading && mergedProducts && (
           <>
             <HorizontalCardList mergedProducts={mergedProducts} />
-            <PaginationControls tableItemsAmount={mergedProducts.length} size={size} />
+            <PaginationControls tableItemsAmount={mergedProducts.length} size={size} isOptionSearchExpanded={isOptionSearchExpanded}/>
           </>
         )}
         {loading && <HorizontalCardListLoading />}

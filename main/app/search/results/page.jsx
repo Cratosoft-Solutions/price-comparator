@@ -102,11 +102,11 @@ const MyResults = () => {
 
 
 return (
-    <>
+    <div className='bg-gray-100 '>
       <SearchOptions setOptionSearch={setIsOptionSearchExpanded}/>
       <ProductList isOptionSearchExpanded={isOptionSearchExpanded}/>
-    </>
-  )
+    </div> 
+  ) 
 }
 
 export default MyResults;

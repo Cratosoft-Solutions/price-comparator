@@ -53,7 +53,7 @@ const SearchButton = () => {
   return (
       <div className="mb-1 w-full sm:w-1/2 justify-center mr-4 ml-4">
         <div className="grid place-items-center w-full">
-            <form onSubmit={executeSearch} className="grid grid-cols-1 grid-rows-2 lg:grid-rows-1 lg:grid-cols-1 gap-0 w-full ">
+            <form onSubmit={executeSearch} className="grid grid-cols-1 grid-rows-1 lg:grid-rows-1 lg:grid-cols-1 gap-0 w-full ">
             {showCategory && <DropDownList values={CATEGORIES} onSelectValue={setInternalCategory} currentValue={category} />}
              <div className="relative text-orange-500">
                 <span className="absolute inset-y-0 left-0 flex items-center pl-2">

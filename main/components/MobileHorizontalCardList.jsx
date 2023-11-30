@@ -4,7 +4,7 @@ import MobileProductCard from './MobileProductCard'
 const MobileHorizontalCardList = ({mergedProducts}) => {
   return (
     <>
-      <div className="w-full items-center justify-left p-6">
+      <div className="w-full items-center justify-left p-6 bg-white">
         <p className="text-2xl font-[800]">Busca el producto perfecto para ti.</p>
       </div>
       {mergedProducts.map((product, index) => (

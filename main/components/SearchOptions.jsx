@@ -55,17 +55,14 @@ const SearchOptions = ({ setOptionSearch }) => {
   };
 
   return (
-    /*<div className="fixed top-16 lg:top-16 z-10 left-0 w-full bg-white">
-      {showSearchOptions && (*/
     <>
       {showSearchOptions && (
-        <div className="fixed top-12 lg:top-16 z-50 bg-white w-full lg:w-52 p-2 h-full min-h-screen border-r-[1px] border-gray-300">
-          <div /*className=" overflow-x-auto grid grid-cols-1 grid-rows-1 lg:grid-cols-4 gap-2"*/
-            /*className="bg-red-800 flex flex-row overflow-x-auto overflow-x-visible space-x-4 lg:space-x-12 no-scrollbar lg:no-scroll justify-left lg:justify-center overflow-scroll">*/
+        <div className="fixed top-12 bg-white lg:top-20 lg:ml-2 z-50 bg-white w-full lg:w-52 p-2 h-fit lg:rounded-lg lg:p-2 shadow searchoptions">
+          <div
             className="grid grid-rows-6 gap-2"
           >
-            <div className="grid grid-cols-[20%_80%] grid-rows-1 items-center  btn_nav  border-b-[1px] border-orange-500">
-              <AiOutlineSearch className="w-6 h-6 " color="gray"/>
+            <div className="grid grid-cols-[20%_80%] grid-rows-1 items-center  btn_nav  border-b-[1px] border-orange-500 lg:bg-white">
+              <AiOutlineSearch className="w-6 h-6 " color="orange"/>
               <button
                 onClick={() => {
                   setSearchConfigProperty("NEWSEARCH");
@@ -81,7 +78,7 @@ const SearchOptions = ({ setOptionSearch }) => {
                 configuration.MINTOMAX ? "btn_nav_selected" : "btn_nav"
               } min-w-[10rem]`}
             >
-              <FaArrowUpShortWide className="w-6 h-6 " color="gray"/>
+              <FaArrowUpShortWide className="w-6 h-6 " color="green"/>
               <button
                 onClick={() => {
                   setSearchConfigProperty("MINTOMAX");
@@ -97,7 +94,7 @@ const SearchOptions = ({ setOptionSearch }) => {
                 configuration.MAXTOMIN ? "btn_nav_selected" : "btn_nav"
               } min-w-[10rem]`}
             >
-              <FaArrowDownShortWide className="w-6 h-6 " color="gray"/>
+              <FaArrowDownShortWide className="w-6 h-6 " color="green"/>
               <button
                 onClick={() => {
                   setSearchConfigProperty("MAXTOMIN");
@@ -112,7 +109,7 @@ const SearchOptions = ({ setOptionSearch }) => {
                 configuration.MATCH ? "btn_nav_selected" : "btn_nav"
               } min-w-[10rem]`}
             >
-              <IoCheckmarkDone  pShortWide className="w-6 h-6 " color="gray"/>
+              <IoCheckmarkDone  pShortWide className="w-6 h-6 " color="green"/>
               <button
                 onClick={() => {
                   setSearchConfigProperty("MATCH");
@@ -128,7 +125,7 @@ const SearchOptions = ({ setOptionSearch }) => {
                 !configuration.MATCH ? "btn_nav_selected" : "btn_nav"
               } min-w-[10rem]`}
             >
-              <IoCheckmark   className="w-6 h-6 " color="gray"/>
+              <IoCheckmark   className="w-6 h-6 " color="green"/>
               <button
                 onClick={() => {
                   setSearchConfigProperty("MATCH");
@@ -145,7 +142,7 @@ const SearchOptions = ({ setOptionSearch }) => {
                   expandCollapseOptionsBar(false);
                 }}
                 className="h-6 w-6"
-                color="gray"
+                color="green"
               />
             </div>
           </div>
@@ -158,45 +155,13 @@ const SearchOptions = ({ setOptionSearch }) => {
               expandCollapseOptionsBar(true);
             }}
             className="h-6 w-6"
-            color="gray"
+            color="green"
           />
         </div>
       )}
     </>
 
-    /*)}
-      <div className="h-24 lg:h-10 w-full grid grid-cols-1 grid-rows-3 lg:grid-cols-3 lg:grid-rows-1  border-b-2 border-orange-300">
-        {searching ? (
-          <div className="flex justify-center w-full bg-red-800">
-            <SearchLoadingBar />
-          </div>
-        ) : (
-          <div className="flex items-center justify-center w-full font-medium  text-green-700 font-bold">
-            Busqueda Finalizada
-          </div>
-        )}
-        <div className="bg-primary p-4 pl-2 flex items-center justify-center bg-white">
-          {`${storeFullProducts.length} producto(s)/${storeFullData.length} tienda(s).`}
-        </div>
-        <div className="bg-primary flex items-center justify-center bg-white p-2">
-         {showSearchOptions && <RiArrowUpSLine
-            onClick={() => {
-              expandCollapseOptionsBar(false);
-            }}
-            className="h-6 w-6"
-            color="red"
-          />}
-
-          {!showSearchOptions && <AiFillEdit
-            onClick={() => {
-              expandCollapseOptionsBar(true);
-            }}
-            className="h-6 w-6"
-            color="black"
-          />}
-        </div>
-      </div>
-    </div>*/
+   
   );
 };
 
