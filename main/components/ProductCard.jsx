@@ -49,7 +49,7 @@ const ProductCard = ({ logo, product, index }) => {
           {product.productName}
         </p>
         <p className="text-base text-bold ">
-          {product.formatedPrice}
+          {product.currency}{product.formatedPrice}
         </p>
         <a
           href={product.vendorLink}

@@ -8,7 +8,7 @@ describe("Currency Exchange Tests", () => {
       assert.equal(currencyExchangeUtil.getFormattedPrice("2,160.00"), "2,160.00");
     });
     it("Format 000.00 format", function () {
-      assert.equal(currencyExchangeUtil.getFormattedPrice("2160.00"), "2,160.00");
+      assert.equal(currencyExchangeUtil.getFormattedPrice("2160.25"), "2,160.25");
     });
     it("Format null value format", function () {
       assert.equal(currencyExchangeUtil.getFormattedPrice(null), null);
