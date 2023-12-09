@@ -81,6 +81,12 @@ const MyResults = () => {
                      dispatch(setSearching(false));  
                      printDBStorageData(dbData.data, saveOnStorage);
                    }else{
+                    console.log("Starting local searches");
+                    fetchWithTimeout(`/api/search/local/${text.replace(" ", "+")}`)
+                      .then(r => r.json())
+                      .then((data)=> processIndividualResponse(data, saveOnStorage, false, false))
+                      .catch((error)=>processIndividualResponse(error, saveOnStorage, false, true));
+
                     console.log("Starting scraping")
                      STORE_BY_CATEGORY.filter((item)=> item.category == category)[0].stores
                      .map((storeID) => {

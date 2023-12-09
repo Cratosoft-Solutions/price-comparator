@@ -178,7 +178,7 @@
 }
 
 .dropdown {
-  @apply absolute border right-0 top-full mt-3 w-full p-5 rounded-lg bg-white shadow w-fit flex flex-col gap-2 justify-end items-end;
+  @apply  absolute border w-40 right-0 top-full   p-4  bg-white shadow min-w-fit flex flex-col  gap-3 justify-end items-end border-t-[0px] z-0;
 }
 
 .dropdown:hover{
@@ -194,12 +194,16 @@
   @apply transition ease-in-out delay-150 -translate-y-1 scale-105  duration-300 shadow-lg border border-orange-200 shadow-orange-100
 }
 
+.storepages:hover{
+  @apply transition ease-in-out delay-150 -translate-y-1 scale-100  duration-300 shadow-lg border border-orange-200 shadow-orange-100
+}
+
 .paginationcontroler:hover{
   @apply transition ease-in-out delay-150  -translate-y-1 duration-300 shadow-lg border border-orange-200 shadow-orange-100
 }
 
 .dropdown_link {
-  @apply text-sm font-inter text-blue-700 hover:text-gray-500 font-medium;
+  @apply text-sm font-inter text-gray-600 hover:text-gray-500 font-medium;
 }
 
 /* PromptCard Component */
@@ -1721,4 +1725,36 @@
 	-webkit-transition-duration: 10s;
 	transition-property: visibility;
 	transition-duration: 10s;
+}
+
+.labelsconfiguration {
+    position: absolute;
+    top:35%;
+    left:16px;
+    pointer-events: none;
+    transform-origin: 0% 0%;
+    font-family: var(--e-ls-qkw);
+    font-size: 1.2rem;
+    line-height: var(---s-l-myu);
+    -webkit-letter-spacing: var(--fnsvt-u);
+    -moz-letter-spacing: var(--fnsvt-u);
+    -ms-letter-spacing: var(--fnsvt-u);
+    letter-spacing: var(--fnsvt-u);
+    font-weight: var(--e-y-j-d-v-j);
+    -webkit-transition: -webkit-transform 0.15s cubic-bezier(0.455,0.03,0.515,0.955);
+}
+
+.inputconfiguration:focus + .labelsconfiguration{
+  top: 3px;
+  left:16px;
+  font-size:var(--iw-ehf-f);
+  transition: all 0.2s;
+  transition-timing-function: linear;
+}
+
+.labelsconfigurationwithvalue{
+  position: absolute;
+  top: 3px;
+  left:16px;
+  font-size:var(--iw-ehf-f);
 }

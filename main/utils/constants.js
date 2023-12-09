@@ -1,6 +1,51 @@
+//MESSAGING STORE
+export const IMAGES_FORMAT_ACCEPTED = ['image/svg+xml', 'image/png', 'image/jpeg'];
+export const IMAGE_PRINCIPAL_STORE_DIMENSION = {width:3840, height:2160};
+export const IMAGE_PRODUCT_STORE_DIMENSION = {width:3840, height:2160};
+export const IMAGE_CATEGORY_STORE_DIMENSION = {width:3840, height:2160};
+export const CAROUSEL_STORE_DIMENSION = {width:3840, height:2160};
+export const STORE_SAVE_CONFIRM_ACTION = {message:"¿Seguro de guardar los cambios?", showCancelButton:true, okText:"Estoy Seguro", cancelText:"Cancelar", processToExecute: "SAVESTORE"};
+export const IMAGE_LOADED_CONFIRM_ACTION = {message:"¡Imagen cargada correctamente!", showCancelButton:false, okText:"¡Entendido!", cancelText:"Cancelar"};
+export const IMAGE_FAILED_CONFIRM_ACTION = {showCancelButton:false, okText:"¡Entendido!", cancelText:"Cancelar"};
+export const DROPDOWN_NEED_TB_SELECTED = {showCancelButton:false, okText:"¡Entendido!", cancelText:"Cancelar"};
+export const GENERAL_UKNOWN_ERROR = {showCancelButton:false, okText:"¡Entendido!", cancelText:"Cancelar"}
+export const GENERAL_SUCCESS_PROCESS = {message:"Proceso ejecutado correctamante.",showCancelButton:false, okText:"¡Entendido!", cancelText:"Cancelar"}
+export const PRODUCT_SAVE_CONFIRM_ACTION = {message:"¿Seguro de guardar los cambios?", showCancelButton:true, okText:"Estoy Seguro", cancelText:"Cancelar", processToExecute: "SAVEPRODUCT"};
+export const CATEGORY_SAVE_CONFIRM_ACTION = {message:"¿Seguro de guardar los cambios?", showCancelButton:true, okText:"Estoy Seguro", cancelText:"Cancelar", processToExecute: "SAVECATEGORY"};
+export const CAROUSEL_SAVE_CONFIRM_ACTION = {message:"¿Seguro de guardar los cambios?", showCancelButton:true, okText:"Estoy Seguro", cancelText:"Cancelar", processToExecute: "SAVECAROUSEL"};
+
+
+//LISTS
+export const CURRENCY_LIST = [{value:"CRC", label:"Colones", feSimbol:"₡"},{value:"USD", label:"Dólares", feSimbol:"$"}];
+export const CATEGORY_TYPES = [{value:"PRODUCT", label:"Productos"}, {value:"CARD", label:"Autos"}, {value:"SERVICES", label:"Servicios"}, {value:"HOUSES", label:"Casas / Apartamentos"}];
+export const CATEGORY_DEFAULT_LIST = [{value:"SELECT", label:"Seleccione una categoria"}];
+export const STORE_BACKGROUND_DIRECTION = [
+        {value:"bbg-gradient-to-r", label:"Izquierda a Derecha"},
+        {value:"bbg-gradient-to-t", label:"Hacia arriba"},
+        {value:"bbg-gradient-to-tr", label:"De Arriba hacia Derecha"},
+        {value:"bbg-gradient-to-br", label:"Izquierda a Derecha"},
+        {value:"bbg-gradient-to-b", label:"De Abajo a Derecha"},
+        {value:"bbg-gradient-to-bl", label:"De Arriba a Izquierda"},
+        {value:"bbg-gradient-to-l", label:"Hacia la Izquierda"},
+        {value:"bbg-gradient-to-tl", label:"Hacia Arriba e Izquierda"}];
+
+//SCRAP        
 export const SEARCH_DEFAULT_OPTIONS = {
   configuration: { MINTOMAX: true, MAXTOMIN: false, MATCH: false },
 };
+
+export const VERTICAL_NAV_STATUS = {
+  myStoreNav: { selectedOption:"configuration", expandedNavBar:false},
+};
+
+import { IoMdSettings } from "react-icons/io";
+import { IoMdHome } from "react-icons/io";
+import { MdAddShoppingCart } from "react-icons/md";
+import { FaList } from "react-icons/fa";
+
+
+
+
 
 export const COINCIDENCES = "COINCIDENCES";
 
@@ -102,3 +147,36 @@ export const PASSWORD_VAL_MESSAGE = ""
 export const AUTH_CREDENTIALS = "QZqynwDHyoKNAWWhnpydAkCBFYDtjOoSVHwPlwOuRRX2pcXPQFu0Sw1DGxdyoKzl2jjeKiplxE+QhxETejPRxhE4RkWh+UL13ufMZ0a4SDouzz3Uf1sS9ULpaUeG31fYlAabT9CUmV8z24fszNUqAPSHNJl62v7tREVZA+7SqAo=";
 
 export const USER_ACCEPTED_CONFIGURATION = {userTerms:{userReviewedTerms:false, allCookies: false, esentialCookies:false, termsConditions:false}};
+
+
+export const VERTICAL_NAV_CONFIGURATION =[
+  {
+    btnNAVPage:"myStore",
+    btnDescription: "Regresar",
+    btnID:"HOME",
+    isPrincipal:true,
+    icon: <IoMdHome className="w-6 h-6"  color="#FF5733"/>
+  },
+  {
+    btnNAVPage:"myStore",
+    btnDescription: "Configuración",
+    btnID:"CONFIG",
+    isPrincipal:false,
+    icon: <IoMdSettings className="w-6 h-6" color="gray"/>
+  },
+  {
+    btnNAVPage:"myStore",
+    btnDescription: "Agregar Item",
+    btnID:"ADDPRODUCT",
+    isPrincipal:false,
+    icon: <MdAddShoppingCart className="w-6 h-6" color="gray"/>
+  },
+  {
+    btnNAVPage:"myStore",
+    btnDescription: "Mis items",
+    btnID:"LISTITEM",
+    isPrincipal:false,
+    icon: <FaList className="w-6 h-6" color="gray"/>
+  },
+
+]

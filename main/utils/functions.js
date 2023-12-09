@@ -1,7 +1,8 @@
 import { redirect } from 'next/navigation';
 import { compress, decompress } from 'compress-json';
+//import InputMask from 'react-input-mask';
 import axios from 'axios';
-import { AUTH_MESSAGES, CATEGORIES, NOT_CONTROLED_ERROR, PASSWORD_REGEX_VAL } from './constants';
+import { AUTH_MESSAGES, CATEGORIES, IMAGES_FORMAT_ACCEPTED, NOT_CONTROLED_ERROR, PASSWORD_REGEX_VAL } from './constants';
 import { scrapCompanyConfiguration } from "@utils/comercios";
 import Swal from 'sweetalert2';
 
@@ -440,6 +441,7 @@ export const numberToArray = (pageSize, size, currentPosition) =>{
 
 export function escapeRegex(searchText) {
   try {
+    console.log(searchText.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'));
     return searchText.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
   } catch (err) {
     console.log(err);
@@ -523,4 +525,58 @@ export const getRandom =(min, max) =>  {
   const randomWithinRange = random + min
   console.log(randomWithinRange)
   return randomWithinRange
+}
+
+export const validateImageDimension = async (base64Image, acceptedDimension, onDimenssionValidated) => {
+  try {
+    var i = new Image();
+    i.onload = function(){
+        if(i.width == acceptedDimension.width && 
+           i.height == acceptedDimension.height) {
+               onDimenssionValidated({messageCode:"OK", messageValue:base64Image});
+           }else{
+               //onDimenssionValidated({messageCode:"ERROR", messageValue:"NOT_ACCEPTED_DIMENSION"});
+               onDimenssionValidated({messageCode:"OK", messageValue:base64Image});
+           }
+    };
+    i.src = base64Image;
+  } catch (error) {
+       return {messageCode:"ERROR", messageValue:"UKNOWN"};
+  }
+}
+
+export const fileToBase64 = (file, onImageValidated) =>{
+  var reader = new FileReader();
+  reader.onload = function () {
+      onImageValidated({messageCode:"OK", messageValue:reader.result});
+  };
+  reader.onerror = function (error) {
+      onImageValidated({messageCode:"ERROR", messageValue:"FILE_NOT_BASE64"});
+  };
+  reader.readAsDataURL(file);
+}
+
+export const validatePrincipalImageStore =(imageArray=[])=>{
+  if(imageArray.length > 1)
+      return frontEndFormattedMessage("error", "TOO_MANY_FILES", "Solamente puede adjuntar un archivo");
+  if(!IMAGES_FORMAT_ACCEPTED.includes(imageArray[0].type))
+      return frontEndFormattedMessage("error", "EXT_NOT_ACCEPTED", `La extensión ${imageArray[0].type} no es aceptada`);
+
+  return frontEndFormattedMessage("success");    
+}
+
+/*export const PhoneNumber = props => (
+  <InputMask
+    mask="(999) 9999-9999"
+    value={props.value}
+    onChange={props.onChange}
+    
+  >
+    {inputProps => <input  {...inputProps} type="text" name="email" id="email" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  placeholder="(999) 9999-9999"   />  }
+  </InputMask>
+
+);*/
+
+export const frontEndFormattedMessage = (type, messageCode="", messageDescription="") => {
+  return {type, messageCode, messageDescription}
 }

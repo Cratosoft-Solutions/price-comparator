@@ -37,11 +37,16 @@ function withAuth(Component, isSecure = false) {
     const userIsAuthenticated = () => {
       try {
         const user = session?.user;
-        if (isSecure && !user) router.push("/unauthorized");
-
-        return true;
+        if (isSecure && !user) {
+          router.push("/unauthorized");
+        }else{
+          setLoading(false);
+          return true;
+        }
+        
       } catch (error) {
-        if (isSecure && !user) router.push("/unauthorized");
+        setLoading(false);
+        router.push("/unauthorized");
         return false;
       }
     };

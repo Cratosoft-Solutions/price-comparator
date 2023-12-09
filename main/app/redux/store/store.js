@@ -6,6 +6,7 @@ import searchProperties from "../slices/searchProperties";
 import searching from "../slices/searching";
 import pagination from "../slices/pagination";
 import termsConditions from "../slices/termsConditions";
+import verticalNav from "../slices/verticalNav";
 
 const store = configureStore({
     reducer:{
@@ -15,7 +16,8 @@ const store = configureStore({
         searchProperties: searchProperties,
         productSearching:searching,
         sitepagination:pagination,
-        termsConditions:termsConditions
+        termsConditions:termsConditions,
+        verticalnav: verticalNav
     },
 });
 

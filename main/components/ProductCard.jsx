@@ -1,8 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { IoMdEye } from "react-icons/io";
+import { useRouter } from "next/navigation";
 
-const ProductCard = ({ logo, product, index }) => {
+
+const ProductCard = ({ logo, product, index, adminMode, callBackFunction }) => {
+  const router = useRouter();
+  const handleProductClick=(url)=>{
+    if(adminMode){
+      callBackFunction(product.productId);
+    }else{
+      router.push(url);
+    }
+  }
+
   return (
     <div
       key={product.productName + index}
@@ -14,7 +26,7 @@ const ProductCard = ({ logo, product, index }) => {
         data-te-ripple-color="light"
       >
         <a
-          href={product.vendorLink}
+          href={adminMode? "/redirigir": product.vendorLink}
           className="inline-flex items-center font-medium text-orange-500  hover:underline"
           target="_blank"
           rel="noreferrer noopener"
@@ -29,7 +41,7 @@ const ProductCard = ({ logo, product, index }) => {
             }
             alt={product.productName}
           />
-          <div className="centered-blur">REFERENCIA </div>
+          {adminMode? null: (<>{product.isLocal?null:<div className="centered-blur">REFERENCIA </div>}</>)} 
         </div>
         {product.companyLogo && (
           <img
@@ -51,29 +63,14 @@ const ProductCard = ({ logo, product, index }) => {
         <p className="text-base text-bold ">
           {product.formatedPrice}
         </p>
-        <a
-          href={product.vendorLink}
-          className="inline-flex items-center font-medium text-orange-500 hover:underline"
-          target="_blank"
-          rel="noreferrer noopener"
+        <button
+          href={adminMode? "/redirigir": product.vendorLink}
+          className="pt-1 inline-flex items-center gap-1 font-medium text-orange-500"
+          onClick={()=>{handleProductClick(product.vendorLink)}}
         >
+          <IoMdEye className="h-4 w-4"/>
           Ver producto
-          <svg
-            className="w-4 h-4 ml-2"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 14 10"
-          >
-            <path
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M1 5h12m0 0L9 1m4 4L9 9"
-            />
-          </svg>
-        </a>
+        </button>
       </div>
     </div>
   );
