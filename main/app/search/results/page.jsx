@@ -22,7 +22,7 @@ const MyResults = () => {
     let searchCounter = 0;
     let storeToSearhCount = STORE_BY_CATEGORY.filter((item)=> item.category == category)[0]?.stores.length;
     const key = formatKeyForStorage(category, text); 
-    const textSearchArray = text.toUpperCase().split(" ");
+    const textSearchArray = key != '' ? key.toUpperCase().split(" ") : "";
 
     const processIndividualResponse = (response, saveOnStorage, saveOnDatabase, error = false)=>{
   
@@ -37,7 +37,7 @@ const MyResults = () => {
           dispatch(pushProduct(response));
           if (!saveOnStorage)
             console.log("Save on storage")
-            setStorageData(formatKeyForStorage(category, text), response);
+            setStorageData(key, response);
         }
         
         if(searchCounter == storeToSearhCount){
@@ -61,44 +61,67 @@ const MyResults = () => {
 
     useEffect(()=>{
         const executeSearch = async () =>{
-                setTimeout(setInternalSearching, 15000);
-                dispatch(restartProducts());
-                dispatch(setLoading(true));
-                dispatch(setSearching(true));
-                const {localData, data, saveOnStorage} = localDataExists(key, false);
-                if(localData){
-                 console.log("Getting information from session")
-                 printDBStorageData(data, saveOnStorage);
-                 dispatch(setSearching(false));  
-                }
-                else{
-                  console.log("Going to search info in mongo")
-                   const dbData = await getSearchDataFromDataBase(key, session?.user?.email);
-                   const existsOnDB =  dbData.dataBaseData;
-                   
-                   if(existsOnDB){
-                     console.log("Info exists in mongo")
-                     dispatch(setSearching(false));  
-                     printDBStorageData(dbData.data, saveOnStorage);
-                   }else{
-                    console.log("Starting scraping")
-                     STORE_BY_CATEGORY.filter((item)=> item.category == category)[0].stores
-                     .map((storeID) => {
-                       fetchWithTimeout(`/api/search/${storeID}/${text.replace(" ", "+")}`)
-                       .then(r => r.json())
-                       .then((data)=> processIndividualResponse(data, saveOnStorage, false, false))
-                       .catch((error)=>processIndividualResponse(error, saveOnStorage, false, true));
-                     }) 
-                   }
-                }
+          if (key === '') {
+            dispatch(setSearching(false));  
+          }else{
+            setTimeout(setInternalSearching, 15000);
+            dispatch(restartProducts());
+            dispatch(setLoading(true));
+            dispatch(setSearching(true));
+            const {localData, data, saveOnStorage} = localDataExists(key, false);
+            if(localData){
+             console.log("Getting information from session")
+             printDBStorageData(data, saveOnStorage);
+             dispatch(setSearching(false));  
+            }
+            else{
+              console.log("Going to search info in mongo");
+              const dbData = await getSearchDataFromDataBase(
+                key,
+                session?.user?.email
+              );
+              const existsOnDB = dbData.dataBaseData;
+              if (existsOnDB) {
+                console.log("Info exists in mongo");
+                dispatch(setSearching(false));
+                printDBStorageData(dbData.data, saveOnStorage);
+              } else {
+                console.log("Starting scraping");
+                STORE_BY_CATEGORY.filter(
+                  (item) => item.category == category
+                )[0].stores.map((storeID) => {
+                  fetchWithTimeout(
+                    `/api/search/${storeID}/${key.replace(" ", "+")}`
+                  )
+                    .then((r) => r.json())
+                    .then((data) =>
+                      processIndividualResponse(
+                        data,
+                        saveOnStorage,
+                        false,
+                        false
+                      )
+                    )
+                    .catch((error) =>
+                      processIndividualResponse(
+                        error,
+                        saveOnStorage,
+                        false,
+                        true
+                      )
+                    );
+                });
+              }
+            }
+          }
         }
-          if(text != ''){ 
+        if(key != text || key != ''){ 
           executeSearch();
-        }else{
+        }
+        else{
           router.push('/search/newsearch');
         }
     }, [])
-    
 
 
 return (
