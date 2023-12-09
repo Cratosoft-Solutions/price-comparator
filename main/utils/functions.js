@@ -4,11 +4,10 @@ import axios from 'axios';
 import { AUTH_MESSAGES, CATEGORIES, NOT_CONTROLED_ERROR, PASSWORD_REGEX_VAL } from './constants';
 import { scrapCompanyConfiguration } from "@utils/comercios";
 import Swal from 'sweetalert2';
-
-const currencyExchangeUtil = require('./currencyExchangeUtil');
-
 import {closest} from 'fastest-levenshtein';
-
+import { BLACK_LISTED_KEYWORDS } from "@utils/constants";
+const currencyExchangeUtil = require('./currencyExchangeUtil');
+const Filter = require('bad-words');
 
 export const isUserAuthenticathed = (status) => {
   try {
@@ -136,17 +135,23 @@ export const genericStorageManagement = (action, key, value=null) => {
 
 
 export const formatKeyForStorage = (category, searchText) => {
-  return searchText.toUpperCase();
+  console.log("Applying filter to keyword:" + searchText);
+  let modifiedText =  validateBlackListedKeywords(searchText);
+  if (modifiedText === ''){
+    return '';
+  }
+  return modifiedText.toUpperCase();
 }
 
 
 
 export const localDataExists = (key, resultDecompressed = false) => {
   try {
-    console.log("Starting checking data");
+   
     const sessionKeywords = Object.keys(window.sessionStorage);
     // Validate data
     if (sessionKeywords != null && sessionKeywords.length > 0) {
+      console.log("Starting checking data");
       const regex = new RegExp(key, "i"); // 'i' for case-insensitive search
       // Find keywords that match with search key
       const matchedKeys = sessionKeywords.filter((word) => regex.test(word));
@@ -523,4 +528,22 @@ export const getRandom =(min, max) =>  {
   const randomWithinRange = random + min
   console.log(randomWithinRange)
   return randomWithinRange
+}
+/**
+ * Process keyword list and remove filtered words
+ */
+export const validateBlackListedKeywords = (text) => {
+  try{
+    if (BLACK_LISTED_KEYWORDS && BLACK_LISTED_KEYWORDS.length > 0){
+      let filter_ = new Filter({ placeHolder: '#' });
+      filter_.addWords(...BLACK_LISTED_KEYWORDS);
+      const modifiedText = filter_.clean(text);
+      console.log("Modified text: " + modifiedText);
+      return modifiedText.replace(new RegExp("#", 'g'), '').trim();
+    }
+    return text;
+  }catch(err){
+    console.log("Error proccessing filtered words" + err);
+    return text;
+  }
 }
