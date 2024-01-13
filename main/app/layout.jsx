@@ -6,6 +6,7 @@ import ScrollToTopButton from "@components/ScrollToTop";
 import ProviderRedux from "./redux/provider/provider";
 import { usePathname } from "next/navigation";
 import Terms from "@components/Terms";
+import { Analytics } from "@vercel/analytics/react";
 
 export const medatada = {
   title: "Cratosoft Comparador de Precios",
@@ -19,6 +20,10 @@ const RootLayout = ({ children }) => {
     <html lang="en">
 
       <ProviderRedux>
+        <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1295102561150808"
+     crossorigin="anonymous"></script>
+        </head>
         <body className="__variable_7dbc08 __variable_20951f">
           <Provider>
             <div className="site-background">
@@ -32,6 +37,7 @@ const RootLayout = ({ children }) => {
                 </>
               ) : null}
               {children}
+              <Analytics />
               <ScrollToTopButton />
               {pathname != "/termsandconditions"?<Terms/>:null}
             </main>
