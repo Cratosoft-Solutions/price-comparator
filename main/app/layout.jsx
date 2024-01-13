@@ -20,6 +20,10 @@ const RootLayout = ({ children }) => {
     <html lang="en">
 
       <ProviderRedux>
+        <head>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1295102561150808"
+     crossorigin="anonymous"></script>
+        </head>
         <body className="__variable_7dbc08 __variable_20951f">
           <Provider>
             <div className="site-background">
