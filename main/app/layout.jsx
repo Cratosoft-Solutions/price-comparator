@@ -6,7 +6,7 @@ import ScrollToTopButton from "@components/ScrollToTop";
 import ProviderRedux from "./redux/provider/provider";
 import { usePathname } from "next/navigation";
 import Terms from "@components/Terms";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 
 export const medatada = {
   title: "Cratosoft Comparador de Precios",
