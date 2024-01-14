@@ -7,15 +7,21 @@ export const POST = async (req) => {
   try {
     //Endpoint Token Validation
     const tokenStatus = await isTokenValid();
-    if(!tokenStatus) return new Response("Unauthorized Access " + req.method, { status: 401});
-    
+    if (!tokenStatus)
+      return new Response("Unauthorized Access " + req.method, { status: 401 });
+
     const searchToSave = await req.json();
     let createdID;
+
     //SERVERLESS LAMBDA DYNAMODB
     await connectToDB();
 
     //check if Search exists
-    const searchExists = await genericDatabaseOperation(Search, {key: searchToSave.key}, "FINDONE");
+    const searchExists = await genericDatabaseOperation(
+      Search,
+      { key: searchToSave.key },
+      "FINDONE"
+    );
 
     //if not, create new Search
     if (!searchExists) {
@@ -24,10 +30,10 @@ export const POST = async (req) => {
         {
           key: searchToSave.key,
           result: searchToSave.result,
-          expireAt: searchToSave.expireAt
+          expireAt: Date.now()
         },
         "CREATE"
-      ); 
+      );
       createdID = result._id.toString();
     } else {
       await genericDatabaseOperation(
