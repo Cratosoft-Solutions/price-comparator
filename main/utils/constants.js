@@ -102,3 +102,21 @@ export const PASSWORD_VAL_MESSAGE = ""
 export const AUTH_CREDENTIALS = "QZqynwDHyoKNAWWhnpydAkCBFYDtjOoSVHwPlwOuRRX2pcXPQFu0Sw1DGxdyoKzl2jjeKiplxE+QhxETejPRxhE4RkWh+UL13ufMZ0a4SDouzz3Uf1sS9ULpaUeG31fYlAabT9CUmV8z24fszNUqAPSHNJl62v7tREVZA+7SqAo=";
 
 export const USER_ACCEPTED_CONFIGURATION = {userTerms:{userReviewedTerms:false, allCookies: false, esentialCookies:false, termsConditions:false}};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const BLACK_LISTED_KEYWORDS = ["puta","puto","perra","bitch","fuck","picha","malparido"];

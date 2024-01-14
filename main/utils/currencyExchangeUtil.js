@@ -77,15 +77,27 @@ async function parse(data) {
  * Get price formatted
  * @param {*} price Price
  */
-function getFormattedPrice(price) {
+ function getFormattedPrice(price) {
   try {
     if (null != price) {
-      return numeral(price).format(TWO_DECIMAL_FORMAT);
-    }
+      let formattedPrice = String(price);
+      let pointFirstPoistion = formattedPrice.indexOf(".");
+      let commaFirstPoistion = formattedPrice.indexOf(",");
+      if (commaFirstPoistion != -1 &&
+        pointFirstPoistion != -1 &&
+        pointFirstPoistion < commaFirstPoistion
+      ) {
+        console.log("validating " + formattedPrice);
+        formattedPrice = formattedPrice.replace(".","");
+        formattedPrice = formattedPrice.replace(",",".");
+        console.log("formatted: " + formattedPrice);
+      } 
+      return numeral(formattedPrice).format(TWO_DECIMAL_FORMAT);
+    }else{return null;}
   } catch (err) {
     console.log(err);
+    return price;
   }
-  return price;
 }
 
 module.exports = {

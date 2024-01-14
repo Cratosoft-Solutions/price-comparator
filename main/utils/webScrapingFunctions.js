@@ -85,6 +85,7 @@ export async function scrapingWithJsdom(urlToScrap, company, params) {
     if (currentProducts.length > 0) {
       currentProducts.forEach((element, index) => {
         currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice)/*  * 1 */;
+        currentProducts[index]['currency']= company.indMoneda;
       });
     }
     //console.log('#PASER 10 - JSDOM');
@@ -229,6 +230,7 @@ export async function scrapingWithHttpRequest(urlToScrap, company, params) {
       if (currentProducts.length > 0) {
         currentProducts.forEach((element, index) => {
           currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice)/*  * 1 */;
+          currentProducts[index]['currency']= company.indMoneda;
         });
       }
       //console.log(currentProducts);
@@ -351,6 +353,7 @@ export async function scrapingWithPuppeteer(urlToScrap, company, params) {
     if (productList.currentProducts.length > 0) {
       productList.currentProducts.forEach((element, index) => {
         productList.currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice)/* * 1 */;
+        currentProducts[index]['currency']= company.indMoneda;
       });
     }
     t1 = performance.now();
