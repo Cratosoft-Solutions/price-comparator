@@ -101,13 +101,26 @@ export const filterArrayBySearchText = (arrayToFilter, textSearchArray) => {
 }
 
 export const setStorageData = (key, dataToSet) => {
-  const item = window.sessionStorage.getItem(key);
+  const today = new Date();
+  let modifiedKey =
+    today.getFullYear() +
+    "-" +
+    today.getMonth() +
+    1 +
+    "-" +
+    today.getDate() +
+    "-" +
+    key.split(" ").join(".");
+  const item = window.sessionStorage.getItem(modifiedKey);
   if (item == null) {
-    window.sessionStorage.setItem(key, JSON.stringify([compress(dataToSet)]));
+    window.sessionStorage.setItem(modifiedKey, JSON.stringify([compress(dataToSet)]));
   } else {
-    window.sessionStorage.setItem(key, JSON.stringify([...JSON.parse(item), compress(dataToSet)]));
+    window.sessionStorage.setItem(
+      modifiedKey,
+      JSON.stringify([...JSON.parse(item), compress(dataToSet)])
+    );
   }
-}
+};
 
 export const setStorageCoincidences = (key, dataToSet) => {
   window.sessionStorage.setItem(key, JSON.stringify([compress(dataToSet)]));
@@ -147,32 +160,48 @@ export const formatKeyForStorage = (category, searchText) => {
 
 export const localDataExists = (key, resultDecompressed = false) => {
   try {
-   
-    const sessionKeywords = Object.keys(window.sessionStorage);
-    // Validate data
-    if (sessionKeywords != null && sessionKeywords.length > 0) {
-      console.log("Starting checking data");
-      const regex = new RegExp(key, "i"); // 'i' for case-insensitive search
-      // Find keywords that match with search key
-      const matchedKeys = sessionKeywords.filter((word) => regex.test(word));
-      console.log("Values found: " + JSON.stringify(matchedKeys));
-      if (matchedKeys != null && matchedKeys.length > 0) {
-        // Get more accurate result
-        const closestKey = closest(key, matchedKeys);
-        console.log("Session closest key" + closestKey);
-        const item = window.sessionStorage.getItem(closestKey);
-        if (item != null) {
-          console.log("Item exists on memory");
-          const decompressed = decompressObject(JSON.parse(item));
-          return {
-            localData: true,
-            data: resultDecompressed ? item : decompressed,
-            saveOnStorage: decompressed.length > 0 ? true : false,
-          };
-        }
-      }
+    const today = new Date();
+    let modifiedKey =
+      today.getFullYear() +
+      "-" +
+      today.getMonth() +
+      1 +
+      "-" +
+      today.getDate() +
+      "-" +
+      key.split(" ").join(".");
+    // const sessionKeywords = Object.keys(window.sessionStorage);
+    // // Validate data
+    // if (sessionKeywords != null && sessionKeywords.length > 0) {
+    //   console.log("Starting checking data");
+    //   const regex = new RegExp(key, "i"); // 'i' for case-insensitive search
+    //   // Find keywords that match with search key
+    //   const matchedKeys = sessionKeywords.filter((word) => regex.test(word));
+    //   console.log("Values found: " + JSON.stringify(matchedKeys));
+    //   if (matchedKeys != null && matchedKeys.length > 0) {
+    //     // Get more accurate result
+    //     const closestKey = closest(key, matchedKeys);
+    //     console.log("Session closest key" + closestKey);
+    //     const item = window.sessionStorage.getItem(closestKey);
+    //     if (item != null) {
+    //       console.log("Item exists on memory");
+    //       const decompressed = decompressObject(JSON.parse(item));
+    //       return {
+    //         localData: true,
+    //         data: resultDecompressed ? item : decompressed,
+    //         saveOnStorage: decompressed.length > 0 ? true : false,
+    //       };
+    //     }
+    //   }
+    // }
+    const item = window.sessionStorage.getItem(modifiedKey);
+    if (item != null) {
+      const decompressed = decompressObject(JSON.parse(item));
+      return { localData: true, data: resultDecompressed ? 
+        item : decompressed, saveOnStorage: decompressed.length > 0 ? true : false }
+    } else {
+      return { localData: false, data: null, saveOnStorage: false }
     }
-    return { localData: false, data: null, saveOnStorage: false };
   } catch (error) {
     console.log('Error', error);
     return { localData: false, data: null, saveOnStorage: null };
