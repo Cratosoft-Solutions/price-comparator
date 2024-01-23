@@ -1,7 +1,8 @@
 import { redirect } from 'next/navigation';
 import { compress, decompress } from 'compress-json';
+//import InputMask from 'react-input-mask';
 import axios from 'axios';
-import { AUTH_MESSAGES, CATEGORIES, NOT_CONTROLED_ERROR, PASSWORD_REGEX_VAL } from './constants';
+import { AUTH_MESSAGES, CATEGORIES, IMAGES_FORMAT_ACCEPTED, NOT_CONTROLED_ERROR, PASSWORD_REGEX_VAL } from './constants';
 import { scrapCompanyConfiguration } from "@utils/comercios";
 import Swal from 'sweetalert2';
 import {closest} from 'fastest-levenshtein';
@@ -474,6 +475,7 @@ export const numberToArray = (pageSize, size, currentPosition) =>{
 
 export function escapeRegex(searchText) {
   try {
+    console.log(searchText.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'));
     return searchText.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
   } catch (err) {
     console.log(err);
@@ -574,5 +576,140 @@ export const validateBlackListedKeywords = (text) => {
   }catch(err){
     console.log("Error proccessing filtered words" + err);
     return text;
+  }
+}
+
+export const validateImageDimension = async (base64Image, acceptedDimension, onDimenssionValidated) => {
+  try {
+    var i = new Image();
+    i.onload = function(){
+        if(i.width == acceptedDimension.width && 
+           i.height == acceptedDimension.height) {
+               onDimenssionValidated({messageCode:"OK", messageValue:base64Image});
+           }else{
+               //onDimenssionValidated({messageCode:"ERROR", messageValue:"NOT_ACCEPTED_DIMENSION"});
+               onDimenssionValidated({messageCode:"OK", messageValue:base64Image});
+           }
+    };
+    i.src = base64Image;
+  } catch (error) {
+       return {messageCode:"ERROR", messageValue:"UKNOWN"};
+  }
+}
+
+
+export async function fileListToBase64(fileList) {
+  // create function which return resolved promise
+  // with data:base64 string
+  function getBase64(file) {
+    const reader = new FileReader()
+    return new Promise(resolve => {
+      reader.onload = ev => {
+        resolve(ev.target.result)
+      }
+      reader.readAsDataURL(file)
+    })
+  }
+  // here will be array of promisified functions
+  const promises = []
+
+  // loop through fileList with for loop
+  for (let i = 0; i < fileList.length; i++) {
+    promises.push(getBase64(fileList[i]))
+  }
+
+  // array with base64 strings
+  return await Promise.all(promises)
+}
+
+
+export const fileToBase64 = async (file) =>{
+  var reader = new FileReader();
+  
+  reader.onload = function () {
+      return {messageCode:"OK", messageValue:reader.result};
+  };
+  reader.onerror = function (error) {
+      return {messageCode:"ERROR", messageValue:"FILE_NOT_BASE64"};
+  };
+  reader.readAsDataURL(file);
+}
+
+export const validatePrincipalImageStore =(imageArray=[])=>{
+  let extvalidation = {wrong:false, extension:''};
+  imageArray.forEach(element => {
+    if(!IMAGES_FORMAT_ACCEPTED.includes(element.type))
+      extvalidation= {wrong:true, extension:element.type}; 
+  });
+  
+  if(extvalidation.wrong)
+    return frontEndFormattedMessage("error", "EXT_NOT_ACCEPTED", `La extensión ${extvalidation.extension} no es aceptada`);
+
+    return frontEndFormattedMessage("success");    
+}
+
+/*export const PhoneNumber = props => (
+  <InputMask
+    mask="(999) 9999-9999"
+    value={props.value}
+    onChange={props.onChange}
+    
+  >
+    {inputProps => <input  {...inputProps} type="text" name="email" id="email" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"  placeholder="(999) 9999-9999"   />  }
+  </InputMask>
+
+);*/
+
+export const frontEndFormattedMessage = (type, messageCode="", messageDescription="") => {
+  return {type, messageCode, messageDescription}
+}
+
+export const genericCompression =(object, whatTodo)=>{
+  switch (whatTodo) {
+    case "compress":
+      return JSON.stringify(compress(object));
+    case "decompress":
+      return decompress(JSON.parse(object));
+  }
+}
+
+
+export const isMobile=()=> {
+  const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+  return regex.test(navigator.userAgent);
+}
+
+export const getGenericNumericArray = (
+  type, start, end, jumpAmount, addOthervalue=false, value=null
+) => {
+  let currentPosition = start;
+  const arrayToReturn = [];
+  while (currentPosition <= end) {
+    arrayToReturn.push({ value: currentPosition, label: currentPosition });
+    currentPosition += jumpAmount;
+  }
+
+  if (addOthervalue) arrayToReturn.push(value);
+
+  return type=="DESC"? arrayToReturn.sort(compareNumbers) : arrayToReturn;
+};
+
+function compareNumbers(a, b) {
+  return b.value - a.value;
+}
+
+export const genericItemsValue =(list, value) => {
+  try {
+    return list.filter(element => element.value == value)[0].label;
+  } catch (error) {
+    return ""
+  }
+}
+
+export const genericItemsValue2 =(list, value) => {
+  try {
+    return list.filter(element => element.value == value)[0].label2;
+  } catch (error) {
+    return ""
   }
 }

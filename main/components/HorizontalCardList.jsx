@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ProductCard from "./ProductCard";
 import { useSelector } from "react-redux";
 
-const HorizontalCardList = ({mergedProducts }) => {
+const HorizontalCardList = ({mergedProducts, adminMode = false, callBackFunction=()=>{} }) => {
   const parentHTML = useRef(null);
   const [scrollInterval, setScrollInterval] = useState(null);
   const [scrollToLeft, setScrollToLeft] = useState(true);
@@ -47,14 +47,16 @@ const HorizontalCardList = ({mergedProducts }) => {
 
   return (
     <div className="min-h-screen">
-      <div className="w-full justify-left">
-        <p className="text-2xl font-[800]">Busca el producto perfecto para ti.</p>
-      </div>
+      {!adminMode &&
+        <div className="w-full justify-left">
+          <p className="text-4xl font-[800] orange_gradient h-16">Busca el producto perfecto para ti.</p>
+        </div>
+      }
+
       <div className='grid gap-3 grid-cols-4 mt-4 mb-20' >
-              {mergedProducts.slice(FIRSTPOSITION, LASTPOSITION).map((product, index) => (
-                <ProductCard key={index} product = {product} index={index}/>
-              ))}
-              
+          {mergedProducts.slice(FIRSTPOSITION, LASTPOSITION).map((product, index) => (
+            <ProductCard key={index} product = {product} index={index} adminMode={adminMode} callBackFunction={callBackFunction}/>
+          ))}              
       </div>
     </div>
   );
