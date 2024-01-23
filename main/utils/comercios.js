@@ -9,7 +9,7 @@ export const scrapCompanyConfiguration = [
         indLogoSelector: true,
         logoSelector: "#logo img",
         attributeLogoSelector: 'src',
-        indMoneda: 'CRC',
+        indMoneda: '₡',
         mainSelector: '.product-layout.has-extra-button',
         scrapingFields: [
             {
@@ -357,7 +357,7 @@ export const scrapCompanyConfiguration = [
         indLogoSelector: true,
         logoSelector: ".logo.fitThisOnMenu",
         attributeLogoSelector: 'src',
-        indMoneda: 'CRC',
+        indMoneda: '₡',
         indMoneda: 2,
         mainSelector: '.row.grid div article',
         scrapingFields: [
@@ -557,7 +557,7 @@ export const scrapCompanyConfiguration = [
         indLogoSelector: true,
         logoSelector: ".logo img",
         attributeLogoSelector: 'src',
-        indMoneda: 'CRC',
+        indMoneda: '₡',
         mainSelector: '.products.wrapper.grid.products-grid.columns4 ol li',
         scrapingFields: [
             {
@@ -1501,7 +1501,7 @@ export const scrapCompanyConfiguration = [
         indLogoSelector: false,
         logoSelector: "https://www.construplaza.com/Content/Images/logo.webp",
         attributeLogoSelector: 'src',
-        indMoneda: 'CRC',
+        indMoneda: '₡',
         mainSelector: 'results.hits',
         scrapingFields: [
             {
@@ -2433,7 +2433,7 @@ export const scrapCompanyConfiguration = [
         indLogoSelector: true,
         logoSelector: ".elementor-image a img",
         attributeLogoSelector: 'src',
-        indMoneda: 'CRC',
+        indMoneda: '₡',
         mainSelector: '.item',
         scrapingFields: [
             {
@@ -2686,7 +2686,7 @@ export const scrapCompanyConfiguration = [
         indLogoSelector: true,
         logoSelector: ".site-logo",
         attributeLogoSelector: 'src',
-        indMoneda: 'CRC',
+        indMoneda: '₡',
         mainSelector: '.wrap-product-loop-content',
         scrapingFields: [
             {
