@@ -19,7 +19,7 @@ const RootLayout = ({ children }) => {
     <html lang="en">
 
       <ProviderRedux>
-        <body className="__variable_7dbc08 __variable_20951f">
+        <body className="relative __variable_7dbc08 __variable_20951f">
           <Provider>
             <div className="site-background">
               <div />

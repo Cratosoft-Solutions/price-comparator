@@ -9,9 +9,9 @@ const Home = () => {
             <span className="orange_gradient text-center">En Solo Un Lugar</span>
         </h1>
         <p className="desc text-center">
-            Cratosoft Price Comparator, te ayuda en la búsqueda de la mejor opción para obtener tu producto o servicio Soñado.
+        En Encuéntralo Fácil CR, simplificamos tu búsqueda para que encuentres la mejor opción y adquieras tu producto o servicio soñado al mejor precio. Navega fácilmente entre las opciones disponibles y toma decisiones informadas con nuestra plataforma de comparación de precios
         </p>
-        <Link href="/search/newsearch" className="black_btn mx-auto mt-10 flex max-w-fit space-x-4" onClick={()=>{console.log("me llamaron")}}>Iniciar búsqueda</Link>
+        <Link href="/search/newsearch" className="black_btn mx-auto mt-10 flex max-w-fit space-x-4" onClick={()=>{console.log("me llamaron")}}>Buscar Productos</Link>
     </section>
   )
 }

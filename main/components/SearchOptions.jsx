@@ -14,7 +14,6 @@ import {
   setMatchedProducts,
   orderProducts,
 } from "@app/redux/slices/products";
-import SearchLoadingBar from "./SearchLoadingBar";
 import { useRouter } from "next/navigation";
 
 const SearchOptions = ({ setOptionSearch }) => {
@@ -61,8 +60,8 @@ const SearchOptions = ({ setOptionSearch }) => {
           <div
             className="grid grid-rows-6 gap-2"
           >
-            <div className="grid grid-cols-[20%_80%] grid-rows-1 items-center  btn_nav  border-b-[1px] border-orange-500 lg:bg-white">
-              <AiOutlineSearch className="w-6 h-6 " color="orange"/>
+            <div className="grid grid-cols-[20%_80%] grid-rows-1 items-center  btn_nav  border-b-[1px] border-orange-600 lg:bg-white">
+              <AiOutlineSearch className="w-6 h-6 " color="#FF5733"/>
               <button
                 onClick={() => {
                   setSearchConfigProperty("NEWSEARCH");
@@ -78,7 +77,7 @@ const SearchOptions = ({ setOptionSearch }) => {
                 configuration.MINTOMAX ? "btn_nav_selected" : "btn_nav"
               } min-w-[10rem]`}
             >
-              <FaArrowUpShortWide className="w-6 h-6 " color="green"/>
+              <FaArrowUpShortWide className="w-6 h-6 " color="gray"/>
               <button
                 onClick={() => {
                   setSearchConfigProperty("MINTOMAX");
@@ -94,7 +93,7 @@ const SearchOptions = ({ setOptionSearch }) => {
                 configuration.MAXTOMIN ? "btn_nav_selected" : "btn_nav"
               } min-w-[10rem]`}
             >
-              <FaArrowDownShortWide className="w-6 h-6 " color="green"/>
+              <FaArrowDownShortWide className="w-6 h-6 " color="gray"/>
               <button
                 onClick={() => {
                   setSearchConfigProperty("MAXTOMIN");
@@ -109,7 +108,7 @@ const SearchOptions = ({ setOptionSearch }) => {
                 configuration.MATCH ? "btn_nav_selected" : "btn_nav"
               } min-w-[10rem]`}
             >
-              <IoCheckmarkDone  pShortWide className="w-6 h-6 " color="green"/>
+              <IoCheckmarkDone  pShortWide className="w-6 h-6 " color="gray"/>
               <button
                 onClick={() => {
                   setSearchConfigProperty("MATCH");
@@ -125,7 +124,7 @@ const SearchOptions = ({ setOptionSearch }) => {
                 !configuration.MATCH ? "btn_nav_selected" : "btn_nav"
               } min-w-[10rem]`}
             >
-              <IoCheckmark   className="w-6 h-6 " color="green"/>
+              <IoCheckmark   className="w-6 h-6 " color="gray"/>
               <button
                 onClick={() => {
                   setSearchConfigProperty("MATCH");
@@ -142,7 +141,7 @@ const SearchOptions = ({ setOptionSearch }) => {
                   expandCollapseOptionsBar(false);
                 }}
                 className="h-6 w-6"
-                color="green"
+                color="gray"
               />
             </div>
           </div>
@@ -155,7 +154,7 @@ const SearchOptions = ({ setOptionSearch }) => {
               expandCollapseOptionsBar(true);
             }}
             className="h-6 w-6"
-            color="green"
+            color="gray"
           />
         </div>
       )}

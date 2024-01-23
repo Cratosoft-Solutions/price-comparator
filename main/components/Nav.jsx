@@ -24,11 +24,12 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 w-full flex-between p-3 z-40 bg-white border-b-1 shadow  border-gray-300">
-      <Link href="/" className="flex gap-2 flex-center">
+    <nav className="fixed top-0 w-full flex-between z-40 bg-white border-b-1 shadow  border-gray-300">
+      
+      <Link href="/" className="flex gap-2 flex-center p-3">
         <Image
           src="/assets/images/comparator-logo.png"
-          alt="randal logo"
+          alt="logo"
           width={200}
           height={100}
           className="object-contain"
@@ -38,7 +39,7 @@ const Nav = () => {
       {/* Mobile navigation*/}
       <div className="flex relative">
         {session?.user ? (
-          <div className="flex">
+          <div className="flex p-3">
             <Image
               src={session?.user?.image? session.user.image:"/assets/images/userProfile.png"}
               width={37}
@@ -49,6 +50,13 @@ const Nav = () => {
             />
             {toogleDropDown && (
               <div className="dropdown">
+                <button className="dropdown_link"
+                  onClick={(e) => {
+                    router.push("/mystore")
+                    setToogleDropDown(false);
+                  }}>
+                  Vender
+                </button>
                 <Link
                   href="/profile"
                   className="dropdown_link"
@@ -64,7 +72,7 @@ const Nav = () => {
           </div>
         ) : (
           <>
-          <div className="flex">
+          <div className="flex w-fit p-3">
             <Image
               src={'/assets/images/userProfile.png'}
               width={37}
