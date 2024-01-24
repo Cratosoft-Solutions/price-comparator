@@ -1,20 +1,19 @@
-"use client";
 import "@styles/globals.css";
 import Nav from "@components/Nav";
 import Provider from "@components/Provider";
 import ScrollToTopButton from "@components/ScrollToTop";
 import ProviderRedux from "./redux/provider/provider";
-import { usePathname } from "next/navigation";
+//import { usePathname } from "next/navigation";
 import Terms from "@components/Terms";
 import { Analytics } from "@vercel/analytics/react";
 
-export const medatada = {
+export const metadata = {
   title: "Cratosoft Comparador de Precios",
   description: "Compara precios entre productos y servicios de Costa Rica",
 };
 
 const RootLayout = ({ children }) => {
-  const pathname = usePathname();
+//  const pathname = usePathname();
 
   return (
     <html lang="en">
@@ -30,7 +29,7 @@ const RootLayout = ({ children }) => {
               <div />
             </div>
             <main className="app">
-              {(pathname != "/login" && pathname != "/register") ? (
+              {(1==1/*pathname != "/login" && pathname != "/register"*/) ? (
                 <>
                   <Nav />
                   <div className="mt-[4rem]" />
@@ -39,7 +38,7 @@ const RootLayout = ({ children }) => {
               {children}
               <Analytics />
               <ScrollToTopButton />
-              {pathname != "/termsandconditions"?<Terms/>:null}
+              {/*pathname != "/termsandconditions"*/1==1?<Terms/>:null}
             </main>
           </Provider>
         </body>
