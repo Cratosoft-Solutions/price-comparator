@@ -8,8 +8,8 @@ import Terms from "@components/Terms";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
-  title: "Cratosoft Comparador de Precios",
-  description: "Compara precios entre productos y servicios de Costa Rica",
+  title: "Encuéntralo Fácil Costa Rica",
+  description: "Descubre de manera sencilla y rápida una selección diversa de productos y servicios en EncuentraLoFácilCR. Desde autos hasta viviendas, abarrotes, artículos de segunda mano y una amplia variedad de servicios, nuestra plataforma te permite explorar y publicar lo que necesitas. Navega con facilidad, encuentra lo que buscas al alcance de un clic y, si lo deseas, publica tus propios productos y servicios. ¡Haz tus búsquedas más eficientes y experimenta la comodidad de EncuentraLoFácilCR!",
 };
 
 const RootLayout = ({ children }) => {
