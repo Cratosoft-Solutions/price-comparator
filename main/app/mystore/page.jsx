@@ -1,46 +1,15 @@
-"use client";
-import React, { useEffect } from "react";
-import withAuth from "@app/HOCs/AuthHOC";
-import Loading from "@app/loading";
-import MyStoreVerticalNav from "@components/MyStoreVerticalNav";
-import StoreConfig from "@components/store/StoreConfig";
-import { useSelector } from "react-redux";
-import StoreItem from "@components/store/StoreItem";
-import MyItems from "@components/store/MyItems";
 
-const CustomerStore = ({ userIsAuthenticated, isLoading }) => {
-  const { selectedOption } = useSelector(state => state.verticalnav.myStoreNav);
+const { default: PageMyStoreComponent } = require("@components/PageMyStoreComponent")
 
+export const metadata = {
+  title: "EncuéntraLo Fácil CR: Mi tienda",
+  description: "Encuentralo Fácil CR, publica tus  productos, bienes, casas, autos u otros con nosotros. Descrubre la magia de encuéntralo fácil CR!",
+};
 
-  useEffect(() => {
-    userIsAuthenticated();
-  }, []);
-  
-  const renderSelectedOption = () =>{
-    switch (selectedOption) {
-      case "configuration":
-        return <StoreConfig/>
-      case "products":
-        return <StoreItem/>
-      case "myproducts":
-        return <MyItems/>
-      default:
-        break;
-    }
-  }
-
+const CustomerStore = () => {
   return (
-    <>
-      {!isLoading ? (
-        <div className="bg-gray-100">
-          {renderSelectedOption()}
-          <MyStoreVerticalNav />
-        </div>
-      ) : (
-        <Loading message={"Por favor espere..."} />
-      )}
-    </>
+    <PageMyStoreComponent/>
   );
 };
 
-export default withAuth(CustomerStore, true);
+export default CustomerStore;
