@@ -1,17 +1,13 @@
-"use client"
-import LoginRegister from '@components/LoginRegister'
-import React, {useEffect} from 'react'
-import withAuth from '@app/HOCs/AuthHOC'
-import Loading from '@app/loading'
+const { default: PageLoginComponent } = require("@components/PageLoginComponent")
 
-const Login = ({refreshToken, isLoading}) => {
-  useEffect(() => {
-    refreshToken();
-  }, [])
-  
+export const metadata = {
+  title: "EncuéntraLo Fácil CR: Login",
+  description: "Encuentralo Fácil CR, ingresa para estar al tanto de nuevos productos, bienes, casas, autos u otros preferidos. O bien para tener tu propia tienda y publicarlos!",
+};
+
+const Login = () => {
   return (
-    <>{!isLoading ? <LoginRegister isLogin={true} /> : <Loading message={"Por favor espere..."} />}</>
-  )
+    <PageLoginComponent/>)
 }
 
-export default withAuth(Login)
+export default Login

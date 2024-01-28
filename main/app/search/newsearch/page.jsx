@@ -1,17 +1,15 @@
-"use client";
-import React, { useEffect } from "react";
-import Search from "@components/Search";
-import withAuth from "@app/HOCs/AuthHOC";
-import Loading from "@app/loading";
-
-const MySearch = ({ refreshToken, isLoading }) => {
-  useEffect(() => {
-    refreshToken();
-  }, []);
-  
-  return (
-    <>{!isLoading ? <Search /> : <Loading message={"Por favor espere..."} />}</>
-  );
+import PageSearchComponent from "@components/PageSearchComponent";
+ 
+export const metadata = {
+  title: "EncuéntraLo Fácil CR: Búsqueda de productos, casas, vehículos, bienes y servicios",
+  description: "Encuentralo Fácil CR, busca tu producto o servicio soñado en nuestra plataforma. Solamente indica la palabra que deseas buscar y listo, empieza a encontrar un sinfin de productos y servicios.",
 };
 
-export default withAuth(MySearch);
+
+const MySearch = () => {
+  return (
+    <PageSearchComponent/>
+    );
+};
+
+export default MySearch;

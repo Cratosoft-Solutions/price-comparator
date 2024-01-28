@@ -1,18 +1,15 @@
-"use client"
-import LoginRegister from '@components/LoginRegister'
-import React, {useEffect} from 'react';
-import withAuth from '@app/HOCs/AuthHOC';
-import Loading from '@app/loading';
+import PageRegisterComponent from "@components/PageRegisterComponent";
 
-const Register = ({refreshToken, isLoading}) => {
-  useEffect(() => {
-    refreshToken();
-  }, [])
+export const metadata = {
+  title: "EncuéntraLo Fácil CR: Registro",
+  description: "Encuentralo Fácil CR, regístrate para estar al tanto de nuevos productos, bienes, casas, autos u otros preferidos. O bien para tener tu propia tienda y publicarlos!",
+};
+
+const RegisterPage = () => {
   
   return (
-    <>{!isLoading ? <LoginRegister isLogin={false} /> : <Loading message={"Por favor espere..."} />}</>
-
+    <PageRegisterComponent/>
   )
 }
 
-export default withAuth(Register)
+export default RegisterPage
