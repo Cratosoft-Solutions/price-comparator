@@ -28,7 +28,7 @@ const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
             rel="noreferrer noopener"
           >
             <img
-              alt="Placeholder Photo"
+              alt="Productos y servicios. Encuéntralo Facil Costa Rica"
               className="absolute left-0 top-0 max-h-[95%] w-full h-full object-cover object-center transition duration-50"
               loading="lazy"
               src={product.productImage}
@@ -47,7 +47,7 @@ const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
                   ? "https://www.edelar.com.ar/static/theme/images/sin_imagen.jpg"
                   : product.companyLogo
               }
-              alt={product.companyLogo}
+              alt="Productos y servicios. Encuéntralo Facil Costa Rica"
             />
           )}
         <div className="p-4">

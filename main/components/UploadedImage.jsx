@@ -9,7 +9,7 @@ const UploadedImage = ({image, imageProperties=[], onCloseFunction, onDeleteImag
                 <img
                     className="lg:w-1/2 sm:w-5/6 rounded bg-cyan-500 shadow-lg shadow-gray-500/50 overflow-x-auto"
                     src={image}
-                    alt="Imagen del producto"
+                    alt="Productos y servicios. Encuéntralo Facil Costa Rica"
                   />
                   <button className='black_btn absolute bottom-2 lg:w-1/3 sm:w-5/6' onClick={()=>{onDeleteImage(index)}}>Eliminar</button>
                 </div>

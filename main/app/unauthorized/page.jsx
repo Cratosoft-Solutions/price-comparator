@@ -2,7 +2,7 @@ import React from 'react'
 
 export const metadata = {
   title: "EncuéntraLo Fácil CR: Acceso no autorizado",
-  description: "Encuentralo Fácil CR, acceso no autorizado.",
+  description: "EncuéntraLo Fácil CR, acceso no autorizado.",
 };
 
 const Unauthorized = () => {

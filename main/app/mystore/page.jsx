@@ -3,7 +3,7 @@ const { default: PageMyStoreComponent } = require("@components/PageMyStoreCompon
 
 export const metadata = {
   title: "EncuéntraLo Fácil CR: Mi tienda",
-  description: "Encuentralo Fácil CR, publica tus  productos, bienes, casas, autos u otros con nosotros. Descrubre la magia de encuéntralo fácil CR!",
+  description: "EncuéntraLo Fácil CR, publica tus  productos, bienes, casas, autos u otros con nosotros. Descrubre la magia de encuéntralo fácil CR!",
 };
 
 const CustomerStore = () => {

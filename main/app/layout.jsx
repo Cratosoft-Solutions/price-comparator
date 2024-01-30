@@ -8,8 +8,8 @@ import Terms from "@components/Terms";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
-  title: "EncuéntraLo Fácil CR: Descubre, Publica y Encuentra Autos, Viviendas, Abarrotes y Servicios en Costa Rica",
-  description: "Explora Encuentralo Fácil CR, tu destino en línea en Costa Rica para descubrir y publicar una amplia variedad de bienes y servicios. Encuentra fácilmente autos, viviendas, productos y servicios. Publica tus propios productos y servicios con facilidad. ¡Haz tus búsquedas más eficientes y disfruta de la comodidad en EncuentraLoFácilCR!",
+  title: "EncuéntraLo Fácil CR: Buscador de productos y servicios Costa Rica",
+  description: "Explora EncuéntraLo Fácil CR, tu destino en línea en Costa Rica para descubrir y publicar una amplia variedad de bienes y servicios. Encuentra fácilmente autos, viviendas, productos y servicios.",
 };
 
 const RootLayout = ({ children }) => {

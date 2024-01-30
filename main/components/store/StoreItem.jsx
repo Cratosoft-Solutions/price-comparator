@@ -258,7 +258,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
                             <div className="md:col-span-5 text-right relative mt-4">
                             <div className="grid grid-cols-3 lg:grid-cols-6 grid-rows-2 lg:grid-rows-1">
                                 {images.map((image, index)=>(
-                                    <img key ={index} src={image} className="w-12 h-auto mr-5 group-invalid:pointer-events-none group-invalid:opacity-30" onClick={()=> {showInternalImage(index)}}/>
+                                    <img key ={index} src={image} className="w-12 h-auto mr-5 group-invalid:pointer-events-none group-invalid:opacity-30" onClick={()=> {showInternalImage(index)}} alt="Productos y servicios. Encuéntralo Facil Costa Rica"/>
                                 ))}
                             </div>
                             </div>

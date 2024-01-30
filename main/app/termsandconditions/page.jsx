@@ -2,7 +2,7 @@ const { default: PageTermsComponent } = require("@components/PageTermsComponent"
 
 export const metadata = {
   title: "EncuéntraLo Fácil CR: Términos y condiciones",
-  description: "Encuentralo Fácil CR, encuentra en esta página nuestras condiciones para el uso y disfrute de la plataforma.",
+  description: "EncuéntraLo Fácil CR, encuentra en esta página nuestras condiciones para el uso y disfrute de la plataforma.",
 };
 
 const TermsAndConditions = () => {
