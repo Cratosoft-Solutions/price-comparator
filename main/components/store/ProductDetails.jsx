@@ -61,7 +61,7 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
                 <div className="relative mb-6 lg:mb-10 lg:h-2/4 ">
                   <img
                     src={product.productImage[selectedImage]}
-                    alt=""
+                    alt="Productos y servicios. Encuéntralo Facil Costa Rica"
                     className="object-cover w-full lg:h-full "
                   />
                 </div>
@@ -74,7 +74,7 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
                       <a href="#" className="block border border-blue-300">
                         <img
                           src={element}
-                          alt=""
+                          alt="Productos y servicios. Encuéntralo Facil Costa Rica"
                           className="object-cover w-auto h-20"
                           onClick={() => {
                             setSelectedImage(index);
@@ -268,7 +268,7 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
                         <img
                           className="h-6 w-6"
                           src="/assets/images/ws-image.png"
-                          alt="logo"
+                          alt="Productos y servicios. Encuéntralo Facil Costa Rica"
                         />{" "}
                         Contactar tienda
                       </Link>

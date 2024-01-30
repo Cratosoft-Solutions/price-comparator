@@ -39,7 +39,7 @@ const ProductCard = ({ logo, product, index, adminMode, callBackFunction }) => {
                 ? "https://www.edelar.com.ar/static/theme/images/sin_imagen.jpg"
                 : product.productImage
             }
-            alt={product.productName}
+            alt="Productos y servicios. Encuéntralo Facil Costa Rica"
           />
           {adminMode? null: (<>{product.isLocal?null:<div className="centered-blur">REFERENCIA </div>}</>)} 
         </div>
@@ -51,7 +51,7 @@ const ProductCard = ({ logo, product, index, adminMode, callBackFunction }) => {
                 ? "https://www.edelar.com.ar/static/theme/images/sin_imagen.jpg"
                 : product.companyLogo
             }
-            alt={product.productName}
+            alt="Productos y servicios. Encuéntralo Facil Costa Rica"
           />
         )}
        </a>

@@ -11,7 +11,7 @@ const Home = () => {
           <span className="orange_gradient text-center">Busca el mejor precio</span>
         </h1>
         <p className="desc text-center">
-        Descubre de manera sencilla y rápida una selección diversa de productos y servicios en EncuentraLoFácilCR. Desde autos hasta viviendas, abarrotes, artículos de segunda mano y una amplia variedad de servicios, nuestra plataforma te permite explorar y publicar lo que necesitas. Navega con facilidad, encuentra lo que buscas al alcance de un clic y, si lo deseas, publica tus propios productos y servicios. ¡Haz tus búsquedas más eficientes y experimenta la comodidad de Encuentralo Fácil CR!
+        Descubre de manera sencilla y rápida una selección diversa de productos y servicios en Encuéntralo Fácil Costa Rica. Desde autos hasta viviendas, abarrotes, artículos de segunda mano y una amplia variedad de servicios, nuestra plataforma te permite explorar y publicar lo que necesitas. Navega con facilidad, encuentra lo que buscas al alcance de un clic y, si lo deseas, publica tus propios productos y servicios. ¡Haz tus búsquedas más eficientes y experimenta la comodidad de Encuentralo Fácil CR!
         </p>
         <Link
           href="/search/newsearch"
