@@ -19,6 +19,8 @@ export const CAROUSEL_SAVE_CONFIRM_ACTION = {message:"¿Seguro de guardar los ca
 //LISTS
 export const CURRENCY_LIST = [{value:"CRC", label:"Colones", feSimbol:"₡"},{value:"USD", label:"Dólares", feSimbol:"$"}];
 export const CATEGORY_TYPES = [{value:"PRODUCT", label:"Productos"}, {value:"CAR", label:"Autos"}, {value:"SERVICES", label:"Servicios"}, {value:"HOUSES", label:"Casas / Apartamentos"}];
+export const SERVICES_TYPES = [{value:"ACA", label:"Académicos"}, {value:"TRA", label:"Transporte"}, {value:"TUR", label:"Turismo"}, {value:"ENT", label:"Entretenimiento"},
+{value:"HOT", label:"Hoteleros"}, {value:"MANT", label:"Mantenimiento"}, {value:"LIM", label:"Limpieza"}, {value:"INF", label:"Informáticos"}, {value:"GAS", label:"Gastronómicos"}];
 export const CATEGORY_DEFAULT_LIST = [{value:"SELECT", label:"Seleccione una categoria"}];
 export const STORE_BACKGROUND_DIRECTION = [
         {value:"bbg-gradient-to-r", label:"Izquierda a Derecha"},
