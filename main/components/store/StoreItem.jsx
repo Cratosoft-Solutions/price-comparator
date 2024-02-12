@@ -42,8 +42,6 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
     const { expandedNavBar } = useSelector(state => state.verticalnav.myStoreNav);
     const [carInfo, setCarInfo] = useState({brand:"SELECT", model:"",cc:"", style:"SELECT",passengers:1,year: new Date().getFullYear(), status:1, combustible:1, transmition:1,kms:"",kmstype:"1", taxes:"NO",otherCar:"NO",doors:1, province:"SJO", equipment:[]});
 
-
-
     useEffect(() => {
       const securePage = async () => {
         const session = await getSession();
@@ -191,6 +189,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
     } 
 
     const setCategoryOnChange = (category) => {
+      restartForm();
       setCategory(category);
       switch (category) {
         case 'SERVICES':
