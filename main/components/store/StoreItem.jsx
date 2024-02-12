@@ -90,6 +90,17 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
         setServiceType(SERVICES_TYPES[0].value);
     }
 
+    const restartFormWithoutCategory = ()=>{
+        setId(null);
+        setName('');
+        setDescription('');
+        setPrice(null);
+        setSpecialPrice(null);
+        setCurrency(CURRENCY_LIST[0].value);
+        setImages([]);
+        setServiceType(SERVICES_TYPES[0].value);
+    }
+
     const confirmAction = (e) =>{
         e.preventDefault();
         if(category=="CAR" && (carInfo.brand =="SELECT"|| carInfo.style =="SELECT")){+
@@ -189,7 +200,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
     } 
 
     const setCategoryOnChange = (category) => {
-      restartForm();
+      restartFormWithoutCategory();
       setCategory(category);
       switch (category) {
         case 'SERVICES':
