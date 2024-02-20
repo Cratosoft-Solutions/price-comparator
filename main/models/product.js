@@ -43,7 +43,10 @@ const ProductSchema = new Schema({
     },
     otherinformation:{
         type:JSON
-    }
+    },
+    serviceType:{
+        type:String,
+    },
 });
 
 const Product = models.Product || model("Product", ProductSchema);
