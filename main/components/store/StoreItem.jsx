@@ -51,6 +51,11 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
             const storeInfo = await axios.get(`/api/user/${session.user.id}/store/`);
             console.log(storeInfo);
             setStore(storeInfo.data._id);
+            if(product != undefined && product.category === 'SERVICES'){
+              setNameLabel("Nombre del servicio.");
+              setDescriptionLabel("Descripcion del servicio.");
+              setPriceLabel("Precio del servicio.");
+            }
             setLoading(false);
         }
       };

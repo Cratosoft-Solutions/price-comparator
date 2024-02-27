@@ -713,3 +713,19 @@ export const genericItemsValue2 =(list, value) => {
     return ""
   }
 }
+
+/**
+ * Get service description from service code 
+ * @param {*} list 
+ * @param {*} value 
+ * @returns label
+ */
+export const getServiceTypeDescription = (list, value) => {
+  try {
+    let serviceType = list.find((item) => item.value === value);
+    return serviceType.label;
+  } catch (error) {
+    console.log("Error", error);
+    return "";
+  }
+};
