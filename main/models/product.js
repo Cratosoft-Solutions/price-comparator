@@ -47,6 +47,12 @@ const ProductSchema = new Schema({
     serviceType:{
         type:String,
     },
+    modalityType:{
+        type:String,
+    },
+    province:{
+        type:String,
+    },
 });
 
 const Product = models.Product || model("Product", ProductSchema);

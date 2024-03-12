@@ -32,7 +32,9 @@ export const GET = async (req, { params }) => {
           category:SearchExists.category,
           currency: SearchExists.currency,
           negotiable: SearchExists.negotiable,
-          serviceType: SearchExists.category === 'SERVICES'? SearchExists.serviceType : null
+          serviceType: SearchExists.category === 'SERVICES'? SearchExists.serviceType : null,
+          modalityType: SearchExists.category === 'SERVICES'? SearchExists.modalityType : null,
+          province: SearchExists.category === 'SERVICES'? SearchExists.province : null
       };
 
       if(typeof SearchExists.otherinformation != undefined)

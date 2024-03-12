@@ -2,7 +2,19 @@
 import React, { useEffect, useState } from 'react';
 import DragDropFiles from '@components/DragDropFiles';
 import Modal from '@components/Modal';
-import { PRODUCT_SAVE_CONFIRM_ACTION,CATEGORY_TYPES,IMAGE_MAX_PASSED, IMAGE_FAILED_CONFIRM_ACTION, GENERAL_UKNOWN_ERROR, GENERAL_SUCCESS_PROCESS, CURRENCY_LIST, GENERAL_YESNO,SERVICES_TYPES } from '@utils/constants';
+import {
+  PRODUCT_SAVE_CONFIRM_ACTION,
+  CATEGORY_TYPES,
+  IMAGE_MAX_PASSED,
+  IMAGE_FAILED_CONFIRM_ACTION,
+  GENERAL_UKNOWN_ERROR,
+  GENERAL_SUCCESS_PROCESS,
+  CURRENCY_LIST,
+  GENERAL_YESNO,
+  SERVICES_TYPES,
+  MODALITY_TYPES,
+  PROVINCES
+} from "@utils/constants";
 import { getSession, signIn } from "next-auth/react";
 import Loading from '@app/loading';
 import axios from 'axios';
@@ -13,6 +25,7 @@ import { useSelector } from "react-redux";
 import { genericCompression } from '@utils/functions';
 import CarInfo from './CarInfo';
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import ServicesInfo from './ServicesInfo';
 
 
 
@@ -30,6 +43,8 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
     const [negotiable, setNegotiable] = useState('NO');
     const [category, setCategory] = useState('PRODUCT');
     const [serviceType, setServiceType] = useState(SERVICES_TYPES[0].value);
+    const [modalityType, setModalityType] = useState(MODALITY_TYPES[0].value);
+    const [province, setProvince] = useState(PROVINCES[0].value);
     const [price, setPrice] = useState(null);
     const [specialPrice, setSpecialPrice] = useState(null);
     const [currency, setCurrency] = useState(CURRENCY_LIST[0].value);
@@ -39,8 +54,16 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
     const [showImage, setShowImage] = useState(false);
     const categoryList = CATEGORY_TYPES;
     const servicesList = SERVICES_TYPES;
+    const modalityList = MODALITY_TYPES;
+    const provinceList = PROVINCES;
     const { expandedNavBar } = useSelector(state => state.verticalnav.myStoreNav);
     const [carInfo, setCarInfo] = useState({brand:"SELECT", model:"",cc:"", style:"SELECT",passengers:1,year: new Date().getFullYear(), status:1, combustible:1, transmition:1,kms:"",kmstype:"1", taxes:"NO",otherCar:"NO",doors:1, province:"SJO", equipment:[]});
+
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const handleOptionChange = (value) => {
+      setSelectedOption(value);
+    };
 
     useEffect(() => {
       const securePage = async () => {
@@ -74,6 +97,8 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
         setImages(product.productImage);
         if (product.category === 'SERVICES') {
           setServiceType(product.serviceType);
+          setModalityType(product.modalityType);
+          setProvince(product.province);
         }
         if(product.category=="CAR"){
             setCarInfo(product.otherInformation);
@@ -93,6 +118,8 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
         setImages([]);
         setCategory(categoryList[0].value);
         setServiceType(SERVICES_TYPES[0].value);
+        setModalityType(MODALITY_TYPES[0].value);
+        setProvince(PROVINCES[0].value);
     }
 
     const restartFormWithoutCategory = ()=>{
@@ -104,6 +131,8 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
         setCurrency(CURRENCY_LIST[0].value);
         setImages([]);
         setServiceType(SERVICES_TYPES[0].value);
+        setModalityType(MODALITY_TYPES[0].value);
+        setProvince(PROVINCES[0].value);
     }
 
     const confirmAction = (e) =>{
@@ -132,7 +161,9 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
                         currency: currency,
                         image: genericCompression(images, "compress"),
                         otherItemInformation: category == "CAR"? JSON.stringify(carInfo):null,
-                        serviceType: category === 'SERVICES'? serviceType : null
+                        serviceType: category === 'SERVICES'? serviceType : null,
+                        modalityType: category === 'SERVICES'? modalityType : null,
+                        province: category === 'SERVICES'? province : null
                       })
                       .then((response) => {
                         if(!editMode){
@@ -331,6 +362,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
                   </div>
 
                   {category === "SERVICES" && (
+                    <>
                     <div className="md:col-span-5 relative">
                       <DropDownList
                         additionalClass="rounded-t-lg"
@@ -349,6 +381,43 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
                         Categoría del servicio.
                       </div>
                     </div>
+                    <div className="md:col-span-5 relative">
+                      <DropDownList
+                        additionalClass="rounded-t-lg"
+                        onSelectValue={setModalityType}
+                        values={modalityList}
+                        type="text"
+                        required
+                        name="modalityType"
+                        id="modalityType"
+                        onChange={(e) => {
+                          setModalityType(e.target.value);
+                        }}
+                        currentValue={modalityType}
+                      />
+                      <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+                        Modalidad
+                      </div>
+                    </div>
+                    <div className="md:col-span-5 relative">
+                      <DropDownList
+                        additionalClass="rounded-t-lg"
+                        onSelectValue={setProvince}
+                        values={provinceList}
+                        type="text"
+                        required
+                        name="province"
+                        id="province"
+                        onChange={(e) => {
+                          (e.target.value);
+                        }}
+                        currentValue={province}
+                      />
+                      <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+                        Provincia
+                      </div>
+                    </div>
+                  </>
                   )}
                   {category != "SERVICES" && (
                     <>

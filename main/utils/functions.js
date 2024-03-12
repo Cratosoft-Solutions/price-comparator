@@ -720,7 +720,7 @@ export const genericItemsValue2 =(list, value) => {
  * @param {*} value 
  * @returns label
  */
-export const getServiceTypeDescription = (list, value) => {
+export const getServiceItemLabel = (list, value) => {
   try {
     let serviceType = list.find((item) => item.value === value);
     return serviceType.label;

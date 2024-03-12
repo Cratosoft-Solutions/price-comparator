@@ -31,6 +31,8 @@ export const POST = async (req) => {
 
     if (productToSave.category === 'SERVICES') {
       formatedProduct.serviceType = productToSave.serviceType;
+      formatedProduct.modalityType = productToSave.modalityType;
+      formatedProduct.province = productToSave.province;
     }
 
     console.log(productToSave);

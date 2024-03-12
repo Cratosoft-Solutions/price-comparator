@@ -21,6 +21,8 @@ export const CURRENCY_LIST = [{value:"CRC", label:"Colones", feSimbol:"₡"},{va
 export const CATEGORY_TYPES = [{value:"PRODUCT", label:"Productos"}, {value:"CAR", label:"Autos"}, {value:"SERVICES", label:"Servicios"}, {value:"HOUSES", label:"Casas / Apartamentos"}];
 export const SERVICES_TYPES = [{value:"ACA", label:"Académicos"}, {value:"TRA", label:"Transporte"}, {value:"TUR", label:"Turismo"}, {value:"ENT", label:"Entretenimiento"},
 {value:"HOT", label:"Hoteleros"}, {value:"MANT", label:"Mantenimiento"}, {value:"LIM", label:"Limpieza"}, {value:"INF", label:"Informáticos"}, {value:"GAS", label:"Gastronómicos"}];
+export const PROVINCES = [{value:"ALA", label:"Alajuela"}, {value:"CAR", label:"Cartago"}, {value:"GUA", label:"Guanacaste"},{value:"HER", label:"Heredia"},{value:"LIM", label:"Limón"},{value:"PUN", label:"Puntarenas"},{value:"SJO", label:"San José"}];
+export const MODALITY_TYPES = [{value:"FIS", label:"Física"}, {value:"VIR", label:"Virtual"}, {value:"AMB", label:"Física y Virtual"}];
 export const CATEGORY_DEFAULT_LIST = [{value:"SELECT", label:"Seleccione una categoria"}];
 export const STORE_BACKGROUND_DIRECTION = [
         {value:"bbg-gradient-to-r", label:"Izquierda a Derecha"},

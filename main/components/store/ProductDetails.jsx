@@ -2,8 +2,8 @@
 import Loading from '@app/loading';
 import GenericAnimation from '@components/GenericAnimation';
 import HorizontalCardListLoading from '@components/HorizontalCardListLoading';
-import { CARD_BRANDS, CARD_COMBUSTIBLE, CARD_EQUIPMENT, CARD_KMMI, CARD_STATUS, CARD_STYLES, CARD_TRANSMITION, GENERAL_PROVINCES, GENERAL_YESNO,SERVICES_TYPES } from '@utils/constants';
-import { genericItemsValue, genericItemsValue2, getServiceTypeDescription } from '@utils/functions';
+import { CARD_BRANDS, CARD_COMBUSTIBLE, CARD_EQUIPMENT, CARD_KMMI, CARD_STATUS, CARD_STYLES, CARD_TRANSMITION, GENERAL_PROVINCES, GENERAL_YESNO,SERVICES_TYPES, MODALITY_TYPES, PROVINCES } from '@utils/constants';
+import { genericItemsValue, genericItemsValue2, getServiceItemLabel } from '@utils/functions';
 import axios from 'axios';
 import { getSession, signIn } from 'next-auth/react';
 import Link from 'next/link';
@@ -69,7 +69,7 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
       <section className="absolute top-0 w-full z-50 min-h-full bg-gray-800 bg-opacity-30 py-11 font-poppins px-2">
         <div className="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6 bg-white rounded-lg shadow">
           <div className="flex flex-wrap -mx-4">
-            <div className="w-full px-4 md:w-1/2 ">
+            {product.productImage[selectedImage] != undefined && <div className="w-full px-4 md:w-1/2 ">
               <div className="sticky top-0 z-50 overflow-hidden ">
                 <div className="relative mb-6 lg:mb-10 lg:h-2/4 ">
                   <img
@@ -98,7 +98,7 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
                   ))}
                 </div>
               </div>
-            </div>
+            </div>}
             <div className="w-full px-4 md:w-1/2 ">
               <div className="lg:pl-20">
                 <div className="mb-8 ">
@@ -288,9 +288,35 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
                             Tipo:
                           </p>
                           <p className="inline ">
-                            {getServiceTypeDescription(
+                            {getServiceItemLabel(
                               SERVICES_TYPES,
                               product.serviceType
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-2 lg:grid-cols-3 gap-y-2 lg:gap-y-4 mt-4 gap-x-2">
+                        <div className="text-gray-600 flex gap-2">
+                          <p className="text-green-600 font-bold inline ">
+                            Modalidad:
+                          </p>
+                          <p className="inline ">
+                            {getServiceItemLabel(
+                              MODALITY_TYPES,
+                              product.modalityType
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-2 lg:grid-cols-3 gap-y-2 lg:gap-y-4 mt-4 gap-x-2">
+                        <div className="text-gray-600 flex gap-2">
+                          <p className="text-green-600 font-bold inline ">
+                            Provincia:
+                          </p>
+                          <p className="inline ">
+                            {getServiceItemLabel(
+                              PROVINCES,
+                              product.province
                             )}
                           </p>
                         </div>
