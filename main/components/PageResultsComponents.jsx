@@ -1,7 +1,7 @@
 "use client";
 import ProductList from '@components/ProductList';
-import SearchOptions from '@components/SearchOptions'
-import React, { useEffect, useState } from 'react'
+import ProductFilterVerticalNav from '@components/ProductFilterVerticalNav'
+import React, { useEffect } from 'react'
 import { STORE_BY_CATEGORY } from "@utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWithTimeout, formatKeyForStorage, getSearchDataFromDataBase, localDataExists, saveSearchOnDB, setStorageData } from "@utils/functions";
@@ -15,7 +15,7 @@ import { useSession } from 'next-auth/react';
 const MyResults = () => {
     const router = useRouter();
     const {data:session} = useSession();
-    const [isOptionSearchExpanded, setIsOptionSearchExpanded] = useState(false); 
+    const { expandedNavBar } = useSelector(state => state.verticalnav.productSearch);
     const dispatch = useDispatch();
     const { text, category } = useSelector(state => state.searchProperties.properties);
 
@@ -119,15 +119,15 @@ const MyResults = () => {
           executeSearch();
         }
         else{
-          router.push('/search/newsearch');
+          router.push('/');
         }
     }, [])
 
 
 return (
-    <div className='bg-gray-100 '>
-      <SearchOptions setOptionSearch={setIsOptionSearchExpanded}/>
-      <ProductList isOptionSearchExpanded={isOptionSearchExpanded}/>
+    <div className='bg-white'>
+      <ProductFilterVerticalNav />
+      <ProductList isOptionSearchExpanded={expandedNavBar}/>
     </div> 
   ) 
 }

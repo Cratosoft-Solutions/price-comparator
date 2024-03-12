@@ -1,29 +1,31 @@
 "use client";
-import Link from "next/link";
+import HorizontalItemList from "@components/HorizontalItemList";
+import { fetchWithTimeout } from "@utils/functions";
+import { useEffect, useState } from "react";
 
 const Home = () => {
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const executeSearch = async () => {
+      await fetchWithTimeout(`/api/search/local/data/promotions`)
+        .then((r) => r.json())
+        .then((data) => {
+          setData(data.companyProducts);
+          setLoading(false);
+        })
+        .catch((error) => setLoading(false));
+    };
+    executeSearch();
+  }, []);
+
+  if(loading)
+    return <div className="bg-transparent"> cargando datos....</div>
   return (
-    <>
-      <section className="mx-auto mb-10 px-2.5 text-center sm:px-0 ">
-        <h1 className="w-full mt-5 font-display text-4xl font-bold	 leading-[1.15] text-black sm:text-6xl sm:leading-[1.15]">
-          Encuentralo Fácil CR 
-          <br />
-          <span className="orange_gradient text-center">Busca el mejor precio</span>
-        </h1>
-        <p className="desc text-center">
-        Descubre de manera sencilla y rápida una selección diversa de productos y servicios en Encuéntralo Fácil Costa Rica. Desde autos hasta viviendas, abarrotes, artículos de segunda mano y una amplia variedad de servicios, nuestra plataforma te permite explorar y publicar lo que necesitas. Navega con facilidad, encuentra lo que buscas al alcance de un clic y, si lo deseas, publica tus propios productos y servicios. ¡Haz tus búsquedas más eficientes y experimenta la comodidad de Encuentralo Fácil CR!
-        </p>
-        <Link
-          href="/search/newsearch"
-          className="black_btn mx-auto mt-10 flex max-w-fit space-x-4"
-          onClick={() => {
-            console.log("me llamaron");
-          }}
-        >
-          Iniciar búsqueda
-        </Link>
-      </section>
-    </>
+    <div className="w-full">
+      <HorizontalItemList companyLogo={""} companyProducts={data}/>      
+    </div>
   );
 };
 

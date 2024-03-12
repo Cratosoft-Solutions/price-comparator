@@ -1,68 +1,111 @@
-import React from 'react';
-import { RxHamburgerMenu } from "react-icons/rx";
-import { BiCollapse } from "react-icons/bi";
+"use client"
+import React, { useState } from 'react';
+import { IoCloseOutline } from "react-icons/io5";
+import UserSession from './UserSession';
+import SiteCategories from './SiteCategories';
 
 const VerticalNav = ({showNav, expandCollapseOptionsBar, principalOption, secondaryOptions, onSelectedButton}) => {
+  const [selectedOption,setSelectedOption] = useState(2);
+
+  const setInternalSelectedOption = (option)=>{
+    if(option === selectedOption){
+      setSelectedOption(0);
+    }else{
+      setSelectedOption(option);
+    }
+  }
+
   return (
     <>
         {showNav && (
-          <div className="fixed pt-6 top-12 bg-white lg:top-20 lg:ml-2 z-30 bg-white w-full lg:w-52 p-2 h-fit lg:rounded-lg lg:p-2 shadow searchoptions">
-            <div className={`grid grid-rows-${secondaryOptions.length} gap-2`}>
-              <div className="grid grid-cols-[20%_80%] grid-rows-1 items-center  btn_nav  border-b-[1px] border-orange-500 lg:bg-white">
-                {principalOption.icon}
-                <button
-                  onClick={() => {
-                    onSelectedButton(
-                      principalOption.btnID
-                    );
-                  }}
-                  className="text-left pl-1"
-                >
-                  {principalOption.btnDescription}
-                </button> 
-              </div>
-  
-              {secondaryOptions.map((filteredOption, index) => (
-                <div key={index}
-                  className={`grid grid-cols-[20%_80%] grid-rows-1 items-center btn_nav min-w-[10rem]`}
-                >
-                  {filteredOption.icon}
-                  <button
-                    onClick={() => {
-                        onSelectedButton(
-                        filteredOption.btnID
-                      );
-                    }}
-                    className="text-left pl-1"
-                  >
-                    {filteredOption.btnDescription}
-                  </button>
+          <div className='w-full absolute lg:-ml-10 top-0 z-50 h-full bg-black bg-opacity-50'>
+            <div className=" bg-white z-50 bg-white w-full lg:w-80 h-full shadow searchoptions relative">
+            <IoCloseOutline onClick={() => { expandCollapseOptionsBar(false); }} className="h-10 w-10 fixed ml-80 mt-2 lg:ml-80 lg:mt-0" color="white" />
+                <div className="grid grid-cols-1 grid-rows-1 items-center  bg-[#40A826]">
+                      <UserSession />
                 </div>
-              ))}
-  
-              <div className=" flex z-50 w-full justify-center items-center">
-                <BiCollapse
-                  onClick={() => {
-                    expandCollapseOptionsBar(false);
-                  }}
-                  className="h-6 w-6"
-                  color="gray"
-                />
-              </div>
+                <div id="accordion-collapse" data-accordion="collapse">
+                  <h2 id="accordion-collapse-heading-1">
+                    <button onClick={()=>{setInternalSelectedOption(1)}} type="button" className="flex items-center justify-between w-full p-5 font-medium" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
+                      <span className='font-black'>Categorias</span>
+                      <svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                      </svg>
+                    </button>
+                  </h2>
+                  <div id="accordion-collapse-body-1" className={`${selectedOption ==1?"block":"hidden"}`} aria-labelledby="accordion-collapse-heading-1">
+                      <div className={`grid grid-cols-1 grid-rows-4 h-fit  min-w-[10rem] ml-10`}>
+                        <SiteCategories/>
+                      </div>              </div>
+                  <h2 id="accordion-collapse-heading-2">
+                    <button onClick={()=>{setInternalSelectedOption(2)}} type="button" className="flex items-center justify-between w-full p-5 font-medium" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
+                      <span className='font-black'>Acciones & Filtros Sección Actual</span>
+                      <svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" strokeLinejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                      </svg>
+                    </button>
+                  </h2>
+                  <div id="accordion-collapse-body-2" className={`${selectedOption ==2?"block":"hidden"}`} aria-labelledby="accordion-collapse-heading-2">
+                      <div className={`ml-10 grid grid-rows-${secondaryOptions.length} gap-2`}>
+                        <div className="grid grid-cols-[10%_90%] grid-rows-1 items-center h-10">
+                          {principalOption.icon}
+                          <button
+                            onClick={() => {
+                              onSelectedButton(
+                                principalOption.btnNAVPage,  
+                                principalOption.btnID
+                              );
+                            }}
+                            className="text-left pl-1"
+                          >
+                            {principalOption.btnDescription}
+                          </button> 
+                        </div>
+            
+                        {secondaryOptions.map((filteredOption, index) => (
+                          <div key={index}
+                            className={`grid grid-cols-[10%_90%] grid-rows-1 items-center min-w-[10rem] h-10`}
+                          >
+                            {filteredOption.icon}
+                            <button
+                              onClick={() => {
+                                  onSelectedButton(
+                                  filteredOption.btnNAVPage,  
+                                  filteredOption.btnID
+                                );
+                              }}
+                              className="text-left pl-1"
+                            >
+                              {filteredOption.btnDescription}
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                  </div>
+                  <h2 id="accordion-collapse-heading-3">
+                    <button onClick={()=>{setInternalSelectedOption(3)}} type="button" className="flex items-center justify-between w-full p-5 font-medium" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
+                      <span className='font-black'>Acerca de nosotros</span>
+                      <svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" strokeLinejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                      </svg>
+                    </button>
+                  </h2>
+                  <div id="accordion-collapse-body-3" className={`${selectedOption ==3?"block":"hidden"}`} aria-labelledby="accordion-collapse-heading-3">
+                    <div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                      <p className="mb-2 text-gray-500 dark:text-gray-400">The main difference is that the core components from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product. Another difference is that Flowbite relies on smaller and standalone components, whereas Tailwind UI offers sections of pages.</p>
+                      <p className="mb-2 text-gray-500 dark:text-gray-400">However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no technical reason stopping you from using the best of two worlds.</p>
+                      <p className="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:</p>
+                      <ul className="ps-5 text-gray-500 list-disc dark:text-gray-400">
+                        <li><a href="https://flowbite.com/pro/" className="text-blue-600 dark:text-blue-500 hover:underline">Flowbite Pro</a></li>
+                        <li><a href="https://tailwindui.com/" rel="nofollow" className="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
             </div>
-          </div>
-        )}
-        {!showNav && (
-          <div className="fixed top-14 pt-4 lg:top-16 z-30 bg-white w-full lg:w-10 p-2 h-fit lg:min-h-screen border-r-[1px] border-gray-300">
-            <RxHamburgerMenu
-              onClick={() => {
-                expandCollapseOptionsBar(true);
-              }}
-              className="h-6 w-6"
-              color="gray"
-            />
-          </div>
-        )}
+
+          </div>  
+        )}        
       </>
   )
 }

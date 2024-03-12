@@ -1,5 +1,6 @@
 "use client"
-import { BiUpArrowAlt } from "react-icons/bi";
+import { FaAnglesUp } from "react-icons/fa6";
+
 import {useState, useEffect} from "react";
 
 const ScrollToTopButton  =() => {
@@ -27,7 +28,7 @@ const ScrollToTopButton  =() => {
       <>
         {scrollYPosition > 100 ? (
           <button className="fixed bottom-2 right-2" onClick={scrollToTop}>
-            <BiUpArrowAlt className="h-14 w-14 " color="F97316" />
+            <FaAnglesUp className="h-14 w-14 animate-bounce " color="40A826" />
           </button>
         ) : null}
       </>

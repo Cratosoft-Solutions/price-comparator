@@ -24,6 +24,7 @@ import UploadedImage from '@components/UploadedImage';
 import { useSelector } from "react-redux";
 import { genericCompression } from '@utils/functions';
 import CarInfo from './CarInfo';
+import HouseInfo from './HouseInfo';
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import ServicesInfo from './ServicesInfo';
 
@@ -58,6 +59,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
     const provinceList = PROVINCES;
     const { expandedNavBar } = useSelector(state => state.verticalnav.myStoreNav);
     const [carInfo, setCarInfo] = useState({brand:"SELECT", model:"",cc:"", style:"SELECT",passengers:1,year: new Date().getFullYear(), status:1, combustible:1, transmition:1,kms:"",kmstype:"1", taxes:"NO",otherCar:"NO",doors:1, province:"SJO", equipment:[]});
+    const [houseInfo, setHouseInfo] = useState({bedrooms:"SELECT",bathrooms:"SELECT",parking:"SELECT",porpertyMeters:"",houseVendorType:"SELECT", address:"",propertyMaintenanceCosts:"",lotSize:"", height:"",yearBuilt:"SELECT", floorType:"SELECT",levels:"SELECT", floor:"SELECT", pool:"SELECT", balconyTerrace:"SELECT", propertyType:"SELECT", benefits:[]});
 
     const [selectedOption, setSelectedOption] = useState(null);
 
@@ -103,6 +105,9 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
         if(product.category=="CAR"){
             setCarInfo(product.otherInformation);
         }
+        if(product.category=="HOUSES"){
+            setHouseInfo(product.otherInformation);
+      }        
       }
 
     }, []);
@@ -160,10 +165,11 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
                         negotiable:  negotiable,
                         currency: currency,
                         image: genericCompression(images, "compress"),
-                        otherItemInformation: category == "CAR"? JSON.stringify(carInfo):null,
+                        otherItemInformation: category == "CAR" ? JSON.stringify(carInfo) : category == "HOUSES"? JSON.stringify(houseInfo) : null,
                         serviceType: category === 'SERVICES'? serviceType : null,
                         modalityType: category === 'SERVICES'? modalityType : null,
                         province: category === 'SERVICES'? province : null
+                        //otherHouseInformarion: category == "HOUSES"? JSON.stringify(houseInfo):null
                       })
                       .then((response) => {
                         if(!editMode){
@@ -235,6 +241,21 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
         console.log(carInfo);
     } 
 
+    const setInternalHouseInfo =(field, value) => {
+      if(field == "benefits"){
+          let benefitsToSet = houseInfo.benefits;
+          if (benefitsToSet.filter(element => element == value)[0]){
+              benefitsToSet = benefitsToSet.filter(element => element != value);   
+          }else{
+              benefitsToSet.push(value);
+          }
+          setHouseInfo({...houseInfo , [field]:benefitsToSet}); 
+      }else{
+          setHouseInfo({...houseInfo , [field]:value}); 
+      }   
+      console.log(houseInfo);
+  }     
+
     const setCategoryOnChange = (category) => {
       restartFormWithoutCategory();
       setCategory(category);
@@ -244,6 +265,11 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
           setDescriptionLabel("Descripcion del servicio.");
           setPriceLabel("Precio del servicio.");
           break;
+          case 'HOUSES':
+            setNameLabel("Título.");
+            setDescriptionLabel("Descripcion de la propiedad.");
+            setPriceLabel("Precio.");
+            break;          
         default:
           setNameLabel("Nombre del item.");
           setDescriptionLabel("Descripción del item.");
@@ -260,7 +286,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
       <form
         method="POST"
         onSubmit={confirmAction}
-        className={`relative bg-white mt-4 lg:mt-0 p-4 lg:bg-gray-100 lg:pl-6 lg:pr-6 ${
+        className={`relative mt-4 lg:mt-0 p-4 lg:pl-6 lg:pr-6 ${
           expandedNavBar && !editMode
             ? "ml-0 lg:ml-52"
             : `ml-0 lg:ml-${editMode ? 0 : 10}`
@@ -282,7 +308,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
           />
         )}
         <div className="w-full max-w-screen-lg">
-          <h2 className=" mt-1 font-semibold text-2xl lg:text-4xl lg:h-12 text-black orange_gradient">
+          <h2 className="mt-1 font-black text-xl lg:text-2xl lg:h-12 text-black">
             Configuración de items
           </h2>
           <p className="text-black mb-1 lg:mb-6 ">
@@ -419,7 +445,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
                     </div>
                   </>
                   )}
-                  {category != "SERVICES" && (
+                  {category != "SERVICES" && category != "HOUSES" && (
                     <>
                       <div className="md:col-span-5 relative">
                         <CurrencyInput
@@ -525,6 +551,13 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
                       carInfo={carInfo}
                     />
                   )}
+
+                  {category == "HOUSES" && (
+                    <HouseInfo
+                      onChangeValues={setInternalHouseInfo}
+                      houseInfo={houseInfo}
+                    />
+                  )}                  
 
                   {images.length <= 4 && (
                     <div className="md:col-span-5 relative mt-4">

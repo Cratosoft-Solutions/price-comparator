@@ -37,7 +37,6 @@ export const STORE_BACKGROUND_DIRECTION = [
 export const GENERAL_YESNO = [{value:"NO", label:"NO"}, {value:"YES", label:"SI"}];
 export const GENERAL_PROVINCES = [{value:"SJO", label:"SAN JOSÉ"}, {value:"HEREDIA", label:"HEREDIA"}, {value:"HRD", label:"HEREDIA"}, , {value:"ALJ", label:"ALAJUELA"}, {value:"CTG", label:"CARTAGO"}, , {value:"PTO", label:"PUNTARENAS"}, , {value:"GNC", label:"GUANACASTE"}, {value:"LMN", label:"LIMÓN"} ];
 
-
 export const CARD_BRANDS = [{value:"SELECT", label:"Seleccione una marca"},{value:"1", label:"ACURA"}, {value:"2", label:"ALFA ROMEO"}];
 export const CARD_STYLES = [{value:"SELECT", label:"Seleccione un estílo"},{value:"1", label:"SEDÁN"}, {value:"2", label:"PÁNEL"}];
 export const CARD_STATUS = [{value:"1", label:"Excelente"}, {value:"2", label:"Muy bueno"}, {value:"3", label:"Bueno"},{value:"4", label:"Regular"} ];
@@ -83,6 +82,59 @@ export const CARD_EQUIPMENT = [ {value:"1", label:"Dirección Hidráulica"},
 {value:"37", label:"Computadora de Viaje"},
 {value:"38", label:"Volante Ajustable"},
 {value:"39", label:"Bluetooth"}];
+
+export const HOUSE_VENDOR_TYPE = [{value:"1", label:"Propietario"}, {value:"2", label:"Agente"}, {value:"3", label:"Constructora"}, {value:"4", label:"Promotora"}];
+export const HOUSE_FLOOR_TYPE = [{value:"1", label:"Piedra"}, {value:"2", label:"Mármol"}, {value:"3", label:"Granito"}, {value:"4", label:"Cerámica"}, {value:"5", label:"Porcelanato"}, {value:"6", label:"Madera"}, {value:"7", label:"Alfombra"}, {value:"8", label:"Vinyl"}, {value:"9", label:"Otro"}];
+export const HOUSE_BALCONY_TERRACE = [{value:"SELECT", label:"Ninguno"}, {value:"1", label:"Balcón"}, {value:"2", label:"Terraza"}];
+export const HOUSE_PROPERTY_TYPE = [{value:"1", label:"Edificio"}, {value:"2", label:"Condominio"}, {value:"3", label:"Urbanización"}, {value:"4", label:"Otro"}];
+export const HOUSE_BENEFITS = [ {value:"1", label:"Cerca de Escuela"},
+{value:"2", label:"Pet Friendly"},
+{value:"3", label:"Cerca del Tráfico"},
+{value:"4", label:"Vista al Mar"},
+{value:"5", label:"Vista al Lago"},
+{value:"6", label:"Vista a las Montañas"},  
+{value:"7", label:"Frente al Mar"},
+{value:"8", label:"Frente al Lago"},
+{value:"9", label:"Frente al Río"},
+{value:"10", label:"Parking bajo techo"},
+{value:"11", label:"Parking de visitas"},
+{value:"12", label:"Cuarto y baño de empleada"},
+{value:"13", label:"Seguridad 24 Horas"},
+{value:"14", label:"2 o más elevadores"},
+{value:"15", label:"Lavandería interna"},
+{value:"16", label:"1 Studio"},
+{value:"17", label:"2 o más estudios"},
+{value:"18", label:"Depósito"},
+{value:"19", label:"Salón de fiestas"},
+{value:"20", label:"Jardín"},
+{value:"21", label:"Parque Infantil"},
+{value:"22", label:"Gimnasio"},
+{value:"23", label:"Desayunador"},
+{value:"24", label:"Aire acondicionado"},
+{value:"25", label:"Patio"},
+{value:"26", label:"Aire acondicionado central"},
+{value:"27", label:"Terreno en esquina"},
+{value:"28", label:"Calle sin salida"},
+{value:"29", label:"Garaje techado"},
+{value:"30", label:"Sala y Comedor"},
+{value:"31", label:"Área Social"},
+{value:"32", label:"Walk-in closet"},
+{value:"33", label:"Área de BBQ"},
+{value:"34", label:"Lobby"},
+{value:"35", label:"Planta Eléctrica"},
+{value:"36", label:"Jacuzzi"},
+{value:"37", label:"Bar"},
+{value:"38", label:"Nevera"},
+{value:"39", label:"Microondas"},
+{value:"40", label:"Estufa"},
+{value:"41", label:"Lavaplatos"},
+{value:"42", label:"Dispensador de agua caliente"},
+{value:"43", label:"Calentador de agua"},
+{value:"44", label:"Lavadora"},
+{value:"45", label:"Secadora"}];
+
+
+
   
 //SCRAP        
 export const SEARCH_DEFAULT_OPTIONS = {
@@ -91,6 +143,7 @@ export const SEARCH_DEFAULT_OPTIONS = {
 
 export const VERTICAL_NAV_STATUS = {
   myStoreNav: { selectedOption:"configuration", expandedNavBar:false},
+  productSearch:{expandedNavBar:false}
 };
 
 import { IoMdSettings } from "react-icons/io";
@@ -210,30 +263,90 @@ export const VERTICAL_NAV_CONFIGURATION =[
     btnDescription: "Regresar",
     btnID:"HOME",
     isPrincipal:true,
-    icon: <IoMdHome className="w-6 h-6"  color="#FF5733"/>
+    icon: <IoMdHome className="w-4 h-4"  color="black"/>
   },
   {
     btnNAVPage:"myStore",
     btnDescription: "Configuración",
     btnID:"CONFIG",
     isPrincipal:false,
-    icon: <IoMdSettings className="w-6 h-6" color="gray"/>
+    icon: <IoMdSettings className="w-4 h-4"  color="black"/>
   },
   {
     btnNAVPage:"myStore",
     btnDescription: "Agregar Item",
     btnID:"ADDPRODUCT",
     isPrincipal:false,
-    icon: <MdAddShoppingCart className="w-6 h-6" color="gray"/>
+    icon: <MdAddShoppingCart className="w-4 h-4"  color="black"/>
   },
   {
     btnNAVPage:"myStore",
     btnDescription: "Mis items",
     btnID:"LISTITEM",
     isPrincipal:false,
-    icon: <FaList className="w-6 h-6" color="gray"/>
+    icon: <FaList className="w-4 h-4"  color="black"/>
   },
 
+
+  {
+    btnNAVPage:"productSearch",
+    btnDescription: "Nueva Búsqueda",
+    btnID:"NEWSEARCH",
+    isPrincipal:true,
+    icon: <IoMdHome className="w-4 h-4"  color="black"/>
+  },
+  {
+    btnNAVPage:"productSearch",
+    btnDescription: "Precio Menor",
+    btnID:"MINTOMAX",
+    isPrincipal:false,
+    icon: <IoMdSettings className="w-4 h-4" color="black"/>
+  },
+  {
+    btnNAVPage:"productSearch",
+    btnDescription: "Precio Mayor",
+    btnID:"MAXTOMIN",
+    isPrincipal:false,
+    icon: <MdAddShoppingCart className="w-4 h-4" color="black"/>
+  },
+  {
+    btnNAVPage:"productSearch",
+    btnDescription: "Exacto",
+    btnID:"MATCH",
+    isPrincipal:false,
+    icon: <FaList className="w-4 h-4" color="black"/>
+  },
+
+  {
+    btnNAVPage:"home",
+    btnDescription: "Publica tu producto / Servicio",
+    btnID:"PUBLISH",
+    isPrincipal:true,
+    icon: <IoMdHome className="w-4 h-4"  color="black"/>
+  },
+  {
+    btnNAVPage:"home",
+    btnDescription: "Promociona tu sitio web",
+    btnID:"PROMOTION",
+    isPrincipal:false,
+    icon: <IoMdSettings className="w-4 h-4" color="black"/>
+  },
+  {
+    btnNAVPage:"home",
+    btnDescription: "Vender con EncuentráloFácilCR",
+    btnID:"SALE",
+    isPrincipal:false,
+    icon: <MdAddShoppingCart className="w-4 h-4" color="black"/>
+  },
+  {
+    btnNAVPage:"home",
+    btnDescription: "¿Cómo funciona?",
+    btnID:"HOWITWORKS",
+    isPrincipal:false,
+    icon: <FaList className="w-4 h-4" color="black"/>
+  }
 ]
 
 export const BLACK_LISTED_KEYWORDS = ["puta","puto","perra","bitch","fuck","picha","malparido"];
+
+export const PAGES_WITH_NAV =["/search/results", "/mystore"];
