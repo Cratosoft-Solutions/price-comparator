@@ -12,6 +12,7 @@ import UploadedImage from '@components/UploadedImage';
 import { useSelector } from "react-redux";
 import { genericCompression } from '@utils/functions';
 import CarInfo from './CarInfo';
+import HouseInfo from './HouseInfo';
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
 
@@ -41,6 +42,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
     const servicesList = SERVICES_TYPES;
     const { expandedNavBar } = useSelector(state => state.verticalnav.myStoreNav);
     const [carInfo, setCarInfo] = useState({brand:"SELECT", model:"",cc:"", style:"SELECT",passengers:1,year: new Date().getFullYear(), status:1, combustible:1, transmition:1,kms:"",kmstype:"1", taxes:"NO",otherCar:"NO",doors:1, province:"SJO", equipment:[]});
+    const [houseInfo, setHouseInfo] = useState({bedrooms:"SELECT",bathrooms:"SELECT",parking:"SELECT",porpertyMeters:"",houseVendorType:"SELECT", address:"",propertyMaintenanceCosts:"",lotSize:"", height:"",yearBuilt:"SELECT", floorType:"SELECT",levels:"SELECT", floor:"SELECT", pool:"SELECT", balconyTerrace:"SELECT", propertyType:"SELECT", benefits:[]});
 
     useEffect(() => {
       const securePage = async () => {
@@ -73,6 +75,9 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
         if(product.category=="CAR"){
             setCarInfo(product.otherInformation);
         }
+        if(product.category=="HOUSES"){
+            setHouseInfo(product.otherInformation);
+      }        
       }
 
     }, []);
@@ -126,8 +131,9 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
                         negotiable:  negotiable,
                         currency: currency,
                         image: genericCompression(images, "compress"),
-                        otherItemInformation: category == "CAR"? JSON.stringify(carInfo):null,
-                        serviceType: category === 'SERVICES'? serviceType : null
+                        otherItemInformation: category == "CAR" ? JSON.stringify(carInfo) : category == "HOUSES"? JSON.stringify(houseInfo) : null,
+                        serviceType: category === 'SERVICES'? serviceType : null,
+                        //otherHouseInformarion: category == "HOUSES"? JSON.stringify(houseInfo):null
                       })
                       .then((response) => {
                         if(!editMode){
@@ -199,6 +205,21 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
         console.log(carInfo);
     } 
 
+    const setInternalHouseInfo =(field, value) => {
+      if(field == "benefits"){
+          let benefitsToSet = houseInfo.benefits;
+          if (benefitsToSet.filter(element => element == value)[0]){
+              benefitsToSet = benefitsToSet.filter(element => element != value);   
+          }else{
+              benefitsToSet.push(value);
+          }
+          setHouseInfo({...houseInfo , [field]:benefitsToSet}); 
+      }else{
+          setHouseInfo({...houseInfo , [field]:value}); 
+      }   
+      console.log(houseInfo);
+  }     
+
     const setCategoryOnChange = (category) => {
       restartFormWithoutCategory();
       setCategory(category);
@@ -208,6 +229,11 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
           setDescriptionLabel("Descripcion del servicio.");
           setPriceLabel("Precio del servicio.");
           break;
+          case 'HOUSES':
+            setNameLabel("Título.");
+            setDescriptionLabel("Descripcion de la propiedad.");
+            setPriceLabel("Precio.");
+            break;          
         default:
           setNameLabel("Nombre del item.");
           setDescriptionLabel("Descripción del item.");
@@ -345,7 +371,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
                       </div>
                     </div>
                   )}
-                  {category != "SERVICES" && (
+                  {category != "SERVICES" && category != "HOUSES" && (
                     <>
                       <div className="md:col-span-5 relative">
                         <CurrencyInput
@@ -451,6 +477,13 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
                       carInfo={carInfo}
                     />
                   )}
+
+                  {category == "HOUSES" && (
+                    <HouseInfo
+                      onChangeValues={setInternalHouseInfo}
+                      houseInfo={houseInfo}
+                    />
+                  )}                  
 
                   {images.length <= 4 && (
                     <div className="md:col-span-5 relative mt-4">
