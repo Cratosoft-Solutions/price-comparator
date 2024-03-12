@@ -7,6 +7,7 @@ import { scrapCompanyConfiguration } from "@utils/comercios";
 import Swal from 'sweetalert2';
 import {closest} from 'fastest-levenshtein';
 import { BLACK_LISTED_KEYWORDS } from "@utils/constants";
+import { isMobileClient } from './functionsClient';
 const currencyExchangeUtil = require('./currencyExchangeUtil');
 const Filter = require('bad-words');
 
@@ -675,8 +676,7 @@ export const genericCompression =(object, whatTodo)=>{
 
 
 export const isMobile=()=> {
-  const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
-  return regex.test(navigator.userAgent);
+  return isMobileClient();
 }
 
 export const getGenericNumericArray = (
