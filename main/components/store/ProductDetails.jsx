@@ -2,8 +2,8 @@
 import Loading from '@app/loading';
 import GenericAnimation from '@components/GenericAnimation';
 import HorizontalCardListLoading from '@components/HorizontalCardListLoading';
-import { CARD_BRANDS, CARD_COMBUSTIBLE, CARD_EQUIPMENT, CARD_KMMI, CARD_STATUS, CARD_STYLES, CARD_TRANSMITION, GENERAL_PROVINCES, GENERAL_YESNO } from '@utils/constants';
-import { genericItemsValue, genericItemsValue2 } from '@utils/functions';
+import { CARD_BRANDS, CARD_COMBUSTIBLE, CARD_EQUIPMENT, CARD_KMMI, CARD_STATUS, CARD_STYLES, CARD_TRANSMITION, GENERAL_PROVINCES, GENERAL_YESNO,SERVICES_TYPES } from '@utils/constants';
+import { genericItemsValue, genericItemsValue2, getServiceTypeDescription } from '@utils/functions';
 import axios from 'axios';
 import { getSession, signIn } from 'next-auth/react';
 import Link from 'next/link';
@@ -16,6 +16,7 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
     const [editingProduct, setEditingProduct] = useState(false);
     const [loading, setLoading] = useState(true);
     const [selectedImage, setSelectedImage] = useState(0);  
+    const [nameLabel, setNameLabel] = useState('Detalle del item.');
 
     const securePage = async () => {
       const session = await getSession();
@@ -24,8 +25,20 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
       } else {
           const productInfo = await axios.get(`/api/search/local/myitems/${storeId}/${productId}/`);
           setProduct(productInfo.data);
+          setLabelsBasedOnCategory(productInfo.data.category);
       }
       setLoading(false);
+    };
+
+    const setLabelsBasedOnCategory = (category) => {
+      switch (category) {
+        case 'SERVICES':
+          setNameLabel("Nombre del servicio.");
+          break;
+        default:
+          setNameLabel("Nombre del item.");
+          break;
+      }
     };
 
     useEffect(() => {
@@ -90,7 +103,7 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
               <div className="lg:pl-20">
                 <div className="mb-8 ">
                   <span className=" orange_gradient text-2xl font-medium">
-                    Detalle de producto
+                    {nameLabel}
                   </span>
                   <h2 className="max-w-xl mt-2 mb-6 text-2xl font-bold  md:text-4xl">
                     {product.productName}
@@ -100,11 +113,11 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
                     {product.productDescription}
                   </p>
                   <p className="inline-block mb-4 text-4xl font-bold text-gray-700  ">
-                    <span className=' !text-xl mr-2'>{product.currency}</span>
-                    <span> 
+                    <span className=" !text-xl mr-2">{product.currency}</span>
+                    <span>
                       {product.formatedEspecialPrice != 0
                         ? product.formatedEspecialPrice
-                        : product.formatedPrice} 
+                        : product.formatedPrice}
                     </span>
                     {product.formatedEspecialPrice != 0 && (
                       <span className="text-base font-normal text-gray-500 line-through ">
@@ -113,150 +126,180 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
                     )}
                   </p>
 
-                  {product.negotiable =="YES" && <GenericAnimation message="Precio Negociable"></GenericAnimation>}
+                  {product.negotiable == "YES" && (
+                    <GenericAnimation message="Precio Negociable"></GenericAnimation>
+                  )}
 
                   {product.category == "CAR" && (
                     <>
                       <div className="grid grid-cols-2 lg:grid-cols-3 gap-y-2 lg:gap-y-4 mt-4 gap-x-2">
-                      <div className='text-gray-600'>
+                        <div className="text-gray-600">
                           <p className="text-green-600 font-bold inline ">
-                            Existencias:   
-                          </p> {" "}
-                          <p className="inline">
-                            {product.stock} 
-                          </p> 
+                            Existencias:
+                          </p>{" "}
+                          <p className="inline">{product.stock}</p>
                         </div>
-                        <div className='text-gray-600'>
-                          <p className="font-bold inline">
-                            Marca:   
-                          </p> {" "}
+                        <div className="text-gray-600">
+                          <p className="font-bold inline">Marca:</p>{" "}
                           <p className="inline">
-                          {genericItemsValue(CARD_BRANDS, product.otherInformation.brand)} 
-                          </p> 
+                            {genericItemsValue(
+                              CARD_BRANDS,
+                              product.otherInformation.brand
+                            )}
+                          </p>
                         </div>
-                        <div className='text-gray-600'>
-                          <p className="font-bold inline">
-                            Modelo:   
-                          </p> {" "}
+                        <div className="text-gray-600">
+                          <p className="font-bold inline">Modelo:</p>{" "}
                           <p className="inline">
-                            {product.otherInformation.model} 
-                          </p> 
+                            {product.otherInformation.model}
+                          </p>
                         </div>
-                        <div className='text-gray-600'>
-                          <p className="font-bold inline">
-                            Cilindrada:   
-                          </p> {" "}
+                        <div className="text-gray-600">
+                          <p className="font-bold inline">Cilindrada:</p>{" "}
                           <p className="inline">
-                            {product.otherInformation.cc} 
-                          </p> 
+                            {product.otherInformation.cc}
+                          </p>
                         </div>
-                        <div className='text-gray-600'>
-                          <p className="font-bold inline">
-                            Estilo:   
-                          </p> {" "}
+                        <div className="text-gray-600">
+                          <p className="font-bold inline">Estilo:</p>{" "}
                           <p className="inline">
-                          {genericItemsValue(CARD_STYLES, product.otherInformation.style)}  
-                          </p> 
+                            {genericItemsValue(
+                              CARD_STYLES,
+                              product.otherInformation.style
+                            )}
+                          </p>
                         </div>
-                        <div className='text-gray-600'>
-                          <p className="font-bold inline">
-                            #Pasajeros:   
-                          </p> {" "}
+                        <div className="text-gray-600">
+                          <p className="font-bold inline">#Pasajeros:</p>{" "}
                           <p className="inline">
-                            {product.otherInformation.passengers} 
-                          </p> 
+                            {product.otherInformation.passengers}
+                          </p>
                         </div>
-                        <div className='text-gray-600'>
-                          <p className="font-bold inline">
-                            Año:   
-                          </p> {" "}
+                        <div className="text-gray-600">
+                          <p className="font-bold inline">Año:</p>{" "}
                           <p className="inline">
-                            {product.otherInformation.year} 
-                          </p> 
+                            {product.otherInformation.year}
+                          </p>
                         </div>
-                        <div className='text-gray-600'>
-                          <p className="font-bold inline">
-                            Estado:   
-                          </p> {" "}
+                        <div className="text-gray-600">
+                          <p className="font-bold inline">Estado:</p>{" "}
                           <p className="inline">
-                          {genericItemsValue(CARD_STATUS, product.otherInformation.status)} 
-                          </p> 
+                            {genericItemsValue(
+                              CARD_STATUS,
+                              product.otherInformation.status
+                            )}
+                          </p>
                         </div>
-                        <div className='text-gray-600'>
-                          <p className="font-bold inline">
-                            Combustible:   
-                          </p> {" "}
+                        <div className="text-gray-600">
+                          <p className="font-bold inline">Combustible:</p>{" "}
                           <p className="inline">
-                          {genericItemsValue(CARD_COMBUSTIBLE, product.otherInformation.combustible)} 
-                          </p> 
-                        </div>  
-                        <div className='text-gray-600'>
-                          <p className="font-bold inline">
-                            Transmisión:   
-                          </p> {" "}
+                            {genericItemsValue(
+                              CARD_COMBUSTIBLE,
+                              product.otherInformation.combustible
+                            )}
+                          </p>
+                        </div>
+                        <div className="text-gray-600">
+                          <p className="font-bold inline">Transmisión:</p>{" "}
                           <p className="inline">
-                          {genericItemsValue(CARD_TRANSMITION, product.otherInformation.transmition)} 
-                          </p> 
+                            {genericItemsValue(
+                              CARD_TRANSMITION,
+                              product.otherInformation.transmition
+                            )}
+                          </p>
                         </div>
 
-                        <div className='text-gray-600'>
-                          <p className="font-bold inline">
-                            Kilometraje:   
-                          </p> {" "}
+                        <div className="text-gray-600">
+                          <p className="font-bold inline">Kilometraje:</p>{" "}
                           <p className="inline">
-                            {product.otherInformation.kms + genericItemsValue2(CARD_KMMI,product.otherInformation.kmstype)} 
-                          </p> 
+                            {product.otherInformation.kms +
+                              genericItemsValue2(
+                                CARD_KMMI,
+                                product.otherInformation.kmstype
+                              )}
+                          </p>
                         </div>
-                        <div className='text-gray-600'>
-                          <p className="font-bold inline">
-                            ¿Al día?:   
-                          </p> {" "}
+                        <div className="text-gray-600">
+                          <p className="font-bold inline">¿Al día?:</p>{" "}
                           <p className="inline">
-                          {genericItemsValue(GENERAL_YESNO, product.otherInformation.taxes)} 
-                          </p> 
+                            {genericItemsValue(
+                              GENERAL_YESNO,
+                              product.otherInformation.taxes
+                            )}
+                          </p>
                         </div>
-                        <div className='text-gray-600'>
-                          <p className="font-bold inline">
-                            ¿Recibe vehículo?:   
-                          </p> {" "}
+                        <div className="text-gray-600">
+                          <p className="font-bold inline">¿Recibe vehículo?:</p>{" "}
                           <p className="inline">
-                          {genericItemsValue(GENERAL_YESNO, product.otherInformation.otherCar)} 
-                          </p> 
+                            {genericItemsValue(
+                              GENERAL_YESNO,
+                              product.otherInformation.otherCar
+                            )}
+                          </p>
                         </div>
-                        <div className='text-gray-600'>
-                          <p className="font-bold inline">
-                            #Puertas:   
-                          </p> {" "}
+                        <div className="text-gray-600">
+                          <p className="font-bold inline">#Puertas:</p>{" "}
                           <p className="inline">
-                            {product.otherInformation.doors} 
-                          </p> 
+                            {product.otherInformation.doors}
+                          </p>
                         </div>
-                        <div className='text-gray-600'>
-                          <p className="font-bold inline">
-                            Provincia:   
-                          </p> {" "}
+                        <div className="text-gray-600">
+                          <p className="font-bold inline">Provincia:</p>{" "}
                           <p className="inline">
-                            {genericItemsValue(GENERAL_PROVINCES, product.otherInformation.province)} 
-                          </p> 
+                            {genericItemsValue(
+                              GENERAL_PROVINCES,
+                              product.otherInformation.province
+                            )}
+                          </p>
                         </div>
                       </div>
-                      <div  className='orange_gradient text-2xl full font-medium text-left mb-4 mt-4'>  Equipamiento</div>
+                      <div className="orange_gradient text-2xl full font-medium text-left mb-4 mt-4">
+                        {" "}
+                        Equipamiento
+                      </div>
                       <div className="grid grid-cols-2 lg:grid-cols-3 gap-y-2 lg:gap-y-4 gap-x-2">
-                          {product.otherInformation.equipment.map((element, index)=>(
+                        {product.otherInformation.equipment.map(
+                          (element, index) => (
                             <div key={index} className="flex items-center mb-4">
-                                <CiSquareCheck id={`card-equipment-${element}`} key={`card-equipment-${element}`}  className="w-4 h-4" color='green'/>
-                                <label htmlFor={`card-equipment-${element}`} className="ms-2 text-sm font-medium text-gray-600">{genericItemsValue(CARD_EQUIPMENT,element)}</label>
-                            </div>  
-                        ))}
+                              <CiSquareCheck
+                                id={`card-equipment-${element}`}
+                                key={`card-equipment-${element}`}
+                                className="w-4 h-4"
+                                color="green"
+                              />
+                              <label
+                                htmlFor={`card-equipment-${element}`}
+                                className="ms-2 text-sm font-medium text-gray-600"
+                              >
+                                {genericItemsValue(CARD_EQUIPMENT, element)}
+                              </label>
+                            </div>
+                          )
+                        )}
+                      </div>
+                    </>
+                  )}
+
+                  {product.category == "SERVICES" && (
+                    <>
+                      <div className="grid grid-cols-2 lg:grid-cols-3 gap-y-2 lg:gap-y-4 mt-4 gap-x-2">
+                        <div className="text-gray-600 flex gap-2">
+                          <p className="text-green-600 font-bold inline ">
+                            Tipo:
+                          </p>
+                          <p className="inline ">
+                            {getServiceTypeDescription(
+                              SERVICES_TYPES,
+                              product.serviceType
+                            )}
+                          </p>
+                        </div>
                       </div>
                     </>
                   )}
                 </div>
-
-                
-
                 <div className="flex flex-wrap items-center -mx-4 ">
-                  {!adminMode&&
+                  {!adminMode && (
                     <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
                       <Link
                         href={`https://wa.me/${+50683439846}/?text=Quiero informacion de: ${
@@ -273,18 +316,20 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
                         Contactar tienda
                       </Link>
                     </div>
-                  }
+                  )}
 
-                  {adminMode&&
+                  {adminMode && (
                     <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
                       <button
-                        onClick={()=>{setEditingProduct(true)}}
+                        onClick={() => {
+                          setEditingProduct(true);
+                        }}
                         className="black_btn_sqr w-full"
                       >
                         Editar
                       </button>
                     </div>
-                  }
+                  )}
 
                   <div className="w-full px-4 mb-4 lg:mb-0 lg:w-1/2">
                     <button

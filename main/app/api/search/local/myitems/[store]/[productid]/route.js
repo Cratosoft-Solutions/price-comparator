@@ -31,7 +31,8 @@ export const GET = async (req, { params }) => {
           formatedEspecialPrice:SearchExists.especialprice && SearchExists.especialprice !=0 ? paseStoreNumber(SearchExists.especialprice):0,
           category:SearchExists.category,
           currency: SearchExists.currency,
-          negotiable: SearchExists.negotiable
+          negotiable: SearchExists.negotiable,
+          serviceType: SearchExists.category === 'SERVICES'? SearchExists.serviceType : null
       };
 
       if(typeof SearchExists.otherinformation != undefined)
