@@ -2,8 +2,8 @@
 import Loading from '@app/loading';
 import GenericAnimation from '@components/GenericAnimation';
 import HorizontalCardListLoading from '@components/HorizontalCardListLoading';
-import { CARD_BRANDS, CARD_COMBUSTIBLE, CARD_EQUIPMENT, CARD_KMMI, CARD_STATUS, CARD_STYLES, CARD_TRANSMITION, GENERAL_PROVINCES, GENERAL_YESNO,SERVICES_TYPES } from '@utils/constants';
-import { genericItemsValue, genericItemsValue2, getServiceTypeDescription } from '@utils/functions';
+import { CARD_BRANDS, CARD_COMBUSTIBLE, CARD_EQUIPMENT, CARD_KMMI, CARD_STATUS, CARD_STYLES, CARD_TRANSMITION, GENERAL_PROVINCES, GENERAL_YESNO,SERVICES_TYPES,HOUSE_VENDOR_TYPE, HOUSE_FLOOR_TYPE,HOUSE_BALCONY_TERRACE,HOUSE_PROPERTY_TYPE,HOUSE_BENEFITS } from '@utils/constants';
+import { genericItemsValue, genericItemsValue2,getServiceTypeDescription } from '@utils/functions';
 import axios from 'axios';
 import { getSession, signIn } from 'next-auth/react';
 import Link from 'next/link';
@@ -297,7 +297,154 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
                       </div>
                     </>
                   )}
+
+
+                  {product.category == "HOUSES" && (
+                    <>
+                      <div className="grid grid-cols-2 lg:grid-cols-3 gap-y-2 lg:gap-y-4 mt-4 gap-x-2">
+                      <div className='text-gray-600'>
+                          <p className="font-bold inline">
+                            Habitaciones:   
+                          </p> {" "}
+                          <p className="inline">
+                            {product.otherInformation.bedrooms} 
+                          </p> 
+                        </div>
+                        <div className='text-gray-600'>
+                          <p className="font-bold inline">
+                            Baños:   
+                          </p> {" "}
+                          <p className="inline">
+                            {product.otherInformation.bathrooms} 
+                          </p> 
+                        </div>     
+                        <div className='text-gray-600'>
+                          <p className="font-bold inline">
+                          Estacionamientos :   
+                          </p> {" "}
+                          <p className="inline">
+                            {product.otherInformation.parking} 
+                          </p> 
+                        </div>  
+                        <div className='text-gray-600'>
+                          <p className="font-bold inline">
+                          M² de Construcción :   
+                          </p> {" "}
+                          <p className="inline">
+                            {product.otherInformation.porpertyMeters} 
+                          </p> 
+                        </div>               
+                        <div className='text-gray-600'>
+                          <p className="font-bold inline">
+                          Tipo de Anunciante:   
+                          </p> {" "}
+                          <p className="inline">
+                          {genericItemsValue(HOUSE_VENDOR_TYPE, product.otherInformation.houseVendorType)} 
+                          </p> 
+                        </div> 
+                        <div className='text-gray-600'>
+                          <p className="font-bold inline">
+                          Dirección exacta:   
+                          </p> {" "}
+                          <p className="inline">
+                            {product.otherInformation.address} 
+                          </p> 
+                        </div>   
+                        <div className='text-gray-600'>
+                          <p className="font-bold inline">
+                          Costos de mantenimiento:
+                          </p> {" "}
+                          <p className="inline">
+                            {product.otherInformation.propertyMaintenanceCosts} 
+                          </p> 
+                        </div>
+                        <div className='text-gray-600'>
+                          <p className="font-bold inline">
+                          Tamaño del lote:
+                          </p> {" "}
+                          <p className="inline">
+                            {product.otherInformation.lotSize} 
+                          </p> 
+                        </div>                               
+                        <div className='text-gray-600'>
+                          <p className="font-bold inline">
+                          Altura:
+                          </p> {" "}
+                          <p className="inline">
+                            {product.otherInformation.height} 
+                          </p> 
+                        </div>
+                        <div className='text-gray-600'>
+                          <p className="font-bold inline">
+                          Años de construcción:
+                          </p> {" "}
+                          <p className="inline">
+                            {product.otherInformation.yearBuilt} 
+                          </p> 
+                        </div>
+                        <div className='text-gray-600'>
+                          <p className="font-bold inline">
+                          Tipo de pisos:
+                          </p> {" "}
+                          <p className="inline">
+                            {genericItemsValue(HOUSE_FLOOR_TYPE, product.otherInformation.floorType)} 
+                          </p> 
+                        </div>     
+                        <div className='text-gray-600'>
+                          <p className="font-bold inline">
+                          Niveles:
+                          </p> {" "}
+                          <p className="inline">
+                            {product.otherInformation.levels} 
+                          </p> 
+                        </div>  
+                        <div className='text-gray-600'>
+                          <p className="font-bold inline">
+                          Piso Número:
+                          </p> {" "}
+                          <p className="inline">
+                            {product.otherInformation.floor} 
+                          </p> 
+                        </div> 
+                        <div className='text-gray-600'>
+                          <p className="font-bold inline">
+                            Piscina:   
+                          </p> {" "}
+                          <p className="inline">
+                          {genericItemsValue(GENERAL_YESNO, product.otherInformation.pool)} 
+                          </p> 
+                        </div>  
+                        <div className='text-gray-600'>
+                          <p className="font-bold inline">
+                          Balcón / Terraza:   
+                          </p> {" "}
+                          <p className="inline">
+                          {genericItemsValue(HOUSE_BALCONY_TERRACE, product.otherInformation.balconyTerrace)} 
+                          </p> 
+                        </div>    
+                        <div className='text-gray-600'>
+                          <p className="font-bold inline">
+                          Tipo de Propiedad:   
+                          </p> {" "}
+                          <p className="inline">
+                          {genericItemsValue(HOUSE_PROPERTY_TYPE, product.otherInformation.propertyType)} 
+                          </p> 
+                        </div>
+                        </div>                            
+                      <div  className='orange_gradient text-2xl full font-medium text-left mb-4 mt-4'>Extras - Beneficios</div>
+                      <div className="grid grid-cols-2 lg:grid-cols-3 gap-y-2 lg:gap-y-4 gap-x-2">
+                          {product.otherInformation.benefits.map((element, index)=>(
+                            <div key={index} className="flex items-center mb-4">
+                                <CiSquareCheck id={`house-benefits-${element}`} key={`house-benefits-${element}`}  className="w-4 h-4" color='green'/>
+                                <label htmlFor={`house-benefits-${element}`} className="ms-2 text-sm font-medium text-gray-600">{genericItemsValue(HOUSE_BENEFITS,element)}</label>
+                            </div>   
+                        ))}
+                      </div>                                                                                                                                                          
+                    </>
+                  )}
                 </div>
+
+
                 <div className="flex flex-wrap items-center -mx-4 ">
                   {!adminMode && (
                     <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
