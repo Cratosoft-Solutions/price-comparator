@@ -25,9 +25,22 @@ const verticalNavOptionsSlide = createSlice({
                     state.myStoreNav = {...state.myStoreNav, expandedNavBar:false};  
                     break;                      
               }
+        },
+        setProductSearchConfig: (state, action) => {
+            switch (action.payload) {
+                case "EXPANDNAV":
+                    state.productSearch = {...state.productSearch, expandedNavBar:true};  
+                    break;  
+                case "COLLAPSENAV":
+                    state.productSearch = {...state.productSearch, expandedNavBar:false};  
+                    break; 
+                default: 
+                    state.productSearch = {...state.productSearch, selectedOption:action.payload};  
+                    break;                      
+              }
         }
     }
 });
 
-export const { setMyStoreConfig } = verticalNavOptionsSlide.actions;
+export const { setMyStoreConfig, setProductSearchConfig } = verticalNavOptionsSlide.actions;
 export default verticalNavOptionsSlide.reducer;

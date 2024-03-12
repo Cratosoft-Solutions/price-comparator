@@ -89,6 +89,7 @@ export const SEARCH_DEFAULT_OPTIONS = {
 
 export const VERTICAL_NAV_STATUS = {
   myStoreNav: { selectedOption:"configuration", expandedNavBar:false},
+  productSearch:{expandedNavBar:false}
 };
 
 import { IoMdSettings } from "react-icons/io";
@@ -208,30 +209,90 @@ export const VERTICAL_NAV_CONFIGURATION =[
     btnDescription: "Regresar",
     btnID:"HOME",
     isPrincipal:true,
-    icon: <IoMdHome className="w-6 h-6"  color="#FF5733"/>
+    icon: <IoMdHome className="w-4 h-4"  color="black"/>
   },
   {
     btnNAVPage:"myStore",
     btnDescription: "Configuración",
     btnID:"CONFIG",
     isPrincipal:false,
-    icon: <IoMdSettings className="w-6 h-6" color="gray"/>
+    icon: <IoMdSettings className="w-4 h-4"  color="black"/>
   },
   {
     btnNAVPage:"myStore",
     btnDescription: "Agregar Item",
     btnID:"ADDPRODUCT",
     isPrincipal:false,
-    icon: <MdAddShoppingCart className="w-6 h-6" color="gray"/>
+    icon: <MdAddShoppingCart className="w-4 h-4"  color="black"/>
   },
   {
     btnNAVPage:"myStore",
     btnDescription: "Mis items",
     btnID:"LISTITEM",
     isPrincipal:false,
-    icon: <FaList className="w-6 h-6" color="gray"/>
+    icon: <FaList className="w-4 h-4"  color="black"/>
   },
 
+
+  {
+    btnNAVPage:"productSearch",
+    btnDescription: "Nueva Búsqueda",
+    btnID:"NEWSEARCH",
+    isPrincipal:true,
+    icon: <IoMdHome className="w-4 h-4"  color="black"/>
+  },
+  {
+    btnNAVPage:"productSearch",
+    btnDescription: "Precio Menor",
+    btnID:"MINTOMAX",
+    isPrincipal:false,
+    icon: <IoMdSettings className="w-4 h-4" color="black"/>
+  },
+  {
+    btnNAVPage:"productSearch",
+    btnDescription: "Precio Mayor",
+    btnID:"MAXTOMIN",
+    isPrincipal:false,
+    icon: <MdAddShoppingCart className="w-4 h-4" color="black"/>
+  },
+  {
+    btnNAVPage:"productSearch",
+    btnDescription: "Exacto",
+    btnID:"MATCH",
+    isPrincipal:false,
+    icon: <FaList className="w-4 h-4" color="black"/>
+  },
+
+  {
+    btnNAVPage:"home",
+    btnDescription: "Publica tu producto / Servicio",
+    btnID:"PUBLISH",
+    isPrincipal:true,
+    icon: <IoMdHome className="w-4 h-4"  color="black"/>
+  },
+  {
+    btnNAVPage:"home",
+    btnDescription: "Promociona tu sitio web",
+    btnID:"PROMOTION",
+    isPrincipal:false,
+    icon: <IoMdSettings className="w-4 h-4" color="black"/>
+  },
+  {
+    btnNAVPage:"home",
+    btnDescription: "Vender con EncuentráloFácilCR",
+    btnID:"SALE",
+    isPrincipal:false,
+    icon: <MdAddShoppingCart className="w-4 h-4" color="black"/>
+  },
+  {
+    btnNAVPage:"home",
+    btnDescription: "¿Cómo funciona?",
+    btnID:"HOWITWORKS",
+    isPrincipal:false,
+    icon: <FaList className="w-4 h-4" color="black"/>
+  }
 ]
 
 export const BLACK_LISTED_KEYWORDS = ["puta","puto","perra","bitch","fuck","picha","malparido"];
+
+export const PAGES_WITH_NAV =["/search/results", "/mystore"];

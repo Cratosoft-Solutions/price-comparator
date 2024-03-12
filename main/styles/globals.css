@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,12 +6,14 @@
   Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
 */
 
-.__variable_20951f {
-  --font-inter: "__Inter_20951f","__Inter_Fallback_20951f";
+@font-face {
+  font-family: cratosoft_font;
+  src: url('fonts/Sansation_Regular.ttf');
 }
 
-.__variable_7dbc08 {
-  --font-satoshi: "__satoshi_7dbc08","__satoshi_Fallback_7dbc08";
+body > *{
+  font-family: cratosoft_font;
+  /*@apply bg-gradient-to-br from-neutral-100 via-white to-neutral-50;*/
 }
 
 .main {
@@ -65,23 +65,23 @@
 /* Tailwind Styles */
 
 .app {
-  @apply relative z-10 flex justify-center flex-col 
+  @apply flex flex-col min-h-screen/*relative z-10 flex justify-center flex-col*/ 
 }
 
 .black_btn {
-  @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
+  @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm  flex items-center justify-center h-12;
 }
 
 .google_btn {
-  @apply rounded-full border border-black bg-white border py-1.5 px-5 text-black transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
+  @apply rounded-full border border-black bg-white border py-1.5 px-5 text-black transition-all hover:bg-white hover:text-black text-center text-sm  flex items-center justify-center h-12;
 }
 
 .selected_pagination_button {
-  @apply rounded border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
+  @apply rounded border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm  flex items-center justify-center h-12;
 }
 
 .nonselected_pagination_button {
-  @apply rounded bg-white py-1.5 px-5 text-black transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
+  @apply rounded bg-white py-1.5 px-5 text-black transition-all hover:bg-white hover:text-black text-center text-sm  flex items-center justify-center h-12;
 }
 
 .nonselected_pagination_button:hover {
@@ -89,27 +89,27 @@
 }
 
 .orange_btn {
-  @apply  rounded border border-orange-500 bg-orange-500 py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
+  @apply  rounded border border-orange-500 bg-orange-500 py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm  flex items-center justify-center h-12;
 }
 
 .red_btn {
-  @apply rounded-full border border-red-600 bg-red-600 py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
+  @apply rounded-full border border-red-600 bg-red-600 py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm  flex items-center justify-center h-12;
 }
 
 .black_btn_sqr {
-  @apply  rounded border bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
+  @apply  rounded border bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm  flex items-center justify-center h-12;
 }
 
 .red_btn_sqr {
-  @apply  rounded border bg-red-600 py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-12;
+  @apply  rounded border bg-red-600 py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm  flex items-center justify-center h-12;
 }
 .outline_btn {
-  @apply  h-12 rounded border border-gray-400 bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
+  @apply  h-12 rounded border border-gray-400 bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm  flex items-center justify-center;
 }
 
 
 .outline_btn_orange {
-  @apply h-12 rounded border border-orange-400 bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
+  @apply h-12 rounded border border-orange-400 bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm  flex items-center justify-center;
 }
 
 
@@ -194,20 +194,16 @@
 
 }
 
-.searchoptions:hover{
-  @apply transition ease-in-out delay-150 -translate-y-1 scale-105  duration-300 shadow-lg border border-orange-200 shadow-orange-100
-}
-
 .storepages:hover{
-  @apply transition ease-in-out delay-150 -translate-y-1 scale-100  duration-300 shadow-lg border border-orange-200 shadow-orange-100
+  @apply transition ease-in-out delay-150 -translate-y-1 scale-100  duration-300 shadow-lg border border-gray-200 shadow-gray-100
 }
 
 .paginationcontroler:hover{
-  @apply transition ease-in-out delay-150  -translate-y-1 duration-300 shadow-lg border border-orange-200 shadow-orange-100
+  @apply transition ease-in-out delay-150  -translate-y-1 duration-300 shadow-lg border border-gray-200 shadow-gray-100
 }
 
 .dropdown_link {
-  @apply text-sm font-inter text-gray-600 hover:text-gray-500 font-medium;
+  @apply text-sm  text-gray-600 hover:text-gray-500 font-medium;
 }
 
 /* PromptCard Component */
@@ -1644,7 +1640,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(-45deg);
-  font-family: Arial Black, Arial Bold, sans-serif,bold;
   font-size: 25px;
   -webkit-text-fill-color: transparent;    
   -webkit-text-stroke: 1.5px rgb(255, 255, 255);
@@ -1696,7 +1691,7 @@
 }
 
 .btn_nav_orange{
-  @apply   bg-orange-500 py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-inter flex items-center justify-center h-10;
+  @apply   bg-orange-500 py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm flex items-center justify-center h-10;
 }
 
 .btn_nav_orange:hover{
@@ -1705,7 +1700,7 @@
 
 
 .btn_nav{
-  @apply  text-left bg-white  px-5 text-black transition-all  text-sm font-inter  items-center  h-10;
+  @apply  text-left bg-white  px-5 text-black transition-all  text-sm   items-center  h-10;
 }
 
 
@@ -1715,7 +1710,7 @@
 }
 
 .btn_nav_selected{
-  @apply text-left bg-gray-200  px-5  text-black transition-all text-sm font-inter font-bold items-center h-10;
+  @apply text-left bg-gray-200  px-5  text-black transition-all text-sm  font-bold items-center h-10;
 }
 
 .btn_nav_selected:hover{
@@ -1737,7 +1732,6 @@
     left:16px;
     pointer-events: none;
     transform-origin: 0% 0%;
-    font-family: var(--e-ls-qkw);
     font-size: 1.2rem;
     line-height: var(---s-l-myu);
     -webkit-letter-spacing: var(--fnsvt-u);
@@ -1761,4 +1755,21 @@
   top: 3px;
   left:16px;
   font-size:var(--iw-ehf-f);
+}
+
+img{
+  max-width: max-content !important;
+  height: none;
+}
+
+.logo-mobile{
+  max-width: none !important;
+}
+
+.close-nav-button-lg{
+  position: fixed;
+  top: 0.5rem;
+  margin-top: 1rem;
+  left:12rem;
+  margin-left: 12rem;
 }

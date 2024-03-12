@@ -224,7 +224,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
       <form
         method="POST"
         onSubmit={confirmAction}
-        className={`relative bg-white mt-4 lg:mt-0 p-4 lg:bg-gray-100 lg:pl-6 lg:pr-6 ${
+        className={`relative mt-4 lg:mt-0 p-4 lg:pl-6 lg:pr-6 ${
           expandedNavBar && !editMode
             ? "ml-0 lg:ml-52"
             : `ml-0 lg:ml-${editMode ? 0 : 10}`
@@ -246,7 +246,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
           />
         )}
         <div className="w-full max-w-screen-lg">
-          <h2 className=" mt-1 font-semibold text-2xl lg:text-4xl lg:h-12 text-black orange_gradient">
+          <h2 className="mt-1 font-black text-xl lg:text-2xl lg:h-12 text-black">
             Configuración de items
           </h2>
           <p className="text-black mb-1 lg:mb-6 ">

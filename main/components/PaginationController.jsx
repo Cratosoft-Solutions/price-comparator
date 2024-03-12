@@ -6,7 +6,7 @@ import { numberToArray } from "@utils/functions";
 
 
 
-const PaginationControls = ({size, tableItemsAmount, isOptionSearchExpanded}) => {
+const PaginationControls = ({size, tableItemsAmount}) => {
   const [active, setActive] = React.useState(1);
   const dispatch = useDispatch();
   const {pagesArray, lastPage} = numberToArray(size, tableItemsAmount, active);
@@ -37,7 +37,7 @@ const PaginationControls = ({size, tableItemsAmount, isOptionSearchExpanded}) =>
 
 
   return (
-    <div className="flex fixed bottom-0 w-full justify-left " >
+    <div className="flex absolute bottom-[3rem] w-full justify-center " >
       <div className="paginationcontroler flex items-center gap-4 justify-center bg-white mb-2 pt-2 pb-2 pr-4 pl-4 shadow border border-gray-200 w-fit">
         <button
           variant="text"

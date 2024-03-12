@@ -32,7 +32,7 @@ const CustomerStore = ({ userIsAuthenticated, isLoading }) => {
   return (
     <>
       {!isLoading ? (
-        <div className="bg-gray-100">
+        <div className="bg-white">
           {renderSelectedOption()}
           <MyStoreVerticalNav />
         </div>

@@ -7,28 +7,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setSearchOption } from '@app/redux/slices/configOptions';
 import ShowAllResults from './ShowAllResults';
 import PaginationControls from './PaginationController';
+import withNav from "@app/HOCs/NavHOC";
+import VerticalNav from "./VerticalNav"; 
 
 
-const ProductList = ({isOptionSearchExpanded}) => {
+const ProductList = () => {
   const { storeFullProducts, storeFullMatchedProducts } = useSelector(state => state.products);
-  const {configuration} = useSelector(state => state.searchoptions);
+  const { selectedOption } = useSelector(state => state.verticalnav.productSearch);
+  const showMatchedProducts = selectedOption == "MATCH";
   const { loading } = useSelector(state =>state.siteloading);
   const { size } = useSelector(state =>state.sitepagination);
   const dispatch = useDispatch();
   
-  const mergedProducts = configuration.MATCH? storeFullMatchedProducts:storeFullProducts;
+  const mergedProducts = showMatchedProducts? storeFullMatchedProducts:storeFullProducts;
 
   return (
     <div
-      className={`lg:bg-gray-100 lg:pl-6 lg:pt-2 lg:pr-6 ${
-        isOptionSearchExpanded ? "ml-0 lg:ml-52" : "ml-0 lg:ml-10"
-      }`}
+      className={`bg-white lg:pl-6 lg:pt-2 lg:pr-6`}
     >
       <div className="relative container mx-auto hidden lg:block">
         {!loading && mergedProducts && (
           <>
             <HorizontalCardList mergedProducts={mergedProducts} />
-            <PaginationControls tableItemsAmount={mergedProducts.length} size={size} isOptionSearchExpanded={isOptionSearchExpanded}/>
+            <PaginationControls tableItemsAmount={mergedProducts.length} size={size}/>
           </>
         )}
         {loading && <HorizontalCardListLoading />}
@@ -38,7 +39,7 @@ const ProductList = ({isOptionSearchExpanded}) => {
 
         {loading && <HorizontalCardListLoading />}
       </div>
-      {configuration.MATCH &&
+      {showMatchedProducts &&
       storeFullProducts.length > 0 &&
       storeFullMatchedProducts.length == 0 ? (
         <ShowAllResults/>

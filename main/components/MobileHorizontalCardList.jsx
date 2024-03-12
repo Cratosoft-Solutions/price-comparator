@@ -1,12 +1,12 @@
 import React from 'react'
 import MobileProductCard from './MobileProductCard'
-
+ 
 const MobileHorizontalCardList = ({mergedProducts, adminMode = false, callBackFunction=()=>{}}) => {
   return (
     <>
     {!adminMode &&
-      <div className="w-full items-center justify-left p-6 bg-white">
-        <p className="text-2xl font-[800] orange_gradient">Busca el producto perfecto para ti.</p>
+      <div className="w-full items-center justify-left p-6 bg-white mt-2 items-end">
+          <p className="text-sm text-black font-black"> {`Encontramos ${mergedProducts.length} anuncios.`}</p>
       </div>
     }
       

@@ -46,14 +46,14 @@ const HorizontalCardList = ({mergedProducts, adminMode = false, callBackFunction
 
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pb-24">
       {!adminMode &&
         <div className="w-full justify-left">
-          <p className="text-4xl font-[800] orange_gradient h-16">Busca el producto perfecto para ti.</p>
+          <p className="text-sm text-black font-black"> {`Encontramos ${mergedProducts.length} anuncios. Registros del ${FIRSTPOSITION + 1 } al ${LASTPOSITION}`}</p>
         </div>
       }
 
-      <div className='grid gap-3 grid-cols-4 mt-4 mb-20' >
+      <div className='grid gap-3 grid-cols-4 mt-4 mb-24' >
           {mergedProducts.slice(FIRSTPOSITION, LASTPOSITION).map((product, index) => (
             <ProductCard key={index} product = {product} index={index} adminMode={adminMode} callBackFunction={callBackFunction}/>
           ))}              

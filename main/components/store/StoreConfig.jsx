@@ -26,7 +26,6 @@ const StoreConfig = () => {
     const [showImage, setShowImage] = useState(false);
     const [storeId, setStoreId] = useState(null);
     const [address, setAddress] = useState('');
-    const { expandedNavBar } = useSelector(state => state.verticalnav.myStoreNav);
 
     useEffect(() => {
       const securePage = async () => {
@@ -126,13 +125,11 @@ const StoreConfig = () => {
 
   return (
     <>
-      <form method='POST' onSubmit={confirmAction} className={`bg-white mt-4 lg:mt-0 p-4 lg:bg-gray-100 lg:pl-6 lg:pr-6 ${
-        expandedNavBar ? "ml-0 lg:ml-52" : "ml-0 lg:ml-10"
-      }`}>
+      <form method='POST' onSubmit={confirmAction} className={`mt-4 lg:mt-0 p-4 lg:pl-6 lg:pr-6`}>
           {showConfirmAction && <Modal modalActionInfo={modalActionInfo} onConfirm={onConfirm} onCancel={onCancel} />}
           <div className="w-full max-w-screen-lg ">
           <div>
-              <h2 className=" mt-1 font-semibold text-2xl lg:text-4xl lg:h-12 text-black orange_gradient">Configuración General</h2>
+              <h2 className="mt-1 font-black text-xl lg:text-2xl lg:h-12 text-black">Configuración General</h2>
               <p className="text-black mb-1 lg:mb-6 ">¡Bienvenido a la configuración de tu cuenta!</p>
       
               <div className=" storepages bg-white p-10 rounded-lg shadow-lg p-4 px-4 md:p-8 mb-6">
