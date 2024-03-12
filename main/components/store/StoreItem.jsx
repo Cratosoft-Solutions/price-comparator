@@ -26,8 +26,6 @@ import { genericCompression } from '@utils/functions';
 import CarInfo from './CarInfo';
 import HouseInfo from './HouseInfo';
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import ServicesInfo from './ServicesInfo';
-
 
 
 const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
