@@ -51,11 +51,11 @@ const SearchButton = () => {
   []);
 
   return (
-      <div className="mb-1 w-full sm:w-1/2 justify-center mr-4 ml-4">
+      <div className="w-full justify-center">
         <div className="grid place-items-center w-full">
             <form onSubmit={executeSearch} className="grid grid-cols-1 grid-rows-1 lg:grid-rows-1 lg:grid-cols-1 gap-0 w-full ">
             {showCategory && <DropDownList values={CATEGORIES} onSelectValue={setInternalCategory} currentValue={category} />}
-             <div className="relative text-orange-500">
+             <div className="relative text-gray-500">
                 <span className="absolute inset-y-0 left-0 flex items-center pl-2">
                   <button disabled={/*category == CATEGORIES[0].value || */text.length < 3} type="submit" className="p-1 focus:outline-none focus:shadow-outline">
                     <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="w-6 h-6"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
@@ -66,13 +66,13 @@ const SearchButton = () => {
                   id="txt-search" 
                   type="search" 
                   name="q" 
-                  className="py-2 text-sm text-gray-600 bg-white border  lg:rounded-lg pl-10 focus:outline-none focus:bg-white h-16 w-full" placeholder="Buscar..." autoComplete="off"/>
+                  className=" text-sm text-gray-900  bg-[#E9E9E9] border  xl:rounded-full pl-10 focus:outline-none focus:bg-white h-10 w-full" placeholder="¿Qué buscas?" autoComplete="off"/>
                </div>
             </form>
             <div className="grid grid-cols-1 grid-rows-1 w-full">
               <AutoCompletableList text={text} onChange={executeSearch}/>
             </div>
-            {userIsConnected &&
+            {userIsConnected && 1==2 /*ELIMINAR*/&&
             <button onClick={()=>{setShowMySearchs(true)}} className="flex w-full justify-left mb-2 lg:mb-6 text-medium text-gray-600 items-center">
             <HiOutlineDocumentSearch/>Ver mis búsquedas anteriores 
           </button>}

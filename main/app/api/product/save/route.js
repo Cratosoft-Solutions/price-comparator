@@ -21,17 +21,33 @@ export const POST = async (req) => {
       negotiable: productToSave.negotiable,
     };
 
-    if (productToSave.category == "CAR") {
+    if (productToSave.category == "CAR" || productToSave.category == 'HOUSES') {
       const otherInformation = JSON.parse(productToSave.otherItemInformation);
       formatedProduct = {
         ...formatedProduct,
         otherinformation: otherInformation,
       };
+      console.log("11 ingresé  aca insertando",productToSave.category);
+      console.log("22 ingresé  aca insertando",productToSave.otherItemInformation);
+      console.log("33 ingresé  aca insertando",productToSave.otherInformation);            
     }
 
     if (productToSave.category === 'SERVICES') {
       formatedProduct.serviceType = productToSave.serviceType;
+      formatedProduct.modalityType = productToSave.modalityType;
+      formatedProduct.province = productToSave.province;
     }
+
+/*     if (productToSave.category == 'HOUSES') {
+      const otherinformation = JSON.parse(productToSave.otherHouseInformation);
+      formatedProduct = {
+        ...formatedProduct,
+        otherinformation: otherinformation,
+      };
+      console.log("1 ingresé  aca insertando",productToSave.category);
+      console.log("2 ingresé  aca insertando",productToSave.otherHouseInformation);
+      console.log("3 ingresé  aca insertando",productToSave.otherInformation);      
+    } */
 
     console.log(productToSave);
     let createdID;

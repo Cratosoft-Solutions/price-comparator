@@ -55,12 +55,11 @@ const AutoCompletableList = ({text, onChange}) => {
     return (
         <>
             {isBrowser() && text.length > 0 &&
-                <ul className="bg-white w-full lg:w-1/2 absolute">   
+                <ul className="bg-white w-full lg:w-[45%] absolute">   
                     {coincidencesList.slice(0, 5).map((coincidence, index)=>(
-                        <li onClick={()=>{onSelectItem(coincidence.key, coincidence.category)}} key={index} className="pl-8 pr-2 py-1 border border-gray-50 relative cursor-pointer hover:bg-gray-100 hover:text-gray-900 text-gray-500">
-                           <div className='flex items-center gap-2'>
-                           <MdOutlineProductionQuantityLimits className='h-4 w-4 inline' color='gray'/>
-                            {formatAutoCompletableItem(coincidence.category, coincidence.key)}
+                        <li onClick={()=>{onSelectItem(coincidence.key, coincidence.category)}} key={index} className="pl-8 pr-2 py-1 relative cursor-pointer hover:bg-gray-100 hover:text-gray-900 text-gray-500">
+                           <div className='flex items-center text-xs hover:text-extrabold'>
+                                {formatAutoCompletableItem(coincidence.category, coincidence.key)}
                             </div>
                         </li>
                     ))}

@@ -3,41 +3,97 @@ import React, { useState } from "react";
 import { VERTICAL_NAV_CONFIGURATION } from "@utils/constants";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { setMyStoreConfig } from "@app/redux/slices/verticalNav";
+import { setMyStoreConfig, setProductSearchConfig } from "@app/redux/slices/verticalNav";
 import { isMobile } from "@utils/functions";
-
+import { orderProducts, restartProducts, setMatchedProducts } from "@app/redux/slices/products";
+import { useRouter } from "next/navigation";
+import { setExpandedBar } from "@app/redux/slices/siteNav";
 
 function withNav(Component, navConfiguration) {
   function newNavComponent() {
+    const router = useRouter();
+    const { text } = useSelector(state => state.searchProperties.properties);
+    const textSearchArray = text.toUpperCase().split(" ");
     const dispatch = useDispatch();
-    const { expandedNavBar } = useSelector(state => state.verticalnav.myStoreNav);
 
     const principalOption = VERTICAL_NAV_CONFIGURATION.filter(optionNav => optionNav.btnNAVPage == navConfiguration).filter(
-        (option) => option.isPrincipal
-      )[0];
+      (option) => option.isPrincipal
+    )[0];
 
-    const secondaryOptions = VERTICAL_NAV_CONFIGURATION.filter(optionNav => optionNav.btnNAVPage == navConfiguration).filter(
-        (option) => !option.isPrincipal
-      ); 
-    
-    const [showNav, setShowNav] = useState(expandedNavBar);
+  const secondaryOptions = VERTICAL_NAV_CONFIGURATION.filter(optionNav => optionNav.btnNAVPage == navConfiguration).filter(
+      (option) => !option.isPrincipal
+    ); 
+
+    const { expandedBar } =  useSelector(state => state.siteNav);
 
     const expandCollapseOptionsBar = (expandOrCollapse) => {
-        dispatch(setMyStoreConfig(expandOrCollapse?"EXPANDNAV":"COLLAPSENAV"))
-        setShowNav(expandOrCollapse);
+        dispatch(setExpandedBar(expandOrCollapse))
       };
     
-    const onSelectedButton=(btnID)=>{        
-        dispatch(setMyStoreConfig(btnID));
+    const actionsProductSearch = (btnID)=>{
+      
+      switch (btnID) {
+        case "MINTOMAX":
+          dispatch(orderProducts(1));
+          break;
+        case "MAXTOMIN":
+          dispatch(orderProducts(-1));
+          break;
+        case "MATCH":
+          alert(textSearchArray);
+          dispatch(setMatchedProducts(textSearchArray));
+          break;
+        case "NEWSEARCH":
+          expandCollapseOptionsBar(false);
+          dispatch(restartProducts());
+          router.push("/");
+      }
+    }
+
+    const actionsHome = (btnID)=>{
+      let pageToRedirect = "/";
+      switch (btnID) {
+        case "PUBLISH":
+          pageToRedirect = "publish"
+          break;
+        case "PROMOTION":          
+          pageToRedirect = "promotion"
+          break;
+        case "SALE":
+          pageToRedirect = "sale"
+          break;
+        case "HOWITWORKS":
+          pageToRedirect = "howtouse"
+          break;
+      }
+      router.push(pageToRedirect);
+    }
+
+    const onSelectedButton=(btnNAVPage, btnID)=>{        
+        switch (btnNAVPage) {
+          case "myStore":
+            expandCollapseOptionsBar(false);
+            dispatch(setMyStoreConfig(btnID));
+            break;
+          case "productSearch":
+            dispatch(setProductSearchConfig(btnID));
+            actionsProductSearch(btnID);
+            break;
+          case "home":
+            actionsHome(btnID);
+            break; 
+          default:
+            break;
+        }
+        
         
         if(isMobile())
           setShowNav(false);
-
     }
     
     return (
         <Component
-          showNav={showNav}
+          showNav={expandedBar}
           expandCollapseOptionsBar={expandCollapseOptionsBar}
           principalOption={principalOption}
           secondaryOptions={secondaryOptions}

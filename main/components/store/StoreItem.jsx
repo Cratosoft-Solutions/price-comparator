@@ -2,7 +2,19 @@
 import React, { useEffect, useState } from 'react';
 import DragDropFiles from '@components/DragDropFiles';
 import Modal from '@components/Modal';
-import { PRODUCT_SAVE_CONFIRM_ACTION,CATEGORY_TYPES,IMAGE_MAX_PASSED, IMAGE_FAILED_CONFIRM_ACTION, GENERAL_UKNOWN_ERROR, GENERAL_SUCCESS_PROCESS, CURRENCY_LIST, GENERAL_YESNO,SERVICES_TYPES } from '@utils/constants';
+import {
+  PRODUCT_SAVE_CONFIRM_ACTION,
+  CATEGORY_TYPES,
+  IMAGE_MAX_PASSED,
+  IMAGE_FAILED_CONFIRM_ACTION,
+  GENERAL_UKNOWN_ERROR,
+  GENERAL_SUCCESS_PROCESS,
+  CURRENCY_LIST,
+  GENERAL_YESNO,
+  SERVICES_TYPES,
+  MODALITY_TYPES,
+  PROVINCES
+} from "@utils/constants";
 import { getSession, signIn } from "next-auth/react";
 import Loading from '@app/loading';
 import axios from 'axios';
@@ -12,8 +24,8 @@ import UploadedImage from '@components/UploadedImage';
 import { useSelector } from "react-redux";
 import { genericCompression } from '@utils/functions';
 import CarInfo from './CarInfo';
+import HouseInfo from './HouseInfo';
 import { IoIosCloseCircleOutline } from "react-icons/io";
-
 
 
 const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
@@ -30,6 +42,8 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
     const [negotiable, setNegotiable] = useState('NO');
     const [category, setCategory] = useState('PRODUCT');
     const [serviceType, setServiceType] = useState(SERVICES_TYPES[0].value);
+    const [modalityType, setModalityType] = useState(MODALITY_TYPES[0].value);
+    const [province, setProvince] = useState(PROVINCES[0].value);
     const [price, setPrice] = useState(null);
     const [specialPrice, setSpecialPrice] = useState(null);
     const [currency, setCurrency] = useState(CURRENCY_LIST[0].value);
@@ -39,8 +53,17 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
     const [showImage, setShowImage] = useState(false);
     const categoryList = CATEGORY_TYPES;
     const servicesList = SERVICES_TYPES;
+    const modalityList = MODALITY_TYPES;
+    const provinceList = PROVINCES;
     const { expandedNavBar } = useSelector(state => state.verticalnav.myStoreNav);
     const [carInfo, setCarInfo] = useState({brand:"SELECT", model:"",cc:"", style:"SELECT",passengers:1,year: new Date().getFullYear(), status:1, combustible:1, transmition:1,kms:"",kmstype:"1", taxes:"NO",otherCar:"NO",doors:1, province:"SJO", equipment:[]});
+    const [houseInfo, setHouseInfo] = useState({bedrooms:"SELECT",bathrooms:"SELECT",parking:"SELECT",porpertyMeters:"",houseVendorType:"SELECT", address:"",propertyMaintenanceCosts:"",lotSize:"", height:"",yearBuilt:"SELECT", floorType:"SELECT",levels:"SELECT", floor:"SELECT", pool:"SELECT", balconyTerrace:"SELECT", propertyType:"SELECT", benefits:[]});
+
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const handleOptionChange = (value) => {
+      setSelectedOption(value);
+    };
 
     useEffect(() => {
       const securePage = async () => {
@@ -51,6 +74,11 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
             const storeInfo = await axios.get(`/api/user/${session.user.id}/store/`);
             console.log(storeInfo);
             setStore(storeInfo.data._id);
+            if(product != undefined && product.category === 'SERVICES'){
+              setNameLabel("Nombre del servicio.");
+              setDescriptionLabel("Descripcion del servicio.");
+              setPriceLabel("Precio del servicio.");
+            }
             setLoading(false);
         }
       };
@@ -69,10 +97,15 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
         setImages(product.productImage);
         if (product.category === 'SERVICES') {
           setServiceType(product.serviceType);
+          setModalityType(product.modalityType);
+          setProvince(product.province);
         }
         if(product.category=="CAR"){
             setCarInfo(product.otherInformation);
         }
+        if(product.category=="HOUSES"){
+            setHouseInfo(product.otherInformation);
+      }        
       }
 
     }, []);
@@ -88,6 +121,8 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
         setImages([]);
         setCategory(categoryList[0].value);
         setServiceType(SERVICES_TYPES[0].value);
+        setModalityType(MODALITY_TYPES[0].value);
+        setProvince(PROVINCES[0].value);
     }
 
     const restartFormWithoutCategory = ()=>{
@@ -99,6 +134,8 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
         setCurrency(CURRENCY_LIST[0].value);
         setImages([]);
         setServiceType(SERVICES_TYPES[0].value);
+        setModalityType(MODALITY_TYPES[0].value);
+        setProvince(PROVINCES[0].value);
     }
 
     const confirmAction = (e) =>{
@@ -126,8 +163,11 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
                         negotiable:  negotiable,
                         currency: currency,
                         image: genericCompression(images, "compress"),
-                        otherItemInformation: category == "CAR"? JSON.stringify(carInfo):null,
-                        serviceType: category === 'SERVICES'? serviceType : null
+                        otherItemInformation: category == "CAR" ? JSON.stringify(carInfo) : category == "HOUSES"? JSON.stringify(houseInfo) : null,
+                        serviceType: category === 'SERVICES'? serviceType : null,
+                        modalityType: category === 'SERVICES'? modalityType : null,
+                        province: category === 'SERVICES'? province : null
+                        //otherHouseInformarion: category == "HOUSES"? JSON.stringify(houseInfo):null
                       })
                       .then((response) => {
                         if(!editMode){
@@ -199,6 +239,21 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
         console.log(carInfo);
     } 
 
+    const setInternalHouseInfo =(field, value) => {
+      if(field == "benefits"){
+          let benefitsToSet = houseInfo.benefits;
+          if (benefitsToSet.filter(element => element == value)[0]){
+              benefitsToSet = benefitsToSet.filter(element => element != value);   
+          }else{
+              benefitsToSet.push(value);
+          }
+          setHouseInfo({...houseInfo , [field]:benefitsToSet}); 
+      }else{
+          setHouseInfo({...houseInfo , [field]:value}); 
+      }   
+      console.log(houseInfo);
+  }     
+
     const setCategoryOnChange = (category) => {
       restartFormWithoutCategory();
       setCategory(category);
@@ -208,6 +263,11 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
           setDescriptionLabel("Descripcion del servicio.");
           setPriceLabel("Precio del servicio.");
           break;
+          case 'HOUSES':
+            setNameLabel("Título.");
+            setDescriptionLabel("Descripcion de la propiedad.");
+            setPriceLabel("Precio.");
+            break;          
         default:
           setNameLabel("Nombre del item.");
           setDescriptionLabel("Descripción del item.");
@@ -224,7 +284,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
       <form
         method="POST"
         onSubmit={confirmAction}
-        className={`relative bg-white mt-4 lg:mt-0 p-4 lg:bg-gray-100 lg:pl-6 lg:pr-6 ${
+        className={`relative mt-4 lg:mt-0 p-4 lg:pl-6 lg:pr-6 ${
           expandedNavBar && !editMode
             ? "ml-0 lg:ml-52"
             : `ml-0 lg:ml-${editMode ? 0 : 10}`
@@ -246,7 +306,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
           />
         )}
         <div className="w-full max-w-screen-lg">
-          <h2 className=" mt-1 font-semibold text-2xl lg:text-4xl lg:h-12 text-black orange_gradient">
+          <h2 className="mt-1 font-black text-xl lg:text-2xl lg:h-12 text-black">
             Configuración de items
           </h2>
           <p className="text-black mb-1 lg:mb-6 ">
@@ -326,6 +386,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
                   </div>
 
                   {category === "SERVICES" && (
+                    <>
                     <div className="md:col-span-5 relative">
                       <DropDownList
                         additionalClass="rounded-t-lg"
@@ -344,8 +405,45 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
                         Categoría del servicio.
                       </div>
                     </div>
+                    <div className="md:col-span-5 relative">
+                      <DropDownList
+                        additionalClass="rounded-t-lg"
+                        onSelectValue={setModalityType}
+                        values={modalityList}
+                        type="text"
+                        required
+                        name="modalityType"
+                        id="modalityType"
+                        onChange={(e) => {
+                          setModalityType(e.target.value);
+                        }}
+                        currentValue={modalityType}
+                      />
+                      <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+                        Modalidad
+                      </div>
+                    </div>
+                    <div className="md:col-span-5 relative">
+                      <DropDownList
+                        additionalClass="rounded-t-lg"
+                        onSelectValue={setProvince}
+                        values={provinceList}
+                        type="text"
+                        required
+                        name="province"
+                        id="province"
+                        onChange={(e) => {
+                          (e.target.value);
+                        }}
+                        currentValue={province}
+                      />
+                      <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+                        Provincia
+                      </div>
+                    </div>
+                  </>
                   )}
-                  {category != "SERVICES" && (
+                  {category != "SERVICES" && category != "HOUSES" && (
                     <>
                       <div className="md:col-span-5 relative">
                         <CurrencyInput
@@ -451,6 +549,13 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
                       carInfo={carInfo}
                     />
                   )}
+
+                  {category == "HOUSES" && (
+                    <HouseInfo
+                      onChangeValues={setInternalHouseInfo}
+                      houseInfo={houseInfo}
+                    />
+                  )}                  
 
                   {images.length <= 4 && (
                     <div className="md:col-span-5 relative mt-4">
