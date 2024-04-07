@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 const Home = () => {
   const [data, setData] = useState({});
+  //const [rankedTags, setRankedTags] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,7 +18,18 @@ const Home = () => {
         })
         .catch((error) => setLoading(false));
     };
+    //
+    // const rankedSearchTags = async () => {
+    //   await fetchWithTimeout(`/api/search/local/data/tags`)
+    //     .then((r) => r.json())
+    //     .then((data) => {
+    //       setRankedTags(data.rankedKeywords);
+    //       setLoading(false);
+    //     })
+    //     .catch((error) => setLoading(false));
+    // };
     executeSearch();
+    // rankedSearchTags();
   }, []);
 
   if(loading)

@@ -29,8 +29,6 @@ export const POST = async (req) => {
       (word) => !containsOnlyNumbers(word)
     );
 
-    console.log("Filtered keywords" + filteredWords);
-
     //Check if Searchs exists
     const SearchExists = await genericDatabaseOperation(
       Search,
@@ -53,8 +51,7 @@ export const POST = async (req) => {
       Search
     );
 
-    console.log(finalSearch);
-    // Save user searrcg
+    // Save user search
     await saveUserSearch(
       Tags,
       UserSearch,
@@ -81,14 +78,11 @@ const getSearch = async (searchKey, searches, Search) => {
   try {
     if (searches != null && searches.length > 0) {
       const searches2 = [];
-      console.log(searches.length);
       for (const search of searches) {
-        console.log(search.key);
         searches2.push(search.key);
       }
       // Get closest key
       const closestKey = closest(searchKey, searches2);
-      console.log(closestKey);
       if (closestKey != null) {
         return await genericDatabaseOperation(
           Search,

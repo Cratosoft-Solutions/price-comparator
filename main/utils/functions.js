@@ -396,6 +396,51 @@ export async function checkImage(url) {
   }
 }
 
+/**
+ * Get ranked keywords
+ * @param {*} model 
+ * @returns list of tags
+ */
+export const getRankedTags = async (model) => {
+  try {
+    return await model
+      .find({ dailySearches: { $exists: true, $ne: null } })
+      .sort({ dailySearches: -1 })
+      .limit(10);
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+};
+
+/**
+ * Get products with advertising payed
+ * @param {*} model 
+ * @returns list of products
+ */
+ export const getAdverstisedProducts = async (model) => {
+   try {
+     let products = [];
+     // Get products promoted
+     products = await model.find({
+       $and: [
+         { advertising: { $exists: true, $ne: null } },
+         { "advertising.active": true },
+       ],
+     });
+     console.log(`Products promoted: ${products.length}`);
+     if (products != undefined && products != null && products.length <= 3) {
+       console.log('Starting getting products negotiable');
+       products = products.concat(await model.find({ negotiable: 'YES'}).limit(4));
+     }
+     console.log(JSON.stringify(products));
+     return products;
+   } catch (err) {
+     console.log(err);
+     return [];
+   }
+ };
+
 export const genericDatabaseOperation = async (model, params, type, updateValue=null, projection = null) => {
   try {
     let result;
@@ -432,13 +477,24 @@ export const genericDatabaseOperation = async (model, params, type, updateValue=
 
 export const saveUserSearch = async (Tags, UserSearch, tagData, user) => {
   try {
-    const tagExists = await genericDatabaseOperation(Tags, {category: 1/*tagData[0]*/, key:tagData/*tagData[1]*/}, "FINDONE");
+    const tagExists = await genericDatabaseOperation(Tags, {category: 1/*tagData[0]*/,
+       key:tagData/*tagData[1]*/}, "FINDONE");
     let tagID;
     
     if(!tagExists){
-      const result = await genericDatabaseOperation(Tags, {category: 1/*tagData[0]*/, key:tagData/*tagData[1]*/}, "CREATE"); 
+      const result = await genericDatabaseOperation(Tags,
+         {category: 1/*tagData[0]*/, key:tagData/*tagData[1]*/, 
+          createdAt: currentDateWithTimeOffset(),
+          updatedAt: currentDateWithTimeOffset(), dailySearches: 1, 
+          totalSearches: 1 }, "CREATE"); 
       tagID =  result._id;
     }else{
+      // Modify updated date 
+      await genericDatabaseOperation(Tags,
+        { key: tagData},"UPDATEONE",{updatedAt: currentDateWithTimeOffset(), 
+          dailySearches: dailycounter(tagExists.updatedAt, tagExists.dailySearches), 
+          totalSearches: tagExists.totalSearches + 1}
+      );
       tagID =  tagExists._id;
     }
     //USER SEARCH IS SAVED ON DATABASE
@@ -729,3 +785,71 @@ export const getServiceItemLabel = (list, value) => {
     return "";
   }
 };
+
+/**
+ * Get weekly counter updated
+ * @param {*} date current updatedTime 
+ * @param {*} total current total 
+ * @returns new total 
+ */
+const weeklycounter = (date, total) => {
+  try{
+    const currentDate = new Date(currentDateWithTimeOffset());
+    // Find the first day of the week (Sunday)
+    const firstDayOfWeek = new Date(
+      currentDate.setDate(currentDate.getDate() - currentDate.getDay())
+    );
+    // Find the last day of the week (Saturday)
+    const lastDayOfWeek = new Date(
+      currentDate.setDate(currentDate.getDate() + 6)
+    );
+    return date > firstDayOfWeek && date < lastDayOfWeek ? total + 1 : 1;
+  }
+  catch(err){
+    console.log(err);
+    return total;
+  }
+};
+
+/**
+ * Get daily counter updated
+ * @param {*} date current updatedTime 
+ * @param {*} total current total 
+ * @returns new total 
+ */
+ const dailycounter = (date, total) => {
+  try {
+    const currentDate = currentDateWithTimeOffset();
+    const day = currentDate.getDate(); 
+    const month = currentDate.getMonth();
+    const year = currentDate.getFullYear();
+    // initial date and end date
+    const startOfDay = dateWithTimeOffset(new Date(year, month, day, 0, 0, 0));
+    const endOfDay = dateWithTimeOffset(new Date(year, month, day, 23, 59, 59));
+    return date >= startOfDay && date <= endOfDay ? total + 1 : 1;
+  } catch (err) {
+    console.log(err);
+    return total;
+  }
+};
+
+/**
+ * Get current date with time offset
+ * @returns Date 
+ */
+const currentDateWithTimeOffset = () => {
+  let currentDate = new Date();
+  // Set the time zone offset in minutes (GMT-6 in this example)
+  const timeZoneOffsetInMinutes = -6 * 60; // -6 hours * 60 minutes/hour
+  // Adjust the date by adding the time zone offset
+  currentDate.setMinutes(currentDate.getMinutes() + timeZoneOffsetInMinutes);
+  return currentDate;
+}
+
+const dateWithTimeOffset = (date) => {
+  // Set the time zone offset in minutes (GMT-6 in this example)
+  const timeZoneOffsetInMinutes = -6 * 60; // -6 hours * 60 minutes/hour
+  // Adjust the date by adding the time zone offset
+  date.setMinutes(date.getMinutes() + timeZoneOffsetInMinutes);
+  return date;
+}
