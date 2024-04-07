@@ -817,7 +817,7 @@ const weeklycounter = (date, total) => {
  * @param {*} total current total 
  * @returns new total 
  */
- const dailycounter = (date, total) => {
+ export const dailycounter = (date, total) => {
   try {
     const currentDate = currentDateWithTimeOffset();
     const day = currentDate.getDate(); 

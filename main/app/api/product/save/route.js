@@ -49,6 +49,8 @@ export const POST = async (req) => {
     if (!productExists) {
       formatedProduct.createdAt = currentDateWithTimeOffset();
       formatedProduct.updatedAt = currentDateWithTimeOffset();
+      formatedProduct.dailySearches= 1;
+      formatedProduct.totalSearches= 1;
       console.log(`Prodcut to save: ${formatedProduct}`);
       const result = await Product.create(formatedProduct);
       createdID = result._id.toString();
