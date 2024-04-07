@@ -837,7 +837,7 @@ const weeklycounter = (date, total) => {
  * Get current date with time offset
  * @returns Date 
  */
-const currentDateWithTimeOffset = () => {
+export const currentDateWithTimeOffset = () => {
   let currentDate = new Date();
   // Set the time zone offset in minutes (GMT-6 in this example)
   const timeZoneOffsetInMinutes = -6 * 60; // -6 hours * 60 minutes/hour
