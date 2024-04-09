@@ -55,6 +55,45 @@ export const GET = async (req, { params }) => {
           });
         });
         break;
+      case "dailySearches":
+        let SearchExists = await getAdverstisedProducts(Product);
+        // if products are null return a list of products randomly
+        if (SearchExists === null || SearchExists.length < 3) {
+          console.log('Getting regular products');
+          SearchExists = SearchExists.concat(
+            await genericDatabaseOperation(
+              Product,
+              {},
+              "FIND_NO_PARAMS",
+              null,
+              null
+            )
+          );
+          SearchExists =  [...new Set(SearchExists)];
+        }
+        result = {
+          companyName: "local",
+          companyLogo: "/assets/images/comparator-logo.png",
+          companyProducts: [],
+        };
+        SearchExists.forEach((element) => {
+          result.companyProducts.push({
+            isLocal: true,
+            productPrice: element.price,
+            vendorLink: `https://encuentralofacilcr.com/${element._id}`,
+            productImage: genericCompression(element.image, "decompress")[0],
+            productName: element.name,
+            productDescription: element.description,
+            formatedPrice: paseStoreNumber(element.price),
+            currency: element.currency == "CRC" ? "₡" : "$",
+            formatedEspecialPrice:
+              element.especialprice && element.especialprice != 0
+                ? paseStoreNumber(element.especialprice)
+                : 0,
+            productSpecialPrice: element.especialprice,
+          });
+        });
+        break;
       case "tags":
         result = {
           rankedKeywords: [],
