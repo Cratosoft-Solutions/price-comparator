@@ -26,10 +26,7 @@ export const POST = async (req) => {
       formatedProduct = {
         ...formatedProduct,
         otherinformation: otherInformation,
-      };
-      console.log("11 ingresé  aca insertando",productToSave.category);
-      console.log("22 ingresé  aca insertando",productToSave.otherItemInformation);
-      console.log("33 ingresé  aca insertando",productToSave.otherInformation);            
+      };       
     }
 
     if (productToSave.category === 'SERVICES') {
@@ -61,11 +58,11 @@ export const POST = async (req) => {
 
     //if not, create new product
     if (!productExists) {
-      console.log("ingresé  aca insertando");
+      //console.log("ingresé  aca insertando");
       const result = await Product.create(formatedProduct);
       createdID = result._id.toString();
     } else {
-      console.log("ingrese aca actualizando");
+      //console.log("ingrese aca actualizando");
       await Product.updateOne({ _id: productToSave.id }, formatedProduct);
     }
     return new Response(JSON.stringify({ id: createdID }), { status: 200 });

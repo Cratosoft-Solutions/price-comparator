@@ -9,7 +9,7 @@ export const GET = async (req, { params }) => {
   try {
     
     await connectToDB();
-    console.log("Ejecutar la busqueda en base a."+params.type);
+    console.log("Ejecutar la busqueda en base A."+params.type);
     // Get key words
     /*let searchKeywords = params.text.toUpperCase().split(/\s+/);
     if (searchKeywords.length > 10) {
@@ -54,7 +54,8 @@ export const GET = async (req, { params }) => {
     });
 
     // Get final search
-      console.log(SearchExists);
+    //console.log('***JM*** VOY POR AQUI');
+    console.log(SearchExists);
     return new Response(JSON.stringify(result), { status: 200 });
   } catch (error) {
     return new Response(JSON.stringify({ message: error.message }), {
