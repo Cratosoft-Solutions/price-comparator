@@ -10,7 +10,9 @@ const UserSearchSchema = new Schema({
     tagID:{
         type:String,
         required: [true, 'Search id is required']
-    }
+    },
+    createdAt: { type: Date, index: true },
+    updatedAt: { type: Date, index: true }
 });
 
 

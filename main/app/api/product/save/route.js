@@ -1,5 +1,6 @@
 import { connectToDB } from "@utils/database";
 import Product from "@models/product";
+import { currentDateWithTimeOffset } from "@utils/functions";
 
 export const POST = async (req) => {
   try {
@@ -18,7 +19,7 @@ export const POST = async (req) => {
       currency: productToSave.currency,
       image: productToSave.image,
       stock: productToSave.stock,
-      negotiable: productToSave.negotiable,
+      negotiable: productToSave.negotiable
     };
 
     if (productToSave.category == "CAR" || productToSave.category == 'HOUSES') {
@@ -29,24 +30,12 @@ export const POST = async (req) => {
       };       
     }
 
+    /** Logic for services */
     if (productToSave.category === 'SERVICES') {
       formatedProduct.serviceType = productToSave.serviceType;
       formatedProduct.modalityType = productToSave.modalityType;
       formatedProduct.province = productToSave.province;
     }
-
-/*     if (productToSave.category == 'HOUSES') {
-      const otherinformation = JSON.parse(productToSave.otherHouseInformation);
-      formatedProduct = {
-        ...formatedProduct,
-        otherinformation: otherinformation,
-      };
-      console.log("1 ingresé  aca insertando",productToSave.category);
-      console.log("2 ingresé  aca insertando",productToSave.otherHouseInformation);
-      console.log("3 ingresé  aca insertando",productToSave.otherInformation);      
-    } */
-
-    console.log(productToSave);
     let createdID;
     //SERVERLESS LAMBDA DYNAMODB
     await connectToDB();
@@ -58,11 +47,17 @@ export const POST = async (req) => {
 
     //if not, create new product
     if (!productExists) {
-      //console.log("ingresé  aca insertando");
+      formatedProduct.createdAt = currentDateWithTimeOffset();
+      formatedProduct.updatedAt = currentDateWithTimeOffset();
+      formatedProduct.dailySearches= 1;
+      formatedProduct.totalSearches= 1;
+      console.log(`Prodcut to save: ${formatedProduct}`);
       const result = await Product.create(formatedProduct);
       createdID = result._id.toString();
     } else {
-      //console.log("ingrese aca actualizando");
+      formatedProduct.updatedAt = currentDateWithTimeOffset();
+      console.log(`Prodcut to update: ${formatedProduct}`);
+      console.log("Actualizando producto: " + productToSave.id);
       await Product.updateOne({ _id: productToSave.id }, formatedProduct);
     }
     return new Response(JSON.stringify({ id: createdID }), { status: 200 });

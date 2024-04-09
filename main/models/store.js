@@ -33,7 +33,9 @@ const StoreSchema = new Schema({
     },
     image:{
         type: String
-    },        
+    },
+    createdAt: { type: Date, index: true },
+    updatedAt: { type: Date, index: true }       
 });
 
 const Store = models.Store || model("Store", StoreSchema);

@@ -1,61 +1,110 @@
 import { connectToDB } from "@utils/database";
-import Product from '@models/product';
-import { genericDatabaseOperation, escapeRegex,containsOnlyNumbers, paseStoreNumber, genericCompression } from "@utils/functions";
-import searchProperties from "@app/redux/slices/searchProperties";
-
-
+import Product from "@models/product";
+import Tag from "@models/searchTags";
+import {
+  genericDatabaseOperation,
+  getAdverstisedProducts,
+  paseStoreNumber,
+  genericCompression,
+  getRankedTags,
+} from "@utils/functions";
 
 export const GET = async (req, { params }) => {
   try {
-    
     await connectToDB();
-    console.log("Ejecutar la busqueda en base A."+params.type);
-    // Get key words
-    /*let searchKeywords = params.text.toUpperCase().split(/\s+/);
-    if (searchKeywords.length > 10) {
-      searchKeywords = searchKeywords.splice(0, 9);
-    }
-   
-    const filteredWords = searchKeywords.filter(
-      (word) => !containsOnlyNumbers(word)
-    );*/
+    console.log("Ejecutar la busqueda en base a: " + params.type);
+    let result;
 
-    //console.log("Filtered keywords" + filteredWords);
-    //const hola = new RegExp(escapeRegex("hola", "gi"));
-    //console.log(hola);
-    //Check if Searchs exists
-    const SearchExists = await genericDatabaseOperation(
-      Product,
-      {},
-      "FIND_NO_PARAMS",
-      null,
-      null
-    );
-
-    const result = {
-        companyName:"local",
-        companyLogo:"/assets/images/comparator-logo.png",
-        companyProducts:[]
-    }
-
-    SearchExists.forEach(element => {
-        result.companyProducts.push({
-            isLocal:true,
-            productPrice:element.price,
-            vendorLink:`https://encuentralofacilcr.com/${element._id}`,
-            productImage:genericCompression(element.image, "decompress")[0],
+    switch (params.type) {
+      case "promotions":
+        let SearchExists = await getAdverstisedProducts(Product);
+        // if products are null return a list of products randomly
+        if (SearchExists === null || SearchExists.length < 3) {
+          console.log('Getting regular products');
+          SearchExists = SearchExists.concat(
+            await genericDatabaseOperation(
+              Product,
+              {},
+              "FIND_NO_PARAMS",
+              null,
+              null
+            )
+          );
+          SearchExists =  [...new Set(SearchExists)];
+        }
+        result = {
+          companyName: "local",
+          companyLogo: "/assets/images/comparator-logo.png",
+          companyProducts: [],
+        };
+        SearchExists.forEach((element) => {
+          result.companyProducts.push({
+            isLocal: true,
+            productPrice: element.price,
+            vendorLink: `https://encuentralofacilcr.com/${element._id}`,
+            productImage: genericCompression(element.image, "decompress")[0],
             productName: element.name,
-            productDescription:element.description,
-            formatedPrice:paseStoreNumber(element.price),
-            currency:element.currency =="CRC"?"₡":"$",
-            formatedEspecialPrice:element.especialprice && element.especialprice !=0 ? paseStoreNumber(element.especialprice):0,
-            productSpecialPrice:element.especialprice
-        })
-    });
-
-    // Get final search
-    //console.log('***JM*** VOY POR AQUI');
-    console.log(SearchExists);
+            productDescription: element.description,
+            formatedPrice: paseStoreNumber(element.price),
+            currency: element.currency == "CRC" ? "₡" : "$",
+            formatedEspecialPrice:
+              element.especialprice && element.especialprice != 0
+                ? paseStoreNumber(element.especialprice)
+                : 0,
+            productSpecialPrice: element.especialprice,
+          });
+        });
+        break;
+      case "dailySearches":
+        SearchExists = await getAdverstisedProducts(Product);
+        // if products are null return a list of products randomly
+        if (SearchExists === null || SearchExists.length < 3) {
+          console.log('Getting regular products');
+          SearchExists = SearchExists.concat(
+            await genericDatabaseOperation(
+              Product,
+              {},
+              "FIND_NO_PARAMS",
+              null,
+              null
+            )
+          );
+          SearchExists =  [...new Set(SearchExists)];
+        }
+        result = {
+          companyName: "local",
+          companyLogo: "/assets/images/comparator-logo.png",
+          companyProducts: [],
+        };
+        SearchExists.forEach((element) => {
+          result.companyProducts.push({
+            isLocal: true,
+            productPrice: element.price,
+            vendorLink: `https://encuentralofacilcr.com/${element._id}`,
+            productImage: genericCompression(element.image, "decompress")[0],
+            productName: element.name,
+            productDescription: element.description,
+            formatedPrice: paseStoreNumber(element.price),
+            currency: element.currency == "CRC" ? "₡" : "$",
+            formatedEspecialPrice:
+              element.especialprice && element.especialprice != 0
+                ? paseStoreNumber(element.especialprice)
+                : 0,
+            productSpecialPrice: element.especialprice,
+          });
+        });
+        break;
+      case "tags":
+        result = {
+          rankedKeywords: [],
+        };
+        const tagsResult = await getRankedTags(Tag);
+        result.rankedKeywords = tagsResult.map((element) => element.key);
+        console.log(`Ranked keys: ${result.rankedKeywords}`);
+        break;
+      default:
+        break;
+    }
     return new Response(JSON.stringify(result), { status: 200 });
   } catch (error) {
     return new Response(JSON.stringify({ message: error.message }), {
