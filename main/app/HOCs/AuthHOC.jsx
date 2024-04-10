@@ -13,7 +13,6 @@ function withAuth(Component, isSecure = false) {
     const { data: session } = useSession();
     const [loading, setLoading] = useState(true);
     const router = useRouter();
-
     const refreshToken = async () => {
       try {
         let cookieValue = await cookieCutter.get(process.env.NEXT_PUBLIC_TOKEN_COOKIE);

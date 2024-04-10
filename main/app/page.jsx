@@ -3,13 +3,14 @@ import BTNPublish from "@components/BTNPublish";
 import HorizontalItemList from "@components/HorizontalItemList";
 import HorizontalMainInfo from "@components/HorizontalMainInfo";
 import HorizontalSlider from "@components/HorizontalSlider";
+import HorizontalMostSearchedList from "@components/HorizontalMostSearchedList";
 import { fetchWithTimeout } from "@utils/functions";
 import { useEffect, useState } from "react";
-import { FaRegHandPointUp } from "react-icons/fa";
 
 
 const Home = () => {
   const [data, setData] = useState(null);
+  const [mostSearchedData, setMostSearchedData] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,7 +23,19 @@ const Home = () => {
         })
         .catch((error) => setLoading(false));
     };
+
+    const executeMostSearched = async () => {
+      await fetchWithTimeout(`/api/search/local/data/dailySearches`)
+        .then((r) => r.json())
+        .then((mostSearchedData) => {
+          setMostSearchedData(mostSearchedData.companyProducts);
+          setLoading(false);
+        })
+        .catch((error) => setLoading(false));
+    };
+
     executeSearch();
+    executeMostSearched();
   }, []);
 
   return (
@@ -41,6 +54,9 @@ const Home = () => {
       <div className="w-full mb-4 relative">
         <BTNPublish/> 
       </div>  
+      <div className="w-full mb-4 relative">
+         <HorizontalMostSearchedList companyLogo={""} companyProducts={mostSearchedData}/> 
+      </div> 
     </div>
   );
 };

@@ -42,7 +42,7 @@ const ProductSchema = new Schema({
         type: String
     },
     otherinformation:{
-        type:JSON
+        type: JSON
     },
     serviceType:{
         type:String,
@@ -53,6 +53,11 @@ const ProductSchema = new Schema({
     province:{
         type:String,
     },
+    createdAt: { type: Date, index: true },
+    updatedAt: { type: Date, index: true },
+    advertising: { type: JSON },
+    dailySearches: {type: Number},
+    totalSearches: {type: Number}
 });
 
 const Product = models.Product || model("Product", ProductSchema);
