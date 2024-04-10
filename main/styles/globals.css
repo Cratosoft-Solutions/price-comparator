@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import "~react-image-gallery/styles/css/image-gallery.css";
 /* 
   Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
 */
@@ -1772,4 +1772,15 @@ img{
   margin-top: 1rem;
   left:12rem;
   margin-left: 12rem;
+}
+
+
+.main-detail-img{
+  width: 100%;
+  height: fit-content;
+  max-height: 99%;
+}
+
+.main-detail-img > img {
+  max-width: none !important;
 }

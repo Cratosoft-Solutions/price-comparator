@@ -70,7 +70,7 @@ export function comparePrice(property, order) {
 }
 
 export async function fetchWithTimeout(resource, options = {}) {
-  const { timeout = 15000 } = options;
+  const { timeout = 415000 } = options;
 
   const controller = new AbortController();
   const id = setTimeout(() => { controller.abort(); }, timeout);

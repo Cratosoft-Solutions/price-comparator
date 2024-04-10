@@ -1,20 +1,13 @@
 "use client";
-import { useRouter } from "next/navigation";
 
-
-const PromotionCard = ({ product, index, adminMode, callBackFunction }) => {
-  const router = useRouter();
-  const handleProductClick=(url)=>{
-    if(adminMode){
-      callBackFunction(product.productId);
-    }else{
-      router.push(url);
-    }
+const PromotionCard = ({ product, index, callBackFunction }) => {
+  const handleProductClick=()=>{
+      callBackFunction(product);
   }
 
   return (
     <div key={`CARD-${index}`} className="flex flex-col w-32 h-64 lg:w-80 lg:h-96 gap-2">
-         <div onClick={()=>{alert(product.productId)}} className="w-32 h-32 lg:w-80 lg:h-64 flex justify-center" >
+         <div onClick={()=>{handleProductClick(product.productId)}} className="w-32 h-32 lg:w-80 lg:h-64 flex justify-center" >
                 <img
                     alt={product.productDescription}
                     src={product.productImage}

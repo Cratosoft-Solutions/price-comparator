@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import PromotionCard from "./PromotionCard";
+import ProductDetails from "./store/ProductDetails";
+import { BASIC_PRODUCT_MODEL } from "@utils/constants";
 
 const HorizontalItemList = ({ companyProducts, companyLogo }) => {
   const parentHTML = useRef(null);
@@ -8,7 +10,9 @@ const HorizontalItemList = ({ companyProducts, companyLogo }) => {
   const [autoInterval, setAutoInterval] = useState(null);
   const [scrollToLeft, setScrollToLeft] = useState(true);
   const [scrollToRight, setScrollToRight] = useState(true);
-  
+  const [showProductDetail, setShowProductDetail]= useState(false);
+  const [product, setProduct]= useState(BASIC_PRODUCT_MODEL);
+
   const sideScroll = (direction, speed, distance, step) => {
     let scrollAmount = 0;
     setScrollInterval(
@@ -57,6 +61,10 @@ const HorizontalItemList = ({ companyProducts, companyLogo }) => {
    
   };
 
+  const onProductSelected = (product)=>{
+    setProduct(product);
+    setShowProductDetail(true);
+  }
 
   useEffect(()=>{
       validateScroll();
@@ -70,7 +78,8 @@ const HorizontalItemList = ({ companyProducts, companyLogo }) => {
 
   return (
     <>
-    <div className="w-full"><span className="font-[1000] text-2xl mt-6 mb-2">Promociones</span></div>
+    {showProductDetail && <ProductDetails onCloseFunction={()=>{setShowProductDetail(false)}} storeId={product.storeId} productId={product.productId}/>}
+    <div className="w-full mb-4 mt-12"><span className="font-[1000] text-3xl">Promociones</span></div>
         <div className="w-full flex bg-transparent mb-6 flex-col m-auto p-auto relative mt-1">
         <div className="absolute right-3 bottom-3">
             <img src={companyLogo} alt="" width={150}/>
@@ -136,7 +145,7 @@ const HorizontalItemList = ({ companyProducts, companyLogo }) => {
             <div className="flex flex-nowrap">
             {companyProducts.map((element) => (
                 <div className="inline-block">
-                <PromotionCard product={element} />
+                <PromotionCard product={element} callBackFunction={onProductSelected} />
                 </div>
             ))}
 

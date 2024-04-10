@@ -40,6 +40,8 @@ export const GET = async (req, { params }) => {
 
     SearchExists.forEach(element => {
         result.companyProducts.push({
+            storeId:element.store,
+            productId:element._id,
             isLocal:true,
             productPrice:element.price,
             vendorLink:`https://encuentralofacilcr.com/${element._id}`,
