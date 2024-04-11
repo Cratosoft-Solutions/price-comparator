@@ -55,6 +55,7 @@ const VerticalNav = ({showNav, expandCollapseOptionsBar, principalOption, second
                                 principalOption.btnNAVPage,  
                                 principalOption.btnID
                               );
+                              expandCollapseOptionsBar(false);
                             }}
                             className="text-left pl-1"
                           >
@@ -73,6 +74,7 @@ const VerticalNav = ({showNav, expandCollapseOptionsBar, principalOption, second
                                   filteredOption.btnNAVPage,  
                                   filteredOption.btnID
                                 );
+                                expandCollapseOptionsBar(false);
                               }}
                               className="text-left pl-1"
                             >

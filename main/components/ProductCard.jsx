@@ -21,7 +21,7 @@ const ProductCard = ({ logo, product, index, adminMode, callBackFunction }) => {
       className={`product-image flex items-center justify-center block bg-white rounded-lg p-2 shadow shadow-gray-100 border border-gray-200 hover:border-gray-200 `}
     >
      <div key={`CARD-${index}`} className="flex flex-col w-32 h-64 lg:w-48 lg:h-80 gap-2">
-         <div onClick={()=>{alert(product.productId)}} className="w-32 h-32 lg:w-48 lg:h-48" >
+         <div onClick={()=>{handleProductClick(product.productId)}} className="w-32 h-32 lg:w-48 lg:h-48" >
                 <img
                     alt={product.productDescription}
                     src={product.productImage}
