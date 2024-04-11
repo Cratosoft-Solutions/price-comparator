@@ -8,6 +8,7 @@ import {
   genericCompression,
   getRankedTags,
 } from "@utils/functions";
+import store from "@app/redux/store/store";
 
 export const GET = async (req, { params }) => {
   try {
@@ -40,6 +41,8 @@ export const GET = async (req, { params }) => {
         };
         SearchExists.forEach((element) => {
           result.companyProducts.push({
+            productId: element._id,
+            storeId:element.store,
             isLocal: true,
             productPrice: element.price,
             vendorLink: `https://encuentralofacilcr.com/${element._id}`,
@@ -79,6 +82,8 @@ export const GET = async (req, { params }) => {
         };
         SearchExists.forEach((element) => {
           result.companyProducts.push({
+            productId: element._id,
+            storeId:element.store,
             isLocal: true,
             productPrice: element.price,
             vendorLink: `https://encuentralofacilcr.com/${element._id}`,
