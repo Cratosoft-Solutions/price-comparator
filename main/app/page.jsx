@@ -11,7 +11,9 @@ import { useEffect, useState } from "react";
 const Home = () => {
   const [data, setData] = useState(null);
   const [mostSearchedData, setMostSearchedData] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [loadingPromotions, setLoadingPromotions] = useState(true);
+  const [loadingMostSearched, setLoadingMostSearched] = useState(true);
+
 
   useEffect(() => {
     const executeSearch = async () => {
@@ -19,9 +21,9 @@ const Home = () => {
         .then((r) => r.json())
         .then((data) => {
           setData(data.companyProducts);
-          setLoading(false);
+          setLoadingPromotions(false);
         })
-        .catch((error) => setLoading(false));
+        .catch((error) => setLoadingPromotions(false));
     };
 
     const executeMostSearched = async () => {
@@ -29,9 +31,9 @@ const Home = () => {
         .then((r) => r.json())
         .then((mostSearchedData) => {
           setMostSearchedData(mostSearchedData.companyProducts);
-          setLoading(false);
+          setLoadingMostSearched(false);
         })
-        .catch((error) => setLoading(false));
+        .catch((error) => setLoadingMostSearched(false));
     };
 
     executeSearch();
@@ -44,7 +46,7 @@ const Home = () => {
         <HorizontalSlider/>
       </div>
       <div className="w-full mb-4">
-        {!loading && data && data.length > 0 &&
+        {!loadingPromotions && data && data.length > 0 &&
           <HorizontalItemList companyLogo={""} companyProducts={data}/>
         } 
       </div>
@@ -55,7 +57,9 @@ const Home = () => {
         <BTNPublish/> 
       </div>  
       <div className="w-full mb-4 relative">
-         <HorizontalMostSearchedList companyLogo={""} companyProducts={mostSearchedData}/> 
+        {!loadingMostSearched && mostSearchedData && mostSearchedData.length > 0 &&
+          <HorizontalMostSearchedList companyLogo={""} companyProducts={mostSearchedData}/> 
+        } 
       </div> 
     </div>
   );

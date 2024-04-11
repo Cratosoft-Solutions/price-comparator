@@ -433,7 +433,7 @@ export const getRankedTags = async (model) => {
        console.log('Starting getting products negotiable');
        products = products.concat(await model.find({ negotiable: 'YES'}).limit(4));
      }
-     console.log(JSON.stringify(products));
+     //console.log(JSON.stringify(products));
      return products;
    } catch (err) {
      console.log(err);

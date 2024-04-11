@@ -409,7 +409,7 @@ export const AUTH_CREDENTIALS =
 
 export const USER_ACCEPTED_CONFIGURATION = {
   userTerms: {
-    userReviewedTerms: false,
+    userReviewedTerms: true,
     allCookies: false,
     esentialCookies: false,
     termsConditions: false,

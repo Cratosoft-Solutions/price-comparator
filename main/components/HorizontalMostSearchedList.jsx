@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import PromotionCard from "./MostSearchedProductCard";
+import PromotionCard from "./PromotionCard";
 
 const HorizontalMostSearchedList = ({ companyProducts, companyLogo }) => {
   const parentHTML = useRef(null);
@@ -136,7 +136,7 @@ const HorizontalMostSearchedList = ({ companyProducts, companyLogo }) => {
             <div className="flex flex-nowrap">
             {companyProducts.map((element) => (
                 <div className="inline-block">
-                <MostSearchedProductCard product={element} />
+                <PromotionCard product={element} />
                 </div>
             ))}
 

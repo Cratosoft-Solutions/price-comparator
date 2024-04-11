@@ -14,10 +14,11 @@ export const GET = async (req, { params }) => {
     await connectToDB();
     console.log("Ejecutar la busqueda en base a: " + params.type);
     let result;
+    let SearchExists;
 
     switch (params.type) {
       case "promotions":
-        let SearchExists = await getAdverstisedProducts(Product);
+        SearchExists = await getAdverstisedProducts(Product);
         // if products are null return a list of products randomly
         if (SearchExists === null || SearchExists.length < 3) {
           console.log('Getting regular products');
@@ -107,6 +108,8 @@ export const GET = async (req, { params }) => {
     }
     return new Response(JSON.stringify(result), { status: 200 });
   } catch (error) {
+    console.log(error.message);
+     
     return new Response(JSON.stringify({ message: error.message }), {
       status: 500,
     });
