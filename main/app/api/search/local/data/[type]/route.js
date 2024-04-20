@@ -27,9 +27,10 @@ export const GET = async (req, { params }) => {
             await genericDatabaseOperation(
               Product,
               {},
-              "FIND_NO_PARAMS",
+              "FIND_NO_PARAMS_LIMIT",
               null,
-              null
+              null,
+              4
             )
           );
           SearchExists =  [...new Set(SearchExists)];
