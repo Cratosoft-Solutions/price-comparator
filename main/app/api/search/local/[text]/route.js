@@ -8,9 +8,10 @@ export const GET = async (req, { params }) => {
   try {
     
     await connectToDB();
-console.log(params.text)
+    console.log(params.text)
+    const textToSearch = params.text.split("&")[1];
     // Get key words
-    let searchKeywords = params.text.toUpperCase().split(/\s+/);
+    let searchKeywords = textToSearch.toUpperCase().split(/\s+/);
     if (searchKeywords.length > 10) {
       searchKeywords = searchKeywords.splice(0, 9);
     }
@@ -31,6 +32,7 @@ console.log(params.text)
             (keyword) => new RegExp(escapeRegex(keyword, "gi"))
           ),
         },
+        category:params.text.split("&")[0]
       },
       "FIND_WITH_PROJECTION",
       null,
