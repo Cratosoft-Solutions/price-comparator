@@ -10,6 +10,8 @@ import { setLoading } from "@app/redux/slices/loading";
 import { setSearching } from "@app/redux/slices/searching";
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { useSearchParams } from 'next/navigation'
+
 
 
 const MyResults = () => {
@@ -19,6 +21,9 @@ const MyResults = () => {
     const dispatch = useDispatch();
     const { text } = useSelector(state => state.searchProperties.properties);
     const { category} = useSelector(state => state.siteNav);
+    const searchParams = useSearchParams()
+    const search = searchParams.get('search');
+  
 
     let searchCounter = 0;
     //let storeToSearhCount = STORE_BY_CATEGORY.filter((item)=> item.category == category)[0]?.stores.length;
@@ -151,7 +156,7 @@ const MyResults = () => {
         else{
           router.push('/');
         }
-    }, [])
+    }, [search])
 
 
 return (
