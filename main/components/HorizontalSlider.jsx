@@ -15,8 +15,8 @@ const HorizontalSlider = () => {
         '/assets/images/main_slider_PRODUCT_2.svg',
         '/assets/images/main_slider_CAR_1.svg',
         '/assets/images/main_slider_CAR_2.svg',
-        '/assets/images/main_slider_HOUSE_1.svg',
-        '/assets/images/main_slider_HOUSE_2.svg',
+        '/assets/images/main_slider_HOUSES_1.svg',
+        '/assets/images/main_slider_HOUSES_2.svg',
         '/assets/images/main_slider_SERVICES_1.svg',
         '/assets/images/main_slider_SERVICES_2.svg'
         ].filter(title => title.indexOf(category) > -1);
