@@ -539,3 +539,9 @@ export const MAIN_PAGE_INFO_CARD=[
   {icon:IoMdDoneAll, title:"Todo en un solo lugar", description:"Deshazte de la preocupación de tener que publicar tus productos o servicios en múltiples plataformas. Disfruta de la comodidad y confianza que te brinda una plataforma diseñada específicamente para ti."},
   {icon:FaUsersLine, title:"Audiencia", description:"Benefíciate de una plataforma con alcance nacional, donde cualquier persona en el país pueda acceder a tus anuncios de manera rápida y sencilla."},
 ]
+
+export const BTN_SEARCH_DEFAULT_BEHAVIOUR = {
+  size:'w-full',
+  height:'h-10',
+  fSize:'text-sm'
+}

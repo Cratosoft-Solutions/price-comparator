@@ -1,29 +1,31 @@
 "use client";
 
 import DropDownList from "./DropDownList";
-import { CATEGORIES } from "@utils/constants";
+import { BTN_SEARCH_DEFAULT_BEHAVIOUR, CATEGORIES } from "@utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { restartProducts } from "@app/redux/slices/products";
-import { setText, setCategory } from "@app/redux/slices/searchProperties";
+import { setText } from "@app/redux/slices/searchProperties";
 import AutoCompletableList from "./AutoCompletableList";
 import { useRouter } from "next/navigation";
 import { HiOutlineDocumentSearch } from "react-icons/hi";
 import { useState, useEffect } from "react";
 import { getSession } from "next-auth/react";
 import UserSearches from "./UserSearches";
+import { translateCategory } from "@utils/functions";
 
 
-const SearchButton = () => {
+const SearchButton = ({behaviour=BTN_SEARCH_DEFAULT_BEHAVIOUR}) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const showCategory = false;
-  const { text, category } = useSelector(state => state.searchProperties.properties);
+  const { text } = useSelector(state => state.searchProperties.properties);
+  const { category} = useSelector(state => state.siteNav);
   const [userIsConnected, setUserIsConnected] = useState(false);
   const [showMySearchs, setShowMySearchs] = useState(false);
   
-  const setInternalCategory = (category) => {
+  /*const setInternalCategory = (category) => {
     dispatch(setCategory(category));
-  };
+  };*/
 
   const restartFields = (value) => {
     dispatch(setText(value.replace(/[^a-zA-Z0-9 ]/g, "")));
@@ -50,10 +52,10 @@ const SearchButton = () => {
   []);
 
   return (
-      <div className="w-full justify-center">
-        <div className="grid place-items-center w-full">
+      <div className='w-full justify-center flex'>
+        <div className={`${behaviour.size} grid place-items-center`}>
             <form onSubmit={executeSearch} className="grid grid-cols-1 grid-rows-1 lg:grid-rows-1 lg:grid-cols-1 gap-0 w-full ">
-            {showCategory && <DropDownList values={CATEGORIES} onSelectValue={setInternalCategory} currentValue={category} />}
+            {showCategory && <DropDownList values={CATEGORIES} onSelectValue={setInternalCategory} currentValue={1} />}
              <div className="relative text-gray-500">
                 <span className="absolute inset-y-0 left-0 flex items-center pl-2">
                   <button disabled={text.length < 3} type="submit" className="p-1 focus:outline-none focus:shadow-outline">
@@ -65,7 +67,8 @@ const SearchButton = () => {
                   id="txt-search" 
                   type="search" 
                   name="q" 
-                  className=" text-sm text-gray-900  bg-[#E9E9E9] border  xl:rounded-full pl-10 focus:outline-none focus:bg-white h-10 w-full" placeholder="¿Qué buscas?" autoComplete="off"/>
+                  className={`${behaviour.fSize} text-gray-900  bg-[#E9E9E9] border  xl:rounded-full pl-10 focus:outline-none focus:bg-white ${behaviour.height} w-full`} 
+                  placeholder={`¿Qué ${translateCategory(category, "SEARCHTEXT")} buscas?`} autoComplete="off"/>
                </div>
             </form>
             <div className="grid grid-cols-1 grid-rows-1 w-full">
