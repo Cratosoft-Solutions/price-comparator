@@ -545,3 +545,32 @@ export const BTN_SEARCH_DEFAULT_BEHAVIOUR = {
   height:'h-10',
   fSize:'text-sm'
 }
+
+export const DEFAULT_ITEMS_INFORMATION =[
+  {
+    redirectLink: `/howtouse`,
+    productImage: 'http://localhost:3000/assets/images/local-prom-item-1.svg',
+    text:"!Quiero vender¡"
+  },
+  {
+    redirectLink: `/howtouse`,
+    productImage: 'http://localhost:3000/assets/images/local-prom-item-1.svg',
+    text:"!Quiero vender¡"
+  },
+  {
+    redirectLink: `/howtouse`,
+    productImage: 'http://localhost:3000/assets/images/local-prom-item-1.svg',
+    text:"!Quiero vender¡"
+  },
+  {
+    redirectLink: `/howtouse`,
+    productImage: 'http://localhost:3000/assets/images/local-prom-item-1.svg',
+    text:"!Quiero vender¡"
+  },
+  {
+    redirectLink: `/howtouse`,
+    productImage: 'http://localhost:3000/assets/images/local-prom-item-1.svg',
+    text:"!Quiero vender¡"
+  },
+
+]
