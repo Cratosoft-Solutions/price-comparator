@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import PromotionCard from "./PromotionCard";
 import ProductDetails from "./store/ProductDetails";
 import { BASIC_PRODUCT_MODEL } from "@utils/constants";
+import LocalPromotedCard from "./LocalPromotedCard";
 
 const HorizontalItemList = ({ companyProducts, companyLogo }) => {
   const parentHTML = useRef(null);
@@ -145,8 +146,9 @@ const HorizontalItemList = ({ companyProducts, companyLogo }) => {
             <div className="flex flex-nowrap">
             {companyProducts.map((element) => (
                 <div className="inline-block">
-                <PromotionCard product={element} callBackFunction={onProductSelected} />
-                </div>
+                  {element.productId && <PromotionCard product={element} callBackFunction={onProductSelected} />}
+                  {!element.productId && <LocalPromotedCard product={element} callBackFunction={onProductSelected} />}
+                  </div>
             ))}
 
             </div>

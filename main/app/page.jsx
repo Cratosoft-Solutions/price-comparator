@@ -8,6 +8,7 @@ import { fetchWithTimeout } from "@utils/functions";
 import { useEffect, useState } from "react";
 import SearchButton from "@components/SearchButton";
 import { useSelector } from "react-redux";
+import { DEFAULT_ITEMS_INFORMATION } from "@utils/constants";
 
 
 const Home = () => {
@@ -22,17 +23,26 @@ const Home = () => {
 
   const filterItems = (dataToFilter) => {
    try {
-    const arrayToReturn =   dataToFilter.filter((productTemp) => productTemp.category === category);
+    const arrayToReturn = dataToFilter.filter((productTemp) => productTemp.category === category);
 
     if(arrayToReturn.length < 1){
-      return dataToFilter;
+      return addDefaultPromotedCard(dataToFilter);
     } else{
-      return arrayToReturn;
+      return addDefaultPromotedCard(arrayToReturn);
     }
 
   } catch (error) {
    return []; 
   }
+  }
+
+
+  const addDefaultPromotedCard =(data)=>{
+    const dataToReturn = data;
+    DEFAULT_ITEMS_INFORMATION.forEach(element => {
+      dataToReturn.push(element);
+    });
+    return dataToReturn;
   }
 
   useEffect(() => {
