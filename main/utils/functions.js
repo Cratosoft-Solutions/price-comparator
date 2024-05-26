@@ -433,7 +433,6 @@ export const getRankedTags = async (model) => {
        console.log('Starting getting products negotiable');
        products = products.concat(await model.find({ negotiable: 'YES'}).limit(4));
      }
-     //console.log(JSON.stringify(products));
      return products;
    } catch (err) {
      console.log(err);
@@ -441,7 +440,8 @@ export const getRankedTags = async (model) => {
    }
  };
 
-export const genericDatabaseOperation = async (model, params, type, updateValue=null, projection = null) => {
+export const genericDatabaseOperation = async (model, params, type, updateValue=null, 
+  projection = null, recordsLimit = null) => {
   try {
     let result;
     switch (type) {
@@ -462,7 +462,10 @@ export const genericDatabaseOperation = async (model, params, type, updateValue=
           break;  
       case "UPDATEONE":
         result = await model.updateOne(params, updateValue);
-        break;            
+        break;  
+      case "FIND_NO_PARAMS_LIMIT":
+        result = await model.find().limit(recordsLimit);
+        break;              
       default:
         break;
     }

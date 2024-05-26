@@ -57,7 +57,8 @@ const ProductSchema = new Schema({
     updatedAt: { type: Date, index: true },
     advertising: { type: JSON },
     dailySearches: {type: Number},
-    totalSearches: {type: Number}
+    totalSearches: {type: Number},
+    lastTimeSeen: { type: Date, index: true },
 });
 
 const Product = models.Product || model("Product", ProductSchema);

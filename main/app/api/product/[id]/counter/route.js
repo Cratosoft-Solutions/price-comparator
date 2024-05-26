@@ -1,6 +1,6 @@
 import { connectToDB } from "@utils/database";
 import Product from "@models/product";
-import { dailycounter } from "@utils/functions";
+import { dailycounter,currentDateWithTimeOffset } from "@utils/functions";
 
 export const PUT = async (request, { params }) => {
   try {
@@ -18,10 +18,11 @@ export const PUT = async (request, { params }) => {
     if (productToUpdate) {
       console.log(`Increasing counter for product: ${params.id}`);
       productToUpdate.dailySearches = dailycounter(
-        productToUpdate.updatedAt,
+        productToUpdate.lastTimeSeen,
         productToUpdate.dailySearches
       );
       productToUpdate.totalSearches = productToUpdate.totalSearches + 1;
+      productToUpdate.lastTimeSeen = currentDateWithTimeOffset();
       await Product.updateOne({ _id: productToUpdate.id }, productToUpdate);
       return new Response(JSON.stringify({ message: "Counter updated" }), {
         status: 200,
