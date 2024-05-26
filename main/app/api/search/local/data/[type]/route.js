@@ -44,6 +44,7 @@ export const GET = async (req, { params }) => {
           result.companyProducts.push({
             productId: element._id,
             storeId:element.store,
+            category:element.category,
             isLocal: true,
             productPrice: element.price,
             vendorLink: `https://encuentralofacilcr.com/${element._id}`,
@@ -86,6 +87,7 @@ export const GET = async (req, { params }) => {
             productId: element._id,
             storeId:element.store,
             isLocal: true,
+            category:element.category,
             productPrice: element.price,
             vendorLink: `https://encuentralofacilcr.com/${element._id}`,
             productImage: genericCompression(element.image, "decompress")[0],

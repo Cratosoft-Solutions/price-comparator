@@ -55,7 +55,7 @@ const AutoCompletableList = ({text, onChange}) => {
     return (
         <>
             {isBrowser() && text.length > 0 &&
-                <ul className="bg-white w-full lg:w-[45%] absolute">   
+                <ul className="bg-white w-full lg:w-[45%] absolute z-[90]">   
                     {coincidencesList.slice(0, 5).map((coincidence, index)=>(
                         <li onClick={()=>{onSelectItem(coincidence.key, coincidence.category)}} key={index} className="pl-8 pr-2 py-1 relative cursor-pointer hover:bg-gray-100 hover:text-gray-900 text-gray-500">
                            <div className='flex items-center text-xs hover:text-extrabold'>

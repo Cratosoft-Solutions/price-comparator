@@ -10,6 +10,8 @@ import { setLoading } from "@app/redux/slices/loading";
 import { setSearching } from "@app/redux/slices/searching";
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { useSearchParams } from 'next/navigation'
+
 
 
 const MyResults = () => {
@@ -17,15 +19,19 @@ const MyResults = () => {
     const {data:session} = useSession();
     const { expandedNavBar } = useSelector(state => state.verticalnav.productSearch);
     const dispatch = useDispatch();
-    const { text, category } = useSelector(state => state.searchProperties.properties);
+    const { text } = useSelector(state => state.searchProperties.properties);
+    const { category} = useSelector(state => state.siteNav);
+    const searchParams = useSearchParams()
+    const search = searchParams.get('search');
+  
 
     let searchCounter = 0;
-    let storeToSearhCount = STORE_BY_CATEGORY.filter((item)=> item.category == category)[0]?.stores.length;
+    //let storeToSearhCount = STORE_BY_CATEGORY.filter((item)=> item.category == category)[0]?.stores.length;
+    let storeToSearhCount = STORE_BY_CATEGORY[0].stores.length;//TODO cuando se manejen categorias por producto
     const key = formatKeyForStorage(category, text); 
     const textSearchArray = key != '' ? key.toUpperCase().split(" ") : "";
 
-    const processIndividualResponse = (response, saveOnStorage, saveOnDatabase, error = false)=>{
-  
+    const processIndividualResponse = (response, saveOnStorage, saveOnDatabase, error = false)=>{ 
         searchCounter = searchCounter + 1;
         dispatch(setMatchedProducts(textSearchArray));
         if(error && searchCounter == storeToSearhCount){
@@ -58,6 +64,56 @@ const MyResults = () => {
         dispatch(setSearching(false))
     }
 
+    const triggerScrap =(isSavedOnStoraged)=>{
+      console.log("Starting scraping");
+        STORE_BY_CATEGORY[0]/*.filter(
+          (item) => item.category == category
+        )[0]*/.stores.map((storeID) => {
+          fetchWithTimeout(
+            `/api/search/${storeID}/${key.replace(" ", "+")}`
+          )
+            .then((r) => r.json())
+            .then((data) =>
+              processIndividualResponse(
+                data,
+                isSavedOnStoraged,
+                false,
+                false
+              )
+            )
+            .catch((error) =>
+              processIndividualResponse(
+                error,
+                isSavedOnStoraged,
+                false,
+                true
+              )
+            );
+        });
+    }
+
+    const triggerLocalSearch =(isSavedOnStoraged)=>{
+      fetchWithTimeout(
+        `/api/search/local/${category +"&"+ text.replace(" ", "+")}`
+      )
+        .then((r) => r.json())
+        .then((data) =>
+          processIndividualResponse(
+            data,
+            isSavedOnStoraged,
+            false,
+            false
+          )
+        )
+        .catch((error) =>
+          processIndividualResponse(
+            error,
+            isSavedOnStoraged,
+            false,
+            true
+          )
+        );
+    }
 
     useEffect(()=>{
         const executeSearch = async () =>{
@@ -86,31 +142,10 @@ const MyResults = () => {
                 dispatch(setSearching(false));
                 printDBStorageData(dbData.data, saveOnStorage);
               } else {
-                console.log("Starting scraping");
-                STORE_BY_CATEGORY.filter(
-                  (item) => item.category == category
-                )[0].stores.map((storeID) => {
-                  fetchWithTimeout(
-                    `/api/search/${storeID}/${key.replace(" ", "+")}`
-                  )
-                    .then((r) => r.json())
-                    .then((data) =>
-                      processIndividualResponse(
-                        data,
-                        saveOnStorage,
-                        false,
-                        false
-                      )
-                    )
-                    .catch((error) =>
-                      processIndividualResponse(
-                        error,
-                        saveOnStorage,
-                        false,
-                        true
-                      )
-                    );
-                });
+                triggerLocalSearch(saveOnStorage);
+                if(category === "PRODUCT"){
+                  triggerScrap(saveOnStorage);
+                }                
               }
             }
           }
@@ -121,7 +156,7 @@ const MyResults = () => {
         else{
           router.push('/');
         }
-    }, [])
+    }, [search])
 
 
 return (

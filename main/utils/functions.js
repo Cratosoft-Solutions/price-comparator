@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 import { compress, decompress } from 'compress-json';
 //import InputMask from 'react-input-mask';
 import axios from 'axios';
-import { AUTH_MESSAGES, CATEGORIES, IMAGES_FORMAT_ACCEPTED, NOT_CONTROLED_ERROR, PASSWORD_REGEX_VAL } from './constants';
+import { AUTH_MESSAGES, CATEGORIES, CATEGORY_TYPES, IMAGES_FORMAT_ACCEPTED, NOT_CONTROLED_ERROR, PASSWORD_REGEX_VAL } from './constants';
 import { scrapCompanyConfiguration } from "@utils/comercios";
 import Swal from 'sweetalert2';
 import {closest} from 'fastest-levenshtein';
@@ -855,4 +855,11 @@ const dateWithTimeOffset = (date) => {
   // Adjust the date by adding the time zone offset
   date.setMinutes(date.getMinutes() + timeZoneOffsetInMinutes);
   return date;
+}
+
+export const translateCategory =(category, translationType)=>{
+  if(translationType === "SEARCHTEXT"){
+    return CATEGORY_TYPES.filter((categoryTemp)=> categoryTemp.value === category)[0].label;
+  }
+
 }
