@@ -8,10 +8,10 @@ import { useRouter } from "next/navigation";
 const ProductCard = ({ logo, product, index, adminMode, callBackFunction }) => {
   const router = useRouter();
   const handleProductClick=(url)=>{
-    if(adminMode){
-      callBackFunction(product.productId);
+    if(adminMode || product.isLocal){
+      callBackFunction(product);
     }else{
-      router.push(url);
+      router.push(product.vendorLink);
     }
   }
 
