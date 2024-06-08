@@ -23,10 +23,13 @@ if(loading)
   return <Loading message ="Cargando"/>
   
   return (
-        <section className="grid grid-cols-1 grid-rows-1 w-full">
+        <section 
+        className="grid grid-cols-1 grid-rows-1 w-full w-full gap-2 bg-cover bg-no-repeat "
+        style= {{backgroundImage: "url('./assets/images/ecommerce2.png')"}}
+        >
           <h1 className="flex w-full justify-center font-bold p-4 h-32">
             <span className="orange_gradient text-center text-4xl lg:text-7xl">
-              Compara y elige el mejor precio
+              Compara y elige el mejor precio 
             </span>
           </h1>
           <div className="flex w-full justify-center mt-2">

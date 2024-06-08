@@ -1,26 +1,31 @@
-import React from 'react'
+"use client"
+import React from 'react';
+import { useRouter } from "next/navigation";
+
 
 const SiteFooter = ({showOnNav}) => {
+const router = useRouter();
+
+const onOptionSelected =(url)=>{
+  router.push(url);
+}
   return (
     <div className='w-full bg-[#D9D9D9] h-26 mt-auto grid grid-rows-3 justify-center p-2'>
-      <div className='flex justify-center items-center'>
+      <div  className='flex justify-center items-center'>
         <span className='font-black text-xl h-10 mt-8'>
           Encuéntralo Fácil
         </span>
       </div>
-      <div className='grid grid-rows-2 grid-cols-2 lg:grid-rows-1 lg:grid-cols-4 w-full'>
-        <span className='w-full justify-center flex'>
-          La Empresa
-        </span>
-        <span className='w-full justify-center flex'>
-          Atención al cliente
-        </span>
-        <span className='w-full justify-center flex'>
-          Publicidad
-        </span>
-        <span className='w-full justify-center flex'>
-          Políticas de Privacidad
-        </span>
+      <div className='grid grid-rows-2 grid-cols-2 lg:grid-rows-1 lg:grid-cols-3 w-full'>
+        <button onClick={()=>{onOptionSelected("/sale")}} className='w-full justify-center flex'>
+          Publica tu producto o servicio
+        </button>
+        <button onClick={()=>{onOptionSelected("/promotion")}} className='w-full justify-center flex'>
+          Promociona tu sitio web
+        </button>
+        <button onClick={()=>{onOptionSelected("/howtouse")}} className='w-full justify-center flex'>
+          ¿Cómo funciona?
+        </button>
       </div>
       <div className='flex justify-center w-full items-center'>
         <span className="w-full justify-center flex">

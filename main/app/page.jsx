@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import SearchButton from "@components/SearchButton";
 import { useSelector } from "react-redux";
 import { DEFAULT_ITEMS_INFORMATION } from "@utils/constants";
+import BTNPublishWithImage from "@components/BTNPublishWithImage";
 
 
 const Home = () => {
@@ -80,7 +81,7 @@ const Home = () => {
 
   return (
     <div className="w-full gap-2">
-      <div className="w-full mb-4 relative">
+      <div className="w-full mb-16 relative">
         <HorizontalSlider/>
       </div>    
       <div className="w-full mb-4">
@@ -89,19 +90,22 @@ const Home = () => {
         } 
       </div>
       <div className="w-full mb-16 relative">
-        <SearchButton behaviour={{size:'w-1/2', height:"h-20", fSize:"text-2xl"}}/> 
+        <SearchButton behaviour={{size:'w-1/2', height:"h-20", fSize:"text-2xl", placeHolderColor:'placeholder-white', placeHolderText:'placeholder:text-center', iconSearchColor:'white',bgColor:'bg-transparent', displayImage:true, textColor:'text-white', borderColor:'border-neutral-50', borderType:'rounded', style:{backgroundImage:  "url('./assets/images/ecommerce2.png')", backgroundSize:"100% 100%"}}}/> 
       </div>
-      <div className="w-full mb-4 relative">
-        <HorizontalMainInfo/> 
-      </div>      
-      <div className="w-full mb-4 relative">
-        <BTNPublish/> 
-      </div>  
+
       <div className="w-full mb-4 relative">
         {!loadingMostSearched && mostSearchedData && mostSearchedData.length > 0 &&
           <HorizontalMostSearchedList companyLogo={""} companyProducts={mostSearchedDataByCategory}/> 
         } 
       </div> 
+      <div className="w-full mb-16 relative">
+        <BTNPublishWithImage/> 
+      </div> 
+      <div className="w-full mb-4 relative">
+        <HorizontalMainInfo/> 
+      </div>      
+ 
+
     </div>
   );
 };

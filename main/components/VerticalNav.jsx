@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { IoCloseOutline } from "react-icons/io5";
 import UserSession from './UserSession';
 import SiteCategories from './SiteCategories';
+import SiteMission from './SiteMission';
 
 const VerticalNav = ({showNav, expandCollapseOptionsBar, principalOption, secondaryOptions, onSelectedButton}) => {
   const [selectedOption,setSelectedOption] = useState(2);
@@ -18,7 +19,7 @@ const VerticalNav = ({showNav, expandCollapseOptionsBar, principalOption, second
   return (
     <>
         {showNav && (
-          <div className='w-full absolute lg:-ml-10 top-0 z-50 h-full bg-black bg-opacity-50'>
+          <div className='w-full absolute lg:-ml-10 top-0 z-50 max-heigh-available bg-black bg-opacity-50'>
             <div className=" bg-white z-50 bg-white w-full lg:w-80 h-full shadow searchoptions relative">
             <IoCloseOutline onClick={() => { expandCollapseOptionsBar(false); }} className="h-10 w-10 fixed ml-80 mt-2 lg:ml-80 lg:mt-0" color="white" />
                 <div className="grid grid-cols-1 grid-rows-1 items-center  bg-[#40A826]">
@@ -94,13 +95,7 @@ const VerticalNav = ({showNav, expandCollapseOptionsBar, principalOption, second
                   </h2>
                   <div id="accordion-collapse-body-3" className={`${selectedOption ==3?"block":"hidden"}`} aria-labelledby="accordion-collapse-heading-3">
                     <div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-                      <p className="mb-2 text-gray-500 dark:text-gray-400">The main difference is that the core components from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product. Another difference is that Flowbite relies on smaller and standalone components, whereas Tailwind UI offers sections of pages.</p>
-                      <p className="mb-2 text-gray-500 dark:text-gray-400">However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no technical reason stopping you from using the best of two worlds.</p>
-                      <p className="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:</p>
-                      <ul className="ps-5 text-gray-500 list-disc dark:text-gray-400">
-                        <li><a href="https://flowbite.com/pro/" className="text-blue-600 dark:text-blue-500 hover:underline">Flowbite Pro</a></li>
-                        <li><a href="https://tailwindui.com/" rel="nofollow" className="text-blue-600 dark:text-blue-500 hover:underline">Tailwind UI</a></li>
-                      </ul>
+                      <SiteMission />                  
                     </div>
                   </div>
                 </div>
