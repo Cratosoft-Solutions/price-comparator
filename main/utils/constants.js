@@ -556,17 +556,17 @@ export const BTN_SEARCH_DEFAULT_BEHAVIOUR = {
 export const DEFAULT_ITEMS_INFORMATION =[
   {
     redirectLink: `/sale`,
-    productImage: 'http://localhost:3000/assets/images/local-prom-item-1.svg',
+    productImage: 'https://encuentralofacilcr.com/assets/images/local-prom-item-1.svg',
     text:"¡Quiero vender!"
   },
   {
     redirectLink: `/`,
-    productImage: 'http://localhost:3000/assets/images/local-prom-item-2.svg',
+    productImage: 'https://encuentralofacilcr.com/assets/images/local-prom-item-2.svg',
     text:"¡A buscar!"
   },
   {
     redirectLink: `/promotion`,
-    productImage: 'http://localhost:3000/assets/images/local-prom-item-3.svg',
+    productImage: 'https://encuentralofacilcr.com/assets/images/local-prom-item-3.svg',
     text:"¡A ahorrar!"
   }
 
