@@ -80,7 +80,7 @@ const HorizontalItemList = ({ companyProducts, companyLogo }) => {
   return (
     <>
     {showProductDetail && <ProductDetails onCloseFunction={()=>{setShowProductDetail(false)}} storeId={product.storeId} productId={product.productId}/>}
-    <div className="w-full mb-4 mt-12"><span className="font-[1000] text-3xl">Promociones</span></div>
+    <div className="w-full mb-4 mt-12"><span className="font-[1000] text-2xl">Promociones</span></div>
         <div className="w-full flex bg-transparent mb-6 flex-col m-auto p-auto relative mt-1">
         <div className="absolute right-3 bottom-3">
             <img src={companyLogo} alt="" width={150}/>

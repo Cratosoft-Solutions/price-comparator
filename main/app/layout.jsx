@@ -25,12 +25,12 @@ const RootLayout = ({ children }) => {
         </head>
         <body className="__variable_7dbc08 __variable_20951f">
           <Provider>
-            <main className="app">
+            <main className="app relative">
                 <>
                   <Nav />
                   <div className="mt-[0.5rem]" />
                 </>
-              <div className="lg:mr-10 lg:ml-10">
+              <div className="lg:mr-10 lg:ml-10 ">
                 {children}
                 <HomeNavWrapper/>
               </div>

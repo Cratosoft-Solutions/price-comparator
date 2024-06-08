@@ -52,37 +52,84 @@ const SearchButton = ({behaviour=BTN_SEARCH_DEFAULT_BEHAVIOUR}) => {
   []);
 
   return (
-      <div className='w-full justify-center flex'>
+    <div
+      className={`w-full justify-center flex ${
+        behaviour.displayImage ? "bg-cover bg-no-repeat text-center h-96" : ""
+      }`}
+      style={behaviour.style}
+    >
+      <div
+        className="h-full w-full flex justify-center items-center"
+        style={behaviour.displayImage?{ backgroundColor: "rgba(0, 0, 0, 0.6)" }: {}}
+      >
         <div className={`${behaviour.size} grid place-items-center`}>
-            <form onSubmit={executeSearch} className="grid grid-cols-1 grid-rows-1 lg:grid-rows-1 lg:grid-cols-1 gap-0 w-full ">
-            {showCategory && <DropDownList values={CATEGORIES} onSelectValue={setInternalCategory} currentValue={1} />}
-             <div className="relative text-gray-500">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-                  <button disabled={text.length < 3} type="submit" className="p-1 focus:outline-none focus:shadow-outline">
-                    <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" className="w-6 h-6"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                  </button>
-                </span>
-                <input onChange={(e)=>{restartFields(e.target.value)}}
-                  value={text} 
-                  id="txt-search" 
-                  type="search" 
-                  name="q" 
-                  className={`${behaviour.fSize} text-gray-900  bg-[#E9E9E9] border  xl:rounded-full pl-10 focus:outline-none focus:bg-white ${behaviour.height} w-full`} 
-                  placeholder={`¿Qué ${translateCategory(category, "SEARCHTEXT")} buscas?`} autoComplete="off"/>
-               </div>
-            </form>
-            <div className="grid grid-cols-1 grid-rows-1 w-full">
-              <AutoCompletableList text={text} onChange={executeSearch}/>
+          <form
+            onSubmit={executeSearch}
+            className="grid grid-cols-1 grid-rows-1 lg:grid-rows-1 lg:grid-cols-1 gap-0 w-full "
+          >
+            {showCategory && (
+              <DropDownList
+                values={CATEGORIES}
+                onSelectValue={setInternalCategory}
+                currentValue={1}
+              />
+            )}
+            <div className="relative text-gray-500">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-2">
+                <button
+                  disabled={text.length < 3}
+                  type="submit"
+                  className="p-1 focus:outline-none focus:shadow-outline"
+                >
+                  <svg
+                    fill="none"
+                    stroke={behaviour.iconSearchColor}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    className="w-6 h-6"
+                  >
+                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                </button>
+              </span>
+              <input
+                onChange={(e) => {
+                  restartFields(e.target.value);
+                }}
+                value={text}
+                id="txt-search"
+                type="search"
+                name="q"
+                className={` pr-4 ${behaviour.placeHolderText} ${behaviour.placeHolderColor } ${behaviour.fSize} ${behaviour.textColor} ${behaviour.bgColor} ${behaviour.borderType} ${behaviour.borderColor}   border-2  pl-10 focus:outline-none  ${behaviour.height} w-full`}
+                placeholder={`¿Qué ${translateCategory(
+                  category,
+                  "SEARCHTEXT"
+                )} buscas?`}
+                autoComplete="off"
+              />
             </div>
-            {userIsConnected && 1==2 /*ELIMINAR*/&&
-            <button onClick={()=>{setShowMySearchs(true)}} className="flex w-full justify-left mb-2 lg:mb-6 text-medium text-gray-600 items-center">
-            <HiOutlineDocumentSearch/>Ver mis búsquedas anteriores 
-          </button>}
-            {showMySearchs&&<UserSearches onHideSearch={setShowMySearchs}/>}
+          </form>
+          <div className="grid grid-cols-1 grid-rows-1 w-full">
+            <AutoCompletableList text={text} onChange={executeSearch} />
+          </div>
+          {userIsConnected && 1 == 2 /*ELIMINAR*/ && (
+            <button
+              onClick={() => {
+                setShowMySearchs(true);
+              }}
+              className="flex w-full justify-left mb-2 lg:mb-6 text-medium text-gray-600 items-center"
+            >
+              <HiOutlineDocumentSearch />
+              Ver mis búsquedas anteriores
+            </button>
+          )}
+          {showMySearchs && <UserSearches onHideSearch={setShowMySearchs} />}
         </div>
       </div>
-    
-  )
+    </div>
+  );
 }
 
 export default SearchButton;

@@ -543,8 +543,16 @@ export const MAIN_PAGE_INFO_CARD=[
 export const BTN_SEARCH_DEFAULT_BEHAVIOUR = {
   size:'w-full',
   height:'h-10',
-  fSize:'text-sm'
-}
+  fSize:'text-sm',
+  displayImage:false,
+  style:{},
+  bgColor:'bg-[#E9E9E9]',
+  textColor:'text-gray-900',
+  borderType:'rounded-full',
+  borderColor:'border-[#E9E9E9]',
+  iconSearchColor:'currentcolor',
+  placeHolderColor:'placeholder-gray-900',
+  placeHolderText:'placeholder:text-left'}
 
 export const DEFAULT_ITEMS_INFORMATION =[
   {
