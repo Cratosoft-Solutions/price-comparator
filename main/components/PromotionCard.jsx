@@ -6,7 +6,7 @@ const PromotionCard = ({ product, index, callBackFunction }) => {
   }
 
   return (
-    <div key={`CARD-${index}`} className="flex flex-col w-32 h-64 lg:w-80 lg:h-96 gap-2">
+    <div key={`CARD-${index}`} className=" hover:cursor-pointer flex flex-col w-32 h-64 lg:w-80 lg:h-96 gap-2">
          <div onClick={()=>{handleProductClick(product.productId)}} className="w-32 h-32 lg:w-80 lg:h-64 flex justify-center" >
                 <img
                     alt={product.productDescription}

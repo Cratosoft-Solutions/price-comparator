@@ -81,7 +81,7 @@ const Home = () => {
 
   return (
     <div className="w-full gap-2">
-      <div className="w-full mb-16 relative">
+      <div className="w-full md:mb-16 relative">
         <HorizontalSlider/>
       </div>    
       <div className="w-full mb-4">
@@ -90,7 +90,7 @@ const Home = () => {
         } 
       </div>
       <div className="w-full mb-16 relative">
-        <SearchButton behaviour={{size:'w-1/2', height:"h-20", fSize:"text-2xl", placeHolderColor:'placeholder-white', placeHolderText:'placeholder:text-center', iconSearchColor:'white',bgColor:'bg-transparent', displayImage:true, textColor:'text-white', borderColor:'border-neutral-50', borderType:'rounded', style:{backgroundImage:  "url('./assets/images/ecommerce2.png')", backgroundSize:"100% 100%"}}}/> 
+        <SearchButton behaviour={{size:'w-5/6 md:w-1/2', height:"h-20", fSize:"text-2xl", placeHolderColor:'placeholder-white', placeHolderText:'placeholder:text-center', iconSearchColor:'white',bgColor:'bg-transparent', displayImage:true, textColor:'text-white', borderColor:'border-neutral-50', borderType:'rounded', style:{backgroundImage:  "url('./assets/images/ecommerce2.jpg')", backgroundSize:"100% 100%"}}}/> 
       </div>
 
       <div className="w-full mb-4 relative">
