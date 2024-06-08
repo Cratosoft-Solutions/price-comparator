@@ -8,10 +8,12 @@ import SearchButton from "./SearchButton";
 import NavToogleDropDown from "./NavToogleDropDown";
 import { IoArrowUpCircleOutline } from "react-icons/io5";
 import NavCategoriesBar from "./NavCategoriesBar";
+import { useRouter } from "next/navigation";
 
 const Nav = () => {
   const { data: session } = useSession();
   const [toogleDropDown, setToogleDropDown] = useState(false);
+  const router = useRouter();
 
   return (
     <>
@@ -51,7 +53,7 @@ const Nav = () => {
             </div>
             {!isMobile() && (
               <div
-                className="flex items-center text-center justify-start"
+                className=" hover:cursor-pointer  flex items-center text-center justify-start"
                 onClick={() => setToogleDropDown((prev) => !prev)}
               >
                 <span>
@@ -60,7 +62,7 @@ const Nav = () => {
               </div>
             )}
             <div className="flex items-center justify-center ml-2">
-              <button className="max-w-96 w-64 lg:w-64 bg-[#40A826] hover:bg-[#40A826] text-white px-2 py-2 text-sm rounded-full inline-flex items-center">
+              <button onClick={()=>{router.push("/mystore")}} className=" hover:cursor-pointer  max-w-96 w-64 lg:w-64 bg-[#40A826] hover:bg-[#40A826] text-white px-2 py-2 text-sm rounded-full inline-flex items-center">
                 <IoArrowUpCircleOutline className="w-6 h-6 mr-1" />
                 <span>Vende tu producto</span>
               </button>

@@ -548,7 +548,6 @@ export const BTN_SEARCH_DEFAULT_BEHAVIOUR = {
   style:{},
   bgColor:'bg-[#E9E9E9]',
   textColor:'text-gray-900',
-  borderType:'rounded-full',
   borderColor:'border-[#E9E9E9]',
   iconSearchColor:'currentcolor',
   placeHolderColor:'placeholder-gray-900',
@@ -556,29 +555,19 @@ export const BTN_SEARCH_DEFAULT_BEHAVIOUR = {
 
 export const DEFAULT_ITEMS_INFORMATION =[
   {
-    redirectLink: `/howtouse`,
+    redirectLink: `/sale`,
     productImage: 'http://localhost:3000/assets/images/local-prom-item-1.svg',
-    text:"!Quiero vender¡"
+    text:"¡Quiero vender!"
   },
   {
-    redirectLink: `/howtouse`,
-    productImage: 'http://localhost:3000/assets/images/local-prom-item-1.svg',
-    text:"!Quiero vender¡"
+    redirectLink: `/`,
+    productImage: 'http://localhost:3000/assets/images/local-prom-item-2.svg',
+    text:"¡A buscar!"
   },
   {
-    redirectLink: `/howtouse`,
-    productImage: 'http://localhost:3000/assets/images/local-prom-item-1.svg',
-    text:"!Quiero vender¡"
-  },
-  {
-    redirectLink: `/howtouse`,
-    productImage: 'http://localhost:3000/assets/images/local-prom-item-1.svg',
-    text:"!Quiero vender¡"
-  },
-  {
-    redirectLink: `/howtouse`,
-    productImage: 'http://localhost:3000/assets/images/local-prom-item-1.svg',
-    text:"!Quiero vender¡"
-  },
+    redirectLink: `/promotion`,
+    productImage: 'http://localhost:3000/assets/images/local-prom-item-3.svg',
+    text:"¡A ahorrar!"
+  }
 
 ]

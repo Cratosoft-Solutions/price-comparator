@@ -2,6 +2,7 @@ import React from 'react';
 import { Zoom } from 'react-slideshow-image';
 import { useSelector } from "react-redux";
 import 'react-slideshow-image/dist/styles.css';
+import { isMobile } from '@utils/functions';
 
 
 
@@ -13,13 +14,22 @@ const HorizontalSlider = () => {
     const images = [
         '/assets/images/main_slider_PRODUCT_1.svg',
         '/assets/images/main_slider_PRODUCT_2.svg',
+        '/assets/images/main_slider_PRODUCT_1_MOBILE.svg',
+        '/assets/images/main_slider_PRODUCT_2_MOBILE.svg',
         '/assets/images/main_slider_CAR_1.svg',
         '/assets/images/main_slider_CAR_2.svg',
+        '/assets/images/main_slider_CAR_1_MOBILE.svg',
+        '/assets/images/main_slider_CAR_2_MOBILE.svg',
         '/assets/images/main_slider_HOUSES_1.svg',
         '/assets/images/main_slider_HOUSES_2.svg',
+        '/assets/images/main_slider_HOUSES_1_MOBILE.svg',
+        '/assets/images/main_slider_HOUSES_2_MOBILE.svg',
         '/assets/images/main_slider_SERVICES_1.svg',
-        '/assets/images/main_slider_SERVICES_2.svg'
-        ].filter(title => title.indexOf(category) > -1);
+        '/assets/images/main_slider_SERVICES_2.svg',
+        '/assets/images/main_slider_SERVICES_1_MOBILE.svg',
+        '/assets/images/main_slider_SERVICES_2_MOBILE.svg'
+        ].filter(image=> (isMobile() && image.indexOf("MOBILE") > -1)||
+                         (!isMobile()&& image.indexOf("MOBILE") < 0)).filter(title => title.indexOf(category) > -1);
 
     
     return (
