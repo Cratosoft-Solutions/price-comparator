@@ -53,7 +53,9 @@ export const GET = async (req, { params }) => {
             productImage:genericCompression(element.image, "decompress")[0],
             productName: element.name,
             productDescription:element.description,
-            formatedPrice:paseStoreNumber(element.price)
+            formatedPrice:paseStoreNumber(element.price),
+            productId: element._id,
+            storeId: element.store
         })
     });
 
