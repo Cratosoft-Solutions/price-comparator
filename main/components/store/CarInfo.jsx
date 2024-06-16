@@ -244,7 +244,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
             </div>
 
             <div className="md:col-span-5 relative ">
-                <div className="orange_gradient text-3xl p-6 text-center">Equipamiento</div>
+                <div className="text-gray-900 text-3xl p-6 text-center">Equipamiento</div>
             </div>
 
             <div className="md:col-span-5 relative">

@@ -1,5 +1,5 @@
 "use client"
-import { FaAnglesUp } from "react-icons/fa6";
+import { GoTriangleUp } from "react-icons/go";
 
 import {useState, useEffect} from "react";
 
@@ -28,7 +28,7 @@ const ScrollToTopButton  =() => {
       <>
         {scrollYPosition > 100 ? (
           <button className="fixed bottom-2 right-2" onClick={scrollToTop}>
-            <FaAnglesUp className="h-14 w-14 animate-bounce " color="40A826" />
+            <GoTriangleUp className="h-20 w-20 hover:animate-bounce " color="black" />
           </button>
         ) : null}
       </>

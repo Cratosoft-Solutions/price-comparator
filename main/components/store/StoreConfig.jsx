@@ -125,22 +125,19 @@ const StoreConfig = () => {
 
   return (
     <>
-      <form method='POST' onSubmit={confirmAction} className={`mt-4 lg:mt-0 p-4 lg:pl-6 lg:pr-6`}>
+      <form method='POST' onSubmit={confirmAction} className={`lg:mt-0 p-4 lg:pl-6 lg:pr-6`}>
           {showConfirmAction && <Modal modalActionInfo={modalActionInfo} onConfirm={onConfirm} onCancel={onCancel} />}
-          <div className="w-full max-w-screen-lg ">
-          <div>
-              <h2 className="mt-1 font-black text-xl lg:text-2xl lg:h-12 text-black">Configuración General</h2>
-              <p className="text-black mb-1 lg:mb-6 ">¡Bienvenido a la configuración de tu cuenta!</p>
-      
-              <div className=" storepages bg-white p-10 rounded-lg shadow-lg p-4 px-4 md:p-8 mb-6">
+          <div className="w-full">
+          <div>             
+              <div className=" storepages bg-[#ffffff] p-10 border shadow-lg p-4 px-4 md:p-8 mb-6">
               <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
                   <div className="text-black">
-                  <p className="font-medium text-lg">Configuración General</p>
+                  <p className="text-lg font-black">Configuración General</p>
                   <p>Favor complete todos los campos.</p>
                   </div> 
       
-                  <div className="lg:col-span-2">
-                  <div className="grid  text-sm grid-cols-1 md:grid-cols-5">
+                  <div className="lg:col-span-2 ">
+                  <div className="grid  text-sm grid-cols-1 md:grid-cols-5 ">
                       <div className="md:col-span-5 relative">
                           <input type="text" name="full_name" id="full_name" className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border rounded-t-lg px-4 w-full bg-white shadow text-base text-gray-800 border border-gray-300" value={name} onChange={e => {setName(e.target.value);}}/>
                           <div className={`${name?'labelsconfigurationwithvalue':'labelsconfiguration'} text-gray-600 text-sm`}>Nombre del comercio, persona u otro.</div>

@@ -14,7 +14,7 @@ import UserSearches from "./UserSearches";
 import { translateCategory } from "@utils/functions";
 
 
-const SearchButton = ({behaviour=BTN_SEARCH_DEFAULT_BEHAVIOUR}) => {
+const SearchButton = ({personalizedClass="",behaviour=BTN_SEARCH_DEFAULT_BEHAVIOUR}) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const showCategory = false;
@@ -53,13 +53,13 @@ const SearchButton = ({behaviour=BTN_SEARCH_DEFAULT_BEHAVIOUR}) => {
 
   return (
     <div
-      className={`w-full justify-center flex ${
+      className={`w-full justify-center flex ${personalizedClass} ${
         behaviour.displayImage ? "!bg-cover bg-no-repeat text-center h-96 md:h-screen" : ""
       }`}
       style={behaviour.style}
     >
       <div
-        className="h-full w-full flex justify-center items-center md:rounded-lg  "
+        className="h-full w-full flex justify-center items-center   "
         style={behaviour.displayImage?{ backgroundColor: "rgba(0, 0, 0, 0.6)" }: {}}
       >
         <div className={`${behaviour.size} grid place-items-center`}>
@@ -102,11 +102,8 @@ const SearchButton = ({behaviour=BTN_SEARCH_DEFAULT_BEHAVIOUR}) => {
                 id="txt-search"
                 type="search"
                 name="q"
-                className={` pr-4 ${behaviour.placeHolderText} ${behaviour.placeHolderColor } ${behaviour.fSize} ${behaviour.textColor} ${behaviour.bgColor} ${behaviour.borderType?behaviour.borderType:'md:rounded-full'} ${behaviour.borderColor}   border-2  pl-10 focus:outline-none  ${behaviour.height} w-full`}
-                placeholder={`¿Qué ${translateCategory(
-                  category,
-                  "SEARCHTEXT"
-                )} buscas?`}
+                className={` pr-4 ${behaviour.placeHolderText} ${behaviour.placeHolderColor } ${behaviour.fSize} ${behaviour.textColor} ${behaviour.bgColor} ${behaviour.borderType?behaviour.borderType:'md:rounded-full'} ${behaviour.borderColor}   ${behaviour.bSize}  pl-10 focus:outline-none  ${behaviour.height} w-full`}
+                placeholder={`¿Qué buscas?`}
                 autoComplete="off"
               />
             </div>

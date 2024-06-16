@@ -306,6 +306,7 @@ import { IoMdSettings } from "react-icons/io";
 import { IoMdHome } from "react-icons/io";
 import { MdAddShoppingCart } from "react-icons/md";
 import { FaList } from "react-icons/fa";
+import { translateCategory } from "./functions";
 
 export const COINCIDENCES = "COINCIDENCES";
 
@@ -517,6 +518,116 @@ export const BLACK_LISTED_KEYWORDS = [
 
 export const PAGES_WITH_NAV = ["/search/results", "/mystore"];
 
+export const EXCLUDE_SITE_MAP = ["/"];
+
+export const SITE_MAP = [
+  {
+    path:"/search/results",
+    mapTree:[
+      {
+       order:1,
+       text:"Home",
+       url: "/",
+       lastPath:false
+      },
+      {
+        order:2,
+        text:"TRANSLATECATEGORY",
+        url: "",
+        lastPath:true
+       }
+    ]
+  },
+  {
+    path:"/login",
+    mapTree:[
+      {
+       order:1,
+       text:"Home",
+       url: "/",
+       lastPath:false
+      },
+      {
+        order:2,
+        text:"Registro - Ingreso",
+        url: "",
+        lastPath:true
+       }
+    ]
+  },
+  {
+    path:"/promotion",
+    mapTree:[
+      {
+       order:1,
+       text:"Home",
+       url: "/",
+       lastPath:false
+      },
+      {
+        order:2,
+        text:"Promociones",
+        url: "",
+        lastPath:true
+       }
+    ]
+  },
+  {
+    path:"/sale",
+    mapTree:[
+      {
+       order:1,
+       text:"Home",
+       url: "/",
+       lastPath:false
+      },
+      {
+        order:2,
+        text:"Ventas",
+        url: "",
+        lastPath:true
+       }
+    ]
+  },
+  {
+    path:"/howtouse",
+    mapTree:[
+      {
+       order:1,
+       text:"Home",
+       url: "/",
+       lastPath:false
+      },
+      {
+        order:2,
+        text:"Forma de uso",
+        url: "",
+        lastPath:true
+       }
+    ]
+  },
+  {
+    path:"/mystore",
+    mapTree:[
+      {
+       order:1,
+       text:"Home",
+       url: "/",
+       lastPath:false
+      },
+      {
+        order:2,
+        text:"Mi tienda",
+        url: "",
+        lastPath:true
+       }
+    ]
+  }
+
+];
+
+
+
 export const BASIC_PRODUCT_MODEL = {
   storeId: null,
   productId: null,
@@ -547,6 +658,7 @@ export const BTN_SEARCH_DEFAULT_BEHAVIOUR = {
   displayImage:false,
   style:{},
   bgColor:'bg-[#E9E9E9]',
+  bSize:'border-1',
   textColor:'text-gray-900',
   borderColor:'border-[#E9E9E9]',
   iconSearchColor:'currentcolor',

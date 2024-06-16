@@ -305,18 +305,11 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
             onCancel={onCancel}
           />
         )}
-        <div className="w-full max-w-screen-lg">
-          <h2 className="mt-1 font-black text-xl lg:text-2xl lg:h-12 text-black">
-            Configuración de items
-          </h2>
-          <p className="text-black mb-1 lg:mb-6 ">
-            ¡Bienvenido a la configuración de tu cuenta!
-          </p>
-
-          <div className=" storepages bg-white p-10 rounded-lg shadow-lg p-4 px-4 md:p-8 mb-6">
+        <div className="w-full">
+          <div className=" storepages bg-white p-10 border shadow-lg p-4 px-4 md:p-8 mb-6">
             <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
               <div className="text-black">
-                <p className="font-medium text-lg">Configuración de items</p>
+                <p className="font-black text-lg">Configuración de items</p>
                 <p>
                   Favor complete todos los campos para ingresar un nuevo item.
                 </p>

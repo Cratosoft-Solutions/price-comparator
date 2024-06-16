@@ -7,6 +7,7 @@ import Terms from "@components/Terms";
 import { Analytics } from "@vercel/analytics/react";
 import SiteFooter from "@components/SiteFooter";
 import HomeNavWrapper from "@components/HomeNavWrapper";
+import SiteMapWrapper from "@components/SiteMapWrapper";
 
 export const metadata = {
   title: "EncuéntraLo Fácil CR: Buscador de productos y servicios Costa Rica",
@@ -28,12 +29,12 @@ const RootLayout = ({ children }) => {
             <main className="app relative">
                 <>
                   <Nav />
-                  <div className="mt-[0.5rem]" />
+                  <SiteMapWrapper/>
                 </>
-              <div className="lg:mr-10 lg:ml-10 ">
+              <>
                 {children}
-                <HomeNavWrapper/>
-              </div>
+                <HomeNavWrapper/>                 
+              </>
               
               <SiteFooter/>
               <Analytics />

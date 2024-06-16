@@ -70,7 +70,7 @@ const HorizontalMostSearchedList = ({ companyProducts, companyLogo }) => {
 
 
   return (
-    <>
+    <div className="mr-2 ml-2 lg:mr-10 lg:ml-10">
     <div className="w-full"><span className="font-[1000] text-2xl mt-6 mb-2">Lo más buscado</span></div>
         <div className="w-full flex bg-transparent mb-6 flex-col m-auto p-auto relative mt-1 border:solid">
         <div className="absolute right-3 bottom-3">
@@ -147,7 +147,7 @@ const HorizontalMostSearchedList = ({ companyProducts, companyLogo }) => {
         </div>
         </div>
  
-        </>
+        </div>
   );
 };
 
