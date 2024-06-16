@@ -14,7 +14,7 @@ const LoginRegister = ({isLogin=true}) => {
     const searchParams = useSearchParams();
     const router = useRouter();
     const dispatch = useDispatch();
-    const callbackUrl = searchParams.get("callbackUrl") || "/search/newsearch";
+    const callbackUrl = searchParams.get("callbackUrl") || "/";
 
     const [formData, setFormData] = useState({email:"", password:"", rememberMe:false})
     
