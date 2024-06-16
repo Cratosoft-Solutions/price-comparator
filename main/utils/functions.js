@@ -191,7 +191,7 @@ export const localDataExists = (key, resultDecompressed = false) => {
     //       return {
     //         localData: true,
     //         data: resultDecompressed ? item : decompressed,
-    //         saveOnStorage: decompressed.length > 0 ? true : false,
+    //         isSavedOnStoraged: decompressed.length > 0 ? true : false,
     //       };
     //     }
     //   }
@@ -199,14 +199,17 @@ export const localDataExists = (key, resultDecompressed = false) => {
     const item = window.sessionStorage.getItem(modifiedKey);
     if (item != null) {
       const decompressed = decompressObject(JSON.parse(item));
-      return { localData: true, data: resultDecompressed ? 
-        item : decompressed, saveOnStorage: decompressed.length > 0 ? true : false }
+      return {
+        localData: true,
+        data: resultDecompressed ? item : decompressed,
+        isSavedOnStoraged: decompressed.length > 0 ? true : false,
+      };
     } else {
-      return { localData: false, data: null, saveOnStorage: false }
+      return { localData: false, data: null, isSavedOnStoraged: false }
     }
   } catch (error) {
     console.log('Error', error);
-    return { localData: false, data: null, saveOnStorage: null };
+    return { localData: false, data: null, isSavedOnStoraged: null };
   }
 }
 
@@ -244,7 +247,6 @@ export const getSearchDataFromDataBase = async (key, user) => {
       key: key,
       user: user
     });
-
     const compressedData = await response.data.result;
     const decompressed = decompressObject(JSON.parse(compressedData));
     return { dataBaseData: true, data: decompressed }
@@ -469,8 +471,6 @@ export const genericDatabaseOperation = async (model, params, type, updateValue=
       default:
         break;
     }
-    //console.log(type + " " + result._id);
-
     return result;
   } catch (error) {
       console.log("Error al guardar búsqueda por usuario" + error);
@@ -535,7 +535,6 @@ export const numberToArray = (pageSize, size, currentPosition) =>{
 
 export function escapeRegex(searchText) {
   try {
-    console.log(searchText.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'));
     return searchText.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
   } catch (err) {
     console.log(err);
