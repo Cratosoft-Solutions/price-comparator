@@ -31,7 +31,7 @@ const MyResults = () => {
     const key = formatKeyForStorage(category, text); 
     const textSearchArray = key != '' ? key.toUpperCase().split(" ") : "";
 
-    const processIndividualResponse = (response, saveOnStorage, saveOnDatabase, error = false)=>{ 
+    const processIndividualResponse = (response, isSavedOnStorage, isSavedOnDatabase, error = false)=>{ 
         searchCounter = searchCounter + 1;
         dispatch(setMatchedProducts(textSearchArray));
         if(error && searchCounter == storeToSearhCount){
@@ -41,22 +41,22 @@ const MyResults = () => {
         if (!error && response.companyProducts.length > 0) {
           dispatch(setLoading(false));
           dispatch(pushProduct(response));
-          if (!saveOnStorage)
+          if (!isSavedOnStorage)
             console.log("Save on storage")
             setStorageData(key, response);
         }
         
         if(searchCounter == storeToSearhCount){
             dispatch(setLoading(false)); 
-            if(!saveOnDatabase) 
+            if(!isSavedOnDatabase) 
             console.log("Storing information in mongo")
               saveSearchOnDB(key);
           }
       }
 
-      const printDBStorageData = (data, saveOnStorage)=>{
+      const printDBStorageData = (data, isSavedOnStorage)=>{
         data.forEach(element => {
-          processIndividualResponse(element, saveOnStorage, true);
+          processIndividualResponse(element, isSavedOnStorage, true);
         });
       }
 
@@ -64,7 +64,7 @@ const MyResults = () => {
         dispatch(setSearching(false))
     }
 
-    const triggerScrap =(isSavedOnStoraged)=>{
+    const triggerScrap =(isSavedOnStorage)=>{
       console.log("Starting scraping");
         STORE_BY_CATEGORY[0]/*.filter(
           (item) => item.category == category
@@ -76,7 +76,7 @@ const MyResults = () => {
             .then((data) =>
               processIndividualResponse(
                 data,
-                isSavedOnStoraged,
+                isSavedOnStorage,
                 false,
                 false
               )
@@ -84,7 +84,7 @@ const MyResults = () => {
             .catch((error) =>
               processIndividualResponse(
                 error,
-                isSavedOnStoraged,
+                isSavedOnStorage,
                 false,
                 true
               )
@@ -92,7 +92,7 @@ const MyResults = () => {
         });
     }
 
-    const triggerLocalSearch =(isSavedOnStoraged)=>{
+    const triggerLocalSearch =(isSavedOnStorage)=>{
       fetchWithTimeout(
         `/api/search/local/${category +"&"+ text.replace(" ", "+")}`
       )
@@ -100,7 +100,7 @@ const MyResults = () => {
         .then((data) =>
           processIndividualResponse(
             data,
-            isSavedOnStoraged,
+            isSavedOnStorage,
             false,
             false
           )
@@ -108,7 +108,7 @@ const MyResults = () => {
         .catch((error) =>
           processIndividualResponse(
             error,
-            isSavedOnStoraged,
+            isSavedOnStorage,
             false,
             true
           )
@@ -124,27 +124,32 @@ const MyResults = () => {
             dispatch(restartProducts());
             dispatch(setLoading(true));
             dispatch(setSearching(true));
-            const {localData, data, saveOnStorage} = localDataExists(key, false);
+            const {localData, data, isSavedOnStorage} = localDataExists(key, false);
             if(localData){
              console.log("Getting information from session")
-             printDBStorageData(data, saveOnStorage);
+             printDBStorageData(data, isSavedOnStorage);
              dispatch(setSearching(false));  
             }
             else{
               console.log("Going to search info in mongo");
+              let existsOnDB;
+              // Load searches only for scrapping in product category
+              if(category === 'PRODUCT'){
               const dbData = await getSearchDataFromDataBase(
                 key,
                 session?.user?.email
               );
-              const existsOnDB = dbData.dataBaseData;
+              existsOnDB = dbData && dbData.dataBaseData;
+              }
               if (existsOnDB) {
-                console.log("Info exists in mongo");
+                console.log(`Info exists in mongo ${JSON.stringify(dbData.data)}`);
                 dispatch(setSearching(false));
-                printDBStorageData(dbData.data, saveOnStorage);
+                printDBStorageData(dbData.data, isSavedOnStorage);
               } else {
-                triggerLocalSearch(saveOnStorage);
+                console.log('Info not exist in mongo')
+                triggerLocalSearch(isSavedOnStorage);
                 if(category === "PRODUCT"){
-                  triggerScrap(saveOnStorage);
+                  triggerScrap(isSavedOnStorage);
                 }                
               }
             }
