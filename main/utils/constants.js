@@ -556,6 +556,92 @@ export const SITE_MAP = [
     ]
   },
   {
+    path:"/register",
+    mapTree:[
+      {
+       order:1,
+       text:"Home",
+       url: "/",
+       lastPath:false
+      },
+      {
+        order:2,
+        text:"Registro - Ingreso",
+        url: "",
+        lastPath:true
+       }
+    ]
+  },
+  {
+    path:"/termsandconditions",
+    mapTree:[
+      {
+       order:1,
+       text:"Home",
+       url: "/",
+       lastPath:false
+      },
+      {
+        order:2,
+        text:"Términos y condiciones",
+        url: "",
+        lastPath:true
+       }
+    ]
+  },
+  {
+    path:"/termsrejected",
+    mapTree:[
+      {
+       order:1,
+       text:"Home",
+       url: "/",
+       lastPath:false
+      },
+      {
+        order:2,
+        text:"Términos Rechazados",
+        url: "",
+        lastPath:true
+       }
+    ]
+  },
+  {
+    path:"/unauthorized",
+    mapTree:[
+      {
+       order:1,
+       text:"Home",
+       url: "/",
+       lastPath:false
+      },
+      {
+        order:2,
+        text:"Página no autorizada",
+        url: "",
+        lastPath:true
+       }
+    ]
+  },
+  ,
+  {
+    path:"/_not-found",
+    mapTree:[
+      {
+       order:1,
+       text:"Home",
+       url: "/",
+       lastPath:false
+      },
+      {
+        order:2,
+        text:"Página no encontrada",
+        url: "",
+        lastPath:true
+       }
+    ]
+  },
+  {
     path:"/promotion",
     mapTree:[
       {
