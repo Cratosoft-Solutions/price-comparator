@@ -57,8 +57,13 @@ const ProductList = () => {
         {loading && <HorizontalCardListLoading />}
       </div>
       <div className="container-fluid mx-auto block lg:hidden ">
-        <MobileHorizontalCardList mergedProducts={mergedProducts} />
-
+      {!loading && mergedProducts && (
+          <>
+            <MobileHorizontalCardList mergedProducts={mergedProducts}
+              callBackFunction={onProductSelected}
+            />
+          </>
+        )}
         {loading && <HorizontalCardListLoading />}
       </div>
       {showMatchedProducts &&
