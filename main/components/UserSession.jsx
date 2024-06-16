@@ -8,7 +8,7 @@ import { FaUser } from "react-icons/fa";
 const UserSession = () => {
   const { data: session } = useSession();
   return (
-    <div className="inline flex items-center justify-start p-4 gap-4">
+    <div className="inline flex items-center justify-start p-6 gap-4">
       {session?.user?.image ? (
         <Image
           src={session?.user?.image}
@@ -19,7 +19,7 @@ const UserSession = () => {
           onClick={() => alert(false)}
         />
       ) : (
-        <FaUser className='text-white w-6 h-6' />
+        <FaUser className='text-black w-6 h-6' />
       )}
 
       <div
@@ -28,7 +28,7 @@ const UserSession = () => {
           session?.user ? signOut() : signIn();
         }}
       >
-        <span className="font-black text-white">
+        <span className="font-black text-black">
           {session?.user ? "Cerrar Sesión" : "Iniciar Sesión"}
         </span>
       </div>

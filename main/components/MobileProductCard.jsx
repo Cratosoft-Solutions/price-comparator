@@ -6,7 +6,7 @@ const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
   const router = useRouter();
   const handleProductClick=(url)=>{
     if(adminMode){
-      callBackFunction(product.productId);
+      callBackFunction(product);
     }else{
       router.push(url);
     }
@@ -16,7 +16,7 @@ const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
     
     <div key={product.productName + index} className="container-fluid mx-auto w-full">
       <div
-        className="relative flex bg-white border border-gray-300  overflow-hidden items-center justify-start"
+        className=" hover:cursor-pointer relative flex bg-white border border-gray-300  overflow-hidden items-center justify-start"
         style={{ cursor: "auto" }}
       >
         <div className="relative w-32 h-32 !max-h-32 flex-shrink-0">

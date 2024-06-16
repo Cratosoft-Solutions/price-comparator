@@ -55,7 +55,8 @@ const MyItems = ({ params }) => {
     }, []);
 
     
-    const adminSelectedItem =(productId)=>{
+    const adminSelectedItem =(product)=>{
+      const {productId} = product;
       console.log(productId)
       const filteredProduct =items.filter((product)=> product.productId ==productId)[0];
       console.log(filteredProduct)
@@ -68,14 +69,10 @@ const MyItems = ({ params }) => {
 
   return (
     <>
-      <div className={`mt-4 lg:mt-0 p-4 lg:pl-6 lg:pr-6 `}>
+      <div className={`mt-4 lg:mt-0 p-4 lg:pl-6 lg:pr-6`}>
             {showConfirmAction && <Modal modalActionInfo={modalActionInfo} onConfirm={onConfirm} onCancel={onCancel} />}
-            <div className="w-full max-w-screen-lg">
-              
-                <h2 className=" mt-1 font-black text-xl lg:text-2xl lg:h-12 text-black">Listado de Items</h2>
-                <p className="text-black mb-1 lg:mb-6 ">¡Bienvenido a la configuración de tu cuenta!</p>
-        
-                <div className=" storepages bg-white p-10 rounded-lg shadow-lg p-4 px-4 md:p-8 mb-6 min-h-screen">
+            <div className="w-full">                              
+                <div className=" storepages bg-white p-10 rborder shadow-lg p-4 px-4 md:p-8 mb-6 min-h-screen">
                     <div className="relative container mx-auto hidden lg:block">
                         <HorizontalCardList mergedProducts={items} adminMode={true} callBackFunction={adminSelectedItem}/>
                         <PaginationControls tableItemsAmount={items.length} size={size} isOptionSearchExpanded={expandedNavBar}/>

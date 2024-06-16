@@ -21,8 +21,8 @@ const VerticalNav = ({showNav, expandCollapseOptionsBar, principalOption, second
         {showNav && (
           <div className='w-full absolute lg:-ml-10 top-0 z-50 max-heigh-available bg-black bg-opacity-50'>
             <div className=" bg-white z-50 bg-white w-full lg:w-80 h-full shadow searchoptions relative">
-            <IoCloseOutline onClick={() => { expandCollapseOptionsBar(false); }} className="h-10 w-10 fixed ml-80 mt-2 lg:ml-80 lg:mt-0" color="white" />
-                <div className="grid grid-cols-1 grid-rows-1 items-center  bg-[#40A826]">
+            <IoCloseOutline onClick={() => { expandCollapseOptionsBar(false); }} className="h-10 w-10 fixed ml-80 mt-2 lg:ml-80 lg:mt-0 stroke-black md:!stroke-white"/>
+                <div className="grid grid-cols-1 grid-rows-1 items-center  bg-[#FCF8F8]">
                       <UserSession />
                 </div>
                 <div id="accordion-collapse" data-accordion="collapse">
