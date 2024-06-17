@@ -4,7 +4,7 @@ import HorizontalItemList from "@components/HorizontalItemList";
 import HorizontalMainInfo from "@components/HorizontalMainInfo";
 import HorizontalSlider from "@components/HorizontalSlider";
 import HorizontalMostSearchedList from "@components/HorizontalMostSearchedList";
-import { fetchWithTimeout } from "@utils/functions";
+import { fetchWithTimeout, isMobile } from "@utils/functions";
 import { useEffect, useState } from "react";
 import SearchButton from "@components/SearchButton";
 import { useSelector } from "react-redux";
@@ -26,10 +26,10 @@ const Home = () => {
    try {
     const arrayToReturn = dataToFilter.filter((productTemp) => productTemp.category === category);
 
-    if(arrayToReturn.length < 1){
-      return addDefaultPromotedCard(dataToFilter);
+    if(arrayToReturn.length > 4){
+      return arrayToReturn;
     } else{
-      return addDefaultPromotedCard(arrayToReturn);
+      return dataToFilter;
     }
 
   } catch (error) {
@@ -80,17 +80,17 @@ const Home = () => {
 
 
   return (
-    <div className="w-full gap-2">
-      <div className="w-full md:mb-12 relative">
+    <div className="w-full gap-2 bg-white">
+      <div className="w-full md:mb-4 relative">
         <HorizontalSlider/>
       </div>    
-      <div className="w-full mb-4">
+      <div className="w-full mb-8">
         {!loadingPromotions && data && data.length > 0 &&
           <HorizontalItemList companyLogo={""} companyProducts={dataByCategory}/>
         } 
       </div>
-      <div className="w-full mb-16 relative">
-        <SearchButton behaviour={{size:'w-5/6 md:w-1/2', height:"h-20", fSize:"text-2xl", bSize:'border-2', placeHolderColor:'placeholder-white', placeHolderText:'placeholder:text-center', iconSearchColor:'white',bgColor:'bg-transparent', displayImage:true, textColor:'text-white', borderColor:'border-neutral-50', borderType:'rounded', style:{backgroundImage:  "url('./assets/images/ecommerce2.jpg')", backgroundSize:"100% 100%"}}}/> 
+      <div className="w-full mb-8 relative">
+        <SearchButton behaviour={{size:isMobile()? 'absolute bottom-4 w-full p-4':'absolute bottom-8 left-40 w-1/3', height:"h-20", fSize:"text-2xl", bSize:'border-1', placeHolderColor:'placeholder-gray', placeHolderText:'placeholder:text-center', iconSearchColor:'black',bgColor:'bg-white', displayImage:true, textColor:'text-black', borderColor:'border-black', borderType:'rounded', style:{backgroundImage:  isMobile()?"url('./assets/images/search-image-mb.svg')":"url('./assets/images/search-image.svg')", backgroundSize:"100% 100%"}}}/> 
       </div>
 
       <div className="w-full mb-4 relative">

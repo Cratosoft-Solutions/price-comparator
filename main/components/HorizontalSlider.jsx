@@ -26,7 +26,7 @@ const router = useRouter();
       },
       {url: '/assets/images/main_slider_PRODUCT_2_MOBILE.svg',
         redirectTo: '/',
-        active: false
+        active: true
       },
       {url: '/assets/images/main_slider_CAR_1.svg',
         redirectTo: '/createItem/car',
@@ -42,7 +42,7 @@ const router = useRouter();
       },
       {url: '/assets/images/main_slider_CAR_2_MOBILE.svg',
         redirectTo: '/',
-        active: false
+        active: true
       },
       {url: '/assets/images/main_slider_HOUSES_1.svg',
         redirectTo: '/createItem/house',
@@ -58,7 +58,7 @@ const router = useRouter();
       },
       {url: '/assets/images/main_slider_HOUSES_2_MOBILE.svg',
         redirectTo: '/',
-        active: false
+        active: true
       },
       {url: '/assets/images/main_slider_SERVICES_1.svg',
         redirectTo: '/createItem/service',
@@ -74,7 +74,7 @@ const router = useRouter();
       },
       {url: '/assets/images/main_slider_SERVICES_2_MOBILE.svg',
         redirectTo: '/',
-        active: false
+        active: true
       }
         ].filter(image => image.active)
          .filter(image => (isMobile() && image.url.indexOf("MOBILE") > -1)||
