@@ -55,7 +55,8 @@ export const GET = async (req, { params }) => {
             productDescription:element.description,
             formatedPrice:paseStoreNumber(element.price),
             productId: element._id,
-            storeId: element.store
+            storeId: element.store,
+            currency: element.currency == "CRC" ? "₡" : "$"
         })
     });
 
