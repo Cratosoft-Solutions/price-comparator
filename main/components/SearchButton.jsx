@@ -53,14 +53,11 @@ const SearchButton = ({personalizedClass="",behaviour=BTN_SEARCH_DEFAULT_BEHAVIO
 
   return (
     <div
-      className={`w-full justify-center flex ${personalizedClass} ${
-        behaviour.displayImage ? "!bg-cover bg-no-repeat text-center h-80 " : ""
-      }`}
-      style={behaviour.style}
+      className={`w-full justify-center flex ${personalizedClass}`}
+      style={behaviour.style} 
     >
       <div
-        className="h-full w-full flex justify-start items-center   "
-        style={behaviour.displayImage?{ backgroundColor: "bg-blue-100" }: {}}
+        className="h-full w-full flex justify-center items-center bg-[EDEEF2]"
       >
         <div className={`${behaviour.size} grid place-items-center`}>
           <form

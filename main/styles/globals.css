@@ -1759,7 +1759,6 @@ body > *{
 }
 
 img{
-  max-width: max-content !important;
   height: none;
 }
 
