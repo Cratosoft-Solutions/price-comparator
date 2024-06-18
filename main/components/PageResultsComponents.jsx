@@ -37,20 +37,22 @@ const MyResults = () => {
         if(error && searchCounter == storeToSearhCount){
           dispatch(setLoading(false));
         }
-      
+     
         if (!error && response.companyProducts.length > 0) {
           dispatch(setLoading(false));
           dispatch(pushProduct(response));
-          if (!isSavedOnStorage)
+          if (!isSavedOnStorage && category === 'PRODUCT'){
             console.log("Save on storage")
             setStorageData(key, response);
+          }
         }
         
         if(searchCounter == storeToSearhCount){
             dispatch(setLoading(false)); 
-            if(!isSavedOnDatabase) 
-            console.log("Storing information in mongo")
+            if(!isSavedOnDatabase && category === 'PRODUCT') {
+              console.log("Storing information in mongo")
               saveSearchOnDB(key);
+            }
           }
       }
 
@@ -134,23 +136,21 @@ const MyResults = () => {
               console.log("Going to search info in mongo");
               let existsOnDB;
               // Load searches only for scrapping in product category
-              if(category === 'PRODUCT'){
-              const dbData = await getSearchDataFromDataBase(
-                key,
-                session?.user?.email
-              );
-              existsOnDB = dbData && dbData.dataBaseData;
-              }
-              if (existsOnDB) {
-                console.log(`Info exists in mongo ${JSON.stringify(dbData.data)}`);
-                dispatch(setSearching(false));
-                printDBStorageData(dbData.data, isSavedOnStorage);
-              } else {
-                console.log('Info not exist in mongo')
-                triggerLocalSearch(isSavedOnStorage);
-                if(category === "PRODUCT"){
+              if (category === "PRODUCT") {
+                const dbData = await getSearchDataFromDataBase(
+                  key,
+                  session?.user?.email
+                );
+                existsOnDB = dbData && dbData.dataBaseData;
+                if (existsOnDB) {
+                  dispatch(setSearching(false));
+                  printDBStorageData(dbData.data, isSavedOnStorage);
+                } else {
                   triggerScrap(isSavedOnStorage);
-                }                
+                }
+                //   }
+              } else {
+                triggerLocalSearch(isSavedOnStorage);
               }
             }
           }

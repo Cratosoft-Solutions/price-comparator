@@ -191,7 +191,7 @@ export const localDataExists = (key, resultDecompressed = false) => {
     //       return {
     //         localData: true,
     //         data: resultDecompressed ? item : decompressed,
-    //         isSavedOnStoraged: decompressed.length > 0 ? true : false,
+    //         isSavedOnStorage: decompressed.length > 0 ? true : false,
     //       };
     //     }
     //   }
@@ -202,14 +202,14 @@ export const localDataExists = (key, resultDecompressed = false) => {
       return {
         localData: true,
         data: resultDecompressed ? item : decompressed,
-        isSavedOnStoraged: decompressed.length > 0 ? true : false,
+        isSavedOnStorage: decompressed.length > 0 ? true : false,
       };
     } else {
-      return { localData: false, data: null, isSavedOnStoraged: false }
+      return { localData: false, data: null, isSavedOnStorage: false }
     }
   } catch (error) {
     console.log('Error', error);
-    return { localData: false, data: null, isSavedOnStoraged: null };
+    return { localData: false, data: null, isSavedOnStorage: null };
   }
 }
 
