@@ -40,7 +40,6 @@ function withNav(Component, navConfiguration) {
           dispatch(orderProducts(-1));
           break;
         case "MATCH":
-          alert(textSearchArray);
           dispatch(setMatchedProducts(textSearchArray));
           break;
         case "NEWSEARCH":
