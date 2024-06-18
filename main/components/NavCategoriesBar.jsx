@@ -14,7 +14,8 @@ const NavCategoriesBar = () => {
   }
 
   return (
-        <div className="w-full bg-[#FCF8F8] h-fit grid grid-flow-col auto-cols-max overflow-x-scroll no-scrollbar lg:gap-8 gap-4 lg:justify-start md:overflow-visible ">
+    <div className='flex inline'>
+        <div className="inline w-full bg-[#FCF8F8] h-14 grid grid-flow-col auto-cols-max overflow-x-scroll no-scrollbar lg:gap-8 gap-4 lg:justify-start md:overflow-visible ">
           <div className="hover:cursor-pointer  lg:ml-10 flex justify-start items-center gap-4" onClick={expandBar}>
             <RxHamburgerMenu              
               className="h-6 w-6"
@@ -25,8 +26,10 @@ const NavCategoriesBar = () => {
           </div>
           <SiteCategories/>
           <SearchButton personalizedClass='hidden md:block md:!w-80'/>
-          <UserLogin personalizedClass='hidden md:flex md:justify-end'/>
         </div> 
+        <UserLogin personalizedClass='bg-[#FCF8F8] hidden md:flex justify-end inline min-w-fit items-center pr-10 md:h-14'/>
+
+    </div>   
   )
 }
 
