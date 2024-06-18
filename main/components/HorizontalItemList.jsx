@@ -80,7 +80,7 @@ const HorizontalItemList = ({ companyProducts, companyLogo }) => {
   return (
     <div className="mr-2 ml-2 lg:mr-10 lg:ml-10">
     {showProductDetail && <ProductDetails onCloseFunction={()=>{setShowProductDetail(false)}} storeId={product.storeId} productId={product.productId}/>}
-    <div className="w-full mb-4 mt-12"><span className="font-[1000] text-2xl">Promociones</span></div>
+    <div className="w-full mb-4 mt-4"><span className="font-[1000] text-2xl">Promociones</span></div>
         <div className="w-full flex bg-transparent mb-6 flex-col m-auto p-auto relative mt-1">
         <div className="absolute right-3 bottom-3">
             <img src={companyLogo} alt="" width={150}/>
@@ -146,8 +146,7 @@ const HorizontalItemList = ({ companyProducts, companyLogo }) => {
             <div className="flex flex-nowrap">
             {companyProducts.map((element) => (
                 <div className="inline-block">
-                  {element.productId && <PromotionCard product={element} callBackFunction={onProductSelected} />}
-                  {!element.productId && <LocalPromotedCard product={element} callBackFunction={onProductSelected} />}
+                  <PromotionCard product={element} callBackFunction={onProductSelected} />
                   </div>
             ))}
 

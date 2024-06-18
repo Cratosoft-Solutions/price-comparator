@@ -66,7 +66,7 @@ body > *{
 /* Tailwind Styles */
 
 .app {
-  @apply flex flex-col min-h-full;/*relative z-10 flex justify-center flex-col*/ 
+  @apply flex flex-col min-h-full ;/*relative z-10 flex justify-center flex-col*/ 
 }
 
 .black_btn {
