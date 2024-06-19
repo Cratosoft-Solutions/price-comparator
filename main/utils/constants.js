@@ -443,14 +443,14 @@ export const VERTICAL_NAV_CONFIGURATION = [
   },
   {
     btnNAVPage: "myStore",
-    btnDescription: "Agregar Item",
+    btnDescription: "Agregar Anuncio",
     btnID: "ADDPRODUCT",
     isPrincipal: false,
     icon: <MdAddShoppingCart className="w-4 h-4" color="black" />,
   },
   {
     btnNAVPage: "myStore",
-    btnDescription: "Mis items",
+    btnDescription: "Mis anuncios",
     btnID: "LISTITEM",
     isPrincipal: false,
     icon: <FaList className="w-4 h-4" color="black" />,

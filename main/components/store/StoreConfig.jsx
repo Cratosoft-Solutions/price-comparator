@@ -129,14 +129,17 @@ const StoreConfig = () => {
           {showConfirmAction && <Modal modalActionInfo={modalActionInfo} onConfirm={onConfirm} onCancel={onCancel} />}
           <div className="w-full">
           <div>             
-              <div className=" storepages bg-[#ffffff] p-10 border shadow-lg p-4 px-4 md:p-8 mb-6">
-              <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-                  <div className="text-black">
-                  <p className="text-lg font-black">Configuración General</p>
-                  <p>Favor complete todos los campos.</p>
+              <div className="storepages bg-white border shadow-lg  mb-6">
+              <div className="grid text-sm grid-cols-1 lg:grid-cols-3">
+              <div className="text-black mb-4 md:mb-0 bg-[#EEDECF] p-4">
+              <p className="font-black text-2xl mb-4">Configuración General</p>
+                  <p className='text-gray-800'>Favor complete todos los campos.</p>
+                  <div className="w-full h-full flex items-start md:mt-16 justify-center p-4">
+                  <img className="w-ful h-fit z-50" src="/assets/images/create-item.svg" />
+                </div>
                   </div> 
       
-                  <div className="lg:col-span-2 ">
+                  <div className="lg:col-span-2 p-4 ">
                   <div className="grid  text-sm grid-cols-1 md:grid-cols-5 ">
                       <div className="md:col-span-5 relative">
                           <input type="text" name="full_name" id="full_name" className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border rounded-t-lg px-4 w-full bg-white shadow text-base text-gray-800 border border-gray-300" value={name} onChange={e => {setName(e.target.value);}}/>
