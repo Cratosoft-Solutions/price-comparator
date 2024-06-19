@@ -15,7 +15,7 @@ function withAuth(Component, isSecure = false) {
     const router = useRouter();
     const refreshToken = async () => {
       try {
-        let cookieValue = await cookieCutter.get(process.env.NEXT_PUBLIC_TOKEN_COOKIE);
+        /*let cookieValue = await cookieCutter.get(process.env.NEXT_PUBLIC_TOKEN_COOKIE);
         console.log(cookieValue);
         const validToken = await verifyTokenWithJose(cookieValue);
         if (!validToken) {
@@ -24,7 +24,7 @@ function withAuth(Component, isSecure = false) {
               'Authorization': `Basic ${AUTH_CREDENTIALS}`
             }
           });
-        }
+        }*///TODO
         setLoading(false);
       } catch (error) {
         setLoading(false);
