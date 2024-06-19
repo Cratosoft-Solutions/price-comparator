@@ -1,7 +1,7 @@
 "use client";
-import React, { useEffect, useState } from 'react';
-import DragDropFiles from '@components/DragDropFiles';
-import Modal from '@components/Modal';
+import React, { useEffect, useState } from "react";
+import DragDropFiles from "@components/DragDropFiles";
+import Modal from "@components/Modal";
 import {
   PRODUCT_SAVE_CONFIRM_ACTION,
   CATEGORY_TYPES,
@@ -13,277 +13,350 @@ import {
   GENERAL_YESNO,
   SERVICES_TYPES,
   MODALITY_TYPES,
-  PROVINCES
+  PROVINCES,
+  ITEM_CREATED_SUCCESFULLY,
 } from "@utils/constants";
 import { getSession, signIn } from "next-auth/react";
-import Loading from '@app/loading';
-import axios from 'axios';
-import CurrencyInput from '@components/CurrencyInput';
-import DropDownList from '@components/DropDownList';
-import UploadedImage from '@components/UploadedImage';
+import Loading from "@app/loading";
+import axios from "axios";
+import CurrencyInput from "@components/CurrencyInput";
+import DropDownList from "@components/DropDownList";
+import UploadedImage from "@components/UploadedImage";
 import { useSelector } from "react-redux";
-import { genericCompression } from '@utils/functions';
-import CarInfo from './CarInfo';
-import HouseInfo from './HouseInfo';
-import { IoIosCloseCircleOutline } from "react-icons/io";
+import { genericCompression } from "@utils/functions";
+import CarInfo from "./CarInfo";
+import HouseInfo from "./HouseInfo";
+import { IoCloseOutline } from "react-icons/io5";
+import { copyToClipBoard } from "@utils/functionsClient";
 
+const StoreItem = ({
+  editMode = false,
+  product,
+  onCloseFunction,
+  nonAuthenticatedUser = false,
+}) => {
+  const [loading, setLoading] = useState(true);
+  const [showConfirmAction, setShowConfirmAction] = useState(false);
+  const [modalActionInfo, setModalActionInfo] = useState({});
+  const [id, setId] = useState(null);
+  const [name, setName] = useState("");
+  const [nameLabel, setNameLabel] = useState("Nombre del item.");
+  const [descriptionLabel, setDescriptionLabel] = useState(
+    "Descripción del item."
+  );
+  const [priceLabel, setPriceLabel] = useState("Precio del item.");
+  const [stock, setStock] = useState(1);
+  const [description, setDescription] = useState("");
+  const [negotiable, setNegotiable] = useState("NO");
+  const [category, setCategory] = useState("PRODUCT");
+  const [serviceType, setServiceType] = useState(SERVICES_TYPES[0].value);
+  const [modalityType, setModalityType] = useState(MODALITY_TYPES[0].value);
+  const [province, setProvince] = useState(PROVINCES[0].value);
+  const [price, setPrice] = useState(null);
+  const [specialPrice, setSpecialPrice] = useState(null);
+  const [currency, setCurrency] = useState(CURRENCY_LIST[0].value);
+  const [images, setImages] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [store, setStore] = useState(null);
+  const [showImage, setShowImage] = useState(false);
+  const categoryList = CATEGORY_TYPES;
+  const servicesList = SERVICES_TYPES;
+  const modalityList = MODALITY_TYPES;
+  const provinceList = PROVINCES;
+  const { expandedNavBar } = useSelector(
+    (state) => state.verticalnav.myStoreNav
+  );
+  const [carInfo, setCarInfo] = useState({
+    brand: "SELECT",
+    model: "",
+    cc: "",
+    style: "SELECT",
+    passengers: 1,
+    year: new Date().getFullYear(),
+    status: 1,
+    combustible: 1,
+    transmition: 1,
+    kms: "",
+    kmstype: "1",
+    taxes: "NO",
+    otherCar: "NO",
+    doors: 1,
+    province: "SJO",
+    equipment: [],
+  });
+  const [houseInfo, setHouseInfo] = useState({
+    bedrooms: "SELECT",
+    bathrooms: "SELECT",
+    parking: "SELECT",
+    porpertyMeters: "",
+    houseVendorType: "SELECT",
+    address: "",
+    propertyMaintenanceCosts: "",
+    lotSize: "",
+    height: "",
+    yearBuilt: "SELECT",
+    floorType: "SELECT",
+    levels: "SELECT",
+    floor: "SELECT",
+    pool: "SELECT",
+    balconyTerrace: "SELECT",
+    propertyType: "SELECT",
+    benefits: [],
+  });
 
-const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
-    const [loading, setLoading]  =  useState(true);
-    const [showConfirmAction, setShowConfirmAction] = useState(false);
-    const [modalActionInfo, setModalActionInfo] = useState({});
-    const [id, setId] = useState(null);
-    const [name, setName] = useState('');
-    const [nameLabel, setNameLabel] = useState('Nombre del item.');
-    const [descriptionLabel, setDescriptionLabel] = useState('Descripción del item.');
-    const [priceLabel, setPriceLabel] = useState('Precio del item.');
-    const [stock, setStock] = useState(1);
-    const [description, setDescription] = useState('');
-    const [negotiable, setNegotiable] = useState('NO');
-    const [category, setCategory] = useState('PRODUCT');
-    const [serviceType, setServiceType] = useState(SERVICES_TYPES[0].value);
-    const [modalityType, setModalityType] = useState(MODALITY_TYPES[0].value);
-    const [province, setProvince] = useState(PROVINCES[0].value);
-    const [price, setPrice] = useState(null);
-    const [specialPrice, setSpecialPrice] = useState(null);
-    const [currency, setCurrency] = useState(CURRENCY_LIST[0].value);
-    const [images, setImages] = useState([]);
-    const [selectedImage, setSelectedImage] = useState(0);
-    const [store, setStore] = useState(null);
-    const [showImage, setShowImage] = useState(false);
-    const categoryList = CATEGORY_TYPES;
-    const servicesList = SERVICES_TYPES;
-    const modalityList = MODALITY_TYPES;
-    const provinceList = PROVINCES;
-    const { expandedNavBar } = useSelector(state => state.verticalnav.myStoreNav);
-    const [carInfo, setCarInfo] = useState({brand:"SELECT", model:"",cc:"", style:"SELECT",passengers:1,year: new Date().getFullYear(), status:1, combustible:1, transmition:1,kms:"",kmstype:"1", taxes:"NO",otherCar:"NO",doors:1, province:"SJO", equipment:[]});
-    const [houseInfo, setHouseInfo] = useState({bedrooms:"SELECT",bathrooms:"SELECT",parking:"SELECT",porpertyMeters:"",houseVendorType:"SELECT", address:"",propertyMaintenanceCosts:"",lotSize:"", height:"",yearBuilt:"SELECT", floorType:"SELECT",levels:"SELECT", floor:"SELECT", pool:"SELECT", balconyTerrace:"SELECT", propertyType:"SELECT", benefits:[]});
+  const [selectedOption, setSelectedOption] = useState(null);
 
-    const [selectedOption, setSelectedOption] = useState(null);
+  const handleOptionChange = (value) => {
+    setSelectedOption(value);
+  };
 
-    const handleOptionChange = (value) => {
-      setSelectedOption(value);
-    };
-
-    useEffect(() => {
-      const securePage = async () => {
-        const session = await getSession();
-        if (!session) {
-          signIn();
+  useEffect(() => {
+    const securePage = async () => {
+      const session = await getSession();
+      if (!session && !nonAuthenticatedUser) {
+        signIn();
+      } else {
+        if (session) {
+          const storeInfo = await axios.get(
+            `/api/user/${session.user.id}/store/`
+          );
+          setStore(storeInfo.data._id);
         } else {
-            const storeInfo = await axios.get(`/api/user/${session.user.id}/store/`);
-            console.log(storeInfo);
-            setStore(storeInfo.data._id);
-            if(product != undefined && product.category === 'SERVICES'){
-              setNameLabel("Nombre del servicio.");
-              setDescriptionLabel("Descripcion del servicio.");
-              setPriceLabel("Precio del servicio.");
-            }
-            setLoading(false);
+          setStore("non-auth-user");
         }
-      };
-      securePage();
 
-      if(editMode){
-        setId(product.productId);
-        setCategory(product.category);
-        setName(product.productName);
-        setDescription(product.productDescription);
-        setStock(product.stock);
-        setPrice(product.productPrice);
-        setSpecialPrice(product.productSpecialPrice);
-        setNegotiable(product.negotiable);
-        setCurrency(product.currency);
-        setImages(product.productImage);
-        if (product.category === 'SERVICES') {
-          setServiceType(product.serviceType);
-          setModalityType(product.modalityType);
-          setProvince(product.province);
-        }
-        if(product.category=="CAR"){
-            setCarInfo(product.otherInformation);
-        }
-        if(product.category=="HOUSES"){
-            setHouseInfo(product.otherInformation);
-      }        
-      }
-
-    }, []);
-
-    
-    const restartForm = ()=>{
-        setId(null);
-        setName('');
-        setDescription('');
-        setPrice(null);
-        setSpecialPrice(null);
-        setCurrency(CURRENCY_LIST[0].value);
-        setImages([]);
-        setCategory(categoryList[0].value);
-        setServiceType(SERVICES_TYPES[0].value);
-        setModalityType(MODALITY_TYPES[0].value);
-        setProvince(PROVINCES[0].value);
-    }
-
-    const restartFormWithoutCategory = ()=>{
-        setId(null);
-        setName('');
-        setDescription('');
-        setPrice(null);
-        setSpecialPrice(null);
-        setCurrency(CURRENCY_LIST[0].value);
-        setImages([]);
-        setServiceType(SERVICES_TYPES[0].value);
-        setModalityType(MODALITY_TYPES[0].value);
-        setProvince(PROVINCES[0].value);
-    }
-
-    const confirmAction = (e) =>{
-        e.preventDefault();
-        if(category=="CAR" && (carInfo.brand =="SELECT"|| carInfo.style =="SELECT")){+
-            setModalActionInfo({ ...GENERAL_UKNOWN_ERROR,message: "Favor selecciona la marca y estilo del vehículo." });
-        }else{
-            setModalActionInfo(PRODUCT_SAVE_CONFIRM_ACTION);
-        }
-        setShowConfirmAction(true);
-    }
-
-    const onConfirm = async(processToExecute)=>{
-            if (processToExecute === "SAVEPRODUCT") {
-                    setLoading(true);
-                    axios.post(`/api/product/save`, {
-                        id:id,
-                        store: store,
-                        name: name,
-                        description: description,
-                        category:category,
-                        stock:stock? stock.toString().replaceAll(",", ""):0,
-                        price: price?price.toString().replaceAll(",", ""):0,
-                        especialprice: specialPrice? specialPrice.toString().replaceAll(",", ""):0,
-                        negotiable:  negotiable,
-                        currency: currency,
-                        image: genericCompression(images, "compress"),
-                        otherItemInformation: category == "CAR" ? JSON.stringify(carInfo) : category == "HOUSES"? JSON.stringify(houseInfo) : null,
-                        serviceType: category === 'SERVICES'? serviceType : null,
-                        modalityType: category === 'SERVICES'? modalityType : null,
-                        province: category === 'SERVICES'? province : null
-                        //otherHouseInformarion: category == "HOUSES"? JSON.stringify(houseInfo):null
-                      })
-                      .then((response) => {
-                        if(!editMode){
-                            restartForm()
-                        }
-                        
-                        setLoading(false);
-                        setModalActionInfo(GENERAL_SUCCESS_PROCESS);
-                        setShowConfirmAction(true);
-                      })
-                      .catch((error) => {
-                        setLoading(false);
-                        setModalActionInfo({
-                          ...GENERAL_UKNOWN_ERROR,
-                          message: error.message,
-                        });
-                        setShowConfirmAction(true);
-                      });
-            }else{
-                setShowConfirmAction(false);
-            }
-    }
-
-    const onCancel = ()=>{
-        setShowConfirmAction(false);
-    }
-
-    const setInternalImage =(selectedImages, error)=>{
-        console.log(selectedImages);
-        if(selectedImages===null){
-            setModalActionInfo({...IMAGE_FAILED_CONFIRM_ACTION, message:error})
-            setShowConfirmAction(true);
-        }
-        else{
-            if(images.length + selectedImages.length > 5){
-                setModalActionInfo({...IMAGE_MAX_PASSED})
-                setShowConfirmAction(true);
-            }else{
-                selectedImages.forEach(element => {
-                    setImages(oldArray => [...oldArray, element]);    
-                });
-            }
-            
-        }        
-    }
-
-    const showInternalImage =(index) => {
-        setSelectedImage(index);
-        setShowImage(true);
-    }
-
-    const deleteImage =(indexFiltered)=>{
-        setImages(images.filter((image, index) => index != indexFiltered))
-    }
-
-    
-    const setInternalCarInfo =(field, value) => {
-        if(field == "equipment"){
-            let equipmentToSet = carInfo.equipment;
-            if (equipmentToSet.filter(element => element == value)[0]){
-                equipmentToSet = equipmentToSet.filter(element => element != value);   
-            }else{
-                equipmentToSet.push(value);
-            }
-            setCarInfo({...carInfo , [field]:equipmentToSet}); 
-        }else{
-            setCarInfo({...carInfo , [field]:value}); 
-        }   
-        console.log(carInfo);
-    } 
-
-    const setInternalHouseInfo =(field, value) => {
-      if(field == "benefits"){
-          let benefitsToSet = houseInfo.benefits;
-          if (benefitsToSet.filter(element => element == value)[0]){
-              benefitsToSet = benefitsToSet.filter(element => element != value);   
-          }else{
-              benefitsToSet.push(value);
-          }
-          setHouseInfo({...houseInfo , [field]:benefitsToSet}); 
-      }else{
-          setHouseInfo({...houseInfo , [field]:value}); 
-      }   
-      console.log(houseInfo);
-  }     
-
-    const setCategoryOnChange = (category) => {
-      restartFormWithoutCategory();
-      setCategory(category);
-      switch (category) {
-        case 'SERVICES':
+        if (product != undefined && product.category === "SERVICES") {
           setNameLabel("Nombre del servicio.");
           setDescriptionLabel("Descripcion del servicio.");
           setPriceLabel("Precio del servicio.");
-          break;
-          case 'HOUSES':
-            setNameLabel("Título.");
-            setDescriptionLabel("Descripcion de la propiedad.");
-            setPriceLabel("Precio.");
-            break;          
-        default:
-          setNameLabel("Nombre del item.");
-          setDescriptionLabel("Descripción del item.");
-          setPriceLabel("Precio del item.");
-          break;
+        }
+        setLoading(false);
       }
     };
-        
-    if(loading)
-      return <Loading/>
+    securePage();
+
+    if (editMode) {
+      setId(product.productId);
+      setCategory(product.category);
+      setName(product.productName);
+      setDescription(product.productDescription);
+      setStock(product.stock);
+      setPrice(product.productPrice);
+      setSpecialPrice(product.productSpecialPrice);
+      setNegotiable(product.negotiable);
+      setCurrency(product.currency);
+      setImages(product.productImage);
+      if (product.category === "SERVICES") {
+        setServiceType(product.serviceType);
+        setModalityType(product.modalityType);
+        setProvince(product.province);
+      }
+      if (product.category == "CAR") {
+        setCarInfo(product.otherInformation);
+      }
+      if (product.category == "HOUSES") {
+        setHouseInfo(product.otherInformation);
+      }
+    }
+  }, []);
+
+  const restartForm = () => {
+    setId(null);
+    setName("");
+    setDescription("");
+    setPrice(null);
+    setSpecialPrice(null);
+    setCurrency(CURRENCY_LIST[0].value);
+    setImages([]);
+    setCategory(categoryList[0].value);
+    setServiceType(SERVICES_TYPES[0].value);
+    setModalityType(MODALITY_TYPES[0].value);
+    setProvince(PROVINCES[0].value);
+  };
+
+  const restartFormWithoutCategory = () => {
+    setId(null);
+    setName("");
+    setDescription("");
+    setPrice(null);
+    setSpecialPrice(null);
+    setCurrency(CURRENCY_LIST[0].value);
+    setImages([]);
+    setServiceType(SERVICES_TYPES[0].value);
+    setModalityType(MODALITY_TYPES[0].value);
+    setProvince(PROVINCES[0].value);
+  };
+
+  const confirmAction = (e) => {
+    e.preventDefault();
+    if (
+      category == "CAR" &&
+      (carInfo.brand == "SELECT" || carInfo.style == "SELECT")
+    ) {
+      +setModalActionInfo({
+        ...GENERAL_UKNOWN_ERROR,
+        message: "Favor selecciona la marca y estilo del vehículo.",
+      });
+    } else {
+      setModalActionInfo(PRODUCT_SAVE_CONFIRM_ACTION);
+    }
+    setShowConfirmAction(true);
+  };
+
+  const onConfirm = async (processToExecute) => {
+    if (processToExecute === "CLEANPRODUCT") {
+      if (!editMode) {
+        restartForm();
+      }
+      setShowConfirmAction(false);
+    }else if(processToExecute === "COPY"){
+        copyToClipBoard(modalActionInfo.textToCopy);
+    } 
+    else if (processToExecute === "SAVEPRODUCT") {
+      setLoading(true);
+      axios
+        .post(`/api/product/save`, {
+          id: id,
+          store: store,
+          name: name,
+          description: description,
+          category: category,
+          stock: stock ? stock.toString().replaceAll(",", "") : 0,
+          price: price ? price.toString().replaceAll(",", "") : 0,
+          especialprice: specialPrice
+            ? specialPrice.toString().replaceAll(",", "")
+            : 0,
+          negotiable: negotiable,
+          currency: currency,
+          image: genericCompression(images, "compress"),
+          otherItemInformation:
+            category == "CAR"
+              ? JSON.stringify(carInfo)
+              : category == "HOUSES"
+              ? JSON.stringify(houseInfo)
+              : null,
+          serviceType: category === "SERVICES" ? serviceType : null,
+          modalityType: category === "SERVICES" ? modalityType : null,
+          province: category === "SERVICES" ? province : null,
+          //otherHouseInformarion: category == "HOUSES"? JSON.stringify(houseInfo):null
+        })
+        .then((response) => {
+          setLoading(false);
+          setModalActionInfo(
+            !nonAuthenticatedUser
+              ? ITEM_CREATED_SUCCESFULLY
+              : {
+                  ...ITEM_CREATED_SUCCESFULLY,
+                  message:
+                    "¡Felicidades! Anuncio creado correctamente. Favor guarda tu ID de Anuncio: " +
+                    response.data.id,
+                  showCopyButton: true,
+                  textToCopy: response.data.id,
+                  copyButtonLabel: "Copiar ID de Anuncio... ",
+                }
+          );
+          setShowConfirmAction(true);
+        })
+        .catch((error) => {
+          setLoading(false);
+          setModalActionInfo({
+            ...GENERAL_UKNOWN_ERROR,
+            message: error.message,
+          });
+          setShowConfirmAction(true);
+        });
+    } else {
+      setShowConfirmAction(false);
+    }
+  };
+
+  const onCancel = () => {
+    setShowConfirmAction(false);
+  };
+
+  const setInternalImage = (selectedImages, error) => {
+    console.log(selectedImages);
+    if (selectedImages === null) {
+      setModalActionInfo({ ...IMAGE_FAILED_CONFIRM_ACTION, message: error });
+      setShowConfirmAction(true);
+    } else {
+      if (images.length + selectedImages.length > 5) {
+        setModalActionInfo({ ...IMAGE_MAX_PASSED });
+        setShowConfirmAction(true);
+      } else {
+        selectedImages.forEach((element) => {
+          setImages((oldArray) => [...oldArray, element]);
+        });
+      }
+    }
+  };
+
+  const showInternalImage = (index) => {
+    setSelectedImage(index);
+    setShowImage(true);
+  };
+
+  const deleteImage = (indexFiltered) => {
+    setImages(images.filter((image, index) => index != indexFiltered));
+  };
+
+  const setInternalCarInfo = (field, value) => {
+    if (field == "equipment") {
+      let equipmentToSet = carInfo.equipment;
+      if (equipmentToSet.filter((element) => element == value)[0]) {
+        equipmentToSet = equipmentToSet.filter((element) => element != value);
+      } else {
+        equipmentToSet.push(value);
+      }
+      setCarInfo({ ...carInfo, [field]: equipmentToSet });
+    } else {
+      setCarInfo({ ...carInfo, [field]: value });
+    }
+    console.log(carInfo);
+  };
+
+  const setInternalHouseInfo = (field, value) => {
+    if (field == "benefits") {
+      let benefitsToSet = houseInfo.benefits;
+      if (benefitsToSet.filter((element) => element == value)[0]) {
+        benefitsToSet = benefitsToSet.filter((element) => element != value);
+      } else {
+        benefitsToSet.push(value);
+      }
+      setHouseInfo({ ...houseInfo, [field]: benefitsToSet });
+    } else {
+      setHouseInfo({ ...houseInfo, [field]: value });
+    }
+    console.log(houseInfo);
+  };
+
+  const setCategoryOnChange = (category) => {
+    restartFormWithoutCategory();
+    setCategory(category);
+    switch (category) {
+      case "SERVICES":
+        setNameLabel("Nombre del servicio.");
+        setDescriptionLabel("Descripcion del servicio.");
+        setPriceLabel("Precio del servicio.");
+        break;
+      case "HOUSES":
+        setNameLabel("Título.");
+        setDescriptionLabel("Descripcion de la propiedad.");
+        setPriceLabel("Precio.");
+        break;
+      default:
+        setNameLabel("Nombre del item.");
+        setDescriptionLabel("Descripción del item.");
+        setPriceLabel("Precio del item.");
+        break;
+    }
+  };
+
+  if (loading) return <Loading />;
 
   return (
     <>
-      <form
-        method="POST"
-        onSubmit={confirmAction}
+      <div
         className={`relative mt-4 lg:mt-0 p-4 lg:pl-6 lg:pr-6 ${
           expandedNavBar && !editMode
             ? "ml-0 lg:ml-52"
@@ -291,10 +364,10 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
         }`}
       >
         {" "}
-        {
-          <IoIosCloseCircleOutline
-            className="absolute top-2 right-2 w-8 h-8"
-            color="red"
+        {editMode &&
+          <IoCloseOutline
+            className="absolute top-2 right-2 md:-right-14 md:top-0 md:!stroke-white w-12 h-12 z-50"
+            color="white"
             onClick={onCloseFunction}
           />
         }
@@ -306,16 +379,19 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
           />
         )}
         <div className="w-full">
-          <div className=" storepages bg-white p-10 border shadow-lg p-4 px-4 md:p-8 mb-6">
-            <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-              <div className="text-black">
-                <p className="font-black text-lg">Configuración de items</p>
-                <p>
-                  Favor complete todos los campos para ingresar un nuevo item.
+          <div className=" storepages bg-white border shadow-lg  mb-6">
+            <div className="grid text-sm grid-cols-1 lg:grid-cols-3">
+              <div className="text-black mb-4 md:mb-0 bg-[#EEDECF] p-4">
+                <p className="font-black text-2xl mb-4">¡Crea tu anuncio!</p>
+                <p className="text-gray-800">
+                  Favor completa todos los campos para ingresar un nuevo anuncio.
                 </p>
+                <div className="w-full h-full flex items-start md:mt-16 justify-center p-4">
+                  <img className="w-ful h-fit z-50" src="/assets/images/create-item.svg" />
+                </div>
               </div>
 
-              <div className="lg:col-span-2">
+              <div className="lg:col-span-2 p-4">
                 <div className="grid text-sm grid-cols-1 md:grid-cols-5">
                   <div className="md:col-span-5 relative">
                     <DropDownList
@@ -380,61 +456,61 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
 
                   {category === "SERVICES" && (
                     <>
-                    <div className="md:col-span-5 relative">
-                      <DropDownList
-                        additionalClass="rounded-t-lg"
-                        onSelectValue={setServiceType}
-                        values={servicesList}
-                        type="text"
-                        required
-                        name="serviceType"
-                        id="serviceType"
-                        onChange={(e) => {
-                          setServiceType(e.target.value);
-                        }}
-                        currentValue={serviceType}
-                      />
-                      <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
-                        Categoría del servicio.
+                      <div className="md:col-span-5 relative">
+                        <DropDownList
+                          additionalClass="rounded-t-lg"
+                          onSelectValue={setServiceType}
+                          values={servicesList}
+                          type="text"
+                          required
+                          name="serviceType"
+                          id="serviceType"
+                          onChange={(e) => {
+                            setServiceType(e.target.value);
+                          }}
+                          currentValue={serviceType}
+                        />
+                        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+                          Categoría del servicio.
+                        </div>
                       </div>
-                    </div>
-                    <div className="md:col-span-5 relative">
-                      <DropDownList
-                        additionalClass="rounded-t-lg"
-                        onSelectValue={setModalityType}
-                        values={modalityList}
-                        type="text"
-                        required
-                        name="modalityType"
-                        id="modalityType"
-                        onChange={(e) => {
-                          setModalityType(e.target.value);
-                        }}
-                        currentValue={modalityType}
-                      />
-                      <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
-                        Modalidad
+                      <div className="md:col-span-5 relative">
+                        <DropDownList
+                          additionalClass="rounded-t-lg"
+                          onSelectValue={setModalityType}
+                          values={modalityList}
+                          type="text"
+                          required
+                          name="modalityType"
+                          id="modalityType"
+                          onChange={(e) => {
+                            setModalityType(e.target.value);
+                          }}
+                          currentValue={modalityType}
+                        />
+                        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+                          Modalidad
+                        </div>
                       </div>
-                    </div>
-                    <div className="md:col-span-5 relative">
-                      <DropDownList
-                        additionalClass="rounded-t-lg"
-                        onSelectValue={setProvince}
-                        values={provinceList}
-                        type="text"
-                        required
-                        name="province"
-                        id="province"
-                        onChange={(e) => {
-                          (e.target.value);
-                        }}
-                        currentValue={province}
-                      />
-                      <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
-                        Provincia
+                      <div className="md:col-span-5 relative">
+                        <DropDownList
+                          additionalClass="rounded-t-lg"
+                          onSelectValue={setProvince}
+                          values={provinceList}
+                          type="text"
+                          required
+                          name="province"
+                          id="province"
+                          onChange={(e) => {
+                            e.target.value;
+                          }}
+                          currentValue={province}
+                        />
+                        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+                          Provincia
+                        </div>
                       </div>
-                    </div>
-                  </>
+                    </>
                   )}
                   {category != "SERVICES" && category != "HOUSES" && (
                     <>
@@ -548,7 +624,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
                       onChangeValues={setInternalHouseInfo}
                       houseInfo={houseInfo}
                     />
-                  )}                  
+                  )}
 
                   {images.length <= 4 && (
                     <div className="md:col-span-5 relative mt-4">
@@ -585,7 +661,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
                   </div>
 
                   <div className="md:col-span-5 text-right mt-4">
-                    <button type="submit" className="inline black_btn">
+                    <button type="submit" onClick={confirmAction} className="inline black_btn">
                       {editMode ? "Actualizar" : "Guardar"}
                     </button>
                   </div>
@@ -594,7 +670,7 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
             </div>
           </div>
         </div>
-      </form>
+      </div>
       {showImage && (
         <UploadedImage
           image={images[selectedImage]}
@@ -605,6 +681,6 @@ const StoreItem = ({ editMode=false, product, onCloseFunction }) => {
       )}
     </>
   );
-}
+};
 
 export default StoreItem;

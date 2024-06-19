@@ -54,6 +54,15 @@ export const GENERAL_SUCCESS_PROCESS = {
   okText: "¡Entendido!",
   cancelText: "Cancelar",
 };
+
+export const ITEM_CREATED_SUCCESFULLY = {
+  message: "¡Felicidades! Anuncio creado correctamente.",
+  showCancelButton: false,
+  okText: "¡De acuerdo!",
+  cancelText: "Cancelar",
+  processToExecute: "CLEANPRODUCT"
+};
+
 export const PRODUCT_SAVE_CONFIRM_ACTION = {
   message: "¿Seguro de guardar los cambios?",
   showCancelButton: true,
@@ -434,14 +443,14 @@ export const VERTICAL_NAV_CONFIGURATION = [
   },
   {
     btnNAVPage: "myStore",
-    btnDescription: "Agregar Item",
+    btnDescription: "Agregar Anuncio",
     btnID: "ADDPRODUCT",
     isPrincipal: false,
     icon: <MdAddShoppingCart className="w-4 h-4" color="black" />,
   },
   {
     btnNAVPage: "myStore",
-    btnDescription: "Mis items",
+    btnDescription: "Mis anuncios",
     btnID: "LISTITEM",
     isPrincipal: false,
     icon: <FaList className="w-4 h-4" color="black" />,
@@ -704,6 +713,23 @@ export const SITE_MAP = [
       {
         order:2,
         text:"Mi tienda",
+        url: "",
+        lastPath:true
+       }
+    ]
+  },
+  {
+    path:"/create/item",
+    mapTree:[
+      {
+       order:1,
+       text:"Home",
+       url: "/",
+       lastPath:false
+      },
+      {
+        order:2,
+        text:"Crea tu anuncio",
         url: "",
         lastPath:true
        }
