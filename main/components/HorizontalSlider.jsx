@@ -13,7 +13,7 @@ const router = useRouter();
     const { category } = useSelector(state => state.siteNav);
     const images = [
       {url: '/assets/images/main_slider_PRODUCT_1.svg',
-        redirectTo: '/createItem/product',
+        redirectTo: '/create/item?type=product',
         active: true
       },
       {url: '/assets/images/main_slider_PRODUCT_1_MOBILE.svg',

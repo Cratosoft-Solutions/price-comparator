@@ -54,6 +54,15 @@ export const GENERAL_SUCCESS_PROCESS = {
   okText: "¡Entendido!",
   cancelText: "Cancelar",
 };
+
+export const ITEM_CREATED_SUCCESFULLY = {
+  message: "¡Felicidades! Anuncio creado correctamente.",
+  showCancelButton: false,
+  okText: "¡De acuerdo!",
+  cancelText: "Cancelar",
+  processToExecute: "CLEANPRODUCT"
+};
+
 export const PRODUCT_SAVE_CONFIRM_ACTION = {
   message: "¿Seguro de guardar los cambios?",
   showCancelButton: true,
@@ -704,6 +713,23 @@ export const SITE_MAP = [
       {
         order:2,
         text:"Mi tienda",
+        url: "",
+        lastPath:true
+       }
+    ]
+  },
+  {
+    path:"/create/item",
+    mapTree:[
+      {
+       order:1,
+       text:"Home",
+       url: "/",
+       lastPath:false
+      },
+      {
+        order:2,
+        text:"Crea tu anuncio",
         url: "",
         lastPath:true
        }

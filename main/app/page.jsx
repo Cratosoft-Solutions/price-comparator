@@ -90,8 +90,8 @@ const Home = () => {
         } 
       </div>
       <div className="w-full mb-8 relative">
-        <img className="w-full h-fit" src={isMobile()?"/assets/images/search-image-mb.svg":"/assets/images/search-image.svg"}></img>
-        <SearchButton behaviour={{size:isMobile()? 'w-full p-4':'left-40 w-1/3 p-4', height:"h-20", fSize:"text-2xl", bSize:'border-1', placeHolderColor:'placeholder-gray', placeHolderText:'placeholder:text-center', iconSearchColor:'black',bgColor:'bg-white', displayImage:true, textColor:'text-black', borderColor:'border-black', borderType:'rounded', style:{backgroundColor:"#EDEEF2", position:"relative"}}}/> 
+        <img className="w-full h-fit -mb-1" src={isMobile()?"/assets/images/search-image-mb.svg":"/assets/images/search-image.svg"}></img>
+        <SearchButton behaviour={{size:isMobile()? ' w-full p-4':'left-40 w-1/3 p-4', height:"h-20", fSize:"text-xl", bSize:'border-1', placeHolderColor:'placeholder-gray', placeHolderText:'placeholder:text-center', iconSearchColor:'black',bgColor:'bg-white', displayImage:true, textColor:'text-black', borderColor:'border-black', borderType:'rounded', style:{backgroundColor:"#EDEEF2", position:"relative"}}}/> 
       </div>
 
       <div className="w-full mb-4 relative">
