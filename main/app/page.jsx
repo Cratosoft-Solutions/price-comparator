@@ -99,7 +99,7 @@ const Home = () => {
           <HorizontalMostSearchedList companyLogo={""} companyProducts={mostSearchedDataByCategory}/> 
         } 
       </div> 
-      <div className="w-full mb-16 relative">
+      <div className="w-full mb-4 relative">
         <BTNPublishWithImage/> 
       </div> 
       <div className="w-full mb-4 relative">
