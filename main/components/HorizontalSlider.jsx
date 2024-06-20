@@ -17,7 +17,7 @@ const router = useRouter();
         active: true
       },
       {url: '/assets/images/main_slider_PRODUCT_1_MOBILE.svg',
-        redirectTo: '/createItem/product',
+        redirectTo: '/create/item?type=product',
         active: true
       },
       {url: '/assets/images/main_slider_PRODUCT_2.svg',
