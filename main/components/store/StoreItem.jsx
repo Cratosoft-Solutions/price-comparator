@@ -378,8 +378,8 @@ const StoreItem = ({
             onCancel={onCancel}
           />
         )}
-        <div className="w-full">
-          <div className=" storepages bg-white border shadow-lg  mb-6">
+        <div className="w-full ">
+          <div className=" storepages bg-white border shadow-lg mb-6">
             <div className="grid text-sm grid-cols-1 lg:grid-cols-3">
               <div className="text-black mb-4 md:mb-0 bg-[#EEDECF] p-4">
                 <p className="font-black text-2xl mb-4">¡Crea tu anuncio!</p>
@@ -387,7 +387,7 @@ const StoreItem = ({
                   Favor completa todos los campos para ingresar un nuevo anuncio.
                 </p>
                 <div className="w-full h-full flex items-start md:mt-16 justify-center p-4">
-                  <img className="w-ful h-fit z-50" src="/assets/images/create-item.svg" />
+                  <img className="w-ful h-fit" src="/assets/images/create-item.svg" />
                 </div>
               </div>
 
