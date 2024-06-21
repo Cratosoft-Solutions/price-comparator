@@ -20,7 +20,7 @@ const PromotionCard = ({ product, index, callBackFunction }) => {
         </div>
         
       </div>
-      <div onClick={()=>{handleProductClick(product.productId)}} className="w-32 h-32 lg:w-fit lg:h-64 flex justify-center md:mb-4" >
+      <div onClick={()=>{handleProductClick(product.productId)}} className="w-32 h-32 lg:w-64 lg:h-64 flex justify-center md:mb-4" >
                 <img
                     alt={product.productDescription}
                     src={product.productImage}
