@@ -133,10 +133,10 @@ const MyResults = () => {
              dispatch(setSearching(false));  
             }
             else{
-              console.log("Going to search info in mongo");
               let existsOnDB;
               // Load searches only for scrapping in product category
               if (category === "PRODUCT") {
+                console.log("Going to search info in mongo");
                 const dbData = await getSearchDataFromDataBase(
                   key,
                   session?.user?.email

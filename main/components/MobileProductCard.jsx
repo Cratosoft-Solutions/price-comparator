@@ -8,7 +8,7 @@ const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
     if(adminMode || product.isLocal){
       callBackFunction(product);
     }else{
-      router.push(product.vendorLink);
+      window.open(product.vendorLink, '_blank');
     }
   }
 
