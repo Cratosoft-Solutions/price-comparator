@@ -99,7 +99,7 @@ const SearchButton = ({personalizedClass="",behaviour=BTN_SEARCH_DEFAULT_BEHAVIO
                 id="txt-search"
                 type="search"
                 name="q"
-                className={` pr-4 ${behaviour.placeHolderText} ${behaviour.placeHolderColor } ${behaviour.fSize} ${behaviour.textColor} ${behaviour.bgColor} ${behaviour.borderType?behaviour.borderType:'md:rounded-full'} ${behaviour.borderColor}   ${behaviour.bSize}  pl-10 focus:outline-none  ${behaviour.height} w-full`}
+                className={`bg-white pr-4 ${behaviour.placeHolderText} ${behaviour.placeHolderColor } ${behaviour.fSize} ${behaviour.textColor} ${behaviour.bgColor} ${behaviour.borderType?behaviour.borderType:'md:rounded-full'} ${behaviour.borderColor}   ${behaviour.bSize}  pl-10 focus:outline-none  ${behaviour.height} w-full`}
                 placeholder={`¿Qué buscas?`}
                 autoComplete="off"
               />
@@ -113,7 +113,7 @@ const SearchButton = ({personalizedClass="",behaviour=BTN_SEARCH_DEFAULT_BEHAVIO
               onClick={() => {
                 setShowMySearchs(true);
               }}
-              className="flex w-full justify-left mb-2 lg:mb-6 text-medium text-gray-600 items-center"
+              className=" flex w-full justify-left mb-2 lg:mb-6 text-medium text-gray-600 items-center"
             >
               <HiOutlineDocumentSearch />
               Ver mis búsquedas anteriores

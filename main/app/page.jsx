@@ -8,8 +8,9 @@ import { fetchWithTimeout, isMobile } from "@utils/functions";
 import { useEffect, useState } from "react";
 import SearchButton from "@components/SearchButton";
 import { useSelector } from "react-redux";
-import { DEFAULT_ITEMS_INFORMATION } from "@utils/constants";
-import BTNPublishWithImage from "@components/BTNPublishWithImage";
+import { DEFAULT_ITEMS_INFORMATION, MAIN_STYLES } from "@utils/constants";
+import MainPageInformationTab from "@components/MainPageInformationTab";
+import MainPageInformationCategories from "@components/MainPageInformationCategories";
 
 
 const Home = () => {
@@ -84,25 +85,30 @@ const Home = () => {
       <div className="w-full md:mb-4 relative">
         <HorizontalSlider/>
       </div>    
+
+      <div className="w-full md:mb-4 relative">
+        <MainPageInformationCategories/>
+      </div>    
+
       <div className="w-full mb-8">
         {!loadingPromotions && data && data.length > 0 &&
           <HorizontalItemList companyLogo={""} companyProducts={dataByCategory}/>
         } 
       </div>
-      <div className="w-full mb-8 relative">
-        <img className="w-full h-fit -mb-1" src={isMobile()?"/assets/images/search-image-mb.svg":"/assets/images/search-image.svg"}></img>
-        <SearchButton behaviour={{size:isMobile()? ' w-full p-4':'left-40 w-1/3 p-4', height:"h-20", fSize:"text-xl", bSize:'border-1', placeHolderColor:'placeholder-gray', placeHolderText:'placeholder:text-center', iconSearchColor:'black',bgColor:'bg-white', displayImage:true, textColor:'text-black', borderColor:'border-black', borderType:'rounded', style:{backgroundColor:"#EDEEF2", position:"relative"}}}/> 
-      </div>
+
+      <div className="w-full mb-4 relative">
+        <MainPageInformationTab propertiesToBeRendered={MAIN_STYLES.MAIN_PAGE.SEARCH_PRODUCT}/> 
+      </div> 
 
       <div className="w-full mb-4 relative">
         {!loadingMostSearched && mostSearchedData && mostSearchedData.length > 0 &&
           <HorizontalMostSearchedList companyLogo={""} companyProducts={mostSearchedDataByCategory}/> 
         } 
       </div> 
-      <div className="w-full mb-4 relative">
-        <BTNPublishWithImage/> 
+      <div className="w-full  relative">
+        <MainPageInformationTab propertiesToBeRendered={MAIN_STYLES.MAIN_PAGE.CREATE_PRODUCT_TAB}/> 
       </div> 
-      <div className="w-full mb-4 relative">
+      <div className="w-full  relative">
         <HorizontalMainInfo/> 
       </div>      
  

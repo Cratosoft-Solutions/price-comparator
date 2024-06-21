@@ -2,7 +2,7 @@
 "use client"
 import BTNPublish from "@components/BTNPublish";
 import HorizontalSlider from "@components/HorizontalSlider"
-import BTNPublishWithImage from "@components/BTNPublishWithImage";
+import BTNPublishWithImage from "@components/MainPageInformationTab";
 
 /* export const metadata = {
   title: "EncuéntraLo Fácil CR: Login",
