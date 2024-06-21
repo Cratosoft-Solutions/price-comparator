@@ -20,7 +20,7 @@ const SiteMap = () => {
     <div className="bg-[#FCF8F8] w-full h-14 pl-4 lg:pr-10 lg:pl-10 flex items-center mt-4 mb-2">
       {SITE_MAP.filter(pathToPaint => pathToPaint.path == pathname)[0].mapTree?.map((element) => (
         <>
-          <span className="inline hover:cursor-pointer hover:font-black "
+          <span className="text-black  inline hover:cursor-pointer hover:font-black "
             onClick={() => {
               onUserSelected(element);
             }}

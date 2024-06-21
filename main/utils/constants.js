@@ -795,3 +795,33 @@ export const DEFAULT_ITEMS_INFORMATION =[
   }
 
 ]
+
+export const MAIN_STYLES={
+  MAIN_PAGE:{
+    CREATE_PRODUCT_TAB:{
+      image:"/assets/images/create-item2.svg",
+      imgStyle:"w-1/2 h-fit",
+      imgPadding:"p-8",
+      backGroundColor: "bg-[#EEDECF]",
+      title:"¡Crea tu anuncio!",
+      subTitle:"Fácil y sencillo.",
+      bodyDescription:"¡Maximiza tus ingresos al publicar los servicios que ofreces en nuestra plataforma. Deja que el mundo conozca tus habilidades y genera ingresos al mismo tiempo!",
+      btn:"PUBLISH",
+      specialStyle:{}
+    },
+    SEARCH_PRODUCT:{
+      image:"/assets/images/search-item.svg",
+      imgStyle:"w-full h-fit",
+      imgPadding:"",
+      backGroundColor: "",
+      title:"¡Búscalo Fácil!",
+      subTitle:"No te compliques.",
+      bodyDescription:"¡Descubre infinidad de productos, autos, casas & apartamentos e inclusive servicios. Encuentra tu siguiente compra en nuestra plataforma. Recueda que puedes contactar directamente al vendedor si necesidad de intermadiarios!",
+      btn:"SEARCH",
+      specialStyle:{
+        backgroundColor:"#EDEEF2"
+      }
+    }
+  }
+
+}

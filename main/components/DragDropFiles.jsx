@@ -68,14 +68,14 @@ const DragDropFiles = ({onImageLoaded}) => {
             >
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
                 <svg
-                  className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+                  className="w-8 h-8 mb-4 text-gray-500"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 20 16"
                 >
                   <path
-                    stroke="currentColor"
+                    stroke="black"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
@@ -83,20 +83,20 @@ const DragDropFiles = ({onImageLoaded}) => {
                   />
                 </svg>
                 {isDragActive ? (
-                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                    <span className="font-semibold">
+                  <p className="mb-2 text-sm text-black  ">
+                    <span className="text-black font-semibold">
                       Suelte el archivo aquí...
                     </span>
                   </p>
                 ) : (
-                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                  <p className="mb-2 text-sm text-black ">
                     {" "}
                     {fileName != null
                       ? fileName
                       : "Clic para cargar o arrastre el archivo aquí"}
                   </p>
                 )}
-                <p className="text-xs text-gray-500 dark:text-gray-400">
+                <p className="text-xs text-black ">
                     {`PNG, SVG, JPEG.`}
                 </p>
               </div>

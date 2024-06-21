@@ -73,7 +73,7 @@ const LoginRegister = ({isLogin=true}) => {
 
         <div className="w-full bg-white rounded-lg drop-shadow-[0_0px_2px_rgba(0,0,0,0.25)] md:mt-4 sm:max-w-md xl:p-0 mb-4">
           <div className="p-6  sm:p-8">
-            <h1 className="h-8 lg:h-12 text-xl font-black">
+            <h1 className="text-black h-8 lg:h-12 text-xl font-black">
               {isLogin?"Ingresa tus credenciales":"Crea tu cuenta"}
             </h1>
             <form onSubmit={executeOnCredentialLogin} method="POST" className="space-y-4 md:space-y-6" action="#">
@@ -116,12 +116,12 @@ const LoginRegister = ({isLogin=true}) => {
               <div className="flex items-center justify-between">
                 <div className="flex items-start">
                   <div className="flex items-center h-5">
-                    {isLogin? <span>¿Sin cuenta? <Link className="dropdown_link" href={'/register'}>Registrarme</Link> </span>:<span>¿Ya tienes cuenta? <Link className="dropdown_link" href={'/login'}>Ingresar</Link> </span>}
+                    {isLogin? <span className="text-black ">¿Sin cuenta? <Link className="dropdown_link" href={'/register'}>Registrarme</Link> </span>:<span>¿Ya tienes cuenta? <Link className="dropdown_link" href={'/login'}>Ingresar</Link> </span>}
                   </div>
                 </div>
                 <a
                   href="#"
-                  className="text-sm font-medium text-primary-600 hover:underline "
+                  className="text-black text-sm font-medium text-primary-600 hover:underline "
                 >
                   Olvidé mi contraseña
                 </a>
