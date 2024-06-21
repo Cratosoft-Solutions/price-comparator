@@ -1,8 +1,8 @@
 /* const { default: PageLoginComponent } = require("@components/PageLoginComponent") */
 "use client"
-import BTNPublish from "@components/BTNPublish";
 import HorizontalSlider from "@components/HorizontalSlider"
-import BTNPublishWithImage from "@components/MainPageInformationTab";
+import MainPageInformationTab from "@components/MainPageInformationTab";
+import { MAIN_STYLES } from "@utils/constants";
 
 /* export const metadata = {
   title: "EncuéntraLo Fácil CR: Login",
@@ -24,7 +24,7 @@ const Promotion = () => {
         Nuestra estrategia integral incluye una variedad de servicios diseñados para impulsar tu sitio web hacia el éxito. Desde optimización en motores de búsqueda (SEO) hasta campañas de marketing en redes sociales, nos aseguramos de que tu página alcance a la audiencia adecuada en el momento adecuado.
         </p>
       </div>
-      <BTNPublishWithImage/>
+      <MainPageInformationTab propertiesToBeRendered={MAIN_STYLES.MAIN_PAGE.CREATE_PRODUCT_TAB}/>
       <div className="grid gap-y-4 mt-4 mb-4">
         <h2 className="mt-1 font-black text-base text-black">
         Beneficios de unirte a Encuéntralo Fácil CR 
