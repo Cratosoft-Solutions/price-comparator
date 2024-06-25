@@ -26,7 +26,7 @@ const RootLayout = ({ children }) => {
         </head>
         <body className="__variable_7dbc08 __variable_20951f">
           <Provider>
-            <main className="app relative">
+            <main className="light  app relative">
                 <>
                   <Nav />
                   <SiteMapWrapper/>

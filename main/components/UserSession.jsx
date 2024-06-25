@@ -1,4 +1,3 @@
-import { isMobile } from '@utils/functions'
 import Image from 'next/image'
 import React from 'react';
 import { signIn, signOut, useSession } from "next-auth/react";

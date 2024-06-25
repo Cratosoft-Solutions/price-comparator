@@ -1788,3 +1788,8 @@ img{
 .max-heigh-available{
   height: -webkit-fill-available; 
 }
+
+input[type="checkbox"] {
+  background-color: #ffffff !important;
+  color: black;
+}

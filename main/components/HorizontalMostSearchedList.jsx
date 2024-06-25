@@ -1,7 +1,8 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import PromotionCard from "./PromotionCard";
-import LocalPromotedCard from "./LocalPromotedCard";
+import { BASIC_PRODUCT_MODEL } from "@utils/constants";
+import ProductDetails from "./store/ProductDetails";
 
 const HorizontalMostSearchedList = ({ companyProducts, companyLogo }) => {
   const parentHTML = useRef(null);
@@ -9,7 +10,9 @@ const HorizontalMostSearchedList = ({ companyProducts, companyLogo }) => {
   const [autoInterval, setAutoInterval] = useState(null);
   const [scrollToLeft, setScrollToLeft] = useState(true);
   const [scrollToRight, setScrollToRight] = useState(true);
-  
+  const [showProductDetail, setShowProductDetail]= useState(false);
+  const [product, setProduct]= useState(BASIC_PRODUCT_MODEL);
+
   const sideScroll = (direction, speed, distance, step) => {
     let scrollAmount = 0;
     setScrollInterval(
@@ -58,6 +61,10 @@ const HorizontalMostSearchedList = ({ companyProducts, companyLogo }) => {
    
   };
 
+  const onProductSelected = (product)=>{
+    setProduct(product);
+    setShowProductDetail(true);
+  }
 
   useEffect(()=>{
       validateScroll();
@@ -71,6 +78,7 @@ const HorizontalMostSearchedList = ({ companyProducts, companyLogo }) => {
 
   return (
     <div className="mr-2 ml-2 lg:mr-10 lg:ml-10">
+          {showProductDetail && <ProductDetails onCloseFunction={()=>{setShowProductDetail(false)}} storeId={product.storeId} productId={product.productId}/>}
     <div className="w-full  flex justify-center md:justify-start"><span className="text-black font-[1000] text-2xl mt-4 mb-2">Lo más buscado</span></div>
         <div className="w-full flex bg-transparent mb-6 flex-col m-auto p-auto relative mt-1 border:solid">
         <div className="absolute right-3 bottom-3">
@@ -94,9 +102,9 @@ const HorizontalMostSearchedList = ({ companyProducts, companyLogo }) => {
             >
                 <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"
                 />
             </svg>
@@ -121,9 +129,9 @@ const HorizontalMostSearchedList = ({ companyProducts, companyLogo }) => {
             >
                 <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"
                 />
             </svg>
@@ -135,11 +143,10 @@ const HorizontalMostSearchedList = ({ companyProducts, companyLogo }) => {
             ref={parentHTML}
         >
             <div className="flex flex-nowrap">
-            {companyProducts.map((element) => (
+            {companyProducts.map((element, index) => (
                 <div className="inline-block">
-                  {element.productId && <PromotionCard product={element}  />}
-                  {!element.productId && <LocalPromotedCard product={element} />}
-                  </div>
+                   <PromotionCard index={index} key={index} product={element} callBackFunction={onProductSelected} />
+               </div>
             ))}
 
 

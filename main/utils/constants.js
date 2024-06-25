@@ -3,7 +3,6 @@ import { IoMdDoneAll } from "react-icons/io";
 import { MdOutlineContactPhone } from "react-icons/md";
 import { FaUsersLine } from "react-icons/fa6";
 
-
 //MESSAGING STORE
 export const IMAGES_FORMAT_ACCEPTED = [
   "image/svg+xml",
@@ -60,7 +59,7 @@ export const ITEM_CREATED_SUCCESFULLY = {
   showCancelButton: false,
   okText: "¡De acuerdo!",
   cancelText: "Cancelar",
-  processToExecute: "CLEANPRODUCT"
+  processToExecute: "CLEANPRODUCT",
 };
 
 export const PRODUCT_SAVE_CONFIRM_ACTION = {
@@ -301,6 +300,89 @@ export const HOUSE_BENEFITS = [
   { value: "45", label: "Secadora" },
 ];
 
+export const PROMOTIONS = [
+  {
+    value: "5",
+    name: "VIP",
+    label: "VIP CRC 10,000.00 + IVA por 45 días",
+    expiration: "45",
+    detail:
+      "Disfruta de 45 días de máxima visibilidad con esta promoción. Tu anuncio se mostrará en búsquedas relevantes, con hasta 15 imágenes, y destacará en las secciones de Promociones, Más Buscados y todas las búsquedas por categoría, garantizando una exposición amplia y continua a una audiencia diversa.",
+    price: 10000,
+    formatedPrice:"10,000.00",
+    features: [
+      { key: 1, label: "Promoción válida por 45 días" },
+      { key: 2, label: "Presencia en búsquedas de los usuarios en base a categoria" },
+      { key: 3, label: "Hasta 15 imágenes por anuncio" },
+      { key: 4, label: "Anuncio se mostrará en sección de Promociones" },
+      { key: 5, label: "Anuncio se mostrará en la sección de Más buscados" },
+      { key: 6, label: "Anuncio se mostrará en todas las búsquedas de usuarios en base a categoría" }
+    ],
+  },
+  {
+    value: "4",
+    name: "Elite",
+    label: "Elite CRC 7,500.00 + IVA por 30 días",
+    expiration: "30",
+    detail: "Aprovecha al máximo esta promoción extendida de 30 días para tu anuncio. Con hasta 10 imágenes para una presentación completa, tu producto será destacado en búsquedas relevantes y en las secciones de Promociones y Más Buscados, asegurando una exposición continua a una amplia audiencia diversa, potenciando así su efectividad y alcance.",
+    price: 7500,
+    formatedPrice:"7,500.00",
+    features: [
+      { key: 1, label: "Promoción válida por 30 días" },
+      { key: 2, label: "Presencia en búsquedas de los usuarios en base a categoria" },
+      { key: 3, label: "Máximo 10 imágenes por anuncio" },
+      { key: 4, label: "Anuncio se mostrará en sección de Promociones" },
+      { key: 5, label: "Anuncio se mostrará en la sección de Más buscados" }
+    ],
+  },
+  {
+    value: "3",
+    name: "Deluxe",
+    label: "Deluxe CRC 4,000.00 + IVA por 22 días",
+    expiration: "22",
+    detail: "Maximiza tu visibilidad con esta promoción de 22 días. Tu anuncio estará en búsquedas clave, con hasta 10 imágenes para mostrar todos los detalles. Además, será destacado en Promociones y Más Buscados, asegurando una exposición completa ante una audiencia variada, lo que potenciará su alcance y efectividad.",
+    price: 4000,
+    formatedPrice:"4,000.00",
+    features: [
+      { key: 1, label: "Promoción válida por 22 días" },
+      { key: 2, label: "Presencia en búsquedas de los usuarios en base a categoria" },
+      { key: 3, label: "Máximo 8 imágenes por anuncio" },
+      { key: 4, label: "Anuncio se mostrará en sección de Promociones" },
+      { key: 5, label: "Anuncio se mostrará en la sección de Más buscados" }
+    ],
+  },
+  {
+    value: "2",
+    name: "Essentials",
+    label: "Essentials CRC 2,000.00 + IVA por 15 días",
+    expiration: "15",
+    detail: "Esta promoción te ofrece 15 días de visibilidad en búsquedas clave, con hasta 8 imágenes para destacar tu producto. Enfocada en una audiencia precisa",
+    price: 2000,    
+    formatedPrice:"2,000.00",
+    features: [
+      { key: 1, label: "Promoción válida por 15 días" },
+      { key: 2, label: "Presencia en búsquedas de los usuarios en base a categoria" },
+      { key: 3, label: "Máximo 8 imágenes por anuncio" },
+      { key: 4, label: "Anuncio no se mostrará en sección de Promociones" },
+      { key: 5, label: "Anuncio no se mostrará en la sección de Más buscados" }
+    ],
+  },
+  {
+    value: "1",
+    name: "Básico",
+    label: "Básico CRC 0.00 por 15 días",
+    expiration: "15",
+    detail: "Sin costos por publicar tu anuncio.",
+    price: 0,
+    formatedPrice:"0.00",
+    features: [
+      { key: 1, label: "Expiración de anuncio en 30 días" },
+      { key: 2, label: "Presencia en búsquedas de los usuarios en base a categoria" },
+      { key: 3, label: "Máximo 5 imágenes por anuncio" }
+    ],
+  }
+];
+
 //SCRAP
 export const SEARCH_DEFAULT_OPTIONS = {
   configuration: { MINTOMAX: true, MAXTOMIN: false, MATCH: false },
@@ -531,214 +613,211 @@ export const EXCLUDE_SITE_MAP = ["/"];
 
 export const SITE_MAP = [
   {
-    path:"/search/results",
-    mapTree:[
+    path: "/search/results",
+    mapTree: [
       {
-       order:1,
-       text:"Home",
-       url: "/",
-       lastPath:false
+        order: 1,
+        text: "Home",
+        url: "/",
+        lastPath: false,
       },
       {
-        order:2,
-        text:"TRANSLATECATEGORY",
+        order: 2,
+        text: "TRANSLATECATEGORY",
         url: "",
-        lastPath:true
-       }
-    ]
+        lastPath: true,
+      },
+    ],
   },
   {
-    path:"/login",
-    mapTree:[
+    path: "/login",
+    mapTree: [
       {
-       order:1,
-       text:"Home",
-       url: "/",
-       lastPath:false
+        order: 1,
+        text: "Home",
+        url: "/",
+        lastPath: false,
       },
       {
-        order:2,
-        text:"Registro - Ingreso",
+        order: 2,
+        text: "Registro - Ingreso",
         url: "",
-        lastPath:true
-       }
-    ]
+        lastPath: true,
+      },
+    ],
   },
   {
-    path:"/register",
-    mapTree:[
+    path: "/register",
+    mapTree: [
       {
-       order:1,
-       text:"Home",
-       url: "/",
-       lastPath:false
+        order: 1,
+        text: "Home",
+        url: "/",
+        lastPath: false,
       },
       {
-        order:2,
-        text:"Registro - Ingreso",
+        order: 2,
+        text: "Registro - Ingreso",
         url: "",
-        lastPath:true
-       }
-    ]
+        lastPath: true,
+      },
+    ],
   },
   {
-    path:"/termsandconditions",
-    mapTree:[
+    path: "/termsandconditions",
+    mapTree: [
       {
-       order:1,
-       text:"Home",
-       url: "/",
-       lastPath:false
+        order: 1,
+        text: "Home",
+        url: "/",
+        lastPath: false,
       },
       {
-        order:2,
-        text:"Términos y condiciones",
+        order: 2,
+        text: "Términos y condiciones",
         url: "",
-        lastPath:true
-       }
-    ]
+        lastPath: true,
+      },
+    ],
   },
   {
-    path:"/termsrejected",
-    mapTree:[
+    path: "/termsrejected",
+    mapTree: [
       {
-       order:1,
-       text:"Home",
-       url: "/",
-       lastPath:false
+        order: 1,
+        text: "Home",
+        url: "/",
+        lastPath: false,
       },
       {
-        order:2,
-        text:"Términos Rechazados",
+        order: 2,
+        text: "Términos Rechazados",
         url: "",
-        lastPath:true
-       }
-    ]
+        lastPath: true,
+      },
+    ],
   },
   {
-    path:"/unauthorized",
-    mapTree:[
+    path: "/unauthorized",
+    mapTree: [
       {
-       order:1,
-       text:"Home",
-       url: "/",
-       lastPath:false
+        order: 1,
+        text: "Home",
+        url: "/",
+        lastPath: false,
       },
       {
-        order:2,
-        text:"Página no autorizada",
+        order: 2,
+        text: "Página no autorizada",
         url: "",
-        lastPath:true
-       }
-    ]
+        lastPath: true,
+      },
+    ],
   },
   ,
   {
-    path:"/_not-found",
-    mapTree:[
+    path: "/_not-found",
+    mapTree: [
       {
-       order:1,
-       text:"Home",
-       url: "/",
-       lastPath:false
+        order: 1,
+        text: "Home",
+        url: "/",
+        lastPath: false,
       },
       {
-        order:2,
-        text:"Página no encontrada",
+        order: 2,
+        text: "Página no encontrada",
         url: "",
-        lastPath:true
-       }
-    ]
+        lastPath: true,
+      },
+    ],
   },
   {
-    path:"/promotion",
-    mapTree:[
+    path: "/promotion",
+    mapTree: [
       {
-       order:1,
-       text:"Home",
-       url: "/",
-       lastPath:false
+        order: 1,
+        text: "Home",
+        url: "/",
+        lastPath: false,
       },
       {
-        order:2,
-        text:"Promociones",
+        order: 2,
+        text: "Promociones",
         url: "",
-        lastPath:true
-       }
-    ]
+        lastPath: true,
+      },
+    ],
   },
   {
-    path:"/sale",
-    mapTree:[
+    path: "/sale",
+    mapTree: [
       {
-       order:1,
-       text:"Home",
-       url: "/",
-       lastPath:false
+        order: 1,
+        text: "Home",
+        url: "/",
+        lastPath: false,
       },
       {
-        order:2,
-        text:"Ventas",
+        order: 2,
+        text: "Ventas",
         url: "",
-        lastPath:true
-       }
-    ]
+        lastPath: true,
+      },
+    ],
   },
   {
-    path:"/howtouse",
-    mapTree:[
+    path: "/howtouse",
+    mapTree: [
       {
-       order:1,
-       text:"Home",
-       url: "/",
-       lastPath:false
+        order: 1,
+        text: "Home",
+        url: "/",
+        lastPath: false,
       },
       {
-        order:2,
-        text:"Forma de uso",
+        order: 2,
+        text: "Forma de uso",
         url: "",
-        lastPath:true
-       }
-    ]
+        lastPath: true,
+      },
+    ],
   },
   {
-    path:"/mystore",
-    mapTree:[
+    path: "/mystore",
+    mapTree: [
       {
-       order:1,
-       text:"Home",
-       url: "/",
-       lastPath:false
+        order: 1,
+        text: "Home",
+        url: "/",
+        lastPath: false,
       },
       {
-        order:2,
-        text:"Mi tienda",
+        order: 2,
+        text: "Mi tienda",
         url: "",
-        lastPath:true
-       }
-    ]
+        lastPath: true,
+      },
+    ],
   },
   {
-    path:"/create/item",
-    mapTree:[
+    path: "/create/item",
+    mapTree: [
       {
-       order:1,
-       text:"Home",
-       url: "/",
-       lastPath:false
+        order: 1,
+        text: "Home",
+        url: "/",
+        lastPath: false,
       },
       {
-        order:2,
-        text:"Crea tu anuncio",
+        order: 2,
+        text: "Crea tu anuncio",
         url: "",
-        lastPath:true
-       }
-    ]
-  }
-
+        lastPath: true,
+      },
+    ],
+  },
 ];
-
-
 
 export const BASIC_PRODUCT_MODEL = {
   storeId: null,
@@ -755,73 +834,96 @@ export const BASIC_PRODUCT_MODEL = {
   productSpecialPrice: null,
 };
 
-
-export const MAIN_PAGE_INFO_CARD=[
-  {icon:FaColonSign, title:"No pagas caprichos", description:"Libérate de los precios exorbitantes al publicitar tu anuncio. Descubre nuestras opciones de paquetes promocionales, diseñadas para adaptarse a tus necesidades a partir de un producto. "},
-  {icon:MdOutlineContactPhone, title:"Agilidad en comunicación", description:"No restringimos el acceso a tu información de contacto. Tus clientes potenciales pueden comunicarse contigo al instante, sin ninguna limitación."},
-  {icon:IoMdDoneAll, title:"Todo en un solo lugar", description:"Deshazte de la preocupación de tener que publicar tus productos o servicios en múltiples plataformas. Disfruta de la comodidad y confianza que te brinda una plataforma diseñada específicamente para ti."},
-  {icon:FaUsersLine, title:"Audiencia", description:"Benefíciate de una plataforma con alcance nacional, donde cualquier persona en el país pueda acceder a tus anuncios de manera rápida y sencilla."},
-]
+export const MAIN_PAGE_INFO_CARD = [
+  {
+    icon: FaColonSign,
+    title: "No pagas caprichos",
+    description:
+      "Libérate de los precios exorbitantes al publicitar tu anuncio. Descubre nuestras opciones de paquetes promocionales, diseñadas para adaptarse a tus necesidades a partir de un producto. ",
+  },
+  {
+    icon: MdOutlineContactPhone,
+    title: "Agilidad en comunicación",
+    description:
+      "No restringimos el acceso a tu información de contacto. Tus clientes potenciales pueden comunicarse contigo al instante, sin ninguna limitación.",
+  },
+  {
+    icon: IoMdDoneAll,
+    title: "Todo en un solo lugar",
+    description:
+      "Deshazte de la preocupación de tener que publicar tus productos o servicios en múltiples plataformas. Disfruta de la comodidad y confianza que te brinda una plataforma diseñada específicamente para ti.",
+  },
+  {
+    icon: FaUsersLine,
+    title: "Audiencia",
+    description:
+      "Benefíciate de una plataforma con alcance nacional, donde cualquier persona en el país pueda acceder a tus anuncios de manera rápida y sencilla.",
+  },
+];
 
 export const BTN_SEARCH_DEFAULT_BEHAVIOUR = {
-  size:'w-full',
-  height:'h-10',
-  fSize:'text-sm',
-  displayImage:false,
-  style:{},
-  bgColor:'bg-[#E9E9E9]',
-  bSize:'border-1',
-  textColor:'text-gray-900',
-  borderColor:'border-[#E9E9E9]',
-  iconSearchColor:'currentcolor',
-  placeHolderColor:'placeholder-gray-900',
-  placeHolderText:'placeholder:text-left'}
+  size: "w-full",
+  height: "h-10",
+  fSize: "text-sm",
+  displayImage: false,
+  style: {},
+  bgColor: "bg-[#E9E9E9]",
+  bSize: "border-1",
+  textColor: "text-gray-900",
+  borderColor: "border-[#E9E9E9]",
+  iconSearchColor: "currentcolor",
+  placeHolderColor: "placeholder-gray-900",
+  placeHolderText: "placeholder:text-left",
+};
 
-export const DEFAULT_ITEMS_INFORMATION =[
+export const DEFAULT_ITEMS_INFORMATION = [
   {
     redirectLink: `/sale`,
-    productImage: 'https://encuentralofacilcr.com/assets/images/local-prom-item-1.svg',
-    text:"¡Quiero vender!"
+    productImage:
+      "https://encuentralofacilcr.com/assets/images/local-prom-item-1.svg",
+    text: "¡Quiero vender!",
   },
   {
     redirectLink: `/`,
-    productImage: 'https://encuentralofacilcr.com/assets/images/local-prom-item-2.svg',
-    text:"¡A buscar!"
+    productImage:
+      "https://encuentralofacilcr.com/assets/images/local-prom-item-2.svg",
+    text: "¡A buscar!",
   },
   {
     redirectLink: `/promotion`,
-    productImage: 'https://encuentralofacilcr.com/assets/images/local-prom-item-3.svg',
-    text:"¡A ahorrar!"
-  }
+    productImage:
+      "https://encuentralofacilcr.com/assets/images/local-prom-item-3.svg",
+    text: "¡A ahorrar!",
+  },
+];
 
-]
-
-export const MAIN_STYLES={
-  MAIN_PAGE:{
-    CREATE_PRODUCT_TAB:{
-      image:"/assets/images/create-item2.svg",
-      imgStyle:"w-1/2 h-fit",
-      imgPadding:"p-8",
+export const MAIN_STYLES = {
+  MAIN_PAGE: {
+    CREATE_PRODUCT_TAB: {
+      image: "/assets/images/create-item2.svg",
+      imgStyle: "w-1/2 h-fit",
+      imgPadding: "p-8",
       backGroundColor: "bg-[#EEDECF]",
-      title:"¡Crea tu anuncio!",
-      subTitle:"Fácil y sencillo.",
-      bodyDescription:"¡Maximiza tus ingresos al publicar los servicios que ofreces en nuestra plataforma. Deja que el mundo conozca tus habilidades y genera ingresos al mismo tiempo!",
-      btn:"PUBLISH",
-      specialStyle:{}
+      title: "¡Crea tu anuncio!",
+      subTitle: "Fácil y sencillo.",
+      bodyDescription:
+        "¡Maximiza tus ingresos al publicar los servicios que ofreces en nuestra plataforma. Deja que el mundo conozca tus habilidades y genera ingresos al mismo tiempo!",
+      btn: "PUBLISH",
+      specialStyle: {},
     },
-    SEARCH_PRODUCT:{
-      image:"/assets/images/search-item.svg",
-      imgStyle:"w-full h-fit",
-      imgPadding:"",
+    SEARCH_PRODUCT: {
+      image: "/assets/images/search-item.svg",
+      imgStyle: "w-full h-fit",
+      imgPadding: "",
       backGroundColor: "",
-      title:"¡Búscalo Fácil!",
-      subTitle:"No te compliques.",
-      bodyDescription:"¡Descubre infinidad de productos, autos, casas & apartamentos e inclusive servicios. Encuentra tu siguiente compra en nuestra plataforma. Recueda que puedes contactar directamente al vendedor si necesidad de intermadiarios!",
-      btn:"SEARCH",
-      specialStyle:{
-        backgroundColor:"#EDEEF2"
-      }
-    }
-  }
-
-}
+      title: "¡Búscalo Fácil!",
+      subTitle: "No te compliques.",
+      bodyDescription:
+        "¡Descubre infinidad de productos, autos, casas & apartamentos e inclusive servicios. Encuentra tu siguiente compra en nuestra plataforma. Recueda que puedes contactar directamente al vendedor si necesidad de intermadiarios!",
+      btn: "SEARCH",
+      specialStyle: {
+        backgroundColor: "#EDEEF2",
+      },
+    },
+  },
+};

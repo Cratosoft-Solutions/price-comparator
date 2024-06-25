@@ -251,7 +251,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
                 <div className='grid grid-cols-1 lg:grid-cols-3'>
                     {CARD_EQUIPMENT.map((element, index)=>(
                         <div key={index} className="flex items-center mb-4">
-                            <input id={`card-equipment-${element.value}`} key={`card-equipment-${element.value}`} type="checkbox" checked={carInfo.equipment.filter(selectedElement => selectedElement == element.value).length > 0} className="w-4 h-4 accent-orange-500" onChange={()=>{fieldSelectedValue(element.value,"equipment")}}/>
+                            <input id={`card-equipment-${element.value}`} key={`card-equipment-${element.value}`} type="checkbox" checked={carInfo.equipment.filter(selectedElement => selectedElement == element.value).length > 0} className="w-4 h-4 accent-gray-900" onChange={()=>{fieldSelectedValue(element.value,"equipment")}}/>
                             <label htmlFor={`card-equipment-${element.value}`} className="ms-2 text-sm font-medium text-gray-600">{element.label}</label>
                         </div>  
                     ))}
