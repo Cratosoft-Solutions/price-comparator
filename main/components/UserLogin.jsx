@@ -11,7 +11,7 @@ const UserLogin = ({personalizedClass}) => {
     const router = useRouter();
   return (
     <div className={`z-50 flex h-full relative items-center justify-end ${personalizedClass}`}>
-          <div className="grid grid-rows-1 grid-cols-[50%_50%] gap-2 items-center">
+          <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-[50%_50%] gap-2 items-center">
             <div className="flex items-center justify-end">
               <img
                 src={

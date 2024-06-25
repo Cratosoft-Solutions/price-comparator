@@ -71,15 +71,15 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
 
       if(editingProduct)
       return (
-        <section className="max-heigh-available absolute top-0 w-full z-50 h-screen bg-black bg-opacity-30 py-11 left-0">
+        <section className="max-heigh-available fixed top-0 w-full z-50 h-screen bg-black bg-opacity-30 py-11 left-0">
           <div className="max-w-6xl w-fit py-2 mx-auto px-2 bg-white rounded-lg shadow">
             <StoreItem editMode={true} product={product} onCloseFunction={closeEditProduct}/>
           </div>
-        </section>
+        </section> 
       ); 
 
     return (
-      <section className="max-heigh-available absolute top-0 w-full z-50 h-screen bg-black bg-opacity-30 lg:py-11 left-0">
+      <section className="max-heigh-available fixed top-0 w-full z-50 h-screen bg-black bg-opacity-30 lg:py-11 left-0">
         <div className="max-w-4xl lg:py-8 mx-auto md:px-6 bg-white shadow relative  min-h-screen md:min-h-min">
           <IoCloseOutline onClick={() => { onCloseFunction(false); }} className="absolute top-1 -right-1 z-[100] lg:-top-2 lg:-right-12 h-12 w-12" color='whitesmoke'/>
           <div className="flex flex-wrap -mx-4">
