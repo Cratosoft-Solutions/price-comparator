@@ -1,16 +1,9 @@
 "use client";
 import React from 'react'
-import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { isMobile } from "@utils/functions";
-import SearchButton from "./SearchButton";
 import NavToogleDropDown from "./NavToogleDropDown";
-import { IoArrowUpCircleOutline } from "react-icons/io5";
-import NavCategoriesBar from "./NavCategoriesBar";
 import { useRouter } from "next/navigation";
-import { RiInformationFill } from "react-icons/ri";
 
 const UserLogin = ({personalizedClass}) => {
     const { data: session } = useSession();
@@ -31,16 +24,16 @@ const UserLogin = ({personalizedClass}) => {
                 onClick={() => setToogleDropDown((prev) => !prev)}
               />
             </div>
-            {!isMobile() && (
-              <div
-                className=" w-full hover:cursor-pointer  flex items-center justify-end"
-                onClick={() => setToogleDropDown((prev) => !prev)}
-              >
-                <span className='w-20'>
-                  {session?.user ? "Mi perfil" : ""}
-                </span>
-              </div>
-            )}
+
+            <div
+              className="hidden md:block w-full hover:cursor-pointer  flex items-center justify-end"
+              onClick={() => setToogleDropDown((prev) => !prev)}
+            >
+              <span className='w-20'>
+                {session?.user ? "Mi perfil" : ""}
+              </span>
+            </div>
+
             {toogleDropDown && (
               <NavToogleDropDown
                 userConnected={session?.user}

@@ -2,10 +2,9 @@ import { redirect } from 'next/navigation';
 import { compress, decompress } from 'compress-json';
 //import InputMask from 'react-input-mask';
 import axios from 'axios';
-import { AUTH_MESSAGES, CATEGORIES, CATEGORY_TYPES, IMAGES_FORMAT_ACCEPTED, NOT_CONTROLED_ERROR, PASSWORD_REGEX_VAL } from './constants';
+import { AUTH_MESSAGES, CATEGORIES, CATEGORY_TYPES, IMAGES_FORMAT_ACCEPTED, NOT_CONTROLED_ERROR } from './constants';
 import { scrapCompanyConfiguration } from "@utils/comercios";
 import Swal from 'sweetalert2';
-import {closest} from 'fastest-levenshtein';
 import { BLACK_LISTED_KEYWORDS } from "@utils/constants";
 import { isMobileClient } from './functionsClient';
 const currencyExchangeUtil = require('./currencyExchangeUtil');
@@ -433,7 +432,7 @@ export const getRankedTags = async (model) => {
      console.log(`Products promoted: ${products.length}`);
      if (products != undefined && products != null && products.length <= 3) {
        console.log('Starting getting products negotiable');
-       products = products.concat(await model.find({ negotiable: 'YES'}).limit(4));
+       products = products.concat(await model.find({ negotiable: 'YES'}).limit(10));
      }
      return products;
    } catch (err) {

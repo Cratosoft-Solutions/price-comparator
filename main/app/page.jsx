@@ -4,9 +4,8 @@ import HorizontalItemList from "@components/HorizontalItemList";
 import HorizontalMainInfo from "@components/HorizontalMainInfo";
 import HorizontalSlider from "@components/HorizontalSlider";
 import HorizontalMostSearchedList from "@components/HorizontalMostSearchedList";
-import { fetchWithTimeout, isMobile } from "@utils/functions";
+import { fetchWithTimeout } from "@utils/functions";
 import { useEffect, useState } from "react";
-import SearchButton from "@components/SearchButton";
 import { useSelector } from "react-redux";
 import { DEFAULT_ITEMS_INFORMATION, MAIN_STYLES } from "@utils/constants";
 import MainPageInformationTab from "@components/MainPageInformationTab";
@@ -100,7 +99,7 @@ const Home = () => {
         <MainPageInformationTab propertiesToBeRendered={MAIN_STYLES.MAIN_PAGE.SEARCH_PRODUCT}/> 
       </div> 
 
-      <div className="w-full mb-4 relative">
+      <div className="w-full mb-4">
         {!loadingMostSearched && mostSearchedData && mostSearchedData.length > 0 &&
           <HorizontalMostSearchedList companyLogo={""} companyProducts={mostSearchedDataByCategory}/> 
         } 

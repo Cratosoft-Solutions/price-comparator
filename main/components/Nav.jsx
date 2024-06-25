@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import { isMobile } from "@utils/functions";
 import SearchButton from "./SearchButton";
 import NavCategoriesBar from "./NavCategoriesBar";
 import { RiInformationFill } from "react-icons/ri";
@@ -52,11 +51,10 @@ const Nav = () => {
           </div>
         </div>
       </div>
-      {isMobile() && (
-        <div className="w-full bg-orange-500 ">
-          <SearchButton behaviour={{...BTN_SEARCH_DEFAULT_BEHAVIOUR, bSize:'border-2'}}/>
-        </div>
-      )}
+      
+      <div className="block md:hidden w-full bg-orange-500 ">
+        <SearchButton behaviour={{...BTN_SEARCH_DEFAULT_BEHAVIOUR, bSize:'border-2'}}/>
+      </div>
 
       <NavCategoriesBar />
     </>

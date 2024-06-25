@@ -304,7 +304,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
                 <div className='grid grid-cols-1 lg:grid-cols-3'>
                     {HOUSE_BENEFITS.map((element, index)=>(
                         <div key={index} className="flex items-center mb-4">
-                            <input id={`house-benefits-${element.value}`} key={`house-benefits-${element.value}`} type="checkbox" checked={houseInfo.benefits.filter(selectedElement => selectedElement == element.value).length > 0} className="w-4 h-4 accent-orange-500" onChange={()=>{fieldSelectedValue(element.value,"benefits")}}/>
+                            <input id={`house-benefits-${element.value}`} key={`house-benefits-${element.value}`} type="checkbox" checked={houseInfo.benefits.filter(selectedElement => selectedElement == element.value).length > 0} className="w-4 h-4 accent-gray-900" onChange={()=>{fieldSelectedValue(element.value,"benefits")}}/>
                             <label htmlFor={`house-benefits-${element.value}`} className="ms-2 text-sm font-medium text-gray-600">{element.label}</label>
                         </div>  
                     ))}

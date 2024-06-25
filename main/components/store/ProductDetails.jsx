@@ -2,13 +2,10 @@
 import Loading from '@app/loading';
 import GenericAnimation from '@components/GenericAnimation';
 import { IoCloseOutline } from "react-icons/io5";
-import { CARD_BRANDS, CARD_COMBUSTIBLE, CARD_EQUIPMENT, CARD_KMMI, CARD_STATUS, CARD_STYLES, CARD_TRANSMITION, GENERAL_PROVINCES, GENERAL_YESNO,SERVICES_TYPES,HOUSE_VENDOR_TYPE, HOUSE_FLOOR_TYPE,HOUSE_BALCONY_TERRACE,HOUSE_PROPERTY_TYPE,HOUSE_BENEFITS,MODALITY_TYPES, PROVINCES } from '@utils/constants';
-import { genericItemsValue, genericItemsValue2,getServiceItemLabel, isMobile } from '@utils/functions';
+import { isMobile } from '@utils/functions';
 import axios from 'axios';
-import { getSession, signIn } from 'next-auth/react';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { CiSquareCheck } from "react-icons/ci";
 import StoreItem from './StoreItem';
 import ImageGallery from "react-image-gallery";
 import { FaWhatsapp } from "react-icons/fa";

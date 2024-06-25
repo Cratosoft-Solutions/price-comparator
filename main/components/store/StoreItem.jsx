@@ -28,6 +28,8 @@ import CarInfo from "./CarInfo";
 import HouseInfo from "./HouseInfo";
 import { IoCloseOutline } from "react-icons/io5";
 import { copyToClipBoard } from "@utils/functionsClient";
+import PromotedOptions from "./PromotedOptions";
+import { MdOutlineArrowRight } from "react-icons/md";
 
 const StoreItem = ({
   editMode = false,
@@ -63,6 +65,15 @@ const StoreItem = ({
   const servicesList = SERVICES_TYPES;
   const modalityList = MODALITY_TYPES;
   const provinceList = PROVINCES;
+  
+  const [nameVendor, setNameVendor] = useState('');
+  const [contactNumber, setContactNumber] = useState('');
+  const [showwhatssapicon, setShowWhatssapIcon] = useState(false);
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [promotionSelected, setPromotionSelected]=useState(0);
+
+
   const { expandedNavBar } = useSelector(
     (state) => state.verticalnav.myStoreNav
   );
@@ -117,6 +128,7 @@ const StoreItem = ({
         signIn();
       } else {
         if (session) {
+          console.log(session.user);
           const storeInfo = await axios.get(
             `/api/user/${session.user.id}/store/`
           );
@@ -392,6 +404,11 @@ const StoreItem = ({
               </div>
 
               <div className="lg:col-span-2 p-4">
+                <div className="inline flex items-center mb-4">
+                  <MdOutlineArrowRight className="-ml-4 hidden md:block inline w-12 h-12" color="black"/>
+                  <p className="inline text-black w-full text-center md:text-left font-black text-2xl">Datos generales del anuncio</p>
+                </div>
+
                 <div className="grid text-sm grid-cols-1 md:grid-cols-5">
                   <div className="md:col-span-5 relative">
                     <DropDownList
@@ -659,6 +676,35 @@ const StoreItem = ({
                       ))}
                     </div>
                   </div>
+                  <div className="md:col-span-5 text-right relative ">
+                    <div className="inline flex items-center mb-4">
+                      <MdOutlineArrowRight className="-ml-4 hidden md:block inline w-12 h-12" color="black"/>
+                    <p className="inline text-black w-full text-center md:text-left font-black text-2xl">Datos de contacto</p>
+                </div>                  </div>
+                  <div className="md:col-span-5 relative">
+                        <input required type="email" name="email" id="email" className=" inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800  border border-gray-300 rounded-t-lg "  value={email} onChange={e => {setEmail(e.target.value);}}/>
+                        <div className={`${email?'labelsconfigurationwithvalue':'labelsconfiguration'} text-gray-600 text-sm`}>Email de contacto.</div>
+                  </div>
+
+                  <div className="md:col-span-5 relative">
+                        <input name="contactnumber" className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800  border border-gray-300" id="contactnumber" value={contactNumber}  onChange={e => {setContactNumber(e.target.value);}}/>
+                        <div className={`${contactNumber?'labelsconfigurationwithvalue':'labelsconfiguration'} text-gray-600 text-sm`}>Número de contacto.</div>
+                  </div>
+
+                  <div className="md:col-span-5 relative">
+                        <input required type="input" name="address" id="address" className="inputconfiguration rounded-b-lg focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800  border border-gray-300"  value={address} onChange={e => {setAddress(e.target.value);}}/>
+                        <div className={`${address?'labelsconfigurationwithvalue':'labelsconfiguration'} text-gray-600 text-sm`}>Ubicación física (Sólo si aplica).</div>
+                  </div>
+
+                  <div className="md:col-span-5 relative mt-4">
+                      <div className="inline-flex items-center">
+                          <img className='mr-2' src="/assets/images/ws-image.png" width={30} height={30} alt="Productos y servicios. Encuéntralo Facil Costa Rica"></img>
+                          <input className="w-4 h-4 accent-gray-900 dark:accent-white" type="checkbox" name="billing_same" id="billing_same"  checked={showwhatssapicon} onChange={() => {setShowWhatssapIcon(prev => !prev);}}/>
+                          <label htmlFor="billing_same" className="text-gray-600  ml-2">Quiero habilitar el contacto por Whatssap en mis productos o servicios.</label>
+                      </div>
+                  </div>
+
+                  <PromotedOptions onChangeValues={setPromotionSelected} />
 
                   <div className="md:col-span-5 text-right mt-4">
                     <button type="submit" onClick={confirmAction} className="inline black_btn">
