@@ -119,7 +119,7 @@ body > *{
 }
 
 .orange_gradient {
-  @apply bg-gradient-to-r from-black via-gray-100 to-gray-900 bg-clip-text text-transparent;
+  @apply focus:border-none bg-clip-text text-transparent;
 }
 
 .search_gradient {
@@ -1749,6 +1749,10 @@ body > *{
   font-size:var(--iw-ehf-f);
   transition: all 0.2s;
   transition-timing-function: linear;
+}
+
+.non-outline *:focus {
+  @apply outline-none;
 }
 
 .labelsconfigurationwithvalue{
