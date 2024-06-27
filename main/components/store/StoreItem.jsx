@@ -371,7 +371,7 @@ const StoreItem = ({
       <form
         method="POST"
         onSubmit={confirmAction}
-        className={`relative mt-4 lg:mt-0 p-4 lg:pl-6 lg:pr-6 ${
+        className={`non-outline relative mt-4 lg:mt-0 p-4 lg:pl-6 lg:pr-6 ${
           expandedNavBar && !editMode
             ? "ml-0 lg:ml-52"
             : `ml-0 lg:ml-${editMode ? 0 : 10}`
