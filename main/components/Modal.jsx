@@ -1,13 +1,20 @@
-import React from "react";
+import { copyToClipBoard } from "@utils/functionsClient";
+import React, { useState } from "react";
 import { FaRegCopy } from "react-icons/fa";
 
 const Modal = ({ modalActionInfo, onCancel, onConfirm }) => {
+
   const {
     message = "",
     showCancelButton = true,
     okText = "OK",
     cancelText = "Cancel",
   } = modalActionInfo;
+  const [textWasCopied, setTextWasCopied] = useState(false);
+
+  const internalCopyToClipBoard=(textToCopy)=>{
+    setTextWasCopied(copyToClipBoard(textToCopy))
+  }
 
   return (
     <div
@@ -64,13 +71,14 @@ const Modal = ({ modalActionInfo, onCancel, onConfirm }) => {
             <button
               className="inline p-2"
               onClick={() => {
-                onConfirm("COPY");
+                internalCopyToClipBoard(modalActionInfo.textToCopy);
               }}
             >
-              {modalActionInfo.copyButtonLabel}{" "}
+              {textWasCopied? <span className="text-green-600 animate-bounce">{"Texto copiado al portapapeles."}</span>: modalActionInfo.copyButtonLabel}
             </button>
           </div>
         )}
+        
       </div>
     </div>
   );

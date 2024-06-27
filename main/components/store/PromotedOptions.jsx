@@ -1,17 +1,10 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import {PROMOTIONS} from '@utils/constants';
-import { CiSquareCheck } from 'react-icons/ci';
-import { FaColonSign } from "react-icons/fa6";
 import GenericAccordion from '@components/GenericAccordion';
 import { MdOutlineArrowRight } from 'react-icons/md';
 
-const PromotedOptions = ({ onChangeValues }) => {
-    const [promotionSelected, setPromotionSelected]=useState(0);
-    const fieldSelectedValue=(value)=>{
-        setPromotionSelected(value);
-        onChangeValues( value);
-    }
+const PromotedOptions = ({ onSelectedOption }) => {
 
   return ( <>
             <div className="md:col-span-5 text-right relative mt-6">
@@ -23,7 +16,7 @@ const PromotedOptions = ({ onChangeValues }) => {
             </div>
             <div className="md:col-span-5 relative ">
                 <div className='grid grid-cols-1 '>
-                    <GenericAccordion objectToBeRendered={PROMOTIONS}/>                 
+                    <GenericAccordion objectToBeRendered={PROMOTIONS} onSelectedOption={onSelectedOption}/>                 
                 </div>    
             </div>                                                                                         
         </>
