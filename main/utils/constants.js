@@ -927,3 +927,43 @@ export const MAIN_STYLES = {
     },
   },
 };
+
+
+export const DEFAULT_CAR_ITEM_STRUCTURE = {
+  brand: "SELECT",
+  model: "",
+  cc: "",
+  style: "SELECT",
+  passengers: 1,
+  year: new Date().getFullYear(),
+  status: 1,
+  combustible: 1,
+  transmition: 1,
+  kms: "",
+  kmstype: "1",
+  taxes: "NO",
+  otherCar: "NO",
+  doors: 1,
+  province: "SJO",
+  equipment: [],
+};
+
+export const DEFAULT_HOUSE_ITEM_STRUCTURE = {
+  bedrooms: "SELECT",
+  bathrooms: "SELECT",
+  parking: "SELECT",
+  porpertyMeters: "",
+  houseVendorType: "SELECT",
+  address: "",
+  propertyMaintenanceCosts: "",
+  lotSize: "",
+  height: "",
+  yearBuilt: "SELECT",
+  floorType: "SELECT",
+  levels: "SELECT",
+  floor: "SELECT",
+  pool: "SELECT",
+  balconyTerrace: "SELECT",
+  propertyType: "SELECT",
+  benefits: [],
+};

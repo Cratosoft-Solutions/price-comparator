@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import GenericAccordionPromotionBody from "./GenericAccordionPromotionBody";
 import { IoIosArrowDown } from "react-icons/io";
 
-const GenericAccordion = ({ objectToBeRendered }) => {
+const GenericAccordion = ({ objectToBeRendered, onSelectedOption }) => {
 
   const [selectedOption, setSelectedOption] = useState(-1);
   const [selectedPromotion, setSelectedPromotion] = useState(0); 
  
   const setInternalSelectedOption = (newSelectedOption) => {
-        setSelectedOption(newSelectedOption != selectedOption? newSelectedOption:-1)
+        setSelectedOption(newSelectedOption != selectedOption? newSelectedOption:-1);
+       
   };
 
   const setInternalSelectedPromotion = (newSelectedOption) => {
-    setSelectedPromotion(newSelectedOption != selectedPromotion? newSelectedOption:-1)
+    setSelectedPromotion(newSelectedOption != selectedPromotion? newSelectedOption:0);
+    onSelectedOption(newSelectedOption != selectedPromotion? newSelectedOption:0);
   };
   
 

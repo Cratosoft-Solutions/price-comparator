@@ -12,8 +12,8 @@ export const isMobileClient = () => {
 export const copyToClipBoard = (text) => {
   try {
     navigator.clipboard.writeText(text);
-    alert("Texto copiado al portapapeles.");
+    return true;
   } catch (error) {
-    console.log("");
+    return false;
   }
 };

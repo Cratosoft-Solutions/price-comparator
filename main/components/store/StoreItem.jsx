@@ -15,6 +15,8 @@ import {
   MODALITY_TYPES,
   PROVINCES,
   ITEM_CREATED_SUCCESFULLY,
+  DEFAULT_CAR_ITEM_STRUCTURE,
+  DEFAULT_HOUSE_ITEM_STRUCTURE,
 } from "@utils/constants";
 import { getSession, signIn } from "next-auth/react";
 import Loading from "@app/loading";
@@ -42,11 +44,11 @@ const StoreItem = ({
   const [modalActionInfo, setModalActionInfo] = useState({});
   const [id, setId] = useState(null);
   const [name, setName] = useState("");
-  const [nameLabel, setNameLabel] = useState("Nombre del item.");
+  const [nameLabel, setNameLabel] = useState("Título de tu anuncio.");
   const [descriptionLabel, setDescriptionLabel] = useState(
-    "Descripción del item."
+    "Descripción del producto ."
   );
-  const [priceLabel, setPriceLabel] = useState("Precio del item.");
+  const [priceLabel, setPriceLabel] = useState("Precio del producto.");
   const [stock, setStock] = useState(1);
   const [description, setDescription] = useState("");
   const [negotiable, setNegotiable] = useState("NO");
@@ -65,55 +67,17 @@ const StoreItem = ({
   const servicesList = SERVICES_TYPES;
   const modalityList = MODALITY_TYPES;
   const provinceList = PROVINCES;
-  
-  const [nameVendor, setNameVendor] = useState('');
-  const [contactNumber, setContactNumber] = useState('');
+  const [contactNumber, setContactNumber] = useState("");
   const [showwhatssapicon, setShowWhatssapIcon] = useState(false);
-  const [email, setEmail] = useState('');
-  const [address, setAddress] = useState('');
-  const [promotionSelected, setPromotionSelected]=useState(0);
-
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [promotionSelected, setPromotionSelected] = useState(0);
 
   const { expandedNavBar } = useSelector(
     (state) => state.verticalnav.myStoreNav
   );
-  const [carInfo, setCarInfo] = useState({
-    brand: "SELECT",
-    model: "",
-    cc: "",
-    style: "SELECT",
-    passengers: 1,
-    year: new Date().getFullYear(),
-    status: 1,
-    combustible: 1,
-    transmition: 1,
-    kms: "",
-    kmstype: "1",
-    taxes: "NO",
-    otherCar: "NO",
-    doors: 1,
-    province: "SJO",
-    equipment: [],
-  });
-  const [houseInfo, setHouseInfo] = useState({
-    bedrooms: "SELECT",
-    bathrooms: "SELECT",
-    parking: "SELECT",
-    porpertyMeters: "",
-    houseVendorType: "SELECT",
-    address: "",
-    propertyMaintenanceCosts: "",
-    lotSize: "",
-    height: "",
-    yearBuilt: "SELECT",
-    floorType: "SELECT",
-    levels: "SELECT",
-    floor: "SELECT",
-    pool: "SELECT",
-    balconyTerrace: "SELECT",
-    propertyType: "SELECT",
-    benefits: [],
-  });
+  const [carInfo, setCarInfo] = useState(DEFAULT_CAR_ITEM_STRUCTURE);
+  const [houseInfo, setHouseInfo] = useState(DEFAULT_HOUSE_ITEM_STRUCTURE);
 
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -128,11 +92,14 @@ const StoreItem = ({
         signIn();
       } else {
         if (session) {
-          console.log(session.user);
-          const storeInfo = await axios.get(
+           const storeInfo = await axios.get(
             `/api/user/${session.user.id}/store/`
           );
           setStore(storeInfo.data._id);
+          setEmail(storeInfo.data.email);
+          setAddress(storeInfo.data.address);
+          setContactNumber(storeInfo.data.contactnumber);
+          setShowWhatssapIcon(storeInfo.data.showwhatssapicon);
         } else {
           setStore("non-auth-user");
         }
@@ -189,6 +156,10 @@ const StoreItem = ({
   const restartFormWithoutCategory = () => {
     setId(null);
     setName("");
+    setStock("");
+    setEmail("");
+    setAddress("");
+    setContactNumber("");
     setDescription("");
     setPrice(null);
     setSpecialPrice(null);
@@ -199,15 +170,39 @@ const StoreItem = ({
     setProvince(PROVINCES[0].value);
   };
 
+  const validateItemIntegrity = () => {
+    try {
+      let result = { result: true, message: "" };
+      if (category == "CAR" && carInfo.brand == "SELECT") {
+          return formatResult("Favor seleccione la marca del vehículo.");
+      }
+
+      if (category == "CAR" && carInfo.style == "SELECT") {
+          return formatResult("Favor seleccione el estílo del vehículo.");
+      }
+
+      if(images.length == 0){
+        return formatResult("Favor adjunte al menos una imagen en su anuncio." +promotionSelected);
+      }
+
+      return result;
+    } catch (error) {
+      return { result: false, message: error.message };
+    }
+  };
+
+  const formatResult = (messageToSet) => {
+    return { result: false, message: messageToSet };
+  };
+
   const confirmAction = (e) => {
     e.preventDefault();
-    if (
-      category == "CAR" &&
-      (carInfo.brand == "SELECT" || carInfo.style == "SELECT")
-    ) {
-      +setModalActionInfo({
+    const generalValidation = validateItemIntegrity();
+
+    if (!generalValidation.result) {
+      setModalActionInfo({
         ...GENERAL_UKNOWN_ERROR,
-        message: "Favor selecciona la marca y estilo del vehículo.",
+        message: generalValidation.message,
       });
     } else {
       setModalActionInfo(PRODUCT_SAVE_CONFIRM_ACTION);
@@ -221,10 +216,7 @@ const StoreItem = ({
         restartForm();
       }
       setShowConfirmAction(false);
-    }else if(processToExecute === "COPY"){
-        copyToClipBoard(modalActionInfo.textToCopy);
-    } 
-    else if (processToExecute === "SAVEPRODUCT") {
+    }  else if (processToExecute === "SAVEPRODUCT") {
       setLoading(true);
       axios
         .post(`/api/product/save`, {
@@ -264,7 +256,7 @@ const StoreItem = ({
                     response.data.id,
                   showCopyButton: true,
                   textToCopy: response.data.id,
-                  copyButtonLabel: "Copiar ID de Anuncio... ",
+                  copyButtonLabel: "Copiar ID de Anuncio... "
                 }
           );
           setShowConfirmAction(true);
@@ -347,19 +339,20 @@ const StoreItem = ({
     setCategory(category);
     switch (category) {
       case "SERVICES":
-        setNameLabel("Nombre del servicio.");
         setDescriptionLabel("Descripcion del servicio.");
         setPriceLabel("Precio del servicio.");
         break;
       case "HOUSES":
-        setNameLabel("Título.");
         setDescriptionLabel("Descripcion de la propiedad.");
-        setPriceLabel("Precio.");
+        setPriceLabel("Precio de la propiedad.");
         break;
+      case "CAR":
+        setDescriptionLabel("Descripcion del vehículo.");
+        setPriceLabel("Precio del vehículo.");
+        break;  
       default:
-        setNameLabel("Nombre del item.");
-        setDescriptionLabel("Descripción del item.");
-        setPriceLabel("Precio del item.");
+        setDescriptionLabel("Descripción del producto.");
+        setPriceLabel("Precio del producto.");
         break;
     }
   };
@@ -368,7 +361,16 @@ const StoreItem = ({
 
   return (
     <>
-      <div
+    {showConfirmAction && (
+          <Modal
+            modalActionInfo={modalActionInfo}
+            onConfirm={onConfirm}
+            onCancel={onCancel}
+          />
+        )}
+      <form
+        method="POST"
+        onSubmit={confirmAction}
         className={`relative mt-4 lg:mt-0 p-4 lg:pl-6 lg:pr-6 ${
           expandedNavBar && !editMode
             ? "ml-0 lg:ml-52"
@@ -376,37 +378,40 @@ const StoreItem = ({
         }`}
       >
         {" "}
-        {editMode &&
+        {editMode && (
           <IoCloseOutline
             className="absolute top-2 right-2 md:-right-14 md:top-0 md:!stroke-white w-12 h-12 z-50"
             color="white"
             onClick={onCloseFunction}
           />
-        }
-        {showConfirmAction && (
-          <Modal
-            modalActionInfo={modalActionInfo}
-            onConfirm={onConfirm}
-            onCancel={onCancel}
-          />
         )}
+        
         <div className="w-full ">
           <div className=" storepages bg-white border shadow-lg mb-6">
             <div className="grid text-sm grid-cols-1 lg:grid-cols-3">
               <div className="text-black mb-4 md:mb-0 bg-[#EEDECF] p-4">
                 <p className="font-black text-2xl mb-4">¡Crea tu anuncio!</p>
                 <p className="text-gray-800">
-                  Favor completa todos los campos para ingresar un nuevo anuncio.
+                  Favor completa todos los campos para ingresar un nuevo
+                  anuncio.
                 </p>
                 <div className="w-full h-full flex items-start md:mt-16 justify-center p-4">
-                  <img className="w-ful h-fit" src="/assets/images/create-item.svg" />
+                  <img
+                    className="w-ful h-fit"
+                    src="/assets/images/create-item.svg"
+                  />
                 </div>
               </div>
 
               <div className="lg:col-span-2 p-4">
                 <div className="inline flex items-center mb-4">
-                  <MdOutlineArrowRight className="-ml-4 hidden md:block inline w-12 h-12" color="black"/>
-                  <p className="inline text-black w-full text-center md:text-left font-black text-2xl">Datos generales del anuncio</p>
+                  <MdOutlineArrowRight
+                    className="-ml-4 hidden md:block inline w-12 h-12"
+                    color="black"
+                  />
+                  <p className="inline text-black w-full text-center md:text-left font-black text-2xl">
+                    Datos generales del anuncio
+                  </p>
                 </div>
 
                 <div className="grid text-sm grid-cols-1 md:grid-cols-5">
@@ -475,7 +480,6 @@ const StoreItem = ({
                     <>
                       <div className="md:col-span-5 relative">
                         <DropDownList
-                          additionalClass="rounded-t-lg"
                           onSelectValue={setServiceType}
                           values={servicesList}
                           type="text"
@@ -493,7 +497,6 @@ const StoreItem = ({
                       </div>
                       <div className="md:col-span-5 relative">
                         <DropDownList
-                          additionalClass="rounded-t-lg"
                           onSelectValue={setModalityType}
                           values={modalityList}
                           type="text"
@@ -511,7 +514,6 @@ const StoreItem = ({
                       </div>
                       <div className="md:col-span-5 relative">
                         <DropDownList
-                          additionalClass="rounded-t-lg"
                           onSelectValue={setProvince}
                           values={provinceList}
                           type="text"
@@ -646,11 +648,7 @@ const StoreItem = ({
                   {images.length <= 4 && (
                     <div className="md:col-span-5 relative mt-4">
                       <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
-                        Seleccione las imágenes del item{" "}
-                        <p className="font-bold inline-flex">
-                          (Máximo 5 por item)
-                        </p>
-                        .
+                        Selección de imágenes.
                       </div>
                       <DragDropFiles
                         required
@@ -678,36 +676,115 @@ const StoreItem = ({
                   </div>
                   <div className="md:col-span-5 text-right relative ">
                     <div className="inline flex items-center mb-4">
-                      <MdOutlineArrowRight className="-ml-4 hidden md:block inline w-12 h-12" color="black"/>
-                    <p className="inline text-black w-full text-center md:text-left font-black text-2xl">Datos de contacto</p>
-                </div>                  </div>
+                      <MdOutlineArrowRight
+                        className="-ml-4 hidden md:block inline w-12 h-12"
+                        color="black"
+                      />
+                      <p className="inline text-black w-full text-center md:text-left font-black text-2xl">
+                        Datos de contacto
+                      </p>
+                    </div>{" "}
+                  </div>
                   <div className="md:col-span-5 relative">
-                        <input required type="email" name="email" id="email" className=" inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800  border border-gray-300 rounded-t-lg "  value={email} onChange={e => {setEmail(e.target.value);}}/>
-                        <div className={`${email?'labelsconfigurationwithvalue':'labelsconfiguration'} text-gray-600 text-sm`}>Email de contacto.</div>
+                    <input
+                      required
+                      type="email"
+                      name="email"
+                      id="email"
+                      className=" inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800  border border-gray-300 rounded-t-lg "
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
+                    />
+                    <div
+                      className={`${
+                        email
+                          ? "labelsconfigurationwithvalue"
+                          : "labelsconfiguration"
+                      } text-gray-600 text-sm`}
+                    >
+                      Email de contacto.
+                    </div>
                   </div>
 
                   <div className="md:col-span-5 relative">
-                        <input name="contactnumber" className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800  border border-gray-300" id="contactnumber" value={contactNumber}  onChange={e => {setContactNumber(e.target.value);}}/>
-                        <div className={`${contactNumber?'labelsconfigurationwithvalue':'labelsconfiguration'} text-gray-600 text-sm`}>Número de contacto.</div>
+                    <input
+                      name="contactnumber"
+                      className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800  border border-gray-300"
+                      id="contactnumber"
+                      value={contactNumber}
+                      required
+                      onChange={(e) => {
+                        setContactNumber(e.target.value);
+                      }}
+                    />
+                    <div
+                      className={`${
+                        contactNumber
+                          ? "labelsconfigurationwithvalue"
+                          : "labelsconfiguration"
+                      } text-gray-600 text-sm`}
+                    >
+                      Número de contacto.
+                    </div>
                   </div>
 
                   <div className="md:col-span-5 relative">
-                        <input required type="input" name="address" id="address" className="inputconfiguration rounded-b-lg focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800  border border-gray-300"  value={address} onChange={e => {setAddress(e.target.value);}}/>
-                        <div className={`${address?'labelsconfigurationwithvalue':'labelsconfiguration'} text-gray-600 text-sm`}>Ubicación física (Sólo si aplica).</div>
+                    <input
+                      required
+                      type="input"
+                      name="address"
+                      id="address"
+                      className="inputconfiguration rounded-b-lg focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800  border border-gray-300"
+                      value={address}
+                      onChange={(e) => {
+                        setAddress(e.target.value);
+                      }}
+                    />
+                    <div
+                      className={`${
+                        address
+                          ? "labelsconfigurationwithvalue"
+                          : "labelsconfiguration"
+                      } text-gray-600 text-sm`}
+                    >
+                      Ubicación física (Sólo si aplica).
+                    </div>
                   </div>
 
                   <div className="md:col-span-5 relative mt-4">
-                      <div className="inline-flex items-center">
-                          <img className='mr-2' src="/assets/images/ws-image.png" width={30} height={30} alt="Productos y servicios. Encuéntralo Facil Costa Rica"></img>
-                          <input className="w-4 h-4 accent-gray-900 dark:accent-white" type="checkbox" name="billing_same" id="billing_same"  checked={showwhatssapicon} onChange={() => {setShowWhatssapIcon(prev => !prev);}}/>
-                          <label htmlFor="billing_same" className="text-gray-600  ml-2">Quiero habilitar el contacto por Whatssap en mis productos o servicios.</label>
-                      </div>
+                    <div className="inline-flex items-center">
+                      <img
+                        className="mr-2"
+                        src="/assets/images/ws-image.png"
+                        width={30}
+                        height={30}
+                        alt="Productos y servicios. Encuéntralo Facil Costa Rica"
+                      ></img>
+                      <input
+                        className="w-4 h-4 accent-gray-900 dark:accent-white"
+                        type="checkbox"
+                        name="billing_same"
+                        id="billing_same"
+                        checked={showwhatssapicon}
+                        onChange={() => {
+                          setShowWhatssapIcon((prev) => !prev);
+                        }}
+                      />
+                      <label
+                        htmlFor="billing_same"
+                        className="text-gray-600  ml-2"
+                      >
+                        Habilitar el contacto por WhatsApp en este anuncio.
+                      </label>
+                    </div>
                   </div>
 
-                  <PromotedOptions onChangeValues={setPromotionSelected} />
+                  <PromotedOptions onSelectedOption={setPromotionSelected} />
 
                   <div className="md:col-span-5 text-right mt-4">
-                    <button type="submit" onClick={confirmAction} className="inline black_btn">
+                    <button type="submit" className="inline black_btn">
                       {editMode ? "Actualizar" : "Guardar"}
                     </button>
                   </div>
@@ -716,7 +793,7 @@ const StoreItem = ({
             </div>
           </div>
         </div>
-      </div>
+      </form>
       {showImage && (
         <UploadedImage
           image={images[selectedImage]}

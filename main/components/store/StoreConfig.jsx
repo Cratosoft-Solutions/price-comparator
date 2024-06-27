@@ -170,7 +170,7 @@ const StoreConfig = () => {
                       <div className="inline-flex items-center">
                           <img className='mr-2' src="/assets/images/ws-image.png" width={30} height={30} alt="Productos y servicios. Encuéntralo Facil Costa Rica"></img>
                           <input type="checkbox" name="billing_same" id="billing_same" className="form-checkbox" checked={showwhatssapicon} onChange={() => {setShowWhatssapIcon(prev => !prev);}}/>
-                          <label htmlFor="billing_same" className="text-black ml-2">Quiero habilitar el contacto por Whatssap en mis productos o servicios.</label>
+                          <label htmlFor="billing_same" className="text-black ml-2">Quiero habilitar el contacto por WhatsApp en mis productos o servicios.</label>
                       </div>
                       </div>
 
