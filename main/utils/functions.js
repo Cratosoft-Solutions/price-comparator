@@ -9,6 +9,8 @@ import { BLACK_LISTED_KEYWORDS } from "@utils/constants";
 import { isMobileClient } from './functionsClient';
 const currencyExchangeUtil = require('./currencyExchangeUtil');
 const Filter = require('bad-words');
+const numeral = require('numeral');
+const TWO_DECIMAL_FORMAT = '0,0.00';
 
 export const isUserAuthenticathed = (status) => {
   try {
@@ -861,3 +863,29 @@ export const translateCategory =(category, translationType)=>{
   }
 
 }
+
+
+export const calculatePercentage =(amount, percentage)=>{
+  try {
+    return amount * percentage;
+  } catch (error) {
+    return 0;
+  }
+}
+
+export const calculateTotal =(price)=>{
+  try {
+    return price.total - price.discount;
+  } catch (error) {
+    return 0;
+  }
+}
+
+export const calculateTotalWithPercentage =(price, percentage)=>{
+  try {
+    return calculateTotal(price) + calculatePercentage(calculateTotal(price), percentage);
+  } catch (error) {
+    return 0;
+  }
+}
+

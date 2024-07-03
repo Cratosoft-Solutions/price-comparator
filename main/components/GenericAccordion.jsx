@@ -5,7 +5,7 @@ import { IoIosArrowDown } from "react-icons/io";
 const GenericAccordion = ({ objectToBeRendered, onSelectedOption }) => {
 
   const [selectedOption, setSelectedOption] = useState(-1);
-  const [selectedPromotion, setSelectedPromotion] = useState(0); 
+  const [selectedPromotion, setSelectedPromotion] = useState(1); 
  
   const setInternalSelectedOption = (newSelectedOption) => {
         setSelectedOption(newSelectedOption != selectedOption? newSelectedOption:-1);

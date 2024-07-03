@@ -69,6 +69,22 @@ export const PRODUCT_SAVE_CONFIRM_ACTION = {
   cancelText: "Cancelar",
   processToExecute: "SAVEPRODUCT",
 };
+
+export const PAYMENT_CONFIRM_ACTION = {
+  message: "Por favor, confirme si desea proceder con el pago",
+  showCancelButton: true,
+  okText: "Si, pagar",
+  cancelText: "No, cancelar",
+  processToExecute: "SAVEPRODUCT",
+};
+
+export const PRODUCT_SAVE_NO_PROMOTION_CONFIRM_ACTION = {
+  message: "¿Desea crear el anuncio sin promociones?",
+  showCancelButton: true,
+  okText: "Si, estoy Seguro",
+  cancelText: "Promocionar mi producto",
+  processToExecute: "SAVEPRODUCT",
+};
 export const CATEGORY_SAVE_CONFIRM_ACTION = {
   message: "¿Seguro de guardar los cambios?",
   showCancelButton: true,
@@ -301,7 +317,7 @@ export const HOUSE_BENEFITS = [
 ];
 
 export const PROMOTIONS = [
-  {
+  { appliesForPayment:true,
     value: "5",
     name: "VIP",
     label: "VIP CRC 10,000.00 + IVA por 45 días",
@@ -320,6 +336,7 @@ export const PROMOTIONS = [
     ],
   },
   {
+    appliesForPayment:true,
     value: "4",
     name: "Elite",
     label: "Elite CRC 7,500.00 + IVA por 30 días",
@@ -336,6 +353,7 @@ export const PROMOTIONS = [
     ],
   },
   {
+    appliesForPayment:true,
     value: "3",
     name: "Deluxe",
     label: "Deluxe CRC 4,000.00 + IVA por 22 días",
@@ -352,6 +370,7 @@ export const PROMOTIONS = [
     ],
   },
   {
+    appliesForPayment:true,
     value: "2",
     name: "Essentials",
     label: "Essentials CRC 2,000.00 + IVA por 15 días",
@@ -368,15 +387,16 @@ export const PROMOTIONS = [
     ],
   },
   {
+    appliesForPayment:false,
     value: "1",
     name: "Básico",
-    label: "Básico CRC 0.00 por 15 días",
+    label: "Básico CRC 0.00 - Anuncio sin publicidad",
     expiration: "15",
     detail: "Sin costos por publicar tu anuncio.",
     price: 0,
     formatedPrice:"0.00",
     features: [
-      { key: 1, label: "Expiración de anuncio en 30 días" },
+      { key: 1, label: "Expiración de anuncio en 15 días" },
       { key: 2, label: "Presencia en búsquedas de los usuarios en base a categoria" },
       { key: 3, label: "Máximo 5 imágenes por anuncio" }
     ],

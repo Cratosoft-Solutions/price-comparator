@@ -49,7 +49,7 @@ const Modal = ({ modalActionInfo, onCancel, onConfirm }) => {
               }}
               data-modal-hide="popup-modal"
               type="button"
-              className="text-white bg-black hover:bg-orange-500  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2 mb-4"
+              className="text-white bg-black hover:bg-green-100 hover:text-gray-600 hover:border hover:border-green-100 hover:shadow-lg  focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2 mb-4"
             >
               {okText}
             </button>
@@ -58,7 +58,7 @@ const Modal = ({ modalActionInfo, onCancel, onConfirm }) => {
                 onClick={onCancel}
                 data-modal-hide="popup-modal"
                 type="button"
-                className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10"
+                className="text-gray-500 bg-white hover:bg-red-100 hover:text-gray-600 hover:border hover:border-red-100 hover:shadow-lg  focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10"
               >
                 {cancelText}
               </button>

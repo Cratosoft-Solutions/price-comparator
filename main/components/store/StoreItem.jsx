@@ -3,12 +3,10 @@ import React, { useEffect, useState } from "react";
 import DragDropFiles from "@components/DragDropFiles";
 import Modal from "@components/Modal";
 import {
-  PRODUCT_SAVE_CONFIRM_ACTION,
   CATEGORY_TYPES,
   IMAGE_MAX_PASSED,
   IMAGE_FAILED_CONFIRM_ACTION,
   GENERAL_UKNOWN_ERROR,
-  GENERAL_SUCCESS_PROCESS,
   CURRENCY_LIST,
   GENERAL_YESNO,
   SERVICES_TYPES,
@@ -17,6 +15,10 @@ import {
   ITEM_CREATED_SUCCESFULLY,
   DEFAULT_CAR_ITEM_STRUCTURE,
   DEFAULT_HOUSE_ITEM_STRUCTURE,
+  PROMOTIONS,
+  PRODUCT_SAVE_CONFIRM_ACTION,
+  PRODUCT_SAVE_NO_PROMOTION_CONFIRM_ACTION,
+  PAYMENT_CONFIRM_ACTION,
 } from "@utils/constants";
 import { getSession, signIn } from "next-auth/react";
 import Loading from "@app/loading";
@@ -25,13 +27,13 @@ import CurrencyInput from "@components/CurrencyInput";
 import DropDownList from "@components/DropDownList";
 import UploadedImage from "@components/UploadedImage";
 import { useSelector } from "react-redux";
-import { genericCompression } from "@utils/functions";
+import { genericCompression, translateCategory } from "@utils/functions";
 import CarInfo from "./CarInfo";
 import HouseInfo from "./HouseInfo";
 import { IoCloseOutline } from "react-icons/io5";
-import { copyToClipBoard } from "@utils/functionsClient";
 import PromotedOptions from "./PromotedOptions";
 import { MdOutlineArrowRight } from "react-icons/md";
+import PaymentModal from "@components/PaymentModal";
 
 const StoreItem = ({
   editMode = false,
@@ -71,7 +73,11 @@ const StoreItem = ({
   const [showwhatssapicon, setShowWhatssapIcon] = useState(false);
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
-  const [promotionSelected, setPromotionSelected] = useState(0);
+  const [promotionSelected, setPromotionSelected] = useState(1);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [messageToShow, setMessageToShow] = useState(null);
+  
+
 
   const { expandedNavBar } = useSelector(
     (state) => state.verticalnav.myStoreNav
@@ -84,6 +90,18 @@ const StoreItem = ({
   const handleOptionChange = (value) => {
     setSelectedOption(value);
   };
+
+  const PAYMENTDETAIL = {
+    itemType:translateCategory(category, "SEARCHTEXT"),
+    callPaymentModal:PROMOTIONS.filter((promotion)=> promotion.value == promotionSelected)[0]?.appliesForPayment,
+    itemName: name,
+    detail: "Paquete " + PROMOTIONS.filter((promotion)=> promotion.value == promotionSelected)[0]?.name, 
+    currency:"₡",
+    price:{
+      total:PROMOTIONS.filter((promotion)=> promotion.value == promotionSelected)[0]?.price,
+      discount:0      
+    }
+  }
 
   useEffect(() => {
     const securePage = async () => {
@@ -196,27 +214,36 @@ const StoreItem = ({
   };
 
   const confirmAction = (e) => {
-    e.preventDefault();
+      e.preventDefault();
+    
+    
+    setMessageToShow("Creando tu anuncio, favor espera.");
     const generalValidation = validateItemIntegrity();
 
     if (!generalValidation.result) {
-      setModalActionInfo({
-        ...GENERAL_UKNOWN_ERROR,
-        message: generalValidation.message,
-      });
+      //Error in item validation
+      setModalActionInfo({...GENERAL_UKNOWN_ERROR, message: generalValidation.message});
+      setShowConfirmAction(true);
     } else {
-      setModalActionInfo(PRODUCT_SAVE_CONFIRM_ACTION);
+      //Item is good, show payment modal
+      if(PAYMENTDETAIL.callPaymentModal){
+        setModalActionInfo(PAYMENT_CONFIRM_ACTION);
+        setShowPaymentModal(true)
+      }else{
+        setShowConfirmAction(true);
+      }
+      setModalActionInfo(PRODUCT_SAVE_NO_PROMOTION_CONFIRM_ACTION);
     }
-    setShowConfirmAction(true);
   };
 
   const onConfirm = async (processToExecute) => {
+    setShowConfirmAction(false);
+    setShowPaymentModal(false);
     if (processToExecute === "CLEANPRODUCT") {
       if (!editMode) {
         restartForm();
       }
-      setShowConfirmAction(false);
-    }  else if (processToExecute === "SAVEPRODUCT") {
+    }  else if (processToExecute === "SAVEPRODUCT") {      
       setLoading(true);
       axios
         .post(`/api/product/save`, {
@@ -357,17 +384,15 @@ const StoreItem = ({
     }
   };
 
-  if (loading) return <Loading />;
+  if (loading) return <Loading message={messageToShow}/>;
 
   return (
     <>
-    {showConfirmAction && (
-          <Modal
-            modalActionInfo={modalActionInfo}
-            onConfirm={onConfirm}
-            onCancel={onCancel}
-          />
-        )}
+      {showConfirmAction && (
+          <Modal modalActionInfo={modalActionInfo} onConfirm={onConfirm} onCancel={onCancel} />)}
+
+      {showPaymentModal && <PaymentModal paymentDetail={PAYMENTDETAIL} onConfirm={onConfirm} modalActionInfo={PAYMENT_CONFIRM_ACTION}/>} 
+
       <form
         method="POST"
         onSubmit={confirmAction}
@@ -785,7 +810,7 @@ const StoreItem = ({
 
                   <div className="md:col-span-5 text-right mt-4">
                     <button type="submit" className="inline black_btn">
-                      {editMode ? "Actualizar" : "Guardar"}
+                      {editMode ? "Actualizar" : "Continuar"}
                     </button>
                   </div>
                 </div>
