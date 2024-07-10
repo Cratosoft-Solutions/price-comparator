@@ -849,6 +849,12 @@ export const currentDateWithTimeOffset = () => {
   return currentDate;
 }
 
+export const addDaysToDate = (days) => {
+  var result = new Date(currentDateWithTimeOffset());
+  result.setDate(result.getDate() + days);
+  return result;
+}
+
 const dateWithTimeOffset = (date) => {
   // Set the time zone offset in minutes (GMT-6 in this example)
   const timeZoneOffsetInMinutes = -6 * 60; // -6 hours * 60 minutes/hour
@@ -888,4 +894,18 @@ export const calculateTotalWithPercentage =(price, percentage)=>{
     return 0;
   }
 }
+
+
+export const prepareProductAdvertisingInfo = (advertisingInformation) => {
+  try {
+    return {
+      active: advertisingInformation.appliesForPayment,
+      validFrom: currentDateWithTimeOffset(),
+      validTo: addDaysToDate(advertisingInformation.expiration),
+      priority: advertisingInformation.value,
+    };
+  } catch (error) {
+    return {};
+  }
+};
 

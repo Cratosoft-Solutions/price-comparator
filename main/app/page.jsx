@@ -82,36 +82,39 @@ const Home = () => {
   return (
     <div className="w-full gap-2 bg-white">
       <div className="w-full md:mb-4 relative">
-        <HorizontalSlider/>
-      </div>    
-
-      <div className="w-full md:mb-4 relative">
-        <MainPageInformationCategories/>
-      </div>    
-
-      <div className="w-full mb-8">
-        {!loadingPromotions && data && data.length > 0 &&
-          <HorizontalItemList companyLogo={""} companyProducts={dataByCategory}/>
-        } 
+        <HorizontalSlider />
       </div>
 
-      <div className="w-full mb-4 relative">
-        <MainPageInformationTab propertiesToBeRendered={MAIN_STYLES.MAIN_PAGE.SEARCH_PRODUCT}/> 
-      </div> 
+      <div className="w-full md:mb-4 relative">
+        <MainPageInformationCategories />
+      </div>
 
-      <div className="w-full mb-4">
-        {!loadingMostSearched && mostSearchedData && mostSearchedData.length > 0 &&
-          <HorizontalMostSearchedList companyLogo={""} companyProducts={mostSearchedDataByCategory}/> 
-        } 
-      </div> 
-      <div className="w-full  relative">
-        <MainPageInformationTab propertiesToBeRendered={MAIN_STYLES.MAIN_PAGE.CREATE_PRODUCT_TAB}/> 
-      </div> 
-      <div className="w-full  relative">
-        <HorizontalMainInfo/> 
-      </div>      
- 
+        {!loadingPromotions && data && data.length > 0 && (
+            <div className="w-full bg-white">            
+            <HorizontalItemList companyLogo={""} companyProducts={dataByCategory} />
+          </div>
+        )}
 
+      <div className="w-full relative">
+        <MainPageInformationTab
+          propertiesToBeRendered={MAIN_STYLES.MAIN_PAGE.SEARCH_PRODUCT}
+        />
+      </div>
+
+      {!loadingMostSearched && mostSearchedData && mostSearchedData.length > 0 && (
+          <div className="w-full bg-white">
+            <HorizontalMostSearchedList companyLogo={""} companyProducts={mostSearchedDataByCategory} />
+          </div>
+        )}
+
+      <div className="w-full  relative">
+        <MainPageInformationTab
+          propertiesToBeRendered={MAIN_STYLES.MAIN_PAGE.CREATE_PRODUCT_TAB}
+        />
+      </div>
+      <div className="w-full  relative">
+        <HorizontalMainInfo />
+      </div>
     </div>
   );
 };

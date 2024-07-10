@@ -5,31 +5,42 @@ import React, { useState } from 'react'
 import { MdOutlineArrowRight } from 'react-icons/md';
 import PaymentTermsAndConditions from './PaymentTermsAndConditions';
 import Modal from './Modal';
+import CreateCharge from './payments/CreateCharge';
+import { PAYMENT_ERROR_ACTION } from '@utils/constants';
 
-const PaymentModal = ({paymentDetail, onConfirm, modalActionInfo}) => {
+const PaymentModal = ({paymentDetail, paymentIntentId, onConfirm}) => {
     const [termsAccepted, setTermsAccepted] = useState(false);
+    const [modalActionInfo, setModalActionInfo] = useState({});
     const [showConfirmAction, setShowConfirmAction] = useState(false);
+  
     const onCancel =()=>{
         setShowConfirmAction(false);
     }
 
-    const internalOnConfirm =()=>{
+    const onPaymentExecuted =(result, data)=>{
         //TODO Inicio del proceso del pago
-
+        if(result === 'success'){
+          onConfirm("SAVEPRODUCT", data);
+        }else{
+          //Payment error
+          setModalActionInfo({...PAYMENT_ERROR_ACTION, message: PAYMENT_ERROR_ACTION.message + data.message});
+          setShowConfirmAction(true);
+        }
         //TODO Fin del proceso de pago
-        onConfirm(modalActionInfo.processToExecute);
-    }
-
-    const executePayment=(e)=>{
-        e.preventDefault();
-        setShowConfirmAction(true);
     }
 
   return (
-    <div className="fixed bg-opacity-30 top-0 left-0 right-0 z-50 flex flex-col items-center justify-center bg-black p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full max-h-full">
-     {showConfirmAction && (
-          <Modal modalActionInfo={modalActionInfo} onConfirm={internalOnConfirm} onCancel={onCancel} />)}
-      <section className="bg-white antialiased mt-20 md:mt-0 p-4 md:rounded-lg">
+    <div className="absolute top-0 w-full h-full bg-opacity-30 z-50 flex flex-col items-start justify-start bg-black md:p-16 overflow-x-hidden overflow-y-auto md:inset-0 h-full max-h-full">
+      {showConfirmAction && (
+        
+        <Modal
+          modalActionInfo={modalActionInfo}
+          onConfirm={onCancel}
+          onCancel={onCancel}
+        />
+      )}
+
+      <section className="w-full h-fit bg-white antialiased md:rounded-lg p-8">
         <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
           <div className="mx-auto max-w-5xl">
             <div className="relative w-full bg-white inline flex items-center mb-2">
@@ -52,133 +63,9 @@ const PaymentModal = ({paymentDetail, onConfirm, modalActionInfo}) => {
                 className="block md:hidden absolute right-2 h-12 w-12"
               ></img>
             </div>
-            <div className="mt-6 sm:mt-8 md:flex md:items-start md:gap-8">
-              <form
-                action="#"
-                onSubmit={executePayment}
-                className="w-full md:w-fit  rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6 lg:max-w-xl lg:p-8"
-              >
-                <div className="mb-6 grid grid-cols-2 gap-4">
-                  <div className="col-span-2 sm:col-span-1">
-                    <label
-                      for="card-number-input"
-                      className="mb-2 block text-sm font-medium text-gray-900"
-                    >
-                      {" "}
-                      Número de Tarjeta*{" "}
-                    </label>
-                    <input
-                      type="text"
-                      id="card-number-input"
-                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pe-10 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
-                      placeholder="xxxx-xxxx-xxxx-xxxx"
-                       required
-                    />
-                  </div>
-                  <div className="col-span-2 sm:col-span-1">
-                    <label
-                      for="full_name"
-                      className="mb-2 block text-sm font-medium text-gray-900 "
-                    >
-                      {" "}
-                      Nombre* (Igual que en tarjeta){" "}
-                    </label>
-                    <input
-                      type="text"
-                      id="full_name"
-                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
-                      placeholder="Nombre en tarjeta"
-                      required
-                    />
-                  </div>
+            <div className="grid grid-cols-1 md:grid-cols-[40%_60%] gap-4 md:gap-8">
 
-                  <div className="col-span-2 md:col-span-1">
-                    <label
-                      for="card-expiration-input"
-                      className="mb-2 block text-sm font-medium text-gray-900"
-                    >
-                      Fecha de expiración*{""}
-                    </label>
-                    <div className="relative">
-                      <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3.5">
-                        <svg
-                          className="h-4 w-4 text-gray-500"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M5 5a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1 2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a2 2 0 0 1 2-2ZM3 19v-7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm6.01-6a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm-10 4a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <input
-                        datepicker
-                        datepicker-format="mm/yy"
-                        id="card-expiration-input"
-                        type="text"
-                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 ps-9 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="MM/YY"
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div className="col-span-2 md:col-span-1">
-                    <label
-                      for="cvv-input"
-                      className="mb-2 flex items-center gap-1 text-sm font-medium text-gray-900"
-                    >
-                      CVV*
-                      <button
-                        data-tooltip-target="cvv-desc"
-                        data-tooltip-trigger="hover"
-                        className="text-gray-400 hover:text-gray-900"
-                      >
-                        <svg
-                          className="h-4 w-4"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.408-5.5a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                      </button>
-                      <div
-                        id="cvv-desc"
-                        role="tooltip"
-                        className="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300"
-                      >
-                        The last 3 digits on back of card
-                        <div className="tooltip-arrow" data-popper-arrow></div>
-                      </div>
-                    </label>
-                    <input
-                      type="number"
-                      id="cvv-input"
-                      aria-describedby="helper-text-explanation"
-                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
-                      placeholder="•••"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <button type="submit" className="w-full black_btn_sqr">
-                  Pagar ahora
-                </button>
-              </form>
-
-              <div className="mt-6 sm:mt-8 md:mt-0 md:w-80">
+            <div className="md:mt-8">
                 <div className="space-y-4 rounded-lg border bg-[#EEDECF] border-none p-6">
                   <div className="space-y-2">
                     <div className="flex inline">
@@ -187,7 +74,7 @@ const PaymentModal = ({paymentDetail, onConfirm, modalActionInfo}) => {
                       </span>
                       <span className="inline flex text-base font-medium text-gray-900 w-full justify-end">
                         {`${paymentDetail.currency} ${getFormattedPrice(
-                          paymentDetail.price.total
+                          paymentDetail.price.original
                         )}`}
                       </span>
                     </div>
@@ -208,12 +95,7 @@ const PaymentModal = ({paymentDetail, onConfirm, modalActionInfo}) => {
                         IVA
                       </span>
                       <span className="inline flex text-base font-medium text-gray-900 w-full justify-end">
-                        {`${paymentDetail.currency} ${getFormattedPrice(
-                          calculatePercentage(
-                            calculateTotal(paymentDetail.price),
-                            0.13
-                          )
-                        )}`}
+                        {`${paymentDetail.currency} ${getFormattedPrice(paymentDetail.price.iva)}`}
                       </span>
                     </div>
                   </div>
@@ -221,14 +103,11 @@ const PaymentModal = ({paymentDetail, onConfirm, modalActionInfo}) => {
                   <dl className="flex items-center justify-between gap-4 border-t border-black pt-2">
                     <dt className="text-base font-bold text-gray-900">Total</dt>
                     <dd className="text-base font-bold text-gray-900">
-                      {`${paymentDetail.currency} ${getFormattedPrice(
-                        calculateTotalWithPercentage(paymentDetail.price, 0.13)
-                      )}`}
+                      {`${paymentDetail.currency} ${getFormattedPrice(paymentDetail.price.total)}`}
                     </dd>
                   </dl>
                 </div>
 
-  
                 <div className="mt-6 flex items-center justify-center gap-8">
                   <PaymentTermsAndConditions />
                 </div>
@@ -277,7 +156,11 @@ const PaymentModal = ({paymentDetail, onConfirm, modalActionInfo}) => {
                   />
                 </div>
               </div>
-            </div>
+                <div className="relative">
+                    <div className={`${termsAccepted?"hidden":"block"} bg-opacity-30 absolute flex w-full h-full bg-black z-50 justify-center items-center`}><span className="animate-bounce text-2xl font-black text-black">Para continuar, acepta términos y condiciones.</span></div>
+                    <CreateCharge paymentIntentId={paymentIntentId} onPaymentExecuted={onPaymentExecuted}/>
+                </div>
+              </div>
 
             <p className="mt-2 text-center text-gray-500 sm:mt-8 lg:text-left">
               Pago procesado por{" "}

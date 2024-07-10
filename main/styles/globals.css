@@ -193,8 +193,12 @@ body > *{
 .product-image:hover{
   @apply transition ease-in-out delay-150 -translate-y-1 scale-105  duration-300
 
+
+  
 }
 
+.promotion-image:hover {@apply transition ease-in-out delay-150 scale-95  duration-300
+}
 .storepages:hover{
   @apply transition ease-in-out delay-150 -translate-y-1 scale-100  duration-300 shadow-lg border border-gray-200 shadow-gray-100
 }
