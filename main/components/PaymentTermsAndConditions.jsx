@@ -3,7 +3,7 @@ import React from "react";
 
 const PaymentTermsAndConditions = () => {
   return (
-          <div className="border border-gray-200 p-2 rounded-lg grid grid-auto-rows h-20 overflow-scroll w-full">
+          <div className="border border-gray-200 p-2 rounded-lg grid grid-auto-rows h-56 overflow-scroll w-full">
             <span className="font-black">Términos y condiciones del pago:</span>
             <span>
             Contrary to popular belief, Lorem Ipsum is not simply random text.

@@ -27,14 +27,14 @@ import CurrencyInput from "@components/CurrencyInput";
 import DropDownList from "@components/DropDownList";
 import UploadedImage from "@components/UploadedImage";
 import { useSelector } from "react-redux";
-import { genericCompression, translateCategory } from "@utils/functions";
+import { calculatePercentage, genericCompression, prepareProductAdvertisingInfo, translateCategory } from "@utils/functions";
 import CarInfo from "./CarInfo";
 import HouseInfo from "./HouseInfo";
 import { IoCloseOutline } from "react-icons/io5";
 import PromotedOptions from "./PromotedOptions";
 import { MdOutlineArrowRight } from "react-icons/md";
 import PaymentModal from "@components/PaymentModal";
-
+import Script from "next/script";
 const StoreItem = ({
   editMode = false,
   product,
@@ -76,7 +76,8 @@ const StoreItem = ({
   const [promotionSelected, setPromotionSelected] = useState(1);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [messageToShow, setMessageToShow] = useState(null);
-  
+  const [intentId, setIntentId] = useState(""); 
+
 
 
   const { expandedNavBar } = useSelector(
@@ -91,15 +92,21 @@ const StoreItem = ({
     setSelectedOption(value);
   };
 
+  const filteredPromotion = PROMOTIONS.filter((promotion)=> promotion.value == promotionSelected)[0];
+  const iva = calculatePercentage(filteredPromotion.price,0.13);
+  const discount = 0;
+
   const PAYMENTDETAIL = {
     itemType:translateCategory(category, "SEARCHTEXT"),
-    callPaymentModal:PROMOTIONS.filter((promotion)=> promotion.value == promotionSelected)[0]?.appliesForPayment,
+    callPaymentModal:filteredPromotion.appliesForPayment,
     itemName: name,
-    detail: "Paquete " + PROMOTIONS.filter((promotion)=> promotion.value == promotionSelected)[0]?.name, 
-    currency:"₡",
+    detail: "Paquete " + filteredPromotion.name, 
+    currency:"CRC",
     price:{
-      total:PROMOTIONS.filter((promotion)=> promotion.value == promotionSelected)[0]?.price,
-      discount:0      
+      original:filteredPromotion.price,
+      iva:iva,
+      discount:discount,  
+      total:(filteredPromotion.price + iva)-discount     
     }
   }
 
@@ -227,8 +234,7 @@ const StoreItem = ({
     } else {
       //Item is good, show payment modal
       if(PAYMENTDETAIL.callPaymentModal){
-        setModalActionInfo(PAYMENT_CONFIRM_ACTION);
-        setShowPaymentModal(true)
+        InitiatePaymentProcess();
       }else{
         setShowConfirmAction(true);
       }
@@ -236,7 +242,30 @@ const StoreItem = ({
     }
   };
 
-  const onConfirm = async (processToExecute) => {
+  const InitiatePaymentProcess = async () => {
+    const response = await axios.post(`/api/payments/create/charge/`, {
+      currency: PAYMENTDETAIL.currency,
+      amount: PAYMENTDETAIL.price.total,
+      description:"EncuentraloFacilCR - "+ PAYMENTDETAIL.detail
+    })
+
+    const {created, id, message} = await response.data;
+
+    if(created){
+      setIntentId(id);
+      setModalActionInfo(PAYMENT_CONFIRM_ACTION);
+      setShowPaymentModal(true)
+    } else {
+      setModalActionInfo({
+        ...GENERAL_UKNOWN_ERROR,
+        message: message,
+      });
+      setShowConfirmAction(true);
+    }
+
+  }
+
+  const onConfirm = async (processToExecute, paymentData = {}) => {
     setShowConfirmAction(false);
     setShowPaymentModal(false);
     if (processToExecute === "CLEANPRODUCT") {
@@ -269,7 +298,12 @@ const StoreItem = ({
           serviceType: category === "SERVICES" ? serviceType : null,
           modalityType: category === "SERVICES" ? modalityType : null,
           province: category === "SERVICES" ? province : null,
-          //otherHouseInformarion: category == "HOUSES"? JSON.stringify(houseInfo):null
+          advertising: JSON.stringify(prepareProductAdvertisingInfo(filteredPromotion)),
+          paymentData: JSON.stringify(paymentData),
+          savePaymentData:filteredPromotion.appliesForPayment,
+          email:email,
+          contactNumber:contactNumber,
+          address:address
         })
         .then((response) => {
           setLoading(false);
@@ -391,7 +425,7 @@ const StoreItem = ({
       {showConfirmAction && (
           <Modal modalActionInfo={modalActionInfo} onConfirm={onConfirm} onCancel={onCancel} />)}
 
-      {showPaymentModal && <PaymentModal paymentDetail={PAYMENTDETAIL} onConfirm={onConfirm} modalActionInfo={PAYMENT_CONFIRM_ACTION}/>} 
+      {showPaymentModal && <PaymentModal paymentDetail={PAYMENTDETAIL} paymentIntentId={intentId} onConfirm={onConfirm} modalActionInfo={PAYMENT_CONFIRM_ACTION}/>} 
 
       <form
         method="POST"

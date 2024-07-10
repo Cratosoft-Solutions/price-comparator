@@ -58,6 +58,7 @@ export const GET = async (req, { params }) => {
                 ? paseStoreNumber(element.especialprice)
                 : 0,
             productSpecialPrice: element.especialprice,
+            negotiable:element.negotiable
           });
         });
         break;
@@ -100,6 +101,7 @@ export const GET = async (req, { params }) => {
                 ? paseStoreNumber(element.especialprice)
                 : 0,
             productSpecialPrice: element.especialprice,
+            negotiable:element.negotiable
           });
         });
         break;

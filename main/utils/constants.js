@@ -47,6 +47,7 @@ export const GENERAL_UKNOWN_ERROR = {
   okText: "¡Entendido!",
   cancelText: "Cancelar",
 };
+
 export const GENERAL_SUCCESS_PROCESS = {
   message: "Proceso ejecutado correctamante.",
   showCancelButton: false,
@@ -76,6 +77,14 @@ export const PAYMENT_CONFIRM_ACTION = {
   okText: "Si, pagar",
   cancelText: "No, cancelar",
   processToExecute: "SAVEPRODUCT",
+};
+
+export const PAYMENT_ERROR_ACTION = {
+  message: "Error al procesar el pago: ",
+  showCancelButton: false,
+  okText: "Entendido",
+  cancelText: "Cancelar",
+  processToExecute: "",
 };
 
 export const PRODUCT_SAVE_NO_PROMOTION_CONFIRM_ACTION = {
@@ -318,10 +327,10 @@ export const HOUSE_BENEFITS = [
 
 export const PROMOTIONS = [
   { appliesForPayment:true,
-    value: "5",
+    value: 5,
     name: "VIP",
     label: "VIP CRC 10,000.00 + IVA por 45 días",
-    expiration: "45",
+    expiration: 45,
     detail:
       "Disfruta de 45 días de máxima visibilidad con esta promoción. Tu anuncio se mostrará en búsquedas relevantes, con hasta 15 imágenes, y destacará en las secciones de Promociones, Más Buscados y todas las búsquedas por categoría, garantizando una exposición amplia y continua a una audiencia diversa.",
     price: 10000,
@@ -337,10 +346,10 @@ export const PROMOTIONS = [
   },
   {
     appliesForPayment:true,
-    value: "4",
+    value: 4,
     name: "Elite",
     label: "Elite CRC 7,500.00 + IVA por 30 días",
-    expiration: "30",
+    expiration: 30,
     detail: "Aprovecha al máximo esta promoción extendida de 30 días para tu anuncio. Con hasta 10 imágenes para una presentación completa, tu producto será destacado en búsquedas relevantes y en las secciones de Promociones y Más Buscados, asegurando una exposición continua a una amplia audiencia diversa, potenciando así su efectividad y alcance.",
     price: 7500,
     formatedPrice:"7,500.00",
@@ -354,10 +363,10 @@ export const PROMOTIONS = [
   },
   {
     appliesForPayment:true,
-    value: "3",
+    value: 3,
     name: "Deluxe",
     label: "Deluxe CRC 4,000.00 + IVA por 22 días",
-    expiration: "22",
+    expiration: 22,
     detail: "Maximiza tu visibilidad con esta promoción de 22 días. Tu anuncio estará en búsquedas clave, con hasta 10 imágenes para mostrar todos los detalles. Además, será destacado en Promociones y Más Buscados, asegurando una exposición completa ante una audiencia variada, lo que potenciará su alcance y efectividad.",
     price: 4000,
     formatedPrice:"4,000.00",
@@ -371,10 +380,10 @@ export const PROMOTIONS = [
   },
   {
     appliesForPayment:true,
-    value: "2",
+    value: 2,
     name: "Essentials",
     label: "Essentials CRC 2,000.00 + IVA por 15 días",
-    expiration: "15",
+    expiration: 15,
     detail: "Esta promoción te ofrece 15 días de visibilidad en búsquedas clave, con hasta 8 imágenes para destacar tu producto. Enfocada en una audiencia precisa",
     price: 2000,    
     formatedPrice:"2,000.00",
@@ -388,10 +397,10 @@ export const PROMOTIONS = [
   },
   {
     appliesForPayment:false,
-    value: "1",
+    value: 1,
     name: "Básico",
     label: "Básico CRC 0.00 - Anuncio sin publicidad",
-    expiration: "15",
+    expiration: 15,
     detail: "Sin costos por publicar tu anuncio.",
     price: 0,
     formatedPrice:"0.00",
@@ -987,3 +996,5 @@ export const DEFAULT_HOUSE_ITEM_STRUCTURE = {
   propertyType: "SELECT",
   benefits: [],
 };
+
+export const PGATEWAY_PK = "onvo_test_publishable_key_zlXNyzRIZlVRmOEzijvBSJ0HCcDVEdm6aQnBTETcHqFq54c9qLrcCPXBTMH9CCM1xCw9zXi702zffsPco4qBzQ";

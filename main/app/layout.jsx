@@ -23,6 +23,8 @@ const RootLayout = ({ children }) => {
         <head>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1295102561150808"
      crossOrigin="anonymous"></script>
+
+<script src="https://sdk.onvopay.com/sdk.js"/>
         </head>
         <body className="__variable_7dbc08 __variable_20951f">
           <Provider>
