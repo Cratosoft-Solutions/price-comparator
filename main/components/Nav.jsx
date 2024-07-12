@@ -41,9 +41,9 @@ const Nav = () => {
               <FaFacebookF className="w-6 h-6 inline" color="black" />
               <FaInstagram className="w-6 h-6 inline mr-6" color="black" />
             </div>
-            <div className="pl-6 pr-6 hidden md:block">Esp</div>
+            <div className="pl-6 pr-6 hidden md:block text-black">Esp</div>
             <div className="pl-6 pr-6 block md:hidden"><UserLogin/></div>
-            <div className="pl-6 md:pr-6  hidden md:block hover:cursor-pointer " onClick={()=>{onUserSelected()}}>
+            <div className="pl-6 md:pr-6  hidden md:block hover:cursor-pointer text-black" onClick={()=>{onUserSelected()}}>
               {session?.user ? 
                 "Cerrar Sesión"              
               : "Iniciar Sesión"}
