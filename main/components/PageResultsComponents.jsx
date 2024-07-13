@@ -146,6 +146,7 @@ const MyResults = () => {
                   dispatch(setSearching(false));
                   printDBStorageData(dbData.data, isSavedOnStorage);
                 } else {
+                  triggerLocalSearch(isSavedOnStorage);
                   triggerScrap(isSavedOnStorage);
                 }
                 //   }
