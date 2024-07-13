@@ -20,7 +20,7 @@ const Modal = ({ modalActionInfo, onCancel, onConfirm }) => {
     <div
       id="popup-modal"
       tabIndex="-1"
-      className="fixed bg-opacity-30 top-0 left-0 right-0 z-50 flex flex-col items-center justify-center bg-black p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full max-h-full"
+      className="fixed bg-opacity-30 top-0 left-0 right-0 z-50 flex flex-col items-center justify-center bg-black p-4 overflow-x-hidden overflow-y-auto lg:inset-0 h-full max-h-full"
     >
       <div className="relative w-full max-w-md max-h-full">
         <div className="relative bg-white rounded-lg shadow">

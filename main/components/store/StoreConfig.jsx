@@ -131,42 +131,42 @@ const StoreConfig = () => {
           <div>             
               <div className="storepages bg-white border shadow-lg  mb-6">
               <div className="grid text-sm grid-cols-1 lg:grid-cols-3">
-              <div className="text-black mb-4 md:mb-0 bg-[#EEDECF] p-4">
+              <div className="text-black mb-4 lg:mb-0 bg-[#EEDECF] p-4">
               <p className="font-black text-2xl mb-4">Configuración General</p>
                   <p className='text-gray-800'>Favor complete todos los campos.</p>
-                  <div className="w-full h-full flex items-start md:mt-16 justify-center p-4">
+                  <div className="w-full h-full flex items-start lg:mt-16 justify-center p-4">
                   <img className="w-ful h-fit z-50" src="/assets/images/create-item.svg" />
                 </div>
                   </div> 
       
                   <div className="lg:col-span-2 p-4 ">
-                  <div className="grid  text-sm grid-cols-1 md:grid-cols-5 ">
-                      <div className="md:col-span-5 relative">
+                  <div className="grid  text-sm grid-cols-1 lg:grid-cols-5 ">
+                      <div className="lg:col-span-5 relative">
                           <input type="text" name="full_name" id="full_name" className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border rounded-t-lg px-4 w-full bg-white shadow text-base text-gray-800 border border-gray-300" value={name} onChange={e => {setName(e.target.value);}}/>
                           <div className={`${name?'labelsconfigurationwithvalue':'labelsconfiguration'} text-gray-600 text-sm`}>Nombre del comercio, persona u otro.</div>
                       </div>
       
-                      <div className="md:col-span-5 relative">
+                      <div className="lg:col-span-5 relative">
                           <input type="text" name="descrition" id="descrition" className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800  border border-gray-300" value={description} onChange={e => {setDescription(e.target.value);}} />
                           <div className={`${description?'labelsconfigurationwithvalue':'labelsconfiguration'} text-gray-600 text-sm`}>Describe los productos/servicios que ofreces.</div>
                       </div>
 
-                      <div className="md:col-span-5 relative">
+                      <div className="lg:col-span-5 relative">
                         <input required type="email" name="email" id="email" className=" inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800  border border-gray-300"  value={email} onChange={e => {setEmail(e.target.value);}}/>
                         <div className={`${email?'labelsconfigurationwithvalue':'labelsconfiguration'} text-gray-600 text-sm`}>Email de contacto.</div>
                       </div>
 
-                      <div className="md:col-span-5 relative">
+                      <div className="lg:col-span-5 relative">
                         <input name="contactnumber" className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800  border border-gray-300" id="contactnumber" value={contactNumber}  onChange={e => {setContactNumber(e.target.value);}}/>
                         <div className={`${contactNumber?'labelsconfigurationwithvalue':'labelsconfiguration'} text-gray-600 text-sm`}>Número de contacto.</div>
                       </div>
 
-                      <div className="md:col-span-5 relative">
+                      <div className="lg:col-span-5 relative">
                         <input required type="input" name="address" id="address" className="inputconfiguration rounded-b-lg focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800  border border-gray-300"  value={address} onChange={e => {setAddress(e.target.value);}}/>
                         <div className={`${address?'labelsconfigurationwithvalue':'labelsconfiguration'} text-gray-600 text-sm`}>Ubicación física (Sólo si aplica).</div>
                       </div>
 
-                      <div className="md:col-span-5 relative mt-4">
+                      <div className="lg:col-span-5 relative mt-4">
                       <div className="inline-flex items-center">
                           <img className='mr-2' src="/assets/images/ws-image.png" width={30} height={30} alt="Productos y servicios. Encuéntralo Facil Costa Rica"></img>
                           <input type="checkbox" name="billing_same" id="billing_same" className="form-checkbox" checked={showwhatssapicon} onChange={() => {setShowWhatssapIcon(prev => !prev);}}/>
@@ -174,12 +174,12 @@ const StoreConfig = () => {
                       </div>
                       </div>
 
-                      <div className="md:col-span-5 relative mt-4">
+                      <div className="lg:col-span-5 relative mt-4">
                          <div className="labelsconfigurationwithvalue text-gray-600 text-sm">Proporciona el logo de tu comercio.</div>
                           <DragDropFiles id="image" name="image" onImageLoaded={setInternalImage} acceptedDimension={IMAGE_PRINCIPAL_STORE_DIMENSION}/>
                       </div>
               
-                      <div className="md:col-span-5 text-right relative mt-4">
+                      <div className="lg:col-span-5 text-right relative mt-4">
                       <div className="inline-flex">
                          {image && <BsFillImageFill type="button" className="w-12 h-auto mr-5 group-invalid:pointer-events-none group-invalid:opacity-30" onClick={()=> {setShowImage(true)}}/>}
                           <button type="submit" className="black_btn">Guardar</button>

@@ -892,7 +892,7 @@ export const MAIN_PAGE_INFO_CARD = [
 
 export const BTN_SEARCH_DEFAULT_BEHAVIOUR = {
   size: "w-full",
-  height: "h-10",
+  height: "h-12",
   fSize: "text-sm",
   displayImage: false,
   style: {},

@@ -86,8 +86,8 @@ const router = useRouter();
     
     return (
       <>
-        {renderImages("hidden md:block", desktopImages, onUserSelectedImage)}
-        {renderImages("block md:hidden", mobileImages, onUserSelectedImage)}
+        {renderImages("hidden lg:block", desktopImages, onUserSelectedImage)}
+        {renderImages("block lg:hidden", mobileImages, onUserSelectedImage)}
       </>
     )
 }

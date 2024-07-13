@@ -30,7 +30,7 @@ const PaymentModal = ({paymentDetail, paymentIntentId, onConfirm}) => {
     }
 
   return (
-    <div className="absolute top-0 w-full h-full bg-opacity-30 z-50 flex flex-col items-start justify-start bg-black md:p-16 overflow-x-hidden overflow-y-auto md:inset-0 h-full max-h-full">
+    <div className="absolute top-0 w-full h-full bg-opacity-30 z-50 flex flex-col items-start justify-start bg-black lg:p-16 overflow-x-hidden overflow-y-auto lg:inset-0 h-full max-h-full">
       {showConfirmAction && (
         
         <Modal
@@ -40,32 +40,32 @@ const PaymentModal = ({paymentDetail, paymentIntentId, onConfirm}) => {
         />
       )}
 
-      <section className="w-full h-fit bg-white antialiased md:rounded-lg p-8">
+      <section className="w-full h-fit bg-white antialiased lg:rounded-lg p-8">
         <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
           <div className="mx-auto max-w-5xl">
             <div className="relative w-full bg-white inline flex items-center mb-2">
               <MdOutlineArrowRight
-                className="-ml-4 hidden md:block inline w-12 h-12"
+                className="-ml-4 hidden lg:block inline w-12 h-12"
                 color="black"
               />
-              <p className="inline text-black w-full text-center md:text-left font-black text-2xl">
+              <p className="inline text-black w-full text-center lg:text-left font-black text-2xl">
                 Detalle del pago{" "}
-                <span className="md:inline    hidden md:block font-black text-sm">
+                <span className="lg:inline    hidden lg:block font-black text-sm">
                   ({paymentDetail.itemName})
                 </span>
               </p>
               <img
                 src="/assets/images/logo.svg"
-                className="hidden md:block absolute right-2 h-14 w-32"
+                className="hidden lg:block absolute right-2 h-14 w-32"
               ></img>
               <img
                 src="/assets/images/logo-mb.svg"
-                className="block md:hidden absolute right-2 h-12 w-12"
+                className="block lg:hidden absolute right-2 h-12 w-12"
               ></img>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-[40%_60%] gap-4 md:gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-4 lg:gap-8">
 
-            <div className="md:mt-8">
+            <div className="lg:mt-8">
                 <div className="space-y-4 rounded-lg border bg-[#EEDECF] border-none p-6">
                   <div className="space-y-2">
                     <div className="flex inline">

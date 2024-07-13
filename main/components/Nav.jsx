@@ -25,8 +25,8 @@ const Nav = () => {
 
   return (
     <>
-      <div className="lg:mr-10 lg:ml-10 w-100 grid grid-rows-1 lg:grid-cols-[50%_50%] grid-cols-1 md:grid-cols-[70%_30%] h-14  pt-10 pl-6 lg:pl-10 md:pr-10 pb-8">
-        <div className="inline justify-start flex bg-red-900 items-center gap-2 hidden md:flex md:inline">
+      <div className="lg:mr-10 lg:ml-10 w-100 grid grid-rows-1 lg:grid-cols-[50%_50%] grid-cols-1 lg:grid-cols-[70%_30%] h-14  pt-10 pl-6 lg:pl-10 lg:pr-10 pb-8">
+        <div className="inline justify-start flex bg-red-900 items-center gap-2 hidden lg:flex lg:inline">
           <RiInformationFill className="w-6 h-6 inline" color="gray" />
           <Link
             href="/"
@@ -41,9 +41,9 @@ const Nav = () => {
               <FaFacebookF className="w-6 h-6 inline" color="black" />
               <FaInstagram className="w-6 h-6 inline mr-6" color="black" />
             </div>
-            <div className="pl-6 pr-6 hidden md:block text-black">Esp</div>
-            <div className="pl-6 pr-6 block md:hidden"><UserLogin/></div>
-            <div className="pl-6 md:pr-6  hidden md:block hover:cursor-pointer text-black" onClick={()=>{onUserSelected()}}>
+            <div className="pl-6 pr-6 hidden lg:block text-black">Esp</div>
+            <div className="pl-6 pr-6 block lg:hidden"><UserLogin/></div>
+            <div className="pl-6 lg:pr-6  hidden lg:block hover:cursor-pointer text-black" onClick={()=>{onUserSelected()}}>
               {session?.user ? 
                 "Cerrar Sesión"              
               : "Iniciar Sesión"}
@@ -52,8 +52,8 @@ const Nav = () => {
         </div>
       </div>
       
-      <div className="block md:hidden w-full bg-orange-500 ">
-        <SearchButton behaviour={{...BTN_SEARCH_DEFAULT_BEHAVIOUR, bSize:'border-2'}}/>
+      <div className="block lg:hidden w-full bg-white ">
+          <SearchButton personalizedClass='!h-28'/>
       </div>
 
       <NavCategoriesBar />

@@ -67,16 +67,16 @@ const LoginRegister = ({isLogin=true}) => {
 
     return (
     <section className="bg-white">
-      <div className="flex flex-col items-center justify-center mx-auto md:h-full lg:py-0 p-6 lg:p-2">
+      <div className="flex flex-col items-center justify-center mx-auto lg:h-full lg:py-0 p-6 lg:p-2">
 
    
 
-        <div className="w-full bg-white rounded-lg drop-shadow-[0_0px_2px_rgba(0,0,0,0.25)] md:mt-4 sm:max-w-md xl:p-0 mb-4">
+        <div className="w-full bg-white rounded-lg drop-shadow-[0_0px_2px_rgba(0,0,0,0.25)] lg:mt-4 sm:max-w-md xl:p-0 mb-4">
           <div className="p-6  sm:p-8">
             <h1 className="text-black h-8 lg:h-12 text-xl font-black">
               {isLogin?"Ingresa tus credenciales":"Crea tu cuenta"}
             </h1>
-            <form onSubmit={executeOnCredentialLogin} method="POST" className="space-y-4 md:space-y-6" action="#">
+            <form onSubmit={executeOnCredentialLogin} method="POST" className="space-y-4 lg:space-y-6" action="#">
               <div>
                 <label
                   htmlFor="email"

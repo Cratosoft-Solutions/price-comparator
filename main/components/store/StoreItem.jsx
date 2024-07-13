@@ -439,7 +439,7 @@ const StoreItem = ({
         {" "}
         {editMode && (
           <IoCloseOutline
-            className="absolute top-2 right-2 md:-right-14 md:top-0 md:!stroke-white w-12 h-12 z-50"
+            className="absolute top-2 right-2 lg:-right-14 lg:top-0 lg:!stroke-white w-12 h-12 z-50"
             color="white"
             onClick={onCloseFunction}
           />
@@ -448,13 +448,13 @@ const StoreItem = ({
         <div className="w-full ">
           <div className=" storepages bg-white border shadow-lg mb-6">
             <div className="grid text-sm grid-cols-1 lg:grid-cols-3">
-              <div className="text-black mb-4 md:mb-0 bg-[#EEDECF] p-4">
+              <div className="text-black mb-4 lg:mb-0 bg-[#EEDECF] p-4">
                 <p className="font-black text-2xl mb-4">¡Crea tu anuncio!</p>
                 <p className="text-gray-800">
                   Favor completa todos los campos para ingresar un nuevo
                   anuncio.
                 </p>
-                <div className="w-full h-full flex items-start md:mt-16 justify-center p-4">
+                <div className="w-full h-full flex items-start lg:mt-16 justify-center p-4">
                   <img
                     className="w-ful h-fit"
                     src="/assets/images/create-item.svg"
@@ -465,16 +465,16 @@ const StoreItem = ({
               <div className="lg:col-span-2 p-4">
                 <div className="inline flex items-center mb-4">
                   <MdOutlineArrowRight
-                    className="-ml-4 hidden md:block inline w-12 h-12"
+                    className="-ml-4 hidden lg:block inline w-12 h-12"
                     color="black"
                   />
-                  <p className="inline text-black w-full text-center md:text-left font-black text-2xl">
+                  <p className="inline text-black w-full text-center lg:text-left font-black text-2xl">
                     Datos generales del anuncio
                   </p>
                 </div>
 
-                <div className="grid text-sm grid-cols-1 md:grid-cols-5">
-                  <div className="md:col-span-5 relative">
+                <div className="grid text-sm grid-cols-1 lg:grid-cols-5">
+                  <div className="lg:col-span-5 relative">
                     <DropDownList
                       additionalClass="rounded-t-lg"
                       onSelectValue={setCategoryOnChange}
@@ -490,7 +490,7 @@ const StoreItem = ({
                     </div>
                   </div>
 
-                  <div className="md:col-span-5 relative">
+                  <div className="lg:col-span-5 relative">
                     <input
                       type="text"
                       required
@@ -512,7 +512,7 @@ const StoreItem = ({
                       {nameLabel}
                     </div>
                   </div>
-                  <div className="md:col-span-5 relative">
+                  <div className="lg:col-span-5 relative">
                     <input
                       type="text"
                       required
@@ -537,7 +537,7 @@ const StoreItem = ({
 
                   {category === "SERVICES" && (
                     <>
-                      <div className="md:col-span-5 relative">
+                      <div className="lg:col-span-5 relative">
                         <DropDownList
                           onSelectValue={setServiceType}
                           values={servicesList}
@@ -554,7 +554,7 @@ const StoreItem = ({
                           Categoría del servicio.
                         </div>
                       </div>
-                      <div className="md:col-span-5 relative">
+                      <div className="lg:col-span-5 relative">
                         <DropDownList
                           onSelectValue={setModalityType}
                           values={modalityList}
@@ -571,7 +571,7 @@ const StoreItem = ({
                           Modalidad
                         </div>
                       </div>
-                      <div className="md:col-span-5 relative">
+                      <div className="lg:col-span-5 relative">
                         <DropDownList
                           onSelectValue={setProvince}
                           values={provinceList}
@@ -592,7 +592,7 @@ const StoreItem = ({
                   )}
                   {category != "SERVICES" && category != "HOUSES" && (
                     <>
-                      <div className="md:col-span-5 relative">
+                      <div className="lg:col-span-5 relative">
                         <CurrencyInput
                           type="stock"
                           value={stock}
@@ -612,7 +612,7 @@ const StoreItem = ({
                       </div>
                     </>
                   )}
-                  <div className="md:col-span-5 relative">
+                  <div className="lg:col-span-5 relative">
                     <CurrencyInput
                       required
                       type="text"
@@ -632,7 +632,7 @@ const StoreItem = ({
                     </div>
                   </div>
 
-                  <div className="md:col-span-5 relative">
+                  <div className="lg:col-span-5 relative">
                     <CurrencyInput
                       type="text"
                       value={specialPrice}
@@ -651,7 +651,7 @@ const StoreItem = ({
                     </div>
                   </div>
 
-                  <div className="md:col-span-5 relative ">
+                  <div className="lg:col-span-5 relative ">
                     <DropDownList
                       onSelectValue={setNegotiable}
                       values={GENERAL_YESNO}
@@ -669,7 +669,7 @@ const StoreItem = ({
                     </div>
                   </div>
 
-                  <div className="md:col-span-5 relative ">
+                  <div className="lg:col-span-5 relative ">
                     <DropDownList
                       additionalClass={
                         category == "PRODUCT" ? "rounded-b-lg" : ""
@@ -705,7 +705,7 @@ const StoreItem = ({
                   )}
 
                   {images.length <= 4 && (
-                    <div className="md:col-span-5 relative mt-4">
+                    <div className="lg:col-span-5 relative mt-4">
                       <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
                         Selección de imágenes.
                       </div>
@@ -718,7 +718,7 @@ const StoreItem = ({
                     </div>
                   )}
 
-                  <div className="md:col-span-5 text-right relative mt-4">
+                  <div className="lg:col-span-5 text-right relative mt-4">
                     <div className="grid grid-cols-3 lg:grid-cols-6 grid-rows-2 lg:grid-rows-1">
                       {images.map((image, index) => (
                         <img
@@ -733,18 +733,18 @@ const StoreItem = ({
                       ))}
                     </div>
                   </div>
-                  <div className="md:col-span-5 text-right relative ">
+                  <div className="lg:col-span-5 text-right relative ">
                     <div className="inline flex items-center mb-4">
                       <MdOutlineArrowRight
-                        className="-ml-4 hidden md:block inline w-12 h-12"
+                        className="-ml-4 hidden lg:block inline w-12 h-12"
                         color="black"
                       />
-                      <p className="inline text-black w-full text-center md:text-left font-black text-2xl">
+                      <p className="inline text-black w-full text-center lg:text-left font-black text-2xl">
                         Datos de contacto
                       </p>
                     </div>{" "}
                   </div>
-                  <div className="md:col-span-5 relative">
+                  <div className="lg:col-span-5 relative">
                     <input
                       required
                       type="email"
@@ -767,7 +767,7 @@ const StoreItem = ({
                     </div>
                   </div>
 
-                  <div className="md:col-span-5 relative">
+                  <div className="lg:col-span-5 relative">
                     <input
                       name="contactnumber"
                       className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800  border border-gray-300"
@@ -789,7 +789,7 @@ const StoreItem = ({
                     </div>
                   </div>
 
-                  <div className="md:col-span-5 relative">
+                  <div className="lg:col-span-5 relative">
                     <input
                       required
                       type="input"
@@ -812,7 +812,7 @@ const StoreItem = ({
                     </div>
                   </div>
 
-                  <div className="md:col-span-5 relative mt-4">
+                  <div className="lg:col-span-5 relative mt-4">
                     <div className="inline-flex items-center">
                       <img
                         className="mr-2"
@@ -842,7 +842,7 @@ const StoreItem = ({
 
                   <PromotedOptions onSelectedOption={setPromotionSelected} />
 
-                  <div className="md:col-span-5 text-right mt-4">
+                  <div className="lg:col-span-5 text-right mt-4">
                     <button type="submit" className="inline black_btn">
                       {editMode ? "Actualizar" : "Continuar"}
                     </button>
