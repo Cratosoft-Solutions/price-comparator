@@ -2,12 +2,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import ProductCard from "./ProductCard";
 import { useSelector } from "react-redux";
+import { element } from "prop-types";
 
 const HorizontalCardList = ({mergedProducts, adminMode = false, callBackFunction=()=>{} }) => {
   const parentHTML = useRef(null);
   const [scrollInterval, setScrollInterval] = useState(null);
   const [scrollToLeft, setScrollToLeft] = useState(true);
   const [scrollToRight, setScrollToRight] = useState(true);
+  //Accede a variable del state
   const {page, size} = useSelector(state => state.sitepagination);
 
   const FIRSTPOSITION = (page-1)*size;
@@ -47,16 +49,72 @@ const HorizontalCardList = ({mergedProducts, adminMode = false, callBackFunction
 
   return (
     <div className="min-h-screen pb-24">
-      {!adminMode &&
+      {!adminMode && (
         <div className="w-full justify-left">
-          <p className="text-sm text-black font-black"> {`Encontramos ${mergedProducts.length} anuncios. Registros del ${FIRSTPOSITION + 1 } al ${LASTPOSITION}`}</p>
+          <p className="text-sm text-black font-black">
+            {" "}
+            {`Encontramos ${mergedProducts.length} anuncios. Registros del ${
+              FIRSTPOSITION + 1
+            } al ${LASTPOSITION}`}
+          </p>
         </div>
-      }
+      )}
 
-      <div className='grid gap-3 grid-cols-4 mt-4 mb-24' >
-          {mergedProducts.slice(FIRSTPOSITION, LASTPOSITION).map((product, index) => (
-            <ProductCard key={index} product = {product} index={index} adminMode={adminMode} callBackFunction={callBackFunction}/>
-          ))}              
+      <div className="grid gap-3 grid-cols-4 mt-4 mb-24">
+        { mergedProducts
+          .filter((element) => element.isLocal)
+          .slice(FIRSTPOSITION, LASTPOSITION).length > 0
+          ? mergedProducts
+              .filter((element) => element.isLocal)
+              .slice(FIRSTPOSITION, LASTPOSITION)
+              .map((product, index) => (
+                <ProductCard
+                  key={index}
+                  product={product}
+                  index={index}
+                  adminMode={adminMode}
+                  callBackFunction={callBackFunction}
+                />
+              ))
+          : mergedProducts
+              .filter((element) => element.isLocal)
+              .slice(0, size)
+              .map((product, index) => (
+                <ProductCard
+                  key={index}
+                  product={product}
+                  index={index}
+                  adminMode={adminMode}
+                  callBackFunction={callBackFunction}
+                />
+              ))}
+      </div>
+
+      {!adminMode &&
+        mergedProducts.filter((element) => element.isLocal).length > 0 && (
+          <div className="w-full justify-left">
+            <p className="text-lg text-black font-black">
+              {" "}
+              {"Tambien te puede interesar"}
+            </p>
+          </div>
+        )}
+
+      <div className="grid gap-3 grid-cols-4 mt-4 mb-24">
+        {!adminMode &&
+          mergedProducts.filter((element) => !element.isLocal).length > 0 &&
+          mergedProducts
+            .filter((element) => !element.isLocal)
+            .slice(FIRSTPOSITION, LASTPOSITION)
+            .map((product, index) => (
+              <ProductCard
+                key={index}
+                product={product}
+                index={index}
+                adminMode={adminMode}
+                callBackFunction={callBackFunction}
+              />
+            ))}
       </div>
     </div>
   );
