@@ -81,11 +81,11 @@ const Home = () => {
 
   return (
     <div className="w-full gap-2 bg-white">
-      <div className="w-full md:mb-4 relative">
+      <div className="w-full lg:mb-4 relative">
         <HorizontalSlider />
       </div>
 
-      <div className="w-full md:mb-4 relative">
+      <div className="w-full lg:mb-4 relative">
         <MainPageInformationCategories />
       </div>
 

@@ -14,7 +14,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
 
   return (
     <>
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={CARD_BRANDS}
@@ -30,7 +30,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <input
           type="text"
           required
@@ -53,7 +53,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <input
           type="text"
           required
@@ -74,7 +74,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={CARD_STYLES}
@@ -90,7 +90,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={getGenericNumericArray("ASC", 1, 9, 1, true, {
@@ -109,7 +109,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={getGenericNumericArray(
@@ -130,7 +130,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={CARD_STATUS}
@@ -146,7 +146,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={CARD_COMBUSTIBLE}
@@ -162,7 +162,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={CARD_TRANSMITION}
@@ -178,7 +178,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <input
           type="text"
           required
@@ -199,7 +199,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={CARD_KMMI}
@@ -215,7 +215,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative ">
+      <div className="lg:col-span-5 relative ">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           returnOtherValue="taxes"
@@ -231,7 +231,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative ">
+      <div className="lg:col-span-5 relative ">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={GENERAL_YESNO}
@@ -247,7 +247,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={getGenericNumericArray("ASC", 1, 5, 1)}
@@ -263,7 +263,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={GENERAL_PROVINCES}
@@ -280,19 +280,19 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative ">
+      <div className="lg:col-span-5 relative ">
         <div className="inline flex items-center mb-4 mt-4">
           <MdOutlineArrowRight
-            className="-ml-4 hidden md:block inline w-12 h-12"
+            className="-ml-4 hidden lg:block inline w-12 h-12"
             color="black"
           />
-          <p className="inline text-black w-full text-center md:text-left font-black text-2xl">
+          <p className="inline text-black w-full text-center lg:text-left font-black text-2xl">
             Equipamento
           </p>
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <div className="grid grid-cols-1 lg:grid-cols-3">
           {CARD_EQUIPMENT.map((element, index) => (
             <div key={index} className="flex items-center mb-4">

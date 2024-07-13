@@ -80,10 +80,10 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
 
     return (
       <section className="max-heigh-available fixed top-0 w-full z-50 h-screen bg-black bg-opacity-30 lg:py-11 left-0">
-        <div className="max-w-4xl lg:py-8 mx-auto md:px-6 bg-white shadow relative  min-h-screen md:min-h-min">
+        <div className="max-w-4xl lg:py-8 mx-auto lg:px-6 bg-white shadow relative  min-h-screen lg:min-h-min">
           <IoCloseOutline onClick={() => { onCloseFunction(false); }} className="absolute top-1 -right-1 z-[100] lg:-top-2 lg:-right-12 h-12 w-12" color='whitesmoke'/>
           <div className="flex flex-wrap -mx-4">
-            <div className="w-full px-4 md:w-1/2 md:w-max-1/2 ">
+            <div className="w-full px-4 lg:w-1/2 lg:w-max-1/2 ">
               <ImageGallery
                 items={images}
                 thumbnailPosition={`${isMobile()?'bottom':'right'}`}
@@ -92,10 +92,10 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
                 infinite
               />
             </div>
-            <div className="w-full px-4 md:w-1/2">
+            <div className="w-full px-4 lg:w-1/2">
               <div className="p-4 lg:pl-4 lg:p-0">
                 <div className="mb-8">
-                  <h2 className="text-black max-w-xl mt-2 lg:mt-0 mb-4 text-xl font-bold  md:text-3xl">
+                  <h2 className="text-black max-w-xl mt-2 lg:mt-0 mb-4 text-xl font-bold  lg:text-3xl">
                     {product.productName}
                   </h2>
 

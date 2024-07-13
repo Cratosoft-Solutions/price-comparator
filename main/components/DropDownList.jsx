@@ -7,7 +7,7 @@ export default function DropDownList({
 }) {
   return (
     <select
-      className={` ${additionalClass} block w-full h-16 px-3 text-gray-800 pt-3 bg-white shadow border border-gray-300 text-base`}
+      className={` ${additionalClass}  block w-full h-16 px-3 text-gray-800 pt-3 bg-white shadow border border-gray-300 text-base`}
       value={currentValue}
       onChange={(e) => {
         returnOtherValue

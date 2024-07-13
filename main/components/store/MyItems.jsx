@@ -72,7 +72,7 @@ const MyItems = ({ params }) => {
       <div className={`mt-4 lg:mt-0 p-4 lg:pl-6 lg:pr-6`}>
             {showConfirmAction && <Modal modalActionInfo={modalActionInfo} onConfirm={onConfirm} onCancel={onCancel} />}
             <div className="w-full">                              
-                <div className=" storepages bg-white p-10 rborder shadow-lg p-4 px-4 md:p-8 mb-6 min-h-screen">
+                <div className=" storepages bg-white p-10 rborder shadow-lg p-4 px-4 lg:p-8 mb-6 min-h-screen">
                     <div className="relative container mx-auto hidden lg:block">
                         <HorizontalCardList mergedProducts={items} adminMode={true} callBackFunction={adminSelectedItem}/>
                         <PaginationControls tableItemsAmount={items.length} size={size} isOptionSearchExpanded={expandedNavBar}/>

@@ -14,7 +14,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
 
   return (
     <>
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={getGenericNumericArray("ASC", 1, 10, 1)}
@@ -30,7 +30,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={getGenericNumericArray("ASC", 1, 5, 1)}
@@ -46,7 +46,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={getGenericNumericArray("ASC", 0, 5, 1)}
@@ -62,7 +62,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <input
           required
           type="text"
@@ -85,7 +85,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={HOUSE_VENDOR_TYPE}
@@ -101,7 +101,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <textarea
           name="address"
           required
@@ -123,7 +123,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <input
           type="text"
           required
@@ -146,8 +146,8 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
-        {/*  <div className="md:col-span-3 relative"> */}
+      <div className="lg:col-span-5 relative">
+        {/*  <div className="lg:col-span-3 relative"> */}
         <input
           type="text"
           name="lotSize"
@@ -169,7 +169,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
           Tamaño del lote.
         </div>
         {/*  </div> */}
-        {/*                 <div className="md:col-span-2 relative">
+        {/*                 <div className="lg:col-span-2 relative">
                     <DropDownList
                     onSelectValue={fieldSelectedValue}
                     values={HOUSE_FLOOR_TYPE}
@@ -185,7 +185,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
                 </div>    */}
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <input
           type="text"
           name="height"
@@ -208,7 +208,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={getGenericNumericArray(
@@ -228,7 +228,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={HOUSE_FLOOR_TYPE}
@@ -243,7 +243,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={getGenericNumericArray("ASC", 1, 9, 1, true, {
@@ -261,7 +261,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={getGenericNumericArray("ASC", 1, 60, 1)}
@@ -276,7 +276,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={GENERAL_YESNO}
@@ -291,7 +291,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={HOUSE_BALCONY_TERRACE}
@@ -306,7 +306,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <DropDownList
           onSelectValue={fieldSelectedValue}
           values={HOUSE_PROPERTY_TYPE}
@@ -321,19 +321,19 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
         </div>
       </div>
 
-      <div className="md:col-span-5 relative ">
+      <div className="lg:col-span-5 relative ">
         <div className="inline flex items-center mb-4 mt-4">
           <MdOutlineArrowRight
-            className="-ml-4 hidden md:block inline w-12 h-12"
+            className="-ml-4 hidden lg:block inline w-12 h-12"
             color="black"
           />
-          <p className="inline text-black w-full text-center md:text-left font-black text-2xl">
+          <p className="inline text-black w-full text-center lg:text-left font-black text-2xl">
             Extras - Beneficios
           </p>
         </div>
       </div>
 
-      <div className="md:col-span-5 relative">
+      <div className="lg:col-span-5 relative">
         <div className="grid grid-cols-1 lg:grid-cols-3">
           {HOUSE_BENEFITS.map((element, index) => (
             <div key={index} className="flex items-center mb-4">

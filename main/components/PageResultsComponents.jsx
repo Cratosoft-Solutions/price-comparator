@@ -19,14 +19,12 @@ const MyResults = () => {
     const {data:session} = useSession();
     const { expandedNavBar } = useSelector(state => state.verticalnav.productSearch);
     const dispatch = useDispatch();
-    const { text } = useSelector(state => state.searchProperties.properties);
-    const { category} = useSelector(state => state.siteNav);
     const searchParams = useSearchParams()
-    const search = searchParams.get('search');
+    const text = searchParams.get('search');
+    const category = searchParams.get('category');
   
 
     let searchCounter = 0;
-    //let storeToSearhCount = STORE_BY_CATEGORY.filter((item)=> item.category == category)[0]?.stores.length;
     let storeToSearhCount = STORE_BY_CATEGORY[0].stores.length;//TODO cuando se manejen categorias por producto
     const key = formatKeyForStorage(category, text); 
     const textSearchArray = key != '' ? key.toUpperCase().split(" ") : "";
@@ -161,7 +159,7 @@ const MyResults = () => {
         else{
           router.push('/');
         }
-    }, [search])
+    }, [text, category])
 
 
 return (

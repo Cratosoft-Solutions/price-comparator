@@ -9,7 +9,7 @@ const MainInfoCard = ({Icon, title, description, index}) => {
             </div>
         </div>
         <div className='text-black text-center w-full h-full  '>
-            <h5 className="mb-2 md:text-2xl font-bold">{title}</h5>
+            <h5 className="mb-2 lg:text-2xl font-bold">{title}</h5>
             <p>{description}</p>
 
         </div>
