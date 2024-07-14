@@ -32,7 +32,8 @@ export const GET = async (req, { params }) => {
           stock: element.stock?element.stock:0,
           formatedPrice:paseStoreNumber(element.price),
           formatedEspecialPrice:element.especialprice && element.especialprice !=0 ? paseStoreNumber(element.especialprice):0,
-          currency:element.currency
+          currency:element.currency,
+          category:element.category
       })
   });
 

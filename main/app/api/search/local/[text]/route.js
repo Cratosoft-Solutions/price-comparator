@@ -56,7 +56,8 @@ export const GET = async (req, { params }) => {
             formatedPrice:paseStoreNumber(element.price),
             productId: element._id,
             storeId: element.store,
-            currency: element.currency == "CRC" ? "₡" : "$"
+            currency: element.currency == "CRC" ? "₡" : "$",
+            category: element.category
         })
     });
 
