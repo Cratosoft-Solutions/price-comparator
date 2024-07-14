@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { IoMdEye } from "react-icons/io";
 import { useRouter } from "next/navigation";
+import HorizontalPromotionTags from "./HorizontalPromotionTags";
 
 
 const ProductCard = ({ logo, product, index, adminMode, callBackFunction }) => {
@@ -23,6 +24,7 @@ const ProductCard = ({ logo, product, index, adminMode, callBackFunction }) => {
      <div key={`CARD-${index}`} className="flex flex-col w-32 h-64 lg:w-48 lg:h-80 gap-2">
          <div onClick={()=>{handleProductClick(product.productId)}} className="w-32 h-32 lg:w-48 lg:h-48" >
           <div className="p-2 absolute left-0 top-0 w-full h-full flex items-center justify-center container-blur product-image">
+          {!adminMode && product.isLocal && <HorizontalPromotionTags product={product}/>}
             <img
               alt="product.productDescription"
               loading="lazy"
