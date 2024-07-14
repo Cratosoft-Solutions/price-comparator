@@ -27,7 +27,7 @@ const MobileHorizontalCardList = ({mergedProducts, adminMode = false, callBackFu
 
       {!adminMode &&
         mergedProducts.filter(
-          (element) => element.isLocal && element.category === "PRODUCT"
+          (element) => element.isLocal && element.category == 'PRODUCT'
         ).length > 0 && (
           <div className="w-full items-center justify-left p-6 bg-white mt-2 items-end">
             <p className="text-lg text-black font-black">
