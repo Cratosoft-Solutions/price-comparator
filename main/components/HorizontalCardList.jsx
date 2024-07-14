@@ -91,7 +91,7 @@ const HorizontalCardList = ({mergedProducts, adminMode = false, callBackFunction
       </div>
 
       {!adminMode &&
-        mergedProducts.filter((element) => element.isLocal).length > 0 && (
+        mergedProducts.filter((element) => element.isLocal && element.category === "PRODUCT").length > 0 && (
           <div className="w-full justify-left">
             <p className="text-lg text-black font-black">
               {" "}
