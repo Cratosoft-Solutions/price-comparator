@@ -22,7 +22,6 @@ const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
       >
         <div className="relative w-32 h-32 !max-h-32 flex-shrink-0">
           <div className="p-2 absolute left-0 top-0 w-full h-full flex items-center justify-center container-blur product-image">
-          {!adminMode && product.isLocal && <HorizontalPromotionTags product={product}/>}
             <img
               alt="Productos y servicios. Encuéntralo Facil Costa Rica"
               className="w-full h-full"
@@ -32,7 +31,8 @@ const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
             />
           {adminMode? null: (<>{product.isLocal?null:<div className="centered-blur">REFERENCIA </div>}</>)} 
           </div>
-          
+          {!adminMode && product.isLocal && <HorizontalPromotionTags product={product}/>}
+
         </div>
         <div className="grid grid-rows-2 grid-cols-1">
           <p className="text-sm text-black font-black text-ellipsis">{product.productName}</p>
@@ -58,7 +58,9 @@ const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
               </span>
           </div>
         </div>
+
         </div>
+
       </div>
     </div>
   );

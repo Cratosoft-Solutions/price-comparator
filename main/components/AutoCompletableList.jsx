@@ -4,7 +4,6 @@ import axios from 'axios';
 import { formatAutoCompletableItem, searchArrayCoincidences } from '@utils/functions';
 import { setText, setCategory } from "@app/redux/slices/searchProperties";
 import { useDispatch } from 'react-redux';
-import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 
 
 const AutoCompletableList = ({text, onChange}) => {

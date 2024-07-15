@@ -41,11 +41,12 @@ const PaginationControls = ({size, tableItemsAmount}) => {
       <div className="paginationcontroler flex items-center gap-4 justify-center bg-white mb-2 pt-2 pb-2 pr-4 pl-4 shadow border border-gray-200 w-fit">
         <button
           variant="text"
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 text-black"
           onClick={prev}
           disabled={active === 1}
         >
-          <AiOutlineArrowLeft strokeWidth={2} className="h-4 w-4" /> Anterior
+          <AiOutlineArrowLeft strokeWidth={2} className="h-4 w-4 " /> 
+          Anterior
         </button>
         <div className="flex items-center gap-2">
             {pagesArray.map(element=>(
@@ -54,7 +55,7 @@ const PaginationControls = ({size, tableItemsAmount}) => {
         </div>
         <button
           variant="text"
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 text-black"
           onClick={next}
           disabled={active === lastPage}
         >
