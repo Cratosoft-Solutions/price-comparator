@@ -46,7 +46,7 @@ const HorizontalPromotionTags = ({product}) => {
         setAutoInterval(tempAutoInterval);
     }, [])
   return (
-    <div ref={parentHTML} className='flex no-scrollbar overflow-x-auto h-6 w-full bg-transparent absolute bottom-0  left-0 w-full '>
+    <div ref={parentHTML} className='flex no-scrollbar overflow-x-auto h-6 bg-transparent absolute bottom-0  left-0 w-full '>
         {tagsListToRender.map((element, index)=>(
              <GenericAnimation animation={""} message={element} key={index}/>
         ))}

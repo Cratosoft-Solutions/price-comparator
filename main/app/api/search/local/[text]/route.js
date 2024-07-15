@@ -57,7 +57,8 @@ export const GET = async (req, { params }) => {
             productId: element._id,
             storeId: element.store,
             currency: element.currency == "CRC" ? "₡" : "$",
-            category: element.category
+            category: element.category,
+            negotiable:element.negotiable
         })
     });
 

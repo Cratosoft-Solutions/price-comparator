@@ -60,7 +60,7 @@ const HorizontalCardList = ({mergedProducts, adminMode = false, callBackFunction
         </div>
       )}
 
-      <div className="grid gap-3 grid-cols-4 mt-4 mb-24">
+      <div className="grid gap-3 grid-cols-5 mt-4 mb-24">
         {mergedProducts
           .filter((element) => element.isLocal)
           .slice(FIRSTPOSITION, LASTPOSITION).length > 0
@@ -102,7 +102,7 @@ const HorizontalCardList = ({mergedProducts, adminMode = false, callBackFunction
           </div>
         )}
 
-      <div className="grid gap-3 grid-cols-4 mt-4 mb-24">
+      <div className="grid gap-3 grid-cols-5 mt-4 mb-24">
         {!adminMode &&
           mergedProducts.filter((element) => !element.isLocal).length > 0 &&
           mergedProducts
