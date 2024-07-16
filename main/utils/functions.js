@@ -430,7 +430,7 @@ export const getRankedTags = async (model) => {
          { advertising: { $exists: true, $ne: null } },
          { "advertising.active": true },
        ],
-     });
+     }).sort({"advertising.priority": 1});
      console.log(`Products promoted: ${products.length}`);
      if (products != undefined && products != null && products.length <= 3) {
        console.log('Starting getting products negotiable');
