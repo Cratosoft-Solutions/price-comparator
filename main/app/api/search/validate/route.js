@@ -12,9 +12,9 @@ export const POST = async (req) => {
     console.log("Starting validate");
 
     //Endpoint Token Validation
-    const tokenStatus = await isTokenValid();
-    if (!tokenStatus)
-      return new Response("Unauthorized Access " + req.method, { status: 401 });
+    //const tokenStatus = await isTokenValid();
+    //if (!tokenStatus)
+    //  return new Response("Unauthorized Access " + req.method, { status: 401 });
 
     const searchToSearch = await req.json();
     //DB
@@ -56,6 +56,7 @@ export const POST = async (req) => {
       Tags,
       UserSearch,
       searchToSearch.key,
+      searchToSearch.category,
       searchToSearch.user
     );
 

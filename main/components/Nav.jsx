@@ -52,7 +52,7 @@ const Nav = () => {
         </div>
       </div>
       
-      <div className="block lg:hidden w-full bg-white ">
+      <div className="block lg:hidden w-full bg-white z-50">
           <SearchButton personalizedClass='!h-28'/>
       </div>
 

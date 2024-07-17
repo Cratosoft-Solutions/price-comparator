@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { formatAutoCompletableItem, searchArrayCoincidences } from '@utils/functions';
-import { setText, setCategory } from "@app/redux/slices/searchProperties";
+import { setText } from "@app/redux/slices/searchProperties";
+import { setCategory } from "@app/redux/slices/siteNav";
 import { useDispatch } from 'react-redux';
 
 
@@ -44,19 +45,19 @@ const AutoCompletableList = ({text, onChange}) => {
             
     }, [text]);
 
-    const onSelectItem =(key, category)=>{
+    const onSelectItem =(category, key)=>{
         dispatch(setText(key)); 
         dispatch(setCategory(category));  
         setCoincidencesList([]);
-        onChange();
+        onChange(category,  key);
     }
 
     return (
         <>
             {isBrowser() && text.length > 0 &&
-                <ul className="bg-white w-full absolute z-50">   
+                <ul className="bg-white w-full absolute">   
                     {coincidencesList.slice(0, 5).map((coincidence, index)=>(
-                        <li onClick={()=>{onSelectItem(coincidence.key, coincidence.category)}} key={index} className="pl-8 pr-2 py-1 relative cursor-pointer hover:bg-gray-100 hover:text-gray-900 text-gray-500">
+                        <li onClick={()=>{onSelectItem(coincidence.category, coincidence.key)}} key={index} className="pl-8 pr-2 py-1 relative cursor-pointer hover:bg-gray-100 hover:text-gray-900 text-gray-500">
                            <div className='flex items-center text-xs hover:text-extrabold'>
                                 {formatAutoCompletableItem(coincidence.category, coincidence.key)}
                             </div>
