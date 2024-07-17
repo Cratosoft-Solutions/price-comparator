@@ -272,7 +272,7 @@ export const formatAutoCompletableItem = (category, text) => {
   if (categoryInfo.length > 0) {
     return categoryInfo[0].label + " => " + text;
   } else {
-    return "Unknow Category" + " => " +  text;
+    return text.toLowerCase();
   }
 }
 
