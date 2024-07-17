@@ -241,11 +241,12 @@ export const saveSearchOnDB = (key) => {
   }
 }
 
-export const getSearchDataFromDataBase = async (key, user) => {
+export const getSearchDataFromDataBase = async (key, category, user) => {
   try {
     console.log("Redirect to validate");
     const response = await axios.post(`/api/search/validate`, {
       key: key,
+      category:category,
       user: user
     });
     const compressedData = await response.data.result;
@@ -267,11 +268,11 @@ export const searchArrayCoincidences = (tags, text) => {
 }
 
 export const formatAutoCompletableItem = (category, text) => {
-  const categoryInfo = CATEGORIES.filter(element => element.value == category);
+  const categoryInfo = CATEGORY_TYPES.filter(element => element.value == category);
   if (categoryInfo.length > 0) {
-    return /*categoryInfo[0].label + " - " + */text;
+    return categoryInfo[0].label + " => " + text;
   } else {
-    return /*"Unknow Category" + " - " + */ text;
+    return "Unknow Category" + " => " +  text;
   }
 }
 
@@ -479,15 +480,15 @@ export const genericDatabaseOperation = async (model, params, type, updateValue=
   }
 }
 
-export const saveUserSearch = async (Tags, UserSearch, tagData, user) => {
+export const saveUserSearch = async (Tags, UserSearch, tagData, category, user) => {
   try {
-    const tagExists = await genericDatabaseOperation(Tags, {category: 1/*tagData[0]*/,
-       key:tagData/*tagData[1]*/}, "FINDONE");
+    const tagExists = await genericDatabaseOperation(Tags, {category: category,
+       key:tagData}, "FINDONE");
     let tagID;
     
     if(!tagExists){
       const result = await genericDatabaseOperation(Tags,
-         {category: 1/*tagData[0]*/, key:tagData/*tagData[1]*/, 
+         {category: category, key:tagData, 
           createdAt: currentDateWithTimeOffset(),
           updatedAt: currentDateWithTimeOffset(), dailySearches: 1, 
           totalSearches: 1 }, "CREATE"); 
@@ -495,7 +496,7 @@ export const saveUserSearch = async (Tags, UserSearch, tagData, user) => {
     }else{
       // Modify updated date 
       await genericDatabaseOperation(Tags,
-        { key: tagData},"UPDATEONE",{updatedAt: currentDateWithTimeOffset(), 
+        { category:category, key: tagData},"UPDATEONE",{updatedAt: currentDateWithTimeOffset(), 
           dailySearches: dailycounter(tagExists.updatedAt, tagExists.dailySearches), 
           totalSearches: tagExists.totalSearches + 1}
       );

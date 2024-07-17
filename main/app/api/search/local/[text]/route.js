@@ -1,6 +1,8 @@
 import { connectToDB } from "@utils/database";
 import Product from '@models/product';
-import { genericDatabaseOperation, escapeRegex,containsOnlyNumbers, paseStoreNumber, genericCompression } from "@utils/functions";
+import Tags from "@models/searchTags";
+import UserSearch from "@models/userSearch";
+import { genericDatabaseOperation, escapeRegex,containsOnlyNumbers, paseStoreNumber, genericCompression, saveUserSearch } from "@utils/functions";
 
 
 
@@ -9,9 +11,11 @@ export const GET = async (req, { params }) => {
     
     await connectToDB();
     console.log(params.text)
-    const textToSearch = params.text.split("&")[1];
+    const text = params.text.split("&")[1];
+    const category = params.text.split("&")[0];
     // Get key words
-    let searchKeywords = textToSearch.toUpperCase().split(/\s+/);
+    let searchKeywords = text.toUpperCase().split(/\s+/);
+
     if (searchKeywords.length > 10) {
       searchKeywords = searchKeywords.splice(0, 9);
     }
@@ -32,7 +36,7 @@ export const GET = async (req, { params }) => {
             (keyword) => new RegExp(escapeRegex(keyword, "gi"))
           ),
         },
-        category:params.text.split("&")[0]
+        category:category
       },
       "FIND_WITH_PROJECTION",
       null,
@@ -63,7 +67,14 @@ export const GET = async (req, { params }) => {
     });
 
     // Get final search
-      console.log(SearchExists);
+    await saveUserSearch(
+      Tags,
+      UserSearch,
+      text,
+      category,
+      "TODO"
+    );
+
     return new Response(JSON.stringify(result), { status: 200 });
   } catch (error) {
     return new Response(JSON.stringify({ message: error.message }), {

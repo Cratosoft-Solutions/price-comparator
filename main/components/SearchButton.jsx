@@ -4,31 +4,37 @@ import DropDownList from "./DropDownList";
 import {CATEGORY_TYPES } from "@utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import AutoCompletableList from "./AutoCompletableList";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
 import { setCategory } from "@app/redux/slices/siteNav";
+import { setText } from "@app/redux/slices/searchProperties";
 
 
 const SearchButton = ({personalizedClass=""}) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [text, setText] = useState("");
   const { category} = useSelector(state => state.siteNav);
-  
+  const { text } = useSelector(state => state.searchProperties.properties);
+
   const setInternalCategory = (category) => {
     dispatch(setCategory(category));
   };
 
   const restartFields = (value) => {
-    setText(value.replace(/[^a-zA-Z0-9 ]/g, ""));
+    dispatch(setText(value.replace(/[^a-zA-Z0-9 ]/g, "")));
   }
 
   const executeSearch = (e) => {
     if (e) 
       e.preventDefault();
     
+    redirectPage(category, text);
+  }
+
+  const redirectPage =(category, text)=>{
     router.push(`/search/results?category=${category}&search=${text}`);
   }
+
 
   return (
     <div className={`relative w-full ${personalizedClass}`}>
@@ -58,7 +64,7 @@ const SearchButton = ({personalizedClass=""}) => {
             </div>
           </form>
           <div className="grid grid-cols-1 grid-rows-1 w-full z-50">
-              <AutoCompletableList text={text} onChange={executeSearch} />
+              <AutoCompletableList text={text} onChange={redirectPage} />
           </div>
     </div>
   );

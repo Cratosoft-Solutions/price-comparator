@@ -48,10 +48,6 @@ export const POST = async (req) => {
       );
     }
 
-    //***********************************TAG CREATION AND USERSEARCH CREATION***************/
-    //const tagData =  searchToSave.key.replaceAll(".", " ").split("-").slice(-2);
-    //await saveUserSearch(Tags, UserSearch, tagData, "randal")
-
     return new Response(JSON.stringify({ id: createdID }), { status: 200 });
   } catch (error) {
     return new Response(JSON.stringify({ message: error.message }), {

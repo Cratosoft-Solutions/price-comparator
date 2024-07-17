@@ -137,6 +137,7 @@ const MyResults = () => {
                 console.log("Going to search info in mongo");
                 const dbData = await getSearchDataFromDataBase(
                   key,
+                  category,
                   session?.user?.email
                 );
                 existsOnDB = dbData && dbData.dataBaseData;
