@@ -1,10 +1,12 @@
 "use client";
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { formatAutoCompletableItem, searchArrayCoincidences } from '@utils/functions';
+import { formatAutoCompletableItem, searchArrayCoincidences, translateCategory } from '@utils/functions';
 import { setText } from "@app/redux/slices/searchProperties";
 import { setCategory } from "@app/redux/slices/siteNav";
 import { useDispatch } from 'react-redux';
+import { IoSearchOutline } from "react-icons/io5";
+
 
 
 const AutoCompletableList = ({text, onChange}) => {
@@ -20,6 +22,7 @@ const AutoCompletableList = ({text, onChange}) => {
         return false;
     }; 
    const [coincidencesList, setCoincidencesList]  = useState([]);
+   const [uniqueCategories, setUniqueCategories] = useState([]);
    const [tagsList, setTagsList]  = useState([]);
    const dispatch = useDispatch();
 
@@ -38,6 +41,7 @@ const AutoCompletableList = ({text, onChange}) => {
         setCoincidencesList([]);
         const getCoincidences = async() => {
             setCoincidencesList(searchArrayCoincidences(tagsList, text));
+            setUniqueCategories(searchArrayCoincidences(tagsList, text).map(item => item.category).filter((value, index, self) => self.indexOf(value) === index))
         }
 
         if(tagsList.length > 0)
@@ -53,20 +57,29 @@ const AutoCompletableList = ({text, onChange}) => {
     }
 
     return (
-        <>
-            {isBrowser() && text.length > 0 &&
-                <ul className="bg-white w-full absolute">   
-                    {coincidencesList.slice(0, 5).map((coincidence, index)=>(
-                        <li onClick={()=>{onSelectItem(coincidence.category, coincidence.key)}} key={index} className="pl-8 pr-2 py-1 relative cursor-pointer hover:bg-gray-100 hover:text-gray-900 text-gray-500">
-                           <div className='flex items-center text-xs hover:text-extrabold'>
-                                {formatAutoCompletableItem(coincidence.category, coincidence.key)}
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-        }
-        </>
-  )
+      <>
+        {isBrowser() && text.length > 0 && (
+          <ul className="bg-white w-full absolute p-2">
+            {uniqueCategories.map((element, index) => (
+              <>
+                <li key={"mainul"+index} className=" flex items-center text-base text-black font-black p-4">
+                  <p className='capitalize'>{translateCategory(element, "SEARCHTEXT")}</p>
+                </li>
+                {coincidencesList.filter(coincidence => coincidence.category == element ).slice(0, 5).map((coincidence, index) => (
+                  <li onClick={() => {onSelectItem(coincidence.category, coincidence.key);}} key={index}
+                    className="pl-8 pr-2 py-1 relative cursor-pointer hover:bg-gray-100 hover:text-gray-900 text-gray-500">
+                    <div className="flex items-center text-xs hover:text-extrabold gap-2 items-center ">
+                        <IoSearchOutline className='w-3 h-3' color='gray'/>
+                      <p className='capitalize'>{formatAutoCompletableItem("", coincidence.key)}</p>
+                    </div>
+                  </li>
+                ))}
+              </>
+            ))}
+          </ul>
+        )}
+      </>
+    );
 }
 
 export default AutoCompletableList;
