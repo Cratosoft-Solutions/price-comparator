@@ -34,6 +34,12 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
       setLoading(false);
     };
 
+    // Update counter
+    const updateProductCounter = async () => {
+      await axios.put(`/api/product/${productId}/counter`);
+      setLoading(false);
+    };
+
     const prepareImages=(productData)=>{
       const tempArray = [];
       productData.productImage.forEach(element => {
@@ -56,6 +62,7 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false}) 
 
     useEffect(() => {
         securePage();
+        updateProductCounter();
       }, []);
 
       const closeEditProduct =()=>{
