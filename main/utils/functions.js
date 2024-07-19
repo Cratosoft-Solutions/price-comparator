@@ -431,11 +431,11 @@ export const getRankedTags = async (model) => {
          { advertising: { $exists: true, $ne: null } },
          { "advertising.active": true },
        ],
-     }).sort({"advertising.priority": 1});
+     }).sort({"advertising.priority": -1});
      console.log(`Products promoted: ${products.length}`);
-     if (products != undefined && products != null && products.length <= 3) {
+     if (products != undefined && products != null && products.length <= 5) {
        console.log('Starting getting products negotiable');
-       products = products.concat(await model.find({ negotiable: 'YES'}).limit(10));
+       products = products.concat(await model.find({ negotiable: 'YES'}).limit(6));
      }
      return products;
    } catch (err) {
@@ -443,6 +443,43 @@ export const getRankedTags = async (model) => {
      return [];
    }
  };
+
+ /**
+ * Get products with advertising payed
+ * @param {*} model 
+ * @returns list of products
+ */
+  export const getMostSearchedProducts = async (model) => {
+    try {
+      let products = [];
+      // Get products promoted
+      products = await model
+        .find({
+          $and: [
+            { dailySearches: { $exists: true, $ne: null } },
+            { dailySearches: { $gt: 1 } },
+          ],
+        })
+        .sort({ "dailySearches": -1 })
+        .limit(8);
+      if (products != undefined && products != null && products.length < 5 ) {
+        console.log('Getting products by total hits');
+        products = products.concat(await model.find({
+          $and: [
+            { totalSearches: { $exists: true, $ne: null } },
+            { totalSearches: { $gt: 1 } },
+          ],
+        })
+        .sort({ "totalSearches": -1 })
+        .limit(6));
+      }
+      console.log(`daily search products: ${products.length}`);
+      return products;
+    } catch (err) {
+      console.log(err);
+      return [];
+    }
+  };
 
 export const genericDatabaseOperation = async (model, params, type, updateValue=null, 
   projection = null, recordsLimit = null) => {

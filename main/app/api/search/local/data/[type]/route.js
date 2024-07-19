@@ -7,6 +7,7 @@ import {
   paseStoreNumber,
   genericCompression,
   getRankedTags,
+  getMostSearchedProducts,
 } from "@utils/functions";
 import store from "@app/redux/store/store";
 
@@ -22,7 +23,7 @@ export const GET = async (req, { params }) => {
         SearchExists = await getAdverstisedProducts(Product);
         // if products are null return a list of products randomly
         if (SearchExists === null || SearchExists.length < 3) {
-          console.log('Getting regular products');
+          console.log('Getting regular products for promotions');
           SearchExists = SearchExists.concat(
             await genericDatabaseOperation(
               Product,
@@ -30,7 +31,7 @@ export const GET = async (req, { params }) => {
               "FIND_NO_PARAMS_LIMIT",
               null,
               null,
-              4
+              5
             )
           );
           SearchExists =  [...new Set(SearchExists)];
@@ -63,7 +64,7 @@ export const GET = async (req, { params }) => {
         });
         break;
       case "dailySearches":
-        SearchExists = await getAdverstisedProducts(Product);
+        SearchExists = await getMostSearchedProducts(Product);
         // if products are null return a list of products randomly
         if (SearchExists === null || SearchExists.length < 3) {
           console.log('Getting regular products');
@@ -71,9 +72,10 @@ export const GET = async (req, { params }) => {
             await genericDatabaseOperation(
               Product,
               {},
-              "FIND_NO_PARAMS",
+              "FIND_NO_PARAMS_LIMIT",
               null,
-              null
+              null,
+              8
             )
           );
           SearchExists =  [...new Set(SearchExists)];
