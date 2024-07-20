@@ -676,6 +676,23 @@ export const SITE_MAP = [
     ],
   },
   {
+    path: "/productdetail",
+    mapTree: [
+      {
+        order: 1,
+        text: "Home",
+        url: "/",
+        lastPath: false,
+      },
+      {
+        order: 2,
+        text: "Detalle de producto",
+        url: "",
+        lastPath: true,
+      },
+    ],
+  },
+  {
     path: "/register",
     mapTree: [
       {

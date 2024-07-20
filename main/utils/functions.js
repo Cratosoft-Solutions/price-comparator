@@ -947,3 +947,17 @@ export const prepareProductAdvertisingInfo = (advertisingInformation) => {
   }
 };
 
+export const filterItemsByCategory = (dataToFilter, category) => {
+  try {
+   const arrayToReturn = dataToFilter.filter((productTemp) => productTemp.category === category);
+
+   if(arrayToReturn.length > 4){
+     return arrayToReturn;
+   } else{
+     return dataToFilter;
+   }
+
+ } catch (error) {
+  return []; 
+ }
+ }

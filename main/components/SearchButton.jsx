@@ -44,7 +44,7 @@ const SearchButton = ({personalizedClass=""}) => {
                   values={CATEGORY_TYPES}  
                   onSelectValue={setInternalCategory}
                   currentValue={category}
-                  additionalClass={`!h-full border !pt-0 lg:!border-white !shadow-none`}
+                  additionalClass={`!h-full border !border-gray-100 !pt-0 lg:!border-white !shadow-none`}
                 /> 
               </div>
 
@@ -57,7 +57,7 @@ const SearchButton = ({personalizedClass=""}) => {
                 id="txt-search"
                 type="search"
                 name="q"
-                className={`bg-white pl-10 focus:outline-none h-full w-full`}
+                className={`bg-white border border-t-0  border-gray-100 lg:border-white pl-10 focus:outline-none h-full w-full`}
                 placeholder={`¿Qué buscas?`}
                 autoComplete="off"
               />

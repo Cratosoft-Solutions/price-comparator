@@ -68,8 +68,8 @@ const AutoCompletableList = ({text, onChange}) => {
                 {coincidencesList.filter(coincidence => coincidence.category == element ).slice(0, 5).map((coincidence, index) => (
                   <li onClick={() => {onSelectItem(coincidence.category, coincidence.key);}} key={index}
                     className="pl-8 pr-2 py-1 relative cursor-pointer hover:bg-gray-100 hover:text-gray-900 text-gray-500">
-                    <div className="flex items-center text-xs hover:text-extrabold gap-2 items-center ">
-                        <IoSearchOutline className='w-3 h-3' color='gray'/>
+                    <div className="flex items-center text-base hover:text-extrabold gap-2 items-center ">
+                        <IoSearchOutline className='w-4 h-4' color='gray'/>
                       <p className='capitalize'>{formatAutoCompletableItem("", coincidence.key)}</p>
                     </div>
                   </li>

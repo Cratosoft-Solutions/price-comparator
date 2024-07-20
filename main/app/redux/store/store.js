@@ -8,6 +8,7 @@ import pagination from "../slices/pagination";
 import termsConditions from "../slices/termsConditions";
 import verticalNav from "../slices/verticalNav";
 import siteNav from "../slices/siteNav";
+import advertising from "../slices/advertising";
 
 const store = configureStore({
     reducer:{
@@ -20,6 +21,7 @@ const store = configureStore({
         termsConditions:termsConditions,
         verticalnav: verticalNav,
         siteNav: siteNav,
+        advertising:advertising
     },
 });
 
