@@ -1,21 +1,29 @@
-"use client";
-import HorizontalItemList from '@components/HorizontalItemList';
-import ProductDetails from '@components/store/ProductDetails';
+import ProductDetailComponent from '@components/ProductDetailComponent';
+import axios from 'axios';
 import { useSearchParams } from 'next/navigation'
 
+export async function generateMetadata({ params, searchParams }) {
+  // read route params
+  const productId = searchParams.pid
+  const storeId = searchParams.sid
+  // fetch data
+  const product = await fetch(`https://encuentralofacilcr.com/api/search/local/myitems/${storeId}/${productId}/`).then((res) => res.json())
+  
+  // optionally access and extend (rather than replace) parent metadata
+  //const previousImages = (await parent).openGraph?.images || []
+ 
+  return {
+    title: "Encuéntralo Fácil CR - " + product.productName,
+    description:product.productDescription,
+    openGraph: {
+      images: product.productImage,
+    },
+  }
+}
 
 const Details = () => {
-  const searchParams = useSearchParams();
-  const productId = searchParams.get('pid');
-  const storeId = searchParams.get('sid');
-
-
   return (
-    <div className="w-full lg:mr-10 lg:ml-10 bg-white lg:mb-4 mt-4">
-        <ProductDetails onCloseFunction={()=>{}} productId={productId} storeId={storeId} adminMode={false} isModal={false}/>     
-        <HorizontalItemList type="promotions" title="¡Promociones que te pueden interesar!"/>
-
-    </div>
+    <ProductDetailComponent />
   );
 };
 
