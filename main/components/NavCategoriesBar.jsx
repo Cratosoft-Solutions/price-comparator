@@ -29,7 +29,7 @@ const NavCategoriesBar = () => {
           </div>
           <SiteCategories/>
           <div className='flex w-full h-full items-center '>
-            <div className='border rounded-l-full rounded-r-full h-10'>
+            <div className='border border-white rounded-l-full rounded-r-full h-10'>
               <SearchButton personalizedClass='z-50 !h-10 hidden lg:block lg:!w-full'/>
             </div>
           </div>

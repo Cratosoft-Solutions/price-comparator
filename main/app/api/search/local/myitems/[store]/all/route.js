@@ -33,7 +33,8 @@ export const GET = async (req, { params }) => {
           formatedPrice:paseStoreNumber(element.price),
           formatedEspecialPrice:element.especialprice && element.especialprice !=0 ? paseStoreNumber(element.especialprice):0,
           currency:element.currency,
-          category:element.category
+          category:element.category,
+          isLocal:true
       })
   });
 
