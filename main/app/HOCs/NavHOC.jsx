@@ -53,7 +53,7 @@ function withNav(Component, navConfiguration) {
       let pageToRedirect = "/";
       switch (btnID) {
         case "PUBLISH":
-          pageToRedirect = "login"//NOTA JM: GREGAR LA PAGINA A REDIRECCIONAR 
+          pageToRedirect = "create/item"
           break;
         case "PROMOTION":          
           pageToRedirect = "promotion"
