@@ -1,10 +1,12 @@
 import React from "react";
-import { IoMdEye } from "react-icons/io";
-import { useRouter } from "next/navigation";
 import HorizontalPromotionTags from "./HorizontalPromotionTags";
+import { BsShare } from "react-icons/bs";
+import SocialShare from "./SocialShare";
+import { useState } from "react";
 
 const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
-  const router = useRouter();
+  const [showShareModal, setShowShareModal] = useState(false);
+
   const handleProductClick=(url)=>{
     if(adminMode || product.isLocal){
       callBackFunction(product);
@@ -15,9 +17,10 @@ const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
 
   return (
     
-    <div key={product.productName + index} className="container-fluid mx-auto w-full">
+    <div key={product.productName + index} className="container-fluid mx-auto w-full border border-gray-300">
+          {showShareModal && <SocialShare pid={product.productId} sid={product.storeId} onCloseFunction={setShowShareModal}/>}     
       <div
-        className="hover:cursor-pointer relative flex bg-white border border-gray-300  overflow-hidden items-center justify-start"
+        className="hover:cursor-pointer relative flex bg-white overflow-hidden items-center justify-start"
         style={{ cursor: "auto" }}
       >
         <div className="relative w-32 h-32 !max-h-32 flex-shrink-0">
@@ -31,11 +34,13 @@ const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
             />
           {adminMode? null: (<>{product.isLocal?null:<div className="centered-blur">REFERENCIA </div>}</>)} 
           </div>
-          {!adminMode && product.isLocal && <HorizontalPromotionTags product={product}/>}
 
         </div>
         <div className="grid grid-rows-2 grid-cols-1">
-          <p className="text-sm text-black font-black text-ellipsis">{product.productName}</p>
+          <p className="text-sm text-black font-black text-ellipsis">
+            {product.productName}
+            {product.isLocal && <BsShare className="absolute top-4 right-4 w-4 h-4" color="black" onClick={()=>{setShowShareModal(true)}}/>      }
+          </p>
 
           <div className="text-black font-[500]">
 
@@ -60,8 +65,10 @@ const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
         </div>
 
         </div>
-
       </div>
+      {!adminMode && product.isLocal && <div className="relative bg-red-900 w-full h-6"><HorizontalPromotionTags product={product}/></div>}
+
+
     </div>
   );
 };

@@ -8,18 +8,31 @@ export const POST = async (req) => {
   try {
     const productToSave = await req.json();
 
+    let createdID;
+    //SERVERLESS LAMBDA DYNAMODB
+    await connectToDB();
+
+    //check if Product exists
+    const productExists = await Product.findOne({
+      _id: productToSave.id,
+    });
+  
     //Save image for Social Media Share
     let socialMediaURL;
-    try {
-      const blob = b64toBlob(productToSave.socialMediaImage.split(',')[1], 'data:image/jpeg;base64');
-      const arrayBuffer = await blob.arrayBuffer();
-      const buffer = new Uint8Array(arrayBuffer);
-      const result =  await put("abc" + ".jpg", buffer, { access: 'public' });
-      socialMediaURL = result.url;
-    } catch (error) {
-      socialMediaURL = "https://encuentralofacilcr.com/assets/images/default-social-media-image.png"
+    if(productExists){
+      socialMediaURL = productExists.socialMediaURL;
+    }else{
+      try {
+        const blob = b64toBlob(productToSave.socialMediaImage.split(',')[1], 'data:image/jpeg;base64');
+        const arrayBuffer = await blob.arrayBuffer();
+        const buffer = new Uint8Array(arrayBuffer);
+        const result =  await put("abc" + ".jpg", buffer, { access: 'public' });
+        socialMediaURL = result.url;
+      } catch (error) {
+        socialMediaURL = "https://encuentralofacilcr.com/assets/images/default-social-media-image.png"
+      }
     }
-
+    
     let formatedProduct = {
       store: productToSave.store,
       name: productToSave.name,
@@ -57,14 +70,6 @@ export const POST = async (req) => {
       formatedProduct.province = productToSave.province;
     }
     
-    let createdID;
-    //SERVERLESS LAMBDA DYNAMODB
-    await connectToDB();
-
-    //check if Product exists
-    const productExists = await Product.findOne({
-      _id: productToSave.id,
-    });
 
     //if not, create new product
     if (!productExists) {
