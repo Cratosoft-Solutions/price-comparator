@@ -289,6 +289,7 @@ const StoreItem = ({
           negotiable: negotiable,
           currency: currency,
           image: genericCompression(images, "compress"),
+          socialMediaImage:images[0],
           otherItemInformation:
             category == "CAR"
               ? JSON.stringify(carInfo)

@@ -2,10 +2,24 @@ import { connectToDB } from "@utils/database";
 import Product from "@models/product";
 import Payment from "@models/payment";
 import { currentDateWithTimeOffset } from "@utils/functions";
+import { put } from '@vercel/blob';
 
 export const POST = async (req) => {
   try {
     const productToSave = await req.json();
+
+    //Save image for Social Media Share
+    let socialMediaURL;
+    try {
+      const blob = b64toBlob(productToSave.socialMediaImage.split(',')[1], 'data:image/jpeg;base64');
+      const arrayBuffer = await blob.arrayBuffer();
+      const buffer = new Uint8Array(arrayBuffer);
+      const result =  await put("abc" + ".jpg", buffer, { access: 'public' });
+      socialMediaURL = result.url;
+    } catch (error) {
+      socialMediaURL = "https://encuentralofacilcr.com/assets/images/default-social-media-image.png"
+    }
+
     let formatedProduct = {
       store: productToSave.store,
       name: productToSave.name,
@@ -24,7 +38,8 @@ export const POST = async (req) => {
       advertising: JSON.parse(productToSave.advertising),
       email: productToSave.email,
       contactNumber: productToSave.contactNumber,
-      address: productToSave.address
+      address: productToSave.address,
+      socialMediaURL: socialMediaURL
     };
 
     if (productToSave.category == "CAR" || productToSave.category == 'HOUSES') {
@@ -58,14 +73,11 @@ export const POST = async (req) => {
       formatedProduct.lastTimeSeen = currentDateWithTimeOffset();
       formatedProduct.dailySearches= 1;
       formatedProduct.totalSearches= 1;
-      console.log(`Prodcut to save: ${formatedProduct}`);
       const result = await Product.create(formatedProduct);
       createdID = result._id.toString();
     } else {
       createdID = productToSave.id;
       formatedProduct.updatedAt = currentDateWithTimeOffset();
-      console.log(`Prodcut to update: ${formatedProduct}`);
-      console.log("Actualizando producto: " + productToSave.id);
       await Product.updateOne({ _id: productToSave.id }, formatedProduct);
     }
 
@@ -89,9 +101,30 @@ export const POST = async (req) => {
 
     return new Response(JSON.stringify({ id: createdID }), { status: 200 });
   } catch (error) {
-    console.log(error);
     return new Response(JSON.stringify({ message: error.message }), {
       status: 500,
     });
   }
 };
+
+
+
+const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
+  const byteCharacters = atob(b64Data);
+  const byteArrays = [];
+
+  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+    const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+    const byteNumbers = new Array(slice.length);
+    for (let i = 0; i < slice.length; i++) {
+      byteNumbers[i] = slice.charCodeAt(i);
+    }
+
+    const byteArray = new Uint8Array(byteNumbers);
+    byteArrays.push(byteArray);
+  }
+    
+  const blob = new Blob(byteArrays, {type: contentType});
+  return blob;
+}
