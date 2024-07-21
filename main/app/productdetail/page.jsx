@@ -17,7 +17,7 @@ export async function generateMetadata({ params, searchParams }) {
     title: "Encuéntralo Fácil CR - " + product.productName,
     description:product.productDescription,
     openGraph: {
-      images: blobUrl,
+      images: "https://encuentralofacilcr.com/assets/images/logo.svg",
     },
   }
 }
