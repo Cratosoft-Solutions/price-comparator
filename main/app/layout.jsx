@@ -11,9 +11,7 @@ import SiteMapWrapper from "@components/SiteMapWrapper";
 
 export const metadata = {
   title: "EncuéntraLo Fácil CR: Buscador de productos y servicios Costa Rica",
-  description: "Explora EncuéntraLo Fácil CR, tu destino en línea en Costa Rica para descubrir y publicar una amplia variedad de bienes y servicios. Encuentra fácilmente autos, viviendas, productos y servicios.",
-  metadataBase: new URL('https://encuentralofacilcr.com')
-};
+  description: "Explora EncuéntraLo Fácil CR, tu destino en línea en Costa Rica para descubrir y publicar una amplia variedad de bienes y servicios. Encuentra fácilmente autos, viviendas, productos y servicios."};
 
 
 const RootLayout = ({ children }) => {
