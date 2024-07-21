@@ -1,4 +1,7 @@
 import ProductDetailComponent from '@components/ProductDetailComponent';
+import fs from 'node:fs/promises';
+import { revalidatePath } from "next/cache";
+
 
 export async function generateMetadata({ params, searchParams }) {
   // read route params
@@ -8,16 +11,16 @@ export async function generateMetadata({ params, searchParams }) {
   const product = await fetch(`https://encuentralofacilcr.com/api/search/local/myitems/${storeId}/${productId}/`).then((res) => res.json())
   
   const blob = b64toBlob(product.productImage[0].replace('data:image/jpeg;base64,', ''), 'data:image/jpeg;base64');
-  const blobUrl = URL.createObjectURL(blob);
-  
-  // optionally access and extend (rather than replace) parent metadata
-  //const previousImages = (await parent).openGraph?.images || []
+  const arrayBuffer = await blob.arrayBuffer();
+  const buffer = new Uint8Array(arrayBuffer);
+  await fs.writeFile('./public/uploads/' + productId + '.jpg', buffer);
+  revalidatePath("/");
  
   return {
     title: "Encuéntralo Fácil CR - " + product.productName,
     description:product.productDescription,
     openGraph: {
-      images: "https://encuentralofacilcr.com/assets/images/logo.svg",
+      images: "https://encuentralofacilcr.com/uploads/" + productId +'.jpg',
     },
   }
 }
