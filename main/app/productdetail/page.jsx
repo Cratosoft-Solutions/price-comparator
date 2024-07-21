@@ -1,6 +1,7 @@
 import ProductDetailComponent from '@components/ProductDetailComponent';
 import fs from 'node:fs/promises';
 import { revalidatePath } from "next/cache";
+import path from 'path';
 
 
 export async function generateMetadata({ params, searchParams }) {
@@ -13,7 +14,8 @@ export async function generateMetadata({ params, searchParams }) {
   const blob = b64toBlob(product.productImage[0].replace('data:image/jpeg;base64,', ''), 'data:image/jpeg;base64');
   const arrayBuffer = await blob.arrayBuffer();
   const buffer = new Uint8Array(arrayBuffer);
-  await fs.writeFile('www.encuentralofacilcr.com/uploads/' + productId + '.jpg', buffer);
+  let filePath = path.join(process.cwd(), '/uploads/' + productId + '.jpg');
+  await fs.writeFile(filePath, buffer);
   revalidatePath("/");
  
   return {
