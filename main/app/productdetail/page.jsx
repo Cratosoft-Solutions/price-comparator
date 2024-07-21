@@ -13,7 +13,7 @@ export async function generateMetadata({ params, searchParams }) {
   const blob = b64toBlob(product.productImage[0].replace('data:image/jpeg;base64,', ''), 'data:image/jpeg;base64');
   const arrayBuffer = await blob.arrayBuffer();
   const buffer = new Uint8Array(arrayBuffer);
-  await fs.writeFile('./public/uploads/' + productId + '.jpg', buffer);
+  await fs.writeFile('./uploads/' + productId + '.jpg', buffer);
   revalidatePath("/");
  
   return {
