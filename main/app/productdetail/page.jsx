@@ -6,7 +6,7 @@ try {
   const productId = searchParams.pid
   const storeId = searchParams.sid
   // fetch data
-  const product = await fetch(`/api/search/local/myitems/${storeId}/${productId}/`).then((res) => res.json())
+  const product = await fetch(`https://encuentralofacilcr.com/api/search/local/myitems/${storeId}/${productId}/`).then((res) => res.json())
   
   return {
     title: "Encuéntralo Fácil CR - " + product.productName,
@@ -16,11 +16,12 @@ try {
     },
   }  
 } catch (error) {
+  console.log(error);
   return {
     title: "Encuéntralo Fácil CR - Productos y Servicios al mejor precio",
     description:"Mira este anuncio y más en Encuéntralo Fácil CR",
     openGraph: {
-      images: "https://encuentralofacil.com/assets/images/default-social-media-image.png",
+      images: "https://encuentralofacilcr.com/assets/images/default-social-media-image.png",
     },
   }
 }

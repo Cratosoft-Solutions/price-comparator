@@ -34,7 +34,8 @@ export const GET = async (req, { params }) => {
           negotiable: SearchExists.negotiable,
           serviceType: SearchExists.category === 'SERVICES'? SearchExists.serviceType : null,
           modalityType: SearchExists.category === 'SERVICES'? SearchExists.modalityType : null,
-          province: SearchExists.category === 'SERVICES'? SearchExists.province : null
+          province: SearchExists.category === 'SERVICES'? SearchExists.province : null,
+          socialMediaURL: SearchExists.socialMediaURL
       };
 
       if(typeof SearchExists.otherinformation != undefined)
