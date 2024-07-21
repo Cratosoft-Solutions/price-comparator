@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import GenericAnimation from "./GenericAnimation";
+import { useState } from "react"; 
 import HorizontalPromotionTags from "./HorizontalPromotionTags";
 import SocialShare from "./SocialShare";
 import { BsShare } from "react-icons/bs";

@@ -65,6 +65,7 @@ const StoreItem = ({
   const [selectedImage, setSelectedImage] = useState(0);
   const [store, setStore] = useState(null);
   const [showImage, setShowImage] = useState(false);
+  const [socialMediaURL, setSocialMediaURL] = useState("");
   const categoryList = CATEGORY_TYPES;
   const servicesList = SERVICES_TYPES;
   const modalityList = MODALITY_TYPES;
@@ -161,6 +162,7 @@ const StoreItem = ({
       if (product.category == "HOUSES") {
         setHouseInfo(product.otherInformation);
       }
+      setSocialMediaURL(product.socialMediaURL);
     }
   }, []);
 
@@ -304,7 +306,8 @@ const StoreItem = ({
           savePaymentData:filteredPromotion.appliesForPayment,
           email:email,
           contactNumber:contactNumber,
-          address:address
+          address:address,
+          socialMediaURL: socialMediaURL
         })
         .then((response) => {
           setLoading(false);

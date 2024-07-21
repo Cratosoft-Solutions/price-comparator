@@ -1,13 +1,13 @@
 "use client";
-
-import Link from "next/link";
-import { IoMdEye } from "react-icons/io";
-import { useRouter } from "next/navigation";
+import { BsShare } from "react-icons/bs";
 import HorizontalPromotionTags from "./HorizontalPromotionTags";
+import SocialShare from "./SocialShare";
+import { useState } from "react";
 
 
 const ProductCard = ({ logo, product, index, adminMode, callBackFunction }) => {
-  const router = useRouter();
+
+  const [showShareModal, setShowShareModal] = useState(false);
   const handleProductClick=(url)=>{
     if(adminMode || product.isLocal){
       callBackFunction(product);
@@ -16,8 +16,10 @@ const ProductCard = ({ logo, product, index, adminMode, callBackFunction }) => {
     }
   }
 
+
   return (
     <div className="relative grid">
+       {showShareModal && <SocialShare pid={product.productId} sid={product.storeId} onCloseFunction={setShowShareModal}/>}     
     <div
       key={product.productName + index}
       className={` hover:cursor-pointer product-image flex items-center justify-center block bg-white rounded-lg p-2 shadow shadow-gray-100 border border-gray-200 hover:border-gray-200 `}
@@ -33,7 +35,10 @@ const ProductCard = ({ logo, product, index, adminMode, callBackFunction }) => {
           {adminMode? null: (<>{product.isLocal?null:<div className="centered-blur">REFERENCIA </div>}</>)} 
           </div>
          </div>
-      <div className="h-20 flex items-start justify-center font-extrabold text-black">{product.productName}</div>
+      <div className="h-20 flex items-start justify-center font-extrabold text-black">
+        {product.productName}
+        {product.isLocal && <BsShare className="absolute top-4 right-4 w-4 h-4" color="black" onClick={()=>{setShowShareModal(true)}}/>      }
+      </div>
       <div className="rh-10 lg:h-4 flex-row lg:flex inline gap-2 items-center justify-center mt-2 lg:mt-0">        
             {product.formatedEspecialPrice && 
              product.formatedEspecialPrice != 0 && (
