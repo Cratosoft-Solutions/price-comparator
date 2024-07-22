@@ -3,7 +3,10 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider  from "next-auth/providers/credentials";
 import User from '@models/user';
+import Store from '@models/store';
 import { signIn } from "next-auth/react";
+import axios from "axios"
+import { saveStore } from "@utils/storeUtil";
 
 const googleProvider = GoogleProvider(
     {
@@ -39,15 +42,32 @@ const credentialsProvider = CredentialsProvider({
       userExits = await User.findOne({
         email: credentials.email,
       });
+      console.log('Starting checking user')
 
       //if not, create new user
       if (!userExits) {
+        console.log('Starting creating user')
         userExits = await User.create({
           email: credentials.email,
           username: credentials.email,
           provider: "credentials",
           password: credentials.password,
         });
+        // Create basic store 
+        const storeToSave = {
+            id:null,
+            name: credentials.email,
+            description: 'My Store',
+            contactnumber: null,
+            email: credentials.email,
+            showwhatssapicon: false,
+            image: null,
+            address: null,
+            user:userExits.id
+          };
+        // Create store
+        await saveStore(storeToSave);
+
         return userExits;
       } else {
         return Promise.reject(new Error('UserDoesExist'));
@@ -104,13 +124,28 @@ const handler = NextAuth(
 
                     //if not, create new user
                      if(!userExits){
-                       await User.create({
+                       console.log(`Profile: ${profile}`)
+                       const newUser = await User.create({
                         email: profile.email, 
                         username:profile.name.replace(" ", "").toLowerCase(),
                         image:profile.picture,
                         password:null,
                         provider:account.provider
                        }) 
+                       console.log(`Creating basic store for user: ${newUser.id}`)
+                       const storeToSave = {
+                         id: null,
+                         name: profile.name,
+                         description: "My Store",
+                         contactnumber: null,
+                         email: profile.email,
+                         showwhatssapicon: false,
+                         image: null,
+                         address: null,
+                         user: newUser.id,
+                       };
+                       // Create store
+                       await saveStore(storeToSave);
                      }   
                     return true;
                 } catch (error) {
