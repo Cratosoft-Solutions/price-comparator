@@ -20,7 +20,7 @@ const StoreSchema = new Schema({
     },
     contactnumber:{
         type:Number,
-        required:[true, 'Contacto es requerido'],
+        required:[false, 'Contacto es requerido'],
         unique:['Numero de contacto es requerido']
     },
     showwhatssapicon:{
@@ -29,7 +29,7 @@ const StoreSchema = new Schema({
     },
     address:{
         type: String,
-        required: [true, 'Direccion es requerido'],
+        required: [false, 'Direccion es requerido'],
     },
     image:{
         type: String
