@@ -1,4 +1,7 @@
 "use client";
+
+import { useEffect, useState } from "react";
+
 export const isMobileClient = () => {
   try {
     const regex =
@@ -17,3 +20,21 @@ export const copyToClipBoard = (text) => {
     return false;
   }
 };
+
+export function useIsVisible(ref) {
+  const [isIntersecting, setIntersecting] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+        setIntersecting(entry.isIntersecting)
+    } 
+    );
+    
+    observer.observe(ref.current);
+    return () => {
+      observer.disconnect();
+    };
+  }, [ref]);
+
+  return isIntersecting;
+}
