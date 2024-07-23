@@ -33,14 +33,13 @@ const UserLogin = ({personalizedClass}) => {
                 {session?.user ? "Mi perfil" : ""}
               </span>
             </div>
-
-            {toogleDropDown && (
+          </div>
+          {toogleDropDown && (
               <NavToogleDropDown
                 userConnected={session?.user}
                 onSelected={setToogleDropDown}
               />
             )}
-          </div>
         </div>
   )
 }
