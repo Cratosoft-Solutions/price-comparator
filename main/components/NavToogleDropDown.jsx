@@ -19,7 +19,7 @@ const ddlUserConnected = (onSelected) => {
           onSelected(false);
         }}
       >
-        Vender
+        Tienda
       </button>
       <Link
         href="/profile"

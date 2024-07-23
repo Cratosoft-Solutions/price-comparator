@@ -10,7 +10,6 @@ import MyItems from "@components/store/MyItems";
 
 const CustomerStore = ({ userIsAuthenticated, isLoading }) => {
   const { selectedOption } = useSelector(state => state.verticalnav.myStoreNav);
-  console.log('***JM*** 000');
 
   useEffect(() => {
     userIsAuthenticated();

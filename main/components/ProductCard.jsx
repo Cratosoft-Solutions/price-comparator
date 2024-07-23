@@ -43,7 +43,7 @@ const ProductCard = ({ logo, product, index, adminMode, callBackFunction }) => {
             {product.formatedEspecialPrice && 
              product.formatedEspecialPrice != 0 && (
               <div className="lg:inline text-center text-black">
-                <span className='text-xs'>{product.currency}</span>
+                <span className='text-xs'>{product.currency == "CRC" ? "₡" : "$"}</span>
                 <span className="line-through text-xs">
                     {product.formatedPrice}
                 </span>
@@ -51,7 +51,7 @@ const ProductCard = ({ logo, product, index, adminMode, callBackFunction }) => {
             )}
         
         <div className="lg:inline text-center text-black">
-            <span className='text-xs'>{product.currency}</span>
+            <span className='text-xs'>{product.currency == "CRC" ? "₡" : "$"}</span>
             <span className='text-xs'> 
             {product.formatedEspecialPrice &&
              product.formatedEspecialPrice != 0
