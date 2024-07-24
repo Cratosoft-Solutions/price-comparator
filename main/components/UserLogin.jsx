@@ -12,7 +12,7 @@ const UserLogin = ({personalizedClass}) => {
   return (
     <div className={`z-50 flex h-full lg:relative items-center justify-end ${personalizedClass}`}>
           <div className=" gap-2 items-center">
-            <div className="flex items-center justify-end">
+            <div className="flex items-center justify-end hover:cursor-pointer">
               <img
                 src={
                   session?.user?.image

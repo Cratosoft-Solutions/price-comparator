@@ -3,7 +3,7 @@ import Link from "next/link";
 import SearchButton from "./SearchButton";
 import NavCategoriesBar from "./NavCategoriesBar";
 import { RiInformationFill } from "react-icons/ri";
-import { FaFacebookF } from "react-icons/fa";
+import { FaFacebookF, FaRegHandPointRight } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { BTN_SEARCH_DEFAULT_BEHAVIOUR } from "@utils/constants";
 import { useSession } from "next-auth/react";
@@ -26,13 +26,13 @@ const Nav = () => {
   return (
     <>
       <div className="lg:mr-10 lg:ml-10 w-100 grid grid-rows-1 lg:grid-cols-[50%_50%] grid-cols-1 lg:grid-cols-[70%_30%] h-14  pt-10 pl-6 lg:pl-10 lg:pr-10 pb-8">
-        <div className="inline justify-start flex bg-red-900 items-center gap-2 hidden lg:flex lg:inline">
-          <RiInformationFill className="w-6 h-6 inline" color="gray" />
+        <div className="animate-pulse inline justify-start flex bg-red-900 items-center gap-2 hidden lg:flex lg:inline">
+          <FaRegHandPointRight  className="w-6 h-6 inline" color="gray" />
           <Link
             href="/"
             className="inline flex items-center justify-left text-gray-500 text-xs"
           >
-            Descubre una forma fácil de buscar y vender lo que necesites!
+            ¡Descubre una forma fácil de buscar y vender lo que necesites!
           </Link>
         </div>
         <div className="flex h-full items-center justify-end">

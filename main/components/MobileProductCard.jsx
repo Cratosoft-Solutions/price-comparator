@@ -65,7 +65,7 @@ const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
 
         </div>
       </div>
-      {!adminMode && product.isLocal && <div className="relative bg-red-900 w-full h-6"><HorizontalPromotionTags product={product}/></div>}
+      {!adminMode && product.isLocal && <div className="relative bg-white w-full h-6"><HorizontalPromotionTags product={product}/></div>}
 
 
     </div>

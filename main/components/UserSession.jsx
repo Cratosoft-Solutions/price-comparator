@@ -8,7 +8,7 @@ const UserSession = () => {
   const { data: session } = useSession();
   return (
     <div className='grid grid-cols-1 grid-rows-auto'>
-      <span className='w-full flex justify-center p-4'>{session?.user?.email}</span>
+      <span className='w-full flex justify-center p-4 text-black'>{session?.user?.email}</span>
     <div className="w-full flex justify-center p-4  !pt-0">
       {session?.user?.image ? (
         <Image
