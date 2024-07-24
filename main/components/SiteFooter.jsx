@@ -29,7 +29,7 @@ const onOptionSelected =(url)=>{
       </div>
       <div className='flex justify-center w-full items-center'>
         <span className="text-black w-full justify-center flex">
-          @2024-2024  encuetralofacilcr.com / Todos los derechos reservados
+          @2024-2025  encuetralofacilcr.com / Todos los derechos reservados
         </span>
       </div>
     </div>
