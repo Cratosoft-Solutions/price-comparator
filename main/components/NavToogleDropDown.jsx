@@ -37,7 +37,7 @@ const ddlUserConnected = (onSelected) => {
   const isVisible1 = useIsVisible(ref1);
 
   return (
-    <div ref={ref1} className= {`transition-opacity ease-in duration-700 ${isVisible1 ? "opacity-100" : "opacity-0"} absolute top-0 lg:top-6 lg:right-28 w-screen	max-heigh-available lg:h-fit right-0 lg:w-96 lg:rounded-2xl bg-gray-100 shadow z-[100]`}>
+    <div ref={ref1} className= {`transition-opacity ease-in duration-700 ${isVisible1 ? "opacity-100" : "opacity-0"} absolute top-0 lg:top-6 lg:right-28 w-screen	max-heigh-available lg:h-fit right-0 lg:w-96 lg:rounded-2xl bg-gray-100 shadow-2xl border border-gray-300 z-[100]`}>
          <IoCloseOutline onClick={() => { onSelected(false); }} className="absolute h-10 w-10 right-4 mt-4 lg:mt-2 lg:right-4 stroke-gray-900"/>
          <UserSession/>
               <div className="grid items-center gap-4 grid-cols-2 grid-auto-rows">
@@ -47,9 +47,9 @@ const ddlUserConnected = (onSelected) => {
                   onSelectedButton(onSelected(false));
                 }}>
                   <div className='w-full flex justify-center'>
-                    <GoHome className='w-8 h-8'/>
+                    <GoHome className='text-black w-8 h-8'/>
                   </div>
-                  <span className='flex text-sm font-black w-full justify-center'>Home</span>  
+                  <span className='flex text-sm font-black w-full justify-center text-black'>Home</span>  
                 </Link>
                 <button className='flex flex-wrap items-center h-16 p-1 hover:bg-gray-100 w-full justify-center hover:cursor-pointer hover:shadow' 
                 onClick={() => {
@@ -59,9 +59,9 @@ const ddlUserConnected = (onSelected) => {
                   );
                 }}>
                   <div className='w-full flex justify-center'>
-                    <CiSettings className='w-8 h-8'/>
+                    <CiSettings className='w-8 h-8 text-black'/>
                   </div>
-                  <span className='flex text-sm font-black w-full justify-center'>Mi perfil</span>  
+                  <span className='flex text-sm font-black w-full justify-center text-black'>Mi perfil</span>  
                 </button>
                 <button className='flex flex-wrap items-center h-16 p-1 hover:bg-gray-100 w-full justify-center hover:cursor-pointer hover:shadow' 
                 onClick={() => {
@@ -71,9 +71,9 @@ const ddlUserConnected = (onSelected) => {
                   );
                 }}>
                   <div className='w-full flex justify-center'>
-                    <IoAddSharp className='w-8 h-8'/>
+                    <IoAddSharp className='w-8 h-8 text-black'/>
                   </div>
-                  <span className='flex text-sm font-black w-full justify-center'>Publicar</span>  
+                  <span className='flex text-sm font-black w-full justify-center text-black'>Publicar</span>  
                 </button>
                 <button className='flex flex-wrap items-center h-16 p-1 hover:bg-gray-100 w-full justify-center hover:cursor-pointer hover:shadow' 
                 onClick={() => {
@@ -83,20 +83,12 @@ const ddlUserConnected = (onSelected) => {
                   );
                 }}>
                   <div className='w-full flex justify-center'>
-                    <CiCircleList className='w-8 h-8'/>
+                    <CiCircleList className='w-8 h-8 text-black'/>
                   </div>
-                  <span className='flex text-sm font-black w-full justify-center'>Mis anuncios</span>  
-                </button>
-                <button className='flex flex-wrap items-center h-16 p-1 hover:bg-gray-100 w-full justify-center hover:cursor-pointer hover:shadow hover:bg-green-50' 
-                onClick={() => {signOut()
-                }}>
-                  <div className='w-full flex justify-center'>
-                    <CiLogout  className='w-8 h-8'/>
-                  </div>
-                  <span className=' flex text-sm font-black w-full justify-center'>Cerrar Sesión</span>  
+                  <span className='flex text-sm font-black w-full justify-center text-black'>Mis anuncios</span>  
                 </button>
           </div>
-          <span className="text-xs flex justify-center text-center w-full p-4">{"@2024-2025 encuetralofacilcr.com / Todos los derechos reservados"}</span>
+          <span className="text-xs flex justify-center text-center w-full p-4">{"@2024-2025 encuentralofacilcr.com / Todos los derechos reservados"}</span>
 
     </div>
   );
@@ -107,12 +99,8 @@ const ddlUserDisconnected = (onSelected) => {
   const ref1 = useRef();
   const isVisible1 = useIsVisible(ref1);
     return (
-      <div
-        ref={ref1}
-        className={`transition-opacity ease-in duration-700 ${
-          isVisible1 ? "opacity-100" : "opacity-0"
-        } absolute top-0 lg:top-6 lg:right-28 w-screen	max-heigh-available lg:h-fit right-0 lg:w-96 lg:rounded-2xl bg-gray-100 shadow z-[100]`}
-      >
+      <div ref={ref1} className= {`transition-opacity ease-in duration-700 ${isVisible1 ? "opacity-100" : "opacity-0"} absolute top-0 lg:top-6 lg:right-28 w-screen	max-heigh-available lg:h-fit right-0 lg:w-96 lg:rounded-2xl bg-gray-100 shadow-2xl border border-gray-300 z-[100]`}>
+
          <IoCloseOutline onClick={() => { onSelected(false); }} className="absolute h-10 w-10 right-4 mt-4 lg:mt-2 lg:right-4 stroke-gray-900"/>
 
         <UserSession/>
@@ -123,14 +111,14 @@ const ddlUserDisconnected = (onSelected) => {
             onClick={() => onSelected(false)}
           >
             <div className="w-full flex justify-center">
-              <MdAppRegistration  className="w-8 h-8" />
+              <MdAppRegistration  className="w-8 h-8 text-black" />
             </div>
-            <span className="flex text-sm font-black w-full justify-center">
+            <span className="flex text-sm font-black w-full justify-center text-black">
               Registrar mi usuario
             </span>
           </Link>
         </div>
-        <span className="text-xs flex justify-center text-center w-full p-4">{"@2024-2025 encuetralofacilcr.com / Todos los derechos reservados"}</span>
+        <span className="text-xs flex justify-center text-center w-full p-4">{"@2024-2025 encuentralofacilcr.com / Todos los derechos reservados"}</span>
       </div>
     );
   };

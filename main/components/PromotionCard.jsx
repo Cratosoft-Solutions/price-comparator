@@ -17,7 +17,7 @@ const PromotionCard = ({ product, index, callBackFunction }) => {
       <div key={`CARD-${index}`} className="shadow-gray-100 hover:border-gray-200 hover:shadow-xl promotion-image hover:cursor-pointer flex flex-col w-32 h-fit  lg:w-fit lg:h-fit mr-4 bg-slate-50 shadow-lg rounded-t-lg lg:rounded-lg	 border border-1">
           
         <div className="relative text-black h-8 flex items-start justify-center font-extrabold pl-2 pr-2 mb-2 mt-2">
-          {product.productName}
+          <span className="w-full flex lg:justify-center">{product.productName}</span>
           <BsShare className="absolute top-1 right-2 lg:right-4 w-4 h-4" color="black" onClick={()=>{setShowShareModal(true)}}/>
           </div>
           

@@ -15,19 +15,21 @@ const SearchButton = ({personalizedClass=""}) => {
   const router = useRouter();
   const { category} = useSelector(state => state.siteNav);
   const { text } = useSelector(state => state.searchProperties.properties);
+  const [showCoincidences, setShowCoincidences] = useState(false);
 
   const setInternalCategory = (category) => {
     dispatch(setCategory(category));
   };
 
   const restartFields = (value) => {
+    setShowCoincidences(true);
     dispatch(setText(value.replace(/[^a-zA-Z0-9 ]/g, "")));
   }
 
   const executeSearch = (e) => {
     if (e) 
       e.preventDefault();
-    
+    setShowCoincidences(false);
     redirectPage(category, text);
   }
 
@@ -63,9 +65,11 @@ const SearchButton = ({personalizedClass=""}) => {
               />
             </div>
           </form>
-          <div className="grid grid-cols-1 grid-rows-1 w-full z-50">
-              <AutoCompletableList text={text} onChange={redirectPage} />
-          </div>
+          {showCoincidences &&
+            <div className="grid grid-cols-1 grid-rows-1 w-full z-50">
+                <AutoCompletableList text={text} onChange={redirectPage} />
+            </div>
+          }
     </div>
   );
 }
