@@ -7,12 +7,14 @@ import { FaUser } from "react-icons/fa";
 const UserSession = () => {
   const { data: session } = useSession();
   return (
-    <div className="inline flex items-center justify-start p-6 gap-4">
+    <div className='grid grid-cols-1 grid-rows-auto'>
+      <span className='w-full flex justify-center p-4'>{session?.user?.email}</span>
+    <div className="w-full flex justify-center p-4  !pt-0">
       {session?.user?.image ? (
         <Image
           src={session?.user?.image}
-          width={37}
-          height={37}
+          width={74}
+          height={74}
           className="inline rounded-full"
           alt="profile"
           onClick={() => alert(false)}
@@ -20,9 +22,9 @@ const UserSession = () => {
       ) : (
         <FaUser className='text-black w-6 h-6' />
       )}
-
-      <div
-        className="inline flex items-center text-center justify-start"
+    </div>
+    <div
+        className="w-full flex justify-center p-4 !pt-0 hover:cursor-pointer"
         onClick={() => {
           session?.user ? signOut() : signIn();
         }}
@@ -32,6 +34,7 @@ const UserSession = () => {
         </span>
       </div>
     </div>
+    
   );
 }
 

@@ -10,8 +10,8 @@ const UserLogin = ({personalizedClass}) => {
     const [toogleDropDown, setToogleDropDown] = useState(false);
     const router = useRouter();
   return (
-    <div className={`z-50 flex h-full relative items-center justify-end ${personalizedClass}`}>
-          <div className="grid grid-rows-1 grid-cols-1 lg:grid-cols-[50%_50%] gap-2 items-center">
+    <div className={`z-50 flex h-full lg:relative items-center justify-end ${personalizedClass}`}>
+          <div className=" gap-2 items-center">
             <div className="flex items-center justify-end">
               <img
                 src={
@@ -19,20 +19,12 @@ const UserLogin = ({personalizedClass}) => {
                     ? session.user.image
                     : "/assets/images/userProfile.svg"
                 }
-                className="rounded-full h-8 w-8 lg:h-8 lg:w-8"
+                className="rounded-full h-8 w-8 lg:h-10 lg:w-10"
                 alt="profile"
                 onClick={() => setToogleDropDown((prev) => !prev)}
               />
             </div>
 
-            <div
-              className="hidden lg:block w-full hover:cursor-pointer  flex items-center justify-end"
-              onClick={() => setToogleDropDown((prev) => !prev)}
-            >
-              <span className='w-20'>
-                {session?.user ? "Mi perfil" : ""}
-              </span>
-            </div>
           </div>
           {toogleDropDown && (
               <NavToogleDropDown
