@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import cookieCutter from 'cookie-cutter'
 import { AUTH_CREDENTIALS } from "@utils/constants";
 import { useRouter } from "next/navigation";
+import { getSession } from "next-auth/react";
  
 
 function withAuth(Component, isSecure = false) {
@@ -33,8 +34,9 @@ function withAuth(Component, isSecure = false) {
       }
     };
 
-    const userIsAuthenticated = () => {
+    const userIsAuthenticated = async () => {
       try {
+        const session = await getSession();
         const user = session?.user;
         if (isSecure && !user) {
           router.push("/unauthorized");

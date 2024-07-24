@@ -51,19 +51,23 @@ export const GET = async (req, { params }) => {
 
     SearchExists.forEach(element => {
         result.companyProducts.push({
-            isLocal:true,
-            productPrice:element.price,
-            vendorLink:`https://encuentralofacilcr.com/${element._id}`,
-            productImage:genericCompression(element.image, "decompress")[0],
-            productName: element.name,
-            productDescription:element.description,
-            formatedPrice:paseStoreNumber(element.price),
-            productId: element._id,
-            storeId: element.store,
-            currency: element.currency == "CRC" ? "₡" : "$",
-            category: element.category,
-            negotiable:element.negotiable
-        })
+          isLocal: true,
+          productPrice: element.price,
+          vendorLink: `https://encuentralofacilcr.com/${element._id}`,
+          productImage: genericCompression(element.image, "decompress")[0],
+          productName: element.name,
+          productDescription: element.description,
+          formatedPrice: paseStoreNumber(element.price),
+          formatedEspecialPrice:
+            element.especialprice && element.especialprice != 0
+              ? paseStoreNumber(element.especialprice)
+              : 0,
+          productId: element._id,
+          storeId: element.store,
+          currency: element.currency == "CRC" ? "₡" : "$",
+          category: element.category,
+          negotiable: element.negotiable,
+        });
     });
 
     // Get final search

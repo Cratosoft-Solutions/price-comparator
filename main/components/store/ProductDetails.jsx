@@ -184,6 +184,7 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false, i
                         </div>
                         <div className="flex items-end justify-start">
                           <div className="w-40">
+                            {/* TODO MMC include phone*/}
                             <Link
                               href={`https://wa.me/${+50683439846}/?text=Quiero informacion de: ${
                                 product.productName

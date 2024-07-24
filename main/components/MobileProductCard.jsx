@@ -43,21 +43,20 @@ const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
           </p>
 
           <div className="text-black font-[500]">
-
-            {product.formatedEspecialPrice && 
-             product.formatedEspecialPrice != 0 && (
+            {Boolean(product.formatedEspecialPrice && 
+             product.formatedEspecialPrice != 0) && (
               <div className="lg:inline text-left">
-                <span className='text-xs'>{product.currency}</span>
+                <span className='text-xs'>{product.currency == "CRC" ? "₡" : product.currency}</span>
                 <span className="line-through text-xs">
                     {product.formatedPrice}
                 </span>
               </div>
             )}
           <div className="lg:inline text-left">
-              <span className='text-xs'>{product.currency}</span>
+              <span className='text-xs'>{product.currency == "CRC" ? "₡" : product.currency }</span>
               <span className='text-xs'> 
-              {product.formatedEspecialPrice &&
-              product.formatedEspecialPrice != 0
+              {Boolean(product.formatedEspecialPrice && 
+             product.formatedEspecialPrice != 0)
                   ? product.formatedEspecialPrice
                   : product.formatedPrice} 
               </span>
