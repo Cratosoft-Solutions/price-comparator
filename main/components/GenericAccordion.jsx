@@ -26,7 +26,7 @@ const GenericAccordion = ({ objectToBeRendered, onSelectedOption }) => {
     <div className="h-fit w-full top-0 max-heigh-available bg-black bg-opacity-50">
       <div className=" bg-white bg-white w-full h-full shadow searchoptions relative">
         <div id="accordion-collapse" data-accordion="collapse">
-          {objectToBeRendered.map((element, index) => (
+          {objectToBeRendered.filter(filteredElement => filteredElement.enabled).map((element, index) => (
             <>
               <h2 id={`accordion-collapse-heading-${index}`} className={element.value==selectedPromotion?'p-5 bg-green-100':'p-5 bg-white'}>
                 <div
@@ -40,7 +40,7 @@ const GenericAccordion = ({ objectToBeRendered, onSelectedOption }) => {
                   <IoIosArrowDown className="w-3 h-3"/>
                 </div>
                 <div key={`checkbox-input-${index}`} className="flex items-center">
-                    <input id={`promotionscheck-${index}`} key={`promotionscheck-${index}`} type="checkbox"  className="w-4 h-4 accent-gray-900 dark:accent-white" checked={element.value==selectedPromotion} onChange={()=>{setInternalSelectedPromotion(element.value)}}/>
+                    <input disabled id={`promotionscheck-${index}`} key={`promotionscheck-${index}`} type="checkbox"  className="w-4 h-4 accent-gray-900 dark:accent-white" checked={element.value==selectedPromotion} onChange={()=>{setInternalSelectedPromotion(element.value)}}/>
                     <label htmlFor={`promotionscheck    -${index}}`} className="pl-2 text-gray-600    text-sm   flex items-center">Seleccionar</label>
                 </div>
               </h2>

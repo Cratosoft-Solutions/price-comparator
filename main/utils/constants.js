@@ -326,7 +326,8 @@ export const HOUSE_BENEFITS = [
 ];
 
 export const PROMOTIONS = [
-  { appliesForPayment:true,
+  { enabled: false,
+    appliesForPayment:true,
     value: 5,
     name: "VIP",
     label: "VIP CRC 10,000.00 + IVA por 45 días",
@@ -345,6 +346,7 @@ export const PROMOTIONS = [
     ],
   },
   {
+    enabled: false,
     appliesForPayment:true,
     value: 4,
     name: "Elite",
@@ -362,6 +364,7 @@ export const PROMOTIONS = [
     ],
   },
   {
+    enabled: false,
     appliesForPayment:true,
     value: 3,
     name: "Deluxe",
@@ -379,6 +382,7 @@ export const PROMOTIONS = [
     ],
   },
   {
+    enabled: false,
     appliesForPayment:true,
     value: 2,
     name: "Essentials",
@@ -396,6 +400,7 @@ export const PROMOTIONS = [
     ],
   },
   {
+    enabled: true,
     appliesForPayment:false,
     value: 1,
     name: "Básico",
@@ -405,7 +410,7 @@ export const PROMOTIONS = [
     price: 0,
     formatedPrice:"0.00",
     features: [
-      { key: 1, label: "Expiración de anuncio en 15 días" },
+      { key: 1, label: "Expiración de anuncio en 30 días" },
       { key: 2, label: "Presencia en búsquedas de los usuarios en base a categoria" },
       { key: 3, label: "Máximo 5 imágenes por anuncio" }
     ],
@@ -418,7 +423,7 @@ export const SEARCH_DEFAULT_OPTIONS = {
 };
 
 export const VERTICAL_NAV_STATUS = {
-  myStoreNav: { selectedOption: "configuration", expandedNavBar: false },
+  myStoreNav: { selectedOption: "configuration", expandedNavBar: false, editMode:false, product:{} },
   productSearch: { expandedNavBar: false },
 };
 
@@ -470,6 +475,13 @@ const checkIcon = `<div class="checkIcon"><svg class="w-3.5 h-3.5 mr-2 text-gree
 
 export const AUTH_MESSAGES = [
   {
+    id: "ActivateAccount",
+    title: "¡Falta poco!. Favor finaliza el proceso de activación ingresando al correo suministrado.",
+    time: 5000,
+    type: "TIMER",
+    message: "Ventana se cerrará en <b></b> segundos.",
+  },
+  {
     id: "CredentialsSignin",
     title: "Ocurrió un error al autenticarse, favor verifique.",
     time: 5000,
@@ -479,6 +491,13 @@ export const AUTH_MESSAGES = [
   {
     id: "UserDoesNotExist",
     title: "Usuario no existe, favor verifique.",
+    time: 5000,
+    type: "TIMER",
+    message: "Ventana se cerrará en <b></b> segundos.",
+  },
+  {
+    id:"NotActive",
+    title: "Cuenta Inactiva. Favor activa tu cuenta ingresando al correo recibido por parte de Encuéntralo Fácil CR.",
     time: 5000,
     type: "TIMER",
     message: "Ventana se cerrará en <b></b> segundos.",
@@ -653,6 +672,23 @@ export const SITE_MAP = [
       {
         order: 2,
         text: "TRANSLATECATEGORY",
+        url: "",
+        lastPath: true,
+      },
+    ],
+  },
+  {
+    path: "/email/activate",
+    mapTree: [
+      {
+        order: 1,
+        text: "Home",
+        url: "/",
+        lastPath: false,
+      },
+      {
+        order: 2,
+        text: "Activación de cuenta",
         url: "",
         lastPath: true,
       },

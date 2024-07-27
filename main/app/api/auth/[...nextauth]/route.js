@@ -3,10 +3,8 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider  from "next-auth/providers/credentials";
 import User from '@models/user';
-import Store from '@models/store';
-import { signIn } from "next-auth/react";
-import axios from "axios"
 import { saveStore } from "@utils/storeUtil";
+import bcrypt from 'bcrypt';
 
 const googleProvider = GoogleProvider(
     {
@@ -47,11 +45,15 @@ const credentialsProvider = CredentialsProvider({
       //if not, create new user
       if (!userExits) {
         console.log('Starting creating user')
+        //hashing the password
+        const hashedPassword = await bcrypt.hash(credentials.password, 10);
+
         userExits = await User.create({
           email: credentials.email,
           username: credentials.email,
           provider: "credentials",
-          password: credentials.password,
+          password: hashedPassword,
+          active: false
         });
         // Create basic store 
         const storeToSave = {
@@ -65,6 +67,7 @@ const credentialsProvider = CredentialsProvider({
             address: null,
             user:userExits.id
           };
+
         // Create store
         await saveStore(storeToSave);
 
@@ -77,13 +80,19 @@ const credentialsProvider = CredentialsProvider({
         email: credentials.email,
       });
 
+
+
       if (!userExits) {
         return Promise.reject(new Error('UserDoesNotExist'));
       } else {
+        const passwordValidation = await getEncryptedPassword(credentials.password, userExits.password);
         //Validate user conditions
         if (userExits.provider != "credentials") {
             return Promise.reject(new Error('AuthBadProvider'));
-        } else if (userExits.password != credentials.password) {
+          }
+        else if(!userExits.active){
+          return Promise.reject(new Error('NotActive'));
+          } else if (!passwordValidation) {
           return Promise.reject(new Error('BadPassword'));
         } else {
           return userExits;
@@ -130,7 +139,8 @@ const handler = NextAuth(
                         username:profile.name.replace(" ", "").toLowerCase(),
                         image:profile.picture,
                         password:null,
-                        provider:account.provider
+                        provider:account.provider,
+                        active:true
                        }) 
                        console.log(`Creating basic store for user: ${newUser.id}`)
                        const storeToSave = {
@@ -157,6 +167,14 @@ const handler = NextAuth(
     }
 )
 
+const getEncryptedPassword = async(injectedPassword, currentPassword) => {
+  try {
+    const passwordMatches = await bcrypt.compare(injectedPassword, currentPassword);
+    return passwordMatches
+  } catch (error) {
+    return false;
+  }
+}
 
 
 export {handler as GET, handler as POST};

@@ -10,13 +10,13 @@ const verticalNavOptionsSlide = createSlice({
         setMyStoreConfig: (state, action) => {
             switch (action.payload) {
                 case "CONFIG":            
-                  state.myStoreNav = {...state.myStoreNav, selectedOption:"configuration"};     
+                  state.myStoreNav = {...state.myStoreNav, selectedOption:"configuration", editMode:false, product:""};     
                   break;
                 case "ADDPRODUCT":
-                  state.myStoreNav = {...state.myStoreNav, selectedOption:"products"};  
+                  state.myStoreNav = {...state.myStoreNav, selectedOption:"products", editMode:false, product:""};  
                   break;
                 case "LISTITEM":
-                state.myStoreNav = {...state.myStoreNav, selectedOption:"myproducts"};  
+                state.myStoreNav = {...state.myStoreNav, selectedOption:"myproducts", editMode:false, product:""};  
                 break;
                 case "EXPANDNAV":
                     state.myStoreNav = {...state.myStoreNav, expandedNavBar:true};  
@@ -25,6 +25,9 @@ const verticalNavOptionsSlide = createSlice({
                     state.myStoreNav = {...state.myStoreNav, expandedNavBar:false};  
                     break;                      
               }
+        },
+        setEditionModeOn: (state, action) => {
+            state.myStoreNav = {...state.myStoreNav, selectedOption:"products", editMode:true, product:action.payload};  
         },
         setProductSearchConfig: (state, action) => {
             switch (action.payload) {
@@ -42,5 +45,5 @@ const verticalNavOptionsSlide = createSlice({
     }
 });
 
-export const { setMyStoreConfig, setProductSearchConfig } = verticalNavOptionsSlide.actions;
+export const { setMyStoreConfig, setProductSearchConfig, setEditionModeOn } = verticalNavOptionsSlide.actions;
 export default verticalNavOptionsSlide.reducer;

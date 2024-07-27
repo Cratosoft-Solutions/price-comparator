@@ -88,7 +88,7 @@ const ddlUserConnected = (onSelected) => {
                   <span className='flex text-sm font-black w-full justify-center text-black'>Mis anuncios</span>  
                 </button>
           </div>
-          <span className="text-xs flex justify-center text-center w-full p-4">{"@2024-2025 encuentralofacilcr.com / Todos los derechos reservados"}</span>
+          <span className="text-gray-800 text-xs flex justify-center text-center w-full p-4">{"@2024-2025 encuentralofacilcr.com / Todos los derechos reservados"}</span>
 
     </div>
   );

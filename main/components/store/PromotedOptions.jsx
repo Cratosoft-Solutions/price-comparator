@@ -17,7 +17,8 @@ const PromotedOptions = ({ onSelectedOption }) => {
             <div className="lg:col-span-5 relative ">
                 <div className='grid grid-cols-1 '>
                     <GenericAccordion objectToBeRendered={PROMOTIONS} onSelectedOption={onSelectedOption}/>                 
-                </div>    
+                </div>  
+                <img src='/assets/images/no-promotion-yet.svg' className='mt-4'/>  
             </div>                                                                                         
         </>
   );
