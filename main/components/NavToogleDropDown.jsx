@@ -107,7 +107,7 @@ const ddlUserDisconnected = (onSelected) => {
         <div className="grid  items-center gap-4 grid-cols-1 grid-auto-rows">
           <Link
             className="flex flex-wrap items-center h-16 p-1 hover:bg-gray-100 items-center w-full justify-center hover:cursor-pointer hover:shadow hover:bg-green-50"
-            href="/registere"
+            href="/register"
             onClick={() => onSelected(false)}
           >
             <div className="w-full flex justify-center">
