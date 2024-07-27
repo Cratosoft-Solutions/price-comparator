@@ -22,6 +22,7 @@ const UserSchema = new Schema({
     type: String,
     required: [true, "provider is required"],
   },
+  active: {type: Boolean},
   createdAt: { type: Date, index: true },
   updatedAt: { type: Date, index: true },
 });

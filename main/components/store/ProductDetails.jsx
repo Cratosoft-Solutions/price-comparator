@@ -6,13 +6,16 @@ import { isMobile } from '@utils/functions';
 import axios from 'axios';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import StoreItem from './StoreItem';
 import ImageGallery from "react-image-gallery";
 import { FaWhatsapp } from "react-icons/fa";
 import ProductDetailsTabs from './ProductDetailsTabs';
 import { GENERAL_UKNOWN_ERROR } from '@utils/constants';
 import Modal from '@components/Modal';
 import Alert from '@components/Alert';
+import { setEditionModeOn } from '@app/redux/slices/verticalNav';
+import { useDispatch } from 'react-redux';
+import { useRouter } from "next/navigation";
+
 
 
 const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false, isModal=true}) => {
@@ -24,11 +27,18 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false, i
     const [nameLabel, setNameLabel] = useState('Detalle del item.');
     const [showConfirmAction, setShowConfirmAction] = useState(false);
     const [modalActionInfo, setModalActionInfo] = useState({});
+    const dispatch = useDispatch();
+    const router = useRouter();
 
     const personalizedClass = isModal
     ? "max-heigh-available fixed top-0 w-full z-50 h-screen bg-black bg-opacity-30 lg:py-11 left-0"
     : "w-full ";
   
+    const editProduct=()=>{
+      dispatch(setEditionModeOn(product));
+      router.push("/mystore");
+    }
+
     const onConfirm =()=>{
       setShowConfirmAction(false);
     }
@@ -112,15 +122,6 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false, i
         return (
           <Loading message={"Cargando..."}/>
         ); 
-
-      if(editingProduct)
-      return (
-        <section className="max-heigh-available fixed top-0 w-full z-50 h-screen bg-black bg-opacity-30 py-11 left-0">
-          <div className="max-w-6xl w-fit py-2 mx-auto px-2 bg-white rounded-lg shadow">
-            <StoreItem editMode={true} product={product} onCloseFunction={closeEditProduct}/>
-          </div>
-        </section> 
-      ); 
 
     return (
       <section className={personalizedClass}>
@@ -213,7 +214,7 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false, i
                         <div className="w-full px-4 mb-4 lg:w-1/2 lg:mb-0">
                           <button
                             onClick={() => {
-                              setEditingProduct(true);
+                              editProduct();
                             }}
                             className="black_btn_sqr w-full"
                           >

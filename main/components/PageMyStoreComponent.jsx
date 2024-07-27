@@ -7,9 +7,10 @@ import StoreConfig from "@components/store/StoreConfig";
 import { useSelector } from "react-redux";
 import StoreItem from "@components/store/StoreItem";
 import MyItems from "@components/store/MyItems";
+import EditItemWrapper from "./EditItemWrapper";
 
 const CustomerStore = ({ userIsAuthenticated, isLoading }) => {
-  const { selectedOption } = useSelector(state => state.verticalnav.myStoreNav);
+  const { selectedOption, editMode, product } = useSelector(state => state.verticalnav.myStoreNav);
 
   useEffect(() => {
     userIsAuthenticated();
@@ -20,7 +21,11 @@ const CustomerStore = ({ userIsAuthenticated, isLoading }) => {
       case "configuration":
         return <StoreConfig/>
       case "products":
+        if(editMode){
+        return <EditItemWrapper product={product}/>
+      }else {
         return <StoreItem/>
+      }
       case "myproducts":
         return <MyItems/>
       default:
