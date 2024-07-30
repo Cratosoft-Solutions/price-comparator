@@ -678,6 +678,23 @@ export const SITE_MAP = [
     ],
   },
   {
+    path: "/search/product",
+    mapTree: [
+      {
+        order: 1,
+        text: "Home",
+        url: "/",
+        lastPath: false,
+      },
+      {
+        order: 2,
+        text: "Búsqueda externa",
+        url: "",
+        lastPath: true,
+      },
+    ],
+  },
+  {
     path: "/email/activate",
     mapTree: [
       {

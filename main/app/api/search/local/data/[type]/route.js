@@ -118,6 +118,15 @@ export const GET = async (req, { params }) => {
       default:
         break;
     }
+
+    const ids = result.companyProducts.map(({ productId }) => productId.toString());
+    console.log(ids);
+    const filteredProducts = result.companyProducts.filter(
+      ({ productId }, index) => !ids.includes(productId.toString(), index + 1)
+    );
+
+    result.companyProducts = filteredProducts;
+
     return new Response(JSON.stringify(result), { status: 200 });
   } catch (error) {
     console.log(error.message);

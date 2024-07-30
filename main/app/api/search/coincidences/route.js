@@ -1,7 +1,6 @@
-import Tags from "@models/searchTags";
-import { isTokenValid } from '@utils/authFunctionsServer';
+
 import { connectToDB } from "@utils/database";
-import { genericDatabaseOperation } from "@utils/functions";
+import { METATAGS } from "@utils/meta";
 
 export const GET = async (req) => {
     try {
@@ -13,8 +12,9 @@ export const GET = async (req) => {
         await connectToDB();
 
         //Check if store exists
-        const tags  = await genericDatabaseOperation(Tags, null, "FIND_NO_PARAMS");  
-        return new Response(JSON.stringify(tags), { status: 200 })
+         const convertedTags = METATAGS.map(element => ({category:element.category, key:element.text}));
+        
+        return new Response(JSON.stringify(convertedTags), { status: 200 })
          
     } catch (error) {
         return new Response(JSON.stringify({message:error.message}), { status: 500 })

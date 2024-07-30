@@ -59,7 +59,16 @@ const ProductSchema = new Schema({
     dailySearches: {type: Number},
     totalSearches: {type: Number},
     lastTimeSeen: { type: Date, index: true },
-    socialMediaURL: {type: String}
+    socialMediaURL: {type: String},
+    email:{
+        type:String,
+    },
+    contactNumber:{
+        type:String,
+    },
+    address:{
+        type:String,
+    }
 });
 
 const Product = models.Product || model("Product", ProductSchema);

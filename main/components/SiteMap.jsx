@@ -1,12 +1,11 @@
 import React from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { SITE_MAP } from "@utils/constants";
 import { useSelector } from "react-redux";
 import { translateCategory } from "@utils/functions";
 
-const SiteMap = () => {
+const SiteMap = ({pathname}) => {
   const router = useRouter();
-  const pathname = usePathname();
   const { category} = useSelector(state => state.siteNav);
 
  
