@@ -57,7 +57,6 @@ const credentialsProvider = CredentialsProvider({
         });
         // Create basic store 
         const storeToSave = {
-            id:null,
             name: credentials.email,
             description: 'My Store',
             contactnumber: null,

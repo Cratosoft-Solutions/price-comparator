@@ -961,3 +961,12 @@ export const filterItemsByCategory = (dataToFilter, category) => {
   return []; 
  }
  }
+
+ export function removeDuplicate(str) {
+   return str
+     .split(",")
+     .filter(function (item, i, allItems) {
+       return i == allItems.indexOf(item);
+     })
+     .join(" ");
+ }

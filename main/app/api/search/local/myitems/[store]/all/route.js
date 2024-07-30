@@ -35,7 +35,10 @@ export const GET = async (req, { params }) => {
           currency:element.currency,
           category:element.category,
           isLocal:true,
-          socialMediaURL: element.socialMediaURL
+          socialMediaURL: element.socialMediaURL,
+          email:element.email,
+          contactNumber:element.contactNumber,
+          address:element.address
       })
   });
 

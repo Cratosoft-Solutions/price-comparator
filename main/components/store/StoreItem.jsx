@@ -121,10 +121,10 @@ const StoreItem = ({
            const storeInfo = await axios.get(
             `/api/user/${session.user.id}/store/`
           );
-          setStore(storeInfo.data._id);
-          setEmail(storeInfo.data.email);
-          setAddress(storeInfo.data.address);
-          setContactNumber(storeInfo.data.contactnumber);
+          setStore(product?.store?product.store:storeInfo.data._id);
+          setEmail(product?.email?product.email:storeInfo.data.email);
+          setAddress(product?.address?product.address:storeInfo.data.address);
+          setContactNumber(product?.contactNumber?product.contactNumber:storeInfo.data.contactnumber);
           setShowWhatssapIcon(storeInfo.data.showwhatssapicon);
         } else {
           setStore("non-auth-user");

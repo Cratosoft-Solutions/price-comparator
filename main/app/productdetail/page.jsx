@@ -13,7 +13,7 @@ try {
     description:product.productDescription,
     openGraph: {
       images: product.socialMediaURL,
-    },
+    }, 
   }  
 } catch (error) {
   console.log(error);

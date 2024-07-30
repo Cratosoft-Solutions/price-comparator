@@ -25,7 +25,7 @@ const MyResults = () => {
   
 
     let searchCounter = 0;
-    let storeToSearhCount = STORE_BY_CATEGORY[0].stores.length;//TODO cuando se manejen categorias por producto
+    let storeToSearhCount = category ==="PRODUCT"?STORE_BY_CATEGORY[0].stores.length:1;
     const key = formatKeyForStorage(category, text); 
     const textSearchArray = key != '' ? key.toUpperCase().split(" ") : "";
 
@@ -100,7 +100,7 @@ const MyResults = () => {
         .then((data) =>
           processIndividualResponse(
             data,
-            isSavedOnStorage,
+            true, //skip saving on local
             false,
             false
           )
@@ -108,7 +108,7 @@ const MyResults = () => {
         .catch((error) =>
           processIndividualResponse(
             error,
-            isSavedOnStorage,
+            true, //skip saving on local
             false,
             true
           )
@@ -119,7 +119,7 @@ const MyResults = () => {
         const executeSearch = async () =>{
           if (key === '') {
             dispatch(setSearching(false));  
-          }else{
+          } else {
             setTimeout(setInternalSearching, 15000);
             dispatch(restartProducts());
             dispatch(setLoading(true));
@@ -130,7 +130,7 @@ const MyResults = () => {
              printDBStorageData(data, isSavedOnStorage);
              dispatch(setSearching(false));  
             }
-            else{
+            else {
               let existsOnDB;
               // Load searches only for scrapping in product category
               if (category === "PRODUCT") {
@@ -145,14 +145,13 @@ const MyResults = () => {
                   dispatch(setSearching(false));
                   printDBStorageData(dbData.data, isSavedOnStorage);
                 } else {
-                  triggerLocalSearch(isSavedOnStorage);
+                  //triggerLocalSearch(isSavedOnStorage);
                   triggerScrap(isSavedOnStorage);
                 }
                 //   }
-              } else {
-                triggerLocalSearch(isSavedOnStorage);
-              }
+              } 
             }
+            triggerLocalSearch(isSavedOnStorage);
           }
         }
         if(key != text || key != ''){ 

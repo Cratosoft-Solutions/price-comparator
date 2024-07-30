@@ -10,8 +10,12 @@ import HomeNavWrapper from "@components/HomeNavWrapper";
 import SiteMapWrapper from "@components/SiteMapWrapper";
 
 export const metadata = {
-  title: "EncuéntraLo Fácil CR: Buscador de productos y servicios Costa Rica",
-  description: "Explora EncuéntraLo Fácil CR, tu destino en línea en Costa Rica para descubrir y publicar una amplia variedad de bienes y servicios. Encuentra fácilmente autos, viviendas, productos y servicios."};
+  title: "EncuéntraLoFácilCR - Buscador de Productos y Servicios",
+  description: "Explora EncuéntraLo Fácil CR, el sitio en Costa Rica para encontrar y publicar autos, viviendas, productos y servicios",
+  openGraph: {
+    images: "https://encuentralofacilcr.com/assets/images/default-social-media-image.png",
+  }, 
+};
 
 
 const RootLayout = ({ children }) => {

@@ -20,6 +20,7 @@ export const GET = async (req, { params }) => {
     if(SearchExists){ 
       result = {
           productId:SearchExists._id,
+          store:SearchExists.store,
           productPrice:SearchExists.price,
           productSpecialPrice:SearchExists.especialprice,
           vendorLink:`https://encuentralofacilcr.com/${SearchExists._id}`,
@@ -35,7 +36,10 @@ export const GET = async (req, { params }) => {
           serviceType: SearchExists.category === 'SERVICES'? SearchExists.serviceType : null,
           modalityType: SearchExists.category === 'SERVICES'? SearchExists.modalityType : null,
           province: SearchExists.category === 'SERVICES'? SearchExists.province : null,
-          socialMediaURL: SearchExists.socialMediaURL
+          socialMediaURL: SearchExists.socialMediaURL,
+          email:SearchExists.email,
+          contactNumber:SearchExists.contactNumber,
+          address:SearchExists.address
       };
 
       if(typeof SearchExists.otherinformation != undefined)
