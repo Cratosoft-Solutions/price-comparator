@@ -15,10 +15,10 @@ const SiteCategories = () => {
 
   return (
         <>
-          <div className={`text-black flex justify-start h-full items-center hover:cursor-pointer ${category=="PRODUCT"?'font-black  p-2 rounded':''}`} onClick={()=>{onSelectedCategory("PRODUCT")}}>Productos</div>  
-          <div className={`text-black flex justify-start h-full items-center hover:cursor-pointer  ${category=="CAR"?'font-black    p-2 rounded':''}`}onClick={()=>{onSelectedCategory("CAR")}}>Autos</div>  
-          <div className={`text-black flex justify-start h-full items-center hover:cursor-pointer  ${category=="HOUSES"?'font-black   p-2 rounded':''}`}onClick={()=>{onSelectedCategory("HOUSES")}}>Casas & Apartamentos</div>  
-          <div className={`text-black flex justify-start h-full items-center hover:cursor-pointer  ${category=="SERVICES"?'font-black  p-2 rounded':''}`} onClick={()=>{onSelectedCategory("SERVICES")}}>Servicios</div>   
+          <div className={`text-black flex justify-start h-full items-center hover:cursor-pointer hover:font-bold`} onClick={()=>{onSelectedCategory("PRODUCT")}}>Productos</div>  
+          <div className={`text-black flex justify-start h-full items-center hover:cursor-pointer hover:font-bold`}onClick={()=>{onSelectedCategory("CAR")}}>Autos</div>  
+          <div className={`text-black flex justify-start h-full items-center hover:cursor-pointer hover:font-bold`}onClick={()=>{onSelectedCategory("HOUSES")}}>Casas & Apartamentos</div>  
+          <div className={`text-black flex justify-start h-full items-center hover:cursor-pointer hover:font-bold`} onClick={()=>{onSelectedCategory("SERVICES")}}>Servicios</div>   
         </>
   )
 }

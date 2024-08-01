@@ -35,21 +35,20 @@ const VerticalNav = ({showNav, expandCollapseOptionsBar, principalOption, second
                     </button>
                   </h2>
                   <div id="accordion-collapse-body-1" className={`${selectedOption ==1?"block":"hidden"}`} aria-labelledby="accordion-collapse-heading-1">
-                      <div className={`grid grid-cols-1 grid-rows-4 h-fit  min-w-[10rem] ml-10`}>
+                      <div className={`grid grid-cols-1 grid-rows-4 h-fit  min-w-[10rem] ml-5 gap-6`}>
                         <SiteCategories/>
                       </div>              </div>
                   <h2 id="accordion-collapse-heading-2">
                     <button onClick={()=>{setInternalSelectedOption(2)}} type="button" className="flex items-center justify-between w-full p-5 font-medium" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
-                      <span className='font-black text-black '>Acciones & Filtros Sección Actual</span>
+                      <span className='font-black text-black '>Más opciones para vos</span>
                       <svg data-accordion-icon className="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
                       </svg>
                     </button>
                   </h2>
                   <div id="accordion-collapse-body-2" className={`${selectedOption ==2?"block":"hidden"}`} aria-labelledby="accordion-collapse-heading-2">
-                      <div className={`ml-10 grid grid-rows-${secondaryOptions.length} gap-2`}>
-                        <div className="grid grid-cols-[10%_90%] grid-rows-1 items-center h-10">
-                          {principalOption.icon}
+                      <div className={`ml-5 grid grid-rows-${secondaryOptions.length} gap-2`}>
+                        <div className="grid grid-cols-1 grid-rows-1 items-center h-10 hover:font-black">
                           <button
                             onClick={() => {
                               onSelectedButton(
@@ -58,7 +57,7 @@ const VerticalNav = ({showNav, expandCollapseOptionsBar, principalOption, second
                               );
                               expandCollapseOptionsBar(false);
                             }}
-                            className="text-black text-left pl-1"
+                            className="text-black text-left"
                           >
                             {principalOption.btnDescription}
                           </button> 
@@ -66,9 +65,9 @@ const VerticalNav = ({showNav, expandCollapseOptionsBar, principalOption, second
             
                         {secondaryOptions.map((filteredOption, index) => (
                           <div key={index}
-                            className={`grid grid-cols-[10%_90%] grid-rows-1 items-center min-w-[10rem] h-10`}
+                            className={`grid grid-cols-1 grid-rows-1 items-center min-w-[10rem] h-10 hover:font-black`}
                           >
-                            {filteredOption.icon}
+
                             <button
                               onClick={() => {
                                   onSelectedButton(
@@ -77,7 +76,7 @@ const VerticalNav = ({showNav, expandCollapseOptionsBar, principalOption, second
                                 );
                                 expandCollapseOptionsBar(false);
                               }}
-                              className="text-black text-left pl-1"
+                              className="text-black text-left"
                             >
                               {filteredOption.btnDescription}
                             </button>

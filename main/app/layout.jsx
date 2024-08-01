@@ -20,7 +20,7 @@ export const metadata = {
 
 const RootLayout = ({ children }) => {
 
-  return (
+  return ( 
     <html lang="en">
 
       <ProviderRedux>
