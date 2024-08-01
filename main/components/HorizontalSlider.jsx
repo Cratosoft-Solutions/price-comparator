@@ -11,11 +11,11 @@ const HorizontalSlider = () => {
 const router = useRouter();
     const { category } = useSelector(state => state.siteNav);
     const desktopImages = [
-      {url: '/assets/images/main_slider_PRODUCT_1.svg',
+      {url: '/assets/images/main_slider_PRODUCT_2.svg',
         redirectTo: '/create/item?type=product',
         active: true
       },
-      {url: '/assets/images/main_slider_PRODUCT_2.svg',
+      {url: '/assets/images/main_slider_PRODUCT_1.svg',
         redirectTo: '/',
         active: true
       },
@@ -46,11 +46,11 @@ const router = useRouter();
         ].filter(image => image.url.indexOf(category) > -1);
 
     const mobileImages = [
-    {url: '/assets/images/main_slider_PRODUCT_1_MOBILE.svg',
+    {url: '/assets/images/main_slider_PRODUCT_2_MOBILE.svg',
         redirectTo: '/create/item?type=product',
         active: true
       },
-     {url: '/assets/images/main_slider_PRODUCT_2_MOBILE.svg',
+     {url: '/assets/images/main_slider_PRODUCT_1_MOBILE.svg',
         redirectTo: '/',
         active: true
       },

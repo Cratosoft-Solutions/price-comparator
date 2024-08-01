@@ -118,7 +118,7 @@ export const CATEGORY_TYPES = [
   { value: "PRODUCT", label: "Productos" },
   { value: "CAR", label: "Autos" },
   { value: "SERVICES", label: "Servicios" },
-  { value: "HOUSES", label: "Casas / Apartamentos" },
+  { value: "HOUSES", label: "Casas / Aptos" },
 ];
 export const SERVICES_TYPES = [
   { value: "ACA", label: "Académicos" },
@@ -617,14 +617,14 @@ export const VERTICAL_NAV_CONFIGURATION = [
 
   {
     btnNAVPage: "home",
-    btnDescription: "Publica tu producto / Servicio",
+    btnDescription: "Publicar mi anuncio",
     btnID: "PUBLISH",
     isPrincipal: true,
     icon: <IoMdHome className="w-4 h-4" color="black" />,
   },
   {
     btnNAVPage: "home",
-    btnDescription: "Promociona tu sitio web",
+    btnDescription: "Promocionar mi sitio web",
     btnID: "PROMOTION",
     isPrincipal: false,
     icon: <IoMdSettings className="w-4 h-4" color="black" />,

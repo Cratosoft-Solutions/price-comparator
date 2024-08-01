@@ -53,7 +53,7 @@ function withNav(Component, navConfiguration) {
       let pageToRedirect = "/";
       switch (btnID) {
         case "PUBLISH":
-          pageToRedirect = "create/item"
+          pageToRedirect = "/create/item?type=product"
           break;
         case "PROMOTION":          
           pageToRedirect = "promotion"
@@ -84,10 +84,7 @@ function withNav(Component, navConfiguration) {
           default:
             break;
         }
-        
-        
-        if(isMobile())
-          setShowNav(false);
+
     }
     
     return (

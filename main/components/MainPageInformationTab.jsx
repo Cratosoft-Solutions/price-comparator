@@ -8,7 +8,7 @@ const MainPageInformationTab  = ({propertiesToBeRendered}) => {
       case "PUBLISH":
         return <BTNPublish/>;
       case "SEARCH":
-        return <SearchButton personalizedClass='!h-24 lg:!h-16'/>;
+        return <SearchButton personalizedClass='!h-16 lg:!h-16'/>;
     }
   }
   return (

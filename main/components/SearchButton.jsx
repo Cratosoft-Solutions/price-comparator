@@ -10,7 +10,7 @@ import { setCategory } from "@app/redux/slices/siteNav";
 import { setText } from "@app/redux/slices/searchProperties";
 
 
-const SearchButton = ({personalizedClass=""}) => {
+const SearchButton = ({personalizedClass="", rounded=true}) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { category} = useSelector(state => state.siteNav);
@@ -40,15 +40,13 @@ const SearchButton = ({personalizedClass=""}) => {
 
   return (
     <div className={`relative w-full ${personalizedClass}`}>
-          <form onSubmit={executeSearch} className="grid grid-cols-1 grid-rows-2 lg:grid-rows-1 lg:grid-cols-[35%_65%] w-full h-full">
-              <div className='bg-white h-full w-full'>
+          <form onSubmit={executeSearch} className="grid grid-rows-1 grid-cols-[35%_65%] w-full h-full">
                 <DropDownList 
                   values={CATEGORY_TYPES}  
                   onSelectValue={setInternalCategory}
                   currentValue={category}
-                  additionalClass={`!h-full border !border-gray-100 !pt-0 lg:!border-white !shadow-none`}
+                  additionalClass={`!bg-gray-50 lg:!bg-white !text-gray-700 !h-full border !border-gray-100 !pt-0 lg:!border-white !shadow-none ${rounded?"!rounded-l-full":""}`}
                 /> 
-              </div>
 
             <div className="relative text-gray-500 h-full">              
               <input
@@ -59,7 +57,7 @@ const SearchButton = ({personalizedClass=""}) => {
                 id="txt-search"
                 type="search"
                 name="q"
-                className={`bg-white border border-t-0  border-gray-100 lg:border-white pl-10 focus:outline-none h-full w-full`}
+                className={`bg-white ${rounded?"rounded-r-full":""} lg:border-white pl-10 focus:outline-none h-full w-full`}
                 placeholder={`¿Qué buscas?`}
                 autoComplete="off"
               />
