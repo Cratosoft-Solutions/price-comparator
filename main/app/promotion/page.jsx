@@ -13,23 +13,23 @@ const Promotion = () => {
   return (
     <>
       <HorizontalSlider />
-      <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-1 mt-4 mb-4">
-        <h2 className="mt-1 font-black text-xl lg:text-2xl lg:h-12 text-black">
+      <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-1 p-6 ml-10 mt-4 mb-4 mr-10 ">
+        <h2 className="text-4xl font-extrabold text-black mb-4 ">
           ¿Quieres que tu sitio web destaque entre la multitud?
         </h2>
-        <p className="text-base text-justify">
+        <p className="text-gray-800 text-lg font-semibold leading-relaxed px-0 py-2  bg-white text-center lg:text-left">
           ¡Es tu momento de brillar! Promociona tu página web y permite que el mundo descubra lo que tienes para ofrecer. Con nuestra ayuda, puedes aumentar significativamente la visibilidad de tu sitio y alcanzar a un público más amplio que comparta tu pasión. ¡Haz que tu presencia en línea sea inolvidable y deja una huella imborrable en el mundo digital!
         </p>
-        <p className="text-base text-justify">
+        <p className="text-gray-800 text-lg font-semibold leading-relaxed px-0 py-2  bg-white text-center lg:text-left">
         Nuestra estrategia integral incluye una variedad de servicios diseñados para impulsar tu sitio web hacia el éxito. Desde optimización en motores de búsqueda (SEO) hasta campañas de marketing en redes sociales, nos aseguramos de que tu página alcance a la audiencia adecuada en el momento adecuado.
         </p>
       </div>
       <MainPageInformationTab propertiesToBeRendered={MAIN_STYLES.MAIN_PAGE.CREATE_PRODUCT_TAB}/>
-      <div className="grid gap-y-4 mt-4 mb-4">
-        <h2 className="mt-1 font-black text-base text-black">
+      <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-1 p-6 ml-10 mt-4 mb-4 mr-10 ">
+      <h2 className="text-4xl font-extrabold text-black mb-4 ">
         Beneficios de unirte a Encuéntralo Fácil CR 
         </h2>
-        <ul className="list-disc ml-10 gap-2 text-justify text-black">
+        <ul className="list-disc ml-10 gap-2 text-justify text-gray-800 text-lg font-semibold leading-relaxed px-0 py-2  bg-white lg:text-left">
           <li key={1} className="mb-2">
             <p className="inline">
               <p className="inline font-black">Exhibición de Productos:</p> Muestra tus productos con descripciones detalladas y fotos de alta calidad para captar la atención de los clientes.
