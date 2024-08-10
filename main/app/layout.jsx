@@ -25,10 +25,12 @@ const RootLayout = ({ children }) => {
 
       <ProviderRedux>
         <head>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1295102561150808"
-     crossOrigin="anonymous"></script>
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1295102561150808"
+            crossOrigin="anonymous"></script>
 
-<script src="https://sdk.onvopay.com/sdk.js"/>
+          <script src="https://sdk.onvopay.com/sdk.js" />
+          {/* meta robots are directives that search engines will always respect. */}
+          <meta name="robots" content="index,follow" />
         </head>
         <body className="__variable_7dbc08 __variable_20951f">
           <Provider>

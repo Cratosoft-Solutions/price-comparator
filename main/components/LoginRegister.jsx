@@ -173,6 +173,7 @@ const LoginRegister = ({isLogin=true}) => {
                   <img
                     className="mr-2 -ml-1 w-6 h-6"
                     src="/assets/images/google.svg"
+                    alt="Encuentralo facil. Los mejores produtos y servicios de Costa Rica"
                     /
                   >
                   Ingresar con Google<div></div>

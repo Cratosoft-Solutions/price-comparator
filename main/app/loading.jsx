@@ -7,7 +7,7 @@ export default function Loading({message}) {
             <span className="inline loading loading-ring loading-md"></span>
             <span className="inline loading loading-ring loading-lg"></span> 
             <span className="ml-1 text-black font-black text-sm lg:text-2xl">{message?message:defaultMessage}</span>
-            <img src="/assets/images/logo-mb.svg" className="fixed mt-28 h-16 w-16"></img>
+            <img src="/assets/images/logo-mb.svg" className="fixed mt-28 h-16 w-16" alt="Donde encontras los mejores produtos y servicios de Costa Rica" ></img>
     </div>
   );
 }

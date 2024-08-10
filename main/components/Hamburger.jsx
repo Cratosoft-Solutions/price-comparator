@@ -20,8 +20,8 @@ const Hamburger = () => {
       color="black"
       onClick={expandOrCollapseVerticalNav} 
     />
-    <img onClick={()=>{router.push("/")}} src="/assets/images/logo.svg" className="hidden lg:block h-14 w-32"></img>
-    <img onClick={()=>{router.push("/")}} src="/assets/images/logo.svg" className="block lg:hidden h-22 w-28"></img>
+    <img onClick={()=>{router.push("/")}} src="/assets/images/logo.svg" className="hidden lg:block h-14 w-32" alt="Encuentra productos y servicios en Costa Rica"></img>
+    <img onClick={()=>{router.push("/")}} src="/assets/images/logo.svg" className="block lg:hidden h-22 w-28" alt="Donde encontras los mejores produtos y servicios de Costa Rica"></img>
   </div>
   )
 }

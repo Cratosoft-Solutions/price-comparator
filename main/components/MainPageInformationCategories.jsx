@@ -8,25 +8,25 @@ const MainPageInformationCategories = () => {
         <div className='grid grid-cols-2 grid-rows-2 lg:grid-cols-4 lg:grid-rows-1'>
             <div className='h-32 lg:h-56 w-full grid grid-cols-1 grid-rows-[70%_30%]'>
                 <div className='w-full h-full flex items-end justify-center'>
-                    <img className="w-1/3 lg:w-1/3" src='/assets/images/product-icon.svg'></img>
+                    <img className="w-1/3 lg:w-1/3" src='/assets/images/product-icon.svg' alt="Donde encontras los mejores produtos y servicios de Costa Rica"></img>
                 </div>
                 <div className='text-black w-full h-full flex items-center justify-center font-black'>Productos</div>
             </div>
             <div className='h-32 lg:h-56 w-full grid grid-cols-1 grid-rows-[70%_30%]'>
                 <div className='w-full h-full flex items-end justify-center'>
-                    <img className="w-1/3 lg:w-1/3" src='/assets/images/car-icon.svg'></img>
+                    <img className="w-1/3 lg:w-1/3" src='/assets/images/car-icon.svg' alt="Donde encontras los mejores produtos y servicios de Costa Rica"></img>
                 </div>       
                 <div className='text-black w-full h-full flex items-center justify-center font-black'>Autos</div>
             </div>
             <div className='h-32 lg:h-56 w-full grid grid-cols-1 grid-rows-[70%_30%]'>
                 <div className='w-full h-full flex items-end justify-center'>
-                    <img className="w-1/3 lg:w-1/3" src='/assets/images/house-icon.svg'></img>
+                    <img className="w-1/3 lg:w-1/3" src='/assets/images/house-icon.svg' alt="Donde encontras los mejores produtos y servicios de Costa Rica"></img>
                 </div>
                 <div className='text-black w-full h-full flex items-center justify-center font-black'>Casas/Aptos</div>
             </div>
             <div className='h-32 lg:h-56 w-full grid grid-cols-1 grid-rows-[70%_30%]'>
                 <div className='w-full h-full flex items-end justify-center'>
-                    <img className="w-1/3 lg:w-1/3" src='/assets/images/service-icon.svg'></img>
+                    <img className="w-1/3 lg:w-1/3" src='/assets/images/service-icon.svg' alt="Donde encontras los mejores produtos y servicios de Costa Rica"></img>
                 </div>
                 <div className='text-black w-full h-full flex items-center justify-center font-black'>Servicios</div>
             </div> 

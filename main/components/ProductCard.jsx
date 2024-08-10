@@ -27,7 +27,7 @@ const ProductCard = ({ logo, product, index, adminMode, callBackFunction }) => {
          <div onClick={()=>{handleProductClick(product.productId)}} className="w-32 h-32 lg:w-48 lg:h-48 lg:max-w-48 lg:max-h-48" >
           <div className="p-2 absolute left-0 top-0 w-full h-full flex items-center justify-center container-blur product-image">
             <img className="lg:max-w-48 lg:max-h-48"
-              alt="product.productDescription"
+              alt={product.productDescription}
               loading="lazy"
               src={product.productImage}
             />

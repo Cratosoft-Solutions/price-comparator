@@ -462,6 +462,7 @@ const StoreItem = ({
                   <img
                     className="w-ful h-fit"
                     src="/assets/images/create-item.svg"
+                    alt="Productos y servicios. Encuéntralo Facil Costa Rica"
                   />
                 </div>
               </div>
