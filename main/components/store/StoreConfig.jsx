@@ -135,7 +135,7 @@ const StoreConfig = () => {
               <p className="font-black text-2xl mb-4">Configuración General</p>
                   <p className='text-gray-800'>Favor complete todos los campos.</p>
                   <div className="w-full h-full flex items-start lg:mt-16 justify-center p-4">
-                  <img className="w-ful h-fit z-50" src="/assets/images/create-item.svg" />
+                  <img className="w-ful h-fit z-50" src="/assets/images/create-item.svg" alt="Productos y servicios. Encuéntralo Facil Costa Rica"/>
                 </div>
                   </div> 
       

@@ -18,7 +18,7 @@ const PromotedOptions = ({ onSelectedOption }) => {
                 <div className='grid grid-cols-1 '>
                     <GenericAccordion objectToBeRendered={PROMOTIONS} onSelectedOption={onSelectedOption}/>                 
                 </div>  
-                <img src='/assets/images/no-promotion-yet.svg' className='mt-4'/>  
+                <img src='/assets/images/no-promotion-yet.svg' className='mt-4' alt="Productos y servicios. Encuéntralo Facil Costa Rica"/>  
             </div>                                                                                         
         </>
   );

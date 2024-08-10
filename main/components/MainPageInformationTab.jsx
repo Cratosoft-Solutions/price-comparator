@@ -30,7 +30,7 @@ const MainPageInformationTab  = ({propertiesToBeRendered}) => {
         </div>
       </div>
       <div className={`hidden lg:flex items-center justify-left w-full h-fit ${propertiesToBeRendered.backGroundColor} ${propertiesToBeRendered.imgPadding} `}>
-        <img className={`${propertiesToBeRendered.imgStyle}`} src={propertiesToBeRendered.image} />
+        <img className={`${propertiesToBeRendered.imgStyle}`} src={propertiesToBeRendered.image} alt="Donde encontras los mejores produtos y servicios de Costa Rica" />
       </div>
     </div>
   );

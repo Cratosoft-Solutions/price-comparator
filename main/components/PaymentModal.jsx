@@ -57,10 +57,12 @@ const PaymentModal = ({paymentDetail, paymentIntentId, onConfirm}) => {
               <img
                 src="/assets/images/logo.svg"
                 className="hidden lg:block absolute right-2 h-14 w-32"
+                alt="Productos y servicios. Encuéntralo Facil Costa Rica"
               ></img>
               <img
                 src="/assets/images/logo-mb.svg"
                 className="block lg:hidden absolute right-2 h-12 w-12"
+                alt="Productos y servicios. Encuéntralo Facil Costa Rica"
               ></img>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-[40%_60%] gap-4 lg:gap-8">
@@ -137,22 +139,22 @@ const PaymentModal = ({paymentDetail, paymentIntentId, onConfirm}) => {
                   <img
                     className="h-8 w-auto"
                     src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/brand-logos/visa.svg"
-                    alt=""
+                    alt="Productos y servicios. Encuéntralo Facil Costa Rica"
                   />
                   <img
                     className="hidden h-8 w-auto"
                     src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/brand-logos/visa-dark.svg"
-                    alt=""
+                    alt="Productos y servicios. Encuéntralo Facil Costa Rica"
                   />
                   <img
                     className="h-8 w-auto"
                     src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/brand-logos/mastercard.svg"
-                    alt=""
+                    alt="Productos y servicios. Encuéntralo Facil Costa Rica"
                   />
                   <img
                     className="hidden h-8 w-auto"
                     src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/brand-logos/mastercard-dark.svg"
-                    alt=""
+                    alt="Productos y servicios. Encuéntralo Facil Costa Rica"
                   />
                 </div>
               </div>

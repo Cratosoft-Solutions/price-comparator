@@ -20,7 +20,7 @@ const UserLogin = ({personalizedClass}) => {
                     : "/assets/images/userProfile.svg"
                 }
                 className="rounded-full h-8 w-8 lg:h-10 lg:w-10"
-                alt="profile"
+                alt="Productos y servicios. Encuéntralo Facil Costa Rica"
                 onClick={() => setToogleDropDown((prev) => !prev)}
               />
             </div>
