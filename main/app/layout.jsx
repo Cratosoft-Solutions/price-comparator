@@ -8,6 +8,7 @@ import { Analytics } from "@vercel/analytics/react";
 import SiteFooter from "@components/SiteFooter";
 import HomeNavWrapper from "@components/HomeNavWrapper";
 import SiteMapWrapper from "@components/SiteMapWrapper";
+import GTM from '@components/GTM';
 
 export const metadata = {
   title: "EncuéntraLoFácilCR - Buscador de Productos y Servicios",
@@ -22,7 +23,7 @@ const RootLayout = ({ children }) => {
 
   return ( 
     <html lang="en">
-
+      <GTM gtmId="GTM-K4CBSBW2"/>
       <ProviderRedux>
         <head>
           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1295102561150808"
