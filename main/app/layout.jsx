@@ -23,7 +23,7 @@ const RootLayout = ({ children }) => {
 
   return ( 
     <html lang="en">
-      <GTM gtmId="GTM-K4CBSBW2"/>
+      <GTM gtmId="G-4V2DRVD26V"/>
       <ProviderRedux>
         <head>
           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1295102561150808"
