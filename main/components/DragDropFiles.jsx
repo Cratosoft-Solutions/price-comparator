@@ -61,14 +61,14 @@ const DragDropFiles = ({onImageLoaded}) => {
     <>      
         <div {...getRootProps()}>
           <input {...getInputProps()} />
-          <div className="flex items-center justify-center w-full bg-white">
+          <div className="flex items-center justify-center w-full bg-dark-surface">
             <label
               htmlFor="dropzone-file"
-              className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:bg-gray-100 orange_gradient "
+              className="flex flex-col items-center justify-center w-full h-64 border-2 border-dark-border border-dashed rounded-lg cursor-pointer hover:bg-dark-elevated orange_gradient "
             >
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
                 <svg
-                  className="w-8 h-8 mb-4 text-gray-500"
+                  className="w-8 h-8 mb-4 text-dark-muted"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -83,20 +83,20 @@ const DragDropFiles = ({onImageLoaded}) => {
                   />
                 </svg>
                 {isDragActive ? (
-                  <p className="mb-2 text-sm text-black  ">
-                    <span className="text-black font-semibold">
+                  <p className="mb-2 text-sm text-dark-text  ">
+                    <span className="text-dark-text font-semibold">
                       Suelte el archivo aquí...
                     </span>
                   </p>
                 ) : (
-                  <p className="mb-2 text-sm text-black ">
+                  <p className="mb-2 text-sm text-dark-text ">
                     {" "}
                     {fileName != null
                       ? fileName
                       : "Clic para cargar o arrastre el archivo aquí"}
                   </p>
                 )}
-                <p className="text-xs text-black ">
+                <p className="text-xs text-dark-text ">
                     {`PNG, SVG, JPEG.`}
                 </p>
               </div>

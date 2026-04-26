@@ -14,17 +14,17 @@ const PromotionCard = ({ product, index, callBackFunction }) => {
   return (
     <>
       {showShareModal && <SocialShare pid={product.productId} sid={product.storeId} onCloseFunction={setShowShareModal}/>}   
-      <div key={`CARD-${index}`} className="shadow-gray-100 hover:border-gray-200 hover:shadow-xl promotion-image hover:cursor-pointer flex flex-col w-32 h-fit  lg:w-fit lg:h-fit mr-4 bg-slate-50 shadow-lg rounded-t-lg lg:rounded-lg	 border border-1">
+      <div key={`CARD-${index}`} className="shadow-dark-surface/50 hover:border-accent-primary/30 hover:shadow-xl promotion-image hover:cursor-pointer flex flex-col w-32 h-fit lg:w-fit lg:h-fit mr-4 bg-dark-surface shadow-lg rounded-t-lg lg:rounded-lg border border-dark-border transition-all">
           
-        <div className="relative text-black h-16 lg:h-12 flex items-start justify-center font-extrabold pl-2 pr-2 mb-2 mt-2">
+        <div className="relative text-dark-text h-16 lg:h-12 flex items-start justify-center font-extrabold pl-2 pr-2 mb-2 mt-2">
           <span className="w-full lg:w-4/5 flex text-center justify-center text-sm lg:text-base">{product.productName}</span>
-          <BsShare className="absolute -bottom-2 lg:mt-0 lg:top-1 right-3/2 lg:right-4 w-4 h-4" color="black" onClick={()=>{setShowShareModal(true)}}/>
+          <BsShare className="absolute -bottom-2 lg:mt-0 lg:top-1 right-3/2 lg:right-4 w-4 h-4 text-dark-muted hover:text-accent-glow transition-colors" onClick={()=>{setShowShareModal(true)}}/>
           </div>
           
         <div className="h-10 lg:h-4 flex-row lg:flex inline gap-2 items-center justify-center mt-2 lg:mt-0 lg:mb-2">        
           <div className="lg:inline text-center">
-              <span className='text-black text-xs'>{product.currency}</span>
-              <span className='text-black text-xs'> 
+              <span className='text-dark-text text-xs'>{product.currency}</span>
+              <span className='text-dark-text text-xs'> 
               {product.formatedEspecialPrice != 0
                   ? product.formatedEspecialPrice
                   : product.formatedPrice} 

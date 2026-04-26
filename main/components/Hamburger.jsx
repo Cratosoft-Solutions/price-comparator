@@ -16,12 +16,11 @@ const Hamburger = () => {
   return (
     <div className="hover:cursor-pointer ml-1 lg:ml-10 flex justify-start items-center gap-4" >
     <RxHamburgerMenu              
-      className="w-8 h-8 lg:h-6 lg:w-6"
-      color="black"
+      className="w-8 h-8 lg:h-6 lg:w-6 text-dark-text hover:text-accent-glow transition-colors"
       onClick={expandOrCollapseVerticalNav} 
     />
-    <img onClick={()=>{router.push("/")}} src="/assets/images/logo.svg" className="hidden lg:block h-14 w-32" alt="Encuentra productos y servicios en Costa Rica"></img>
-    <img onClick={()=>{router.push("/")}} src="/assets/images/logo.svg" className="block lg:hidden h-22 w-28" alt="Donde encontras los mejores produtos y servicios de Costa Rica"></img>
+    <img onClick={()=>{router.push("/")}} src="/assets/images/logo.svg" className="hidden lg:block h-14 w-32 brightness-110" alt="Encuentra productos y servicios en Costa Rica"></img>
+    <img onClick={()=>{router.push("/")}} src="/assets/images/logo.svg" className="block lg:hidden h-22 w-28 brightness-110" alt="Donde encontras los mejores produtos y servicios de Costa Rica"></img>
   </div>
   )
 }

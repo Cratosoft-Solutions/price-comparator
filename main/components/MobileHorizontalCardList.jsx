@@ -5,8 +5,8 @@ const MobileHorizontalCardList = ({mergedProducts, adminMode = false, callBackFu
   return (
     <>
       {!adminMode && (
-        <div className="w-full items-center justify-left p-6 bg-white mt-2 items-end">
-          <p className="text-sm text-black font-black">
+        <div className="w-full items-center justify-left p-6 bg-dark-surface mt-2 items-end">
+          <p className="text-sm text-dark-text font-black">
             {" "}
             {`Encontramos ${mergedProducts.length} anuncios.`}
           </p>
@@ -29,8 +29,8 @@ const MobileHorizontalCardList = ({mergedProducts, adminMode = false, callBackFu
         mergedProducts.filter(
           (element) => element.isLocal && element.category == 'PRODUCT'
         ).length > 0 && (
-          <div className="w-full items-center justify-left p-6 bg-white mt-2 items-end">
-            <p className="text-lg text-black font-black">
+          <div className="w-full items-center justify-left p-6 bg-dark-surface mt-2 items-end">
+            <p className="text-lg text-dark-text font-black">
               {" "}
               {"Tambien te puede interesar"}
             </p>

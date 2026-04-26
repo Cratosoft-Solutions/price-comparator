@@ -9,7 +9,7 @@ import MainPageInformationCategories from "@components/MainPageInformationCatego
 const Home = () => {
  
   return (
-    <div className="w-full gap-2 bg-white">
+    <div className="w-full gap-2 bg-dark-bg">
       <div className="w-full lg:mb-4 relative">
         <HorizontalSlider />
       </div>
@@ -18,7 +18,7 @@ const Home = () => {
         <MainPageInformationCategories />
       </div>
 
-      <div className="w-full bg-white">            
+      <div className="w-full bg-dark-bg">            
           <HorizontalItemList type="promotions" title="Promociones"/>
       </div>
 
@@ -28,16 +28,16 @@ const Home = () => {
         />
       </div>
 
-      <div className="w-full bg-white">
+      <div className="w-full bg-dark-bg">
           <HorizontalItemList type="dailySearches" title="Lo más buscado"/>
       </div>
 
-      <div className="w-full  relative">
+      <div className="w-full relative">
         <MainPageInformationTab
           propertiesToBeRendered={MAIN_STYLES.MAIN_PAGE.CREATE_PRODUCT_TAB}
         />
       </div>
-      <div className="w-full  relative">
+      <div className="w-full relative">
         <HorizontalMainInfo />
       </div>
     </div>

@@ -25,7 +25,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
           currentValue={houseInfo.bedrooms}
           returnOtherValue="bedrooms"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Habitaciones.
         </div>
       </div>
@@ -41,7 +41,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
           currentValue={houseInfo.bathrooms}
           returnOtherValue="bathrooms"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Baños.
         </div>
       </div>
@@ -57,7 +57,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
           currentValue={houseInfo.parking}
           returnOtherValue="parking"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Estacionamientos.
         </div>
       </div>
@@ -68,7 +68,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
           type="text"
           name="porpertyMeters"
           id="porpertyMeters"
-          className="inputconfiguration  focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800 border border-gray-300"
+          className="inputconfiguration  focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-dark-surface shadow text-base text-dark-muted border border-dark-border"
           value={houseInfo.porpertyMeters}
           onChange={(e) => {
             onChangeValues("porpertyMeters", e.target.value);
@@ -79,7 +79,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
             houseInfo.porpertyMeters
               ? "labelsconfigurationwithvalue"
               : "labelsconfiguration"
-          } text-gray-600 text-sm`}
+          } text-dark-muted text-sm`}
         >
           M² de Construcción.
         </div>
@@ -96,7 +96,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
           currentValue={houseInfo.houseVendorType}
           returnOtherValue="houseVendorType"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Tipo de Anunciante.
         </div>
       </div>
@@ -106,7 +106,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
           name="address"
           required
           id="address"
-          className="inputconfiguration h-full focus:font-bold focus:orange_gradient h-16 pt-6 border px-4 w-full bg-white shadow text-base text-gray-800 border border-gray-300"
+          className="inputconfiguration h-full focus:font-bold focus:orange_gradient h-16 pt-6 border px-4 w-full bg-dark-surface shadow text-base text-dark-muted border border-dark-border"
           value={houseInfo.address}
           onChange={(e) => {
             onChangeValues("address", e.target.value);
@@ -117,7 +117,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
             houseInfo.address
               ? "labelsconfigurationwithvalue"
               : "labelsconfiguration"
-          } text-gray-600 text-sm`}
+          } text-dark-muted text-sm`}
         >
           Dirección exacta.
         </div>
@@ -129,7 +129,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
           required
           name="propertyMaintenanceCosts"
           id="propertyMaintenanceCosts"
-          className="inputconfiguration  focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800 border border-gray-300"
+          className="inputconfiguration  focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-dark-surface shadow text-base text-dark-muted border border-dark-border"
           value={houseInfo.propertyMaintenanceCosts}
           onChange={(e) => {
             onChangeValues("propertyMaintenanceCosts", e.target.value);
@@ -140,7 +140,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
             houseInfo.propertyMaintenanceCosts
               ? "labelsconfigurationwithvalue"
               : "labelsconfiguration"
-          } text-gray-600 text-sm`}
+          } text-dark-muted text-sm`}
         >
           Costos de mantenimiento.
         </div>
@@ -153,7 +153,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
           name="lotSize"
           required
           id="lotSize"
-          className="inputconfiguration  focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800 border border-gray-300"
+          className="inputconfiguration  focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-dark-surface shadow text-base text-dark-muted border border-dark-border"
           value={houseInfo.lotSize}
           onChange={(e) => {
             onChangeValues("lotSize", e.target.value);
@@ -164,7 +164,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
             houseInfo.lotSize
               ? "labelsconfigurationwithvalue"
               : "labelsconfiguration"
-          } text-gray-600 text-sm`}
+          } text-dark-muted text-sm`}
         >
           Tamaño del lote.
         </div>
@@ -179,7 +179,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
                     currentValue={houseInfo.floorType}
                     returnOtherValue="floorType"
                   />
-                  <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+                  <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
                     Tipo de Piso.
                   </div>  
                 </div>    */}
@@ -191,7 +191,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
           name="height"
           required
           id="height"
-          className="inputconfiguration  focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800 border border-gray-300"
+          className="inputconfiguration  focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-dark-surface shadow text-base text-dark-muted border border-dark-border"
           value={houseInfo.height}
           onChange={(e) => {
             onChangeValues("height", e.target.value);
@@ -202,7 +202,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
             houseInfo.height
               ? "labelsconfigurationwithvalue"
               : "labelsconfiguration"
-          } text-gray-600 text-sm`}
+          } text-dark-muted text-sm`}
         >
           Altura.
         </div>
@@ -223,7 +223,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
           currentValue={houseInfo.yearBuilt}
           returnOtherValue="yearBuilt"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Año de construcción.
         </div>
       </div>
@@ -238,7 +238,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
           currentValue={houseInfo.floorType}
           returnOtherValue="floorType"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Tipo de Piso.
         </div>
       </div>
@@ -256,7 +256,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
           currentValue={houseInfo.levels}
           returnOtherValue="levels"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Niveles.
         </div>
       </div>
@@ -271,7 +271,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
           currentValue={houseInfo.floor}
           returnOtherValue="floor"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Número piso.
         </div>
       </div>
@@ -286,7 +286,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
           currentValue={houseInfo.pool}
           returnOtherValue="pool"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Piscina.
         </div>
       </div>
@@ -301,7 +301,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
           currentValue={houseInfo.balconyTerrace}
           returnOtherValue="balconyTerrace"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Balcón / Terraza.
         </div>
       </div>
@@ -316,7 +316,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
           currentValue={houseInfo.propertyType}
           returnOtherValue="propertyType"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Tipo de propiedad.
         </div>
       </div>
@@ -327,7 +327,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
             className="-ml-4 hidden lg:block inline w-12 h-12"
             color="black"
           />
-          <p className="inline text-black w-full text-center lg:text-left font-black text-2xl">
+          <p className="inline text-dark-text w-full text-center lg:text-left font-black text-2xl">
             Extras - Beneficios
           </p>
         </div>
@@ -353,7 +353,7 @@ const HouseInfo = ({ onChangeValues, houseInfo }) => {
               />
               <label
                 htmlFor={`house-benefits-${element.value}`}
-                className="ms-2 text-sm font-medium text-gray-600"
+                className="ms-2 text-sm font-medium text-dark-muted"
               >
                 {element.label}
               </label>

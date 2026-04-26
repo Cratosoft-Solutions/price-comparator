@@ -7,7 +7,7 @@ export const metadata = {
 
 const Unauthorized = () => {
   return (
-    <div className='!bg-white'>401 No está autorizado a ver esta página</div>
+    <div className='!bg-dark-surface'>401 No está autorizado a ver esta página</div>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 const SiteMission = () => {
   return (
-    <p className="mb-2 text-black text-justify">Encuentralo Fácil CR es un sitio web desarrollado íntegramente por ingenieros costarricenses, cuya misión es proporcionar a cada región en la que opera una herramienta moderna y fácil de usar para buscar y publicar productos y servicios. Nuestro objetivo es mejorar tu calidad de vida ofreciéndote acceso a una amplia variedad de productos a los mejores precios del mercado.
+    <p className="mb-2 text-dark-text text-justify">Encuentralo Fácil CR es un sitio web desarrollado íntegramente por ingenieros costarricenses, cuya misión es proporcionar a cada región en la que opera una herramienta moderna y fácil de usar para buscar y publicar productos y servicios. Nuestro objetivo es mejorar tu calidad de vida ofreciéndote acceso a una amplia variedad de productos a los mejores precios del mercado.
 
     Nuestro equipo de ingenieros ha creado una plataforma intuitiva y accesible, diseñada para satisfacer las necesidades tanto de compradores como de vendedores. Ya sea que estés buscando el mejor precio en un producto específico o desees ofrecer tus servicios a una audiencia más amplia, Encuentralo Fácil CR es tu aliado perfecto.
     

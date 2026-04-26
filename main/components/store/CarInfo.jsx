@@ -25,7 +25,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
           currentValue={carInfo.brand}
           returnOtherValue="brand"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Marca del vehículo.
         </div>
       </div>
@@ -36,7 +36,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
           required
           name="model"
           id="model"
-          className="inputconfiguration  focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800 border border-gray-300"
+          className="inputconfiguration  focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-dark-surface shadow text-base text-dark-muted border border-dark-border"
           value={carInfo.model}
           onChange={(e) => {
             onChangeValues("model", e.target.value);
@@ -47,7 +47,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
             carInfo.model
               ? "labelsconfigurationwithvalue"
               : "labelsconfiguration"
-          } text-gray-600 text-sm`}
+          } text-dark-muted text-sm`}
         >
           Modelo del vehículo.
         </div>
@@ -59,7 +59,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
           required
           name="cc"
           id="cc"
-          className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800 border border-gray-300"
+          className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-dark-surface shadow text-base text-dark-muted border border-dark-border"
           value={carInfo.cc}
           onChange={(e) => {
             onChangeValues("cc", e.target.value);
@@ -68,7 +68,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
         <div
           className={`${
             carInfo.cc ? "labelsconfigurationwithvalue" : "labelsconfiguration"
-          } text-gray-600 text-sm`}
+          } text-dark-muted text-sm`}
         >
           Cilindrada
         </div>
@@ -85,7 +85,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
           currentValue={carInfo.style}
           returnOtherValue="style"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Estílo del vehículo.
         </div>
       </div>
@@ -104,7 +104,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
           currentValue={carInfo.passengers}
           returnOtherValue="passengers"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Cantidad de pasajeros.
         </div>
       </div>
@@ -125,7 +125,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
           currentValue={carInfo.year}
           returnOtherValue="year"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Año.
         </div>
       </div>
@@ -141,7 +141,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
           currentValue={carInfo.status}
           returnOtherValue="status"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Estado.
         </div>
       </div>
@@ -157,7 +157,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
           currentValue={carInfo.combustible}
           returnOtherValue="combustible"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Combustible.
         </div>
       </div>
@@ -173,7 +173,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
           currentValue={carInfo.transmition}
           returnOtherValue="transmition"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Transmisión.
         </div>
       </div>
@@ -184,7 +184,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
           required
           name="kms"
           id="kms"
-          className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800 border border-gray-300"
+          className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-dark-surface shadow text-base text-dark-muted border border-dark-border"
           value={carInfo.kms}
           onChange={(e) => {
             onChangeValues("kms", e.target.value);
@@ -193,7 +193,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
         <div
           className={`${
             carInfo.kms ? "labelsconfigurationwithvalue" : "labelsconfiguration"
-          } text-gray-600 text-sm`}
+          } text-dark-muted text-sm`}
         >
           Kilometraje.
         </div>
@@ -210,7 +210,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
           currentValue={carInfo.kmstype}
           returnOtherValue="kmstype"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Kilómetros o Millas.
         </div>
       </div>
@@ -226,7 +226,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
           id="taxes"
           currentValue={carInfo.taxes}
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           ¿Impuestos al día?.
         </div>
       </div>
@@ -242,7 +242,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
           id="othercar"
           currentValue={carInfo.otherCar}
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           ¿Se recibe vehículo?.
         </div>
       </div>
@@ -258,7 +258,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
           currentValue={carInfo.doors}
           returnOtherValue="doors"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Cantidad de puertas.
         </div>
       </div>
@@ -275,7 +275,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
           currentValue={carInfo.province}
           returnOtherValue="province"
         />
-        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
           Provincia.
         </div>
       </div>
@@ -286,7 +286,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
             className="-ml-4 hidden lg:block inline w-12 h-12"
             color="black"
           />
-          <p className="inline text-black w-full text-center lg:text-left font-black text-2xl">
+          <p className="inline text-dark-text w-full text-center lg:text-left font-black text-2xl">
             Equipamento
           </p>
         </div>
@@ -312,7 +312,7 @@ const CarInfo = ({ onChangeValues, carInfo }) => {
               />
               <label
                 htmlFor={`card-equipment-${element.value}`}
-                className="ms-2 text-sm font-medium text-gray-600"
+                className="ms-2 text-sm font-medium text-dark-muted"
               >
                 {element.label}
               </label>

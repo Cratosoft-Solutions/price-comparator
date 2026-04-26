@@ -10,9 +10,9 @@ const PromotedOptions = ({ onSelectedOption }) => {
             <div className="lg:col-span-5 text-right relative mt-6">
                 <div className="inline flex items-center mb-4">
                   <MdOutlineArrowRight className="-ml-4 hidden lg:block inline w-12 h-12" color="black"/>
-                  <p className="inline text-black w-full text-center lg:text-left font-black text-2xl">¡Posiciona tu anuncio!</p>
+                  <p className="inline text-dark-text w-full text-center lg:text-left font-black text-2xl">¡Posiciona tu anuncio!</p>
                 </div>                
-                <p className="text-gray-600 w-full text-center lg:text-left  mb-4 text-base">Dale un vistazo a nuestras opciones promocionales que darán una posición superior a tu anuncio.</p>
+                <p className="text-dark-muted w-full text-center lg:text-left  mb-4 text-base">Dale un vistazo a nuestras opciones promocionales que darán una posición superior a tu anuncio.</p>
             </div>
             <div className="lg:col-span-5 relative ">
                 <div className='grid grid-cols-1 '>
