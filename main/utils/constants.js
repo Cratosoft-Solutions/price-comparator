@@ -120,6 +120,46 @@ export const CATEGORY_TYPES = [
   { value: "SERVICES", label: "Servicios" },
   { value: "HOUSES", label: "Casas / Aptos" },
 ];
+
+export const MEGA_MENU_DATA = {
+  PRODUCT: {
+    label: "Productos",
+    icon: "MdDevices",
+    subcategories: [
+      { label: "Electrónica", items: ["Celulares", "Computadoras", "Audio", "TV & Video"] },
+      { label: "Moda", items: ["Ropa", "Zapatos", "Accesorios", "Joyería"] },
+      { label: "Hogar", items: ["Muebles", "Cocina", "Jardín", "Decoración"] },
+      { label: "Deportes", items: ["Fitness", "Outdoor", "Acuáticos", "Ciclismo"] },
+    ],
+  },
+  CAR: {
+    label: "Autos",
+    icon: "IoCarSport",
+    subcategories: [
+      { label: "Tipo", items: ["Sedán", "SUV", "Pick-up", "Hatchback"] },
+      { label: "Marcas populares", items: ["Toyota", "Hyundai", "Nissan", "Honda"] },
+      { label: "Condición", items: ["Nuevos", "Usados", "Certificados", "Clásicos"] },
+    ],
+  },
+  SERVICES: {
+    label: "Servicios",
+    icon: "MdMiscellaneousServices",
+    subcategories: [
+      { label: "Profesionales", items: ["Informáticos", "Académicos", "Contabilidad", "Legal"] },
+      { label: "Hogar", items: ["Mantenimiento", "Limpieza", "Jardinería", "Plomería"] },
+      { label: "Ocio", items: ["Turismo", "Entretenimiento", "Hoteleros", "Gastronomía"] },
+    ],
+  },
+  HOUSES: {
+    label: "Casas & Apartamentos",
+    icon: "HiHomeModern",
+    subcategories: [
+      { label: "Tipo", items: ["Casas", "Apartamentos", "Lotes", "Locales comerciales"] },
+      { label: "Operación", items: ["Venta", "Alquiler", "Alquiler temporal", "Traspaso"] },
+      { label: "Ubicación popular", items: ["San José", "Heredia", "Alajuela", "Cartago"] },
+    ],
+  },
+};
 export const SERVICES_TYPES = [
   { value: "ACA", label: "Académicos" },
   { value: "TRA", label: "Transporte" },
