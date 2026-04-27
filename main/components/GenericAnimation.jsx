@@ -1,9 +1,9 @@
 import React from 'react'
 
-const GenericAnimation = ({message, animation="animate-bounce"}) => {
+const GenericAnimation = ({message, animation="animate-pulse"}) => {
   return (
-    <span className="w-full lg:w-full relative flex h-6">
-        <div className={`${animation} text-center h-6 w-96 lg:w-96 !bg-green-600 opacity-90 !text-base !text-white`}>{message}</div>        
+    <span className="inline-flex">
+        <div className={`${animation} text-center px-3 py-1 rounded-lg bg-accent-primary/20 border border-accent-primary/30 text-accent-glow text-sm font-semibold`}>{message}</div>        
     </span>
   )
 }
