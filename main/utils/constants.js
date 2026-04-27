@@ -1021,7 +1021,7 @@ export const MAIN_STYLES = {
         "¡Descubre infinidad de productos, autos, casas & apartamentos e inclusive servicios. Encuentra tu siguiente compra en nuestra plataforma. Recueda que puedes contactar directamente al vendedor si necesidad de intermadiarios!",
       btn: "SEARCH",
       specialStyle: {
-        backgroundColor: "#1a1a2e",
+        backgroundColor: "#262626",
       },
     },
   },

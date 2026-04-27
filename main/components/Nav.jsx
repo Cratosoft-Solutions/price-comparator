@@ -31,7 +31,7 @@ const Nav = () => {
           <Hamburger />
         </div>
         <div className="animate-pulse inline justify-start flex items-center gap-2 hidden lg:flex lg:inline">
-          <FaRegHandPointRight  className="w-6 h-6 inline" color="#818cf8" />
+          <FaRegHandPointRight  className="w-6 h-6 inline" color="#FF7043" />
           <Link
             href="/"
             className="inline flex items-center justify-left text-dark-muted text-xs"
