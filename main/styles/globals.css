@@ -942,3 +942,15 @@ input[type="checkbox"] {
 select {
   color: #f5f5f5;
 }
+
+/* Safe area for mobile bottom nav */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Add bottom padding to body so content isn't hidden behind mobile bottom nav */
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: 4.5rem;
+  }
+}

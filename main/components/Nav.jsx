@@ -1,62 +1,149 @@
 "use client";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { motion, AnimatePresence } from "framer-motion";
+import { IoSearchOutline } from "react-icons/io5";
+import { setExpandedBar } from "@app/redux/slices/siteNav";
+import useScrollDirection from "@hooks/useScrollDirection";
+import SiteCategoriesNav from "./SiteCategoriesNav";
 import SearchButton from "./SearchButton";
-import NavCategoriesBar from "./NavCategoriesBar";
-import { RiInformationFill } from "react-icons/ri";
-import { FaFacebookF, FaRegHandPointRight } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { BTN_SEARCH_DEFAULT_BEHAVIOUR } from "@utils/constants";
-import { useSession } from "next-auth/react";
-import { signOut, signIn } from "next-auth/react";
 import UserLogin from "./UserLogin";
-import Hamburger from "./Hamburger";
-
-
+import CommandPalette from "./CommandPalette";
+import MobileBottomNav from "./MobileBottomNav";
+import Breadcrumbs from "./Breadcrumbs";
+import SmartSuggestions from "./SmartSuggestions";
+import { useState, useEffect } from "react";
 
 const Nav = () => {
-  const { data: session } = useSession();
+  const { scrollDirection, isAtTop } = useScrollDirection(20);
+  const dispatch = useDispatch();
+  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
 
-  const onUserSelected=()=>{
-    if (session?.user){
-      signOut();
-    }else{
-      signIn();
-    } 
-    }
+  useEffect(() => {
+    const handleGlobalKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+        e.preventDefault();
+        setCommandPaletteOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleGlobalKeyDown);
+    return () => window.removeEventListener("keydown", handleGlobalKeyDown);
+  }, []);
+
+  const isCompact = !isAtTop;
+  const isHidden = scrollDirection === "down" && !isAtTop;
+
+  const expandSidebar = () => {
+    dispatch(setExpandedBar(true));
+  };
 
   return (
     <>
-      <div className="lg:mr-10 lg:ml-10 w-100 grid grid-rows-1 lg:grid-cols-[50%_50%] grid-cols-2 lg:grid-cols-[70%_30%] h-14 pt-10 pl-6 lg:pl-10 lg:pr-10 pb-8 bg-dark-bg">
-        <div className="flex lg:hidden" >
-          <Hamburger />
-        </div>
-        <div className="animate-pulse inline justify-start flex items-center gap-2 hidden lg:flex lg:inline">
-          <FaRegHandPointRight  className="w-6 h-6 inline" color="#FF7043" />
-          <Link
-            href="/"
-            className="inline flex items-center justify-left text-dark-muted text-xs"
-          >
-            ¡Descubre una forma fácil de buscar y vender lo que necesites!
-          </Link>
-        </div>
-        <div className="flex h-full items-center justify-end">
-          <div className="grid auto-cols-auto grid-flow-col lg:divide-x-2 lg:divide-dark-border">
-            <div className="pl-6 pr-6 hidden lg:block text-dark-text">Esp</div>
-            <div className="pl-6 pr-6 block lg:hidden"><UserLogin/></div>
-            <div className="hover:text-accent-glow pl-6 lg:pr-6 hidden lg:block hover:cursor-pointer text-dark-text transition-colors" onClick={()=>{onUserSelected()}}>
-              {session?.user ? 
-                "Cerrar Sesión"              
-              : "Iniciar Sesión"}
+      {/* Unified Sticky Navbar */}
+      <motion.header
+        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+          isCompact
+            ? "bg-dark-surface/80 backdrop-blur-xl border-b border-dark-border/50 shadow-lg shadow-black/20"
+            : "bg-dark-bg border-b border-transparent"
+        }`}
+        initial={{ y: 0 }}
+        animate={{ y: isHidden ? -100 : 0 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      >
+        {/* Main Nav Row */}
+        <div className={`transition-all duration-300 ${isCompact ? "py-2" : "py-3"} px-4 lg:px-8`}>
+          <div className="flex items-center gap-3 lg:gap-6">
+            {/* Hamburger (mobile only for sidebar) */}
+            <button
+              onClick={expandSidebar}
+              className="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl hover:bg-dark-elevated transition-colors"
+              aria-label="Abrir menú"
+            >
+              <svg className="w-6 h-6 text-dark-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </button>
+
+            {/* Logo */}
+            <Link href="/" className="flex-shrink-0">
+              <motion.img
+                src="/assets/images/logo.svg"
+                className={`transition-all duration-300 brightness-110 ${isCompact ? "h-8 w-20" : "h-10 w-28"}`}
+                alt="EncuéntraloFácilCR"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4 }}
+              />
+            </Link>
+
+            {/* Categories (desktop) */}
+            <div className="hidden lg:flex items-center">
+              <SiteCategoriesNav />
+            </div>
+
+            {/* Search Bar (desktop) */}
+            <div className="hidden lg:flex flex-1 max-w-xl">
+              <div className="relative w-full group">
+                <SearchButton
+                  personalizedClass={`!h-10 border rounded-full border-dark-border shadow-lg shadow-dark-surface/50 transition-all duration-300 group-focus-within:border-accent-primary/50 group-focus-within:shadow-accent-primary/10`}
+                />
               </div>
+            </div>
+
+            {/* Spotlight Search Trigger (desktop) */}
+            <button
+              onClick={() => setCommandPaletteOpen(true)}
+              className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-dark-elevated/50 border border-dark-border/50 text-dark-muted text-xs hover:bg-dark-elevated hover:text-dark-text hover:border-dark-border transition-all duration-200"
+              title="Ctrl+K"
+            >
+              <IoSearchOutline className="w-3.5 h-3.5" />
+              <span className="hidden xl:inline">Ctrl+K</span>
+            </button>
+
+            {/* Search icon (mobile) */}
+            <button
+              onClick={() => setCommandPaletteOpen(true)}
+              className="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl hover:bg-dark-elevated transition-colors ml-auto"
+              aria-label="Buscar"
+            >
+              <IoSearchOutline className="w-5 h-5 text-dark-text" />
+            </button>
+
+            {/* User Login */}
+            <UserLogin personalizedClass="hidden lg:flex items-center" />
           </div>
         </div>
-      </div>
-      
-      <div className="block lg:hidden w-full bg-dark-surface z-40 p-2">
-          <SearchButton personalizedClass='!h-14 border rounded-full border-dark-border shadow-lg shadow-dark-surface/50 mb-2 mt-2 '/>
-      </div>
 
-      <NavCategoriesBar />
+        {/* Mobile Search Bar (below main row, only on expanded state) */}
+        <AnimatePresence>
+          {!isCompact && (
+            <motion.div
+              className="block lg:hidden px-4 pb-3"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <SearchButton personalizedClass="!h-12 border rounded-full border-dark-border shadow-lg shadow-dark-surface/50" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.header>
+
+      {/* Breadcrumbs */}
+      <Breadcrumbs />
+
+      {/* Smart Suggestions */}
+      <SmartSuggestions />
+
+      {/* Command Palette */}
+      <CommandPalette
+        isOpen={commandPaletteOpen}
+        onClose={() => setCommandPaletteOpen(false)}
+      />
+
+      {/* Mobile Bottom Nav */}
+      <MobileBottomNav onSearchClick={() => setCommandPaletteOpen(true)} />
     </>
   );
 };
