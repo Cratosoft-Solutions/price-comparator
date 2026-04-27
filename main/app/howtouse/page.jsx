@@ -1,5 +1,5 @@
 "use client"
-import HorizontalSlider from "@components/HorizontalSlider"
+import HeroSection from "@components/HeroSection"
 
 /* export const metadata = {
   title: "EncuéntraLo Fácil CR: Login",
@@ -9,7 +9,7 @@ import HorizontalSlider from "@components/HorizontalSlider"
 const HowToUse = () => {
   return (
     <>
-      <HorizontalSlider />
+      <HeroSection />
       <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-1 p-6 ml-10 mt-4 mb-4 mr-10 ">
         <h2 className="text-4xl font-extrabold text-dark-text mb-4 ">
         ¡Bienvenido a Encuéntralo Fácil CR, donde convertimos tus ideas en realidad!

@@ -1,7 +1,7 @@
 "use client";
 import HorizontalItemList from "@components/HorizontalItemList";
 import HorizontalMainInfo from "@components/HorizontalMainInfo";
-import HorizontalSlider from "@components/HorizontalSlider";
+import HeroSection from "@components/HeroSection";
 import { MAIN_STYLES } from "@utils/constants";
 import MainPageInformationTab from "@components/MainPageInformationTab";
 import MainPageInformationCategories from "@components/MainPageInformationCategories";
@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div className="w-full gap-2 bg-dark-bg">
       <div className="w-full lg:mb-4 relative">
-        <HorizontalSlider />
+        <HeroSection />
       </div>
 
       <div className="w-full lg:mb-4 relative">
