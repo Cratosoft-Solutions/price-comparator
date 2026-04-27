@@ -1,6 +1,6 @@
 /* const { default: PageLoginComponent } = require("@components/PageLoginComponent") */
 "use client"
-import HorizontalSlider from "@components/HorizontalSlider"
+import HeroSection from "@components/HeroSection"
 import MainPageInformationTab from "@components/MainPageInformationTab";
 import { MAIN_STYLES } from "@utils/constants";
 
@@ -12,7 +12,7 @@ import { MAIN_STYLES } from "@utils/constants";
 const Promotion = () => {
   return (
     <>
-      <HorizontalSlider />
+      <HeroSection />
       <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-1 p-6 ml-10 mt-4 mb-4 mr-10 ">
         <h2 className="text-4xl font-extrabold text-dark-text mb-4 ">
           ¿Quieres que tu sitio web destaque entre la multitud?
