@@ -6,39 +6,41 @@ import { BASIC_PRODUCT_MODEL } from "@utils/constants";
 import { fetchWithTimeout, filterItemsByCategory } from "@utils/functions";
 import { useSelector, useDispatch } from "react-redux";
 import { setAdvertising } from "@app/redux/slices/advertising";
+import { motion } from "framer-motion";
+import { GoChevronLeft, GoChevronRight } from "react-icons/go";
 
 const HorizontalItemList = ({ type, title }) => {
   const parentHTML = useRef(null);
-  const dispatch  = useDispatch();
+  const dispatch = useDispatch();
   const [scrollInterval, setScrollInterval] = useState(null);
   const [autoInterval, setAutoInterval] = useState(null);
   const [scrollToLeft, setScrollToLeft] = useState(true);
   const [scrollToRight, setScrollToRight] = useState(true);
-  const [showProductDetail, setShowProductDetail]= useState(false);
-  const [product, setProduct]= useState(BASIC_PRODUCT_MODEL);
+  const [showProductDetail, setShowProductDetail] = useState(false);
+  const [product, setProduct] = useState(BASIC_PRODUCT_MODEL);
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [dataByCategory, setDataByCategory] = useState([]);
-  const { category} = useSelector(state => state.siteNav);
-  const {promotions, mostSearched} = useSelector(state => state.advertising);
-
-  console.log("promotions",promotions.length);
-  console.log("mostSearched",mostSearched.length);
+  const { category } = useSelector((state) => state.siteNav);
+  const { promotions, mostSearched } = useSelector(
+    (state) => state.advertising
+  );
 
   useEffect(() => {
-    //loof it whether information already exists
     const dataExist = checkState();
-    if(!dataExist){
-      console.clear();
-      console.log("a buscar" + type);
+    if (!dataExist) {
       setLoading(true);
       const executeSearch = async () => {
         await fetchWithTimeout(`/api/search/local/data/${type}`)
           .then((r) => r.json())
           .then((data) => {
-            dispatch(setAdvertising({type:type, data:data.companyProducts}))
+            dispatch(
+              setAdvertising({ type: type, data: data.companyProducts })
+            );
             setData(data.companyProducts);
-            setDataByCategory(filterItemsByCategory(data.companyProducts, category));          
+            setDataByCategory(
+              filterItemsByCategory(data.companyProducts, category)
+            );
             setLoading(false);
           })
           .catch(() => setLoading(false));
@@ -47,28 +49,23 @@ const HorizontalItemList = ({ type, title }) => {
     }
   }, []);
 
-  
   useEffect(() => {
     checkState();
   }, [category]);
 
-
-  const checkState =()=>{
-    if(type == "promotions" && promotions.length > 0){
-      console.log(data)
-      console.log(category);
+  const checkState = () => {
+    if (type == "promotions" && promotions.length > 0) {
       setData(promotions);
-      setDataByCategory(filterItemsByCategory(promotions, category)); 
-      return true;         
+      setDataByCategory(filterItemsByCategory(promotions, category));
+      return true;
     }
-    if(type == "dailySearches" && mostSearched.length > 0){
+    if (type == "dailySearches" && mostSearched.length > 0) {
       setData(mostSearched);
       setDataByCategory(filterItemsByCategory(mostSearched, category));
-      return true;          
+      return true;
     }
     return false;
-  }
-
+  };
 
   const sideScroll = (direction, speed, distance, step) => {
     let scrollAmount = 0;
@@ -81,7 +78,6 @@ const HorizontalItemList = ({ type, title }) => {
         }
         scrollAmount += step;
         if (scrollAmount >= distance) {
-          console.log('sdf');
           window.clearInterval(scrollInterval);
         }
       }, speed)
@@ -90,13 +86,20 @@ const HorizontalItemList = ({ type, title }) => {
 
   const stopInterval = () => {
     window.clearInterval(scrollInterval);
-   validateScroll();
+    validateScroll();
   };
 
-  const validateScroll = ()=>{
+  const validateScroll = () => {
     setScrollToLeft(Math.ceil(parentHTML?.current?.scrollLeft) < 50);
-    setScrollToRight(Math.abs(Math.ceil(parentHTML?.current?.scrollLeft) - Math.ceil(parentHTML?.current?.scrollWidth - parentHTML?.current?.clientWidth)) <=1);
-  }
+    setScrollToRight(
+      Math.abs(
+        Math.ceil(parentHTML?.current?.scrollLeft) -
+          Math.ceil(
+            parentHTML?.current?.scrollWidth - parentHTML?.current?.clientWidth
+          )
+      ) <= 1
+    );
+  };
 
   const executeAutomaticScroll = () => {
     try {
@@ -104,7 +107,8 @@ const HorizontalItemList = ({ type, title }) => {
         Math.abs(
           Math.ceil(parentHTML?.current?.scrollLeft) -
             Math.ceil(
-              parentHTML?.current?.scrollWidth - parentHTML?.current?.clientWidth
+              parentHTML?.current?.scrollWidth -
+                parentHTML?.current?.clientWidth
             )
         ) >= 1
       ) {
@@ -115,106 +119,137 @@ const HorizontalItemList = ({ type, title }) => {
     } catch (error) {
       clearInterval(autoInterval);
     }
-   
   };
 
-  const onProductSelected = (product)=>{
+  const onProductSelected = (product) => {
     setProduct(product);
     setShowProductDetail(true);
-  }
+  };
 
-
-  useEffect(()=> {
+  useEffect(() => {
+    validateScroll();
+    const tempAutoInterval = setInterval(() => {
+      executeAutomaticScroll();
       validateScroll();
-      const tempAutoInterval = setInterval(() => {   
-        executeAutomaticScroll();
-        validateScroll();
-      }, 6000);
-      setAutoInterval(tempAutoInterval);
+    }, 6000);
+    setAutoInterval(tempAutoInterval);
   }, []);
 
-
-  if(dataByCategory.length <= 0)
-    return <></>
+  if (dataByCategory.length <= 0) return <></>;
 
   return (
-    <div className="mr-2 ml-2 lg:mr-10 lg:ml-10 pb-4 pt-6">
-    {showProductDetail && <ProductDetails onCloseFunction={()=>{setShowProductDetail(false)}} storeId={product.storeId} productId={product.productId}/>}
-    <div className="w-full mb-4 flex justify-center lg:justify-start"><span className="text-dark-text font-[1000] text-2xl">{title}</span></div>
-        <div className="w-full flex bg-transparent mb-6 flex-col m-auto p-auto relative mt-1">
-        <div className="absolute right-3 bottom-3">
-            <img src={""/*COMPANY LOGO*/} alt="" width={150}/>
-        </div>
-        <div className={`sm:flex hidden ${scrollToLeft?'lg:hidden':'flex'} absolute top-1/3 z-40 left-3`}>
-            <button  className="rounded-full h-10 w-10 flex items-center justify-center bg-accent-primary hover:bg-accent-secondary transition-colors"
-            onMouseUp={() => {
-                stopInterval();
-            }}
-            onMouseDown={() => {
-                sideScroll("left", 5, 10, 10);
-            }}
-            >
-            <svg
-                class="w-6 h-6 text-white "
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 8 14"
-            >
-                <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"
-                />
-            </svg>
-            </button>
-        </div>
-        <div className={`sm:flex hidden ${scrollToRight?'lg:hidden':'flex'} absolute top-1/3 right-0 z-40 right-3`}>
-            <button
-            className="rounded-full h-10 w-10 flex items-center justify-center bg-accent-primary hover:bg-accent-secondary transition-colors"
-            onMouseUp={() => {
-                stopInterval();
-            }}
-            onMouseDown={() => {
-                sideScroll("right", 5, 10, 10);
-            }}
-            >
-            <svg
-                class="w-6 h-6 text-white"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 8 14"
-            >
-                <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"
-                />
-            </svg>
-            </button>{" "}
-        </div>
-        
-        <div
-            className="flex no-scrollbar overflow-x-auto"
-            ref={parentHTML}
-        >
-            <div className="flex flex-nowrap">
-            {dataByCategory.map((element, index) => (
-                <div className="inline-block">
-                  <PromotionCard index={index} key={index} product={element} callBackFunction={onProductSelected} />
-                  </div>
-            ))} 
+    <div className="px-4 lg:px-10 pb-4 pt-6">
+      {showProductDetail && (
+        <ProductDetails
+          onCloseFunction={() => {
+            setShowProductDetail(false);
+          }}
+          storeId={product.storeId}
+          productId={product.productId}
+        />
+      )}
 
+      {/* Section Header */}
+      <div className="flex items-center gap-3 mb-5 lg:mb-6">
+        <h2 className="text-dark-text font-[1000] text-2xl lg:text-3xl">
+          {title}
+        </h2>
+        <div className="flex-1 h-px bg-gradient-to-r from-dark-border/50 to-transparent hidden lg:block" />
+        {/* Desktop scroll buttons in header */}
+        <div className="hidden lg:flex items-center gap-2">
+          <button
+            className={`w-9 h-9 rounded-full flex items-center justify-center border transition-all duration-300 ${
+              scrollToLeft
+                ? "border-dark-border/20 text-dark-border cursor-default"
+                : "border-dark-border/40 bg-dark-surface/60 text-dark-text hover:bg-accent-primary/20 hover:border-accent-primary/40 hover:text-accent-glow backdrop-blur-sm"
+            }`}
+            onMouseUp={() => stopInterval()}
+            onMouseDown={() => sideScroll("left", 5, 10, 10)}
+            disabled={scrollToLeft}
+          >
+            <GoChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            className={`w-9 h-9 rounded-full flex items-center justify-center border transition-all duration-300 ${
+              scrollToRight
+                ? "border-dark-border/20 text-dark-border cursor-default"
+                : "border-dark-border/40 bg-dark-surface/60 text-dark-text hover:bg-accent-primary/20 hover:border-accent-primary/40 hover:text-accent-glow backdrop-blur-sm"
+            }`}
+            onMouseUp={() => stopInterval()}
+            onMouseDown={() => sideScroll("right", 5, 10, 10)}
+            disabled={scrollToRight}
+          >
+            <GoChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+
+      {/* Scroll Container */}
+      <div className="relative">
+        {/* Fade edges */}
+        <div
+          className={`absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-dark-bg to-transparent z-10 pointer-events-none transition-opacity duration-300 ${
+            scrollToLeft ? "opacity-0" : "opacity-100"
+          }`}
+        />
+        <div
+          className={`absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-dark-bg to-transparent z-10 pointer-events-none transition-opacity duration-300 ${
+            scrollToRight ? "opacity-0" : "opacity-100"
+          }`}
+        />
+
+        {/* Mobile scroll buttons */}
+        <div
+          className={`lg:hidden ${
+            scrollToLeft ? "hidden" : "flex"
+          } absolute top-1/2 -translate-y-1/2 z-20 left-1`}
+        >
+          <button
+            className="w-8 h-8 rounded-full flex items-center justify-center bg-dark-surface/80 border border-dark-border/40 text-dark-text backdrop-blur-sm shadow-lg"
+            onMouseUp={() => stopInterval()}
+            onMouseDown={() => sideScroll("left", 5, 10, 10)}
+            onTouchStart={() => sideScroll("left", 5, 10, 10)}
+            onTouchEnd={() => stopInterval()}
+          >
+            <GoChevronLeft className="w-4 h-4" />
+          </button>
+        </div>
+        <div
+          className={`lg:hidden ${
+            scrollToRight ? "hidden" : "flex"
+          } absolute top-1/2 -translate-y-1/2 z-20 right-1`}
+        >
+          <button
+            className="w-8 h-8 rounded-full flex items-center justify-center bg-dark-surface/80 border border-dark-border/40 text-dark-text backdrop-blur-sm shadow-lg"
+            onMouseUp={() => stopInterval()}
+            onMouseDown={() => sideScroll("right", 5, 10, 10)}
+            onTouchStart={() => sideScroll("right", 5, 10, 10)}
+            onTouchEnd={() => stopInterval()}
+          >
+            <GoChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* Cards container */}
+        <motion.div
+          className="flex no-scrollbar overflow-x-auto scroll-smooth snap-x snap-mandatory gap-3 lg:gap-4 pb-2"
+          ref={parentHTML}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4 }}
+        >
+          {dataByCategory.map((element, index) => (
+            <div key={index} className="snap-start shrink-0">
+              <PromotionCard
+                index={index}
+                product={element}
+                callBackFunction={onProductSelected}
+              />
             </div>
-        </div>
-        </div>
-        
-        </div>
+          ))}
+        </motion.div>
+      </div>
+    </div>
   );
 };
 
