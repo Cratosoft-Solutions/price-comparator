@@ -44,9 +44,9 @@ const Terms = () => {
     return;
 
   return (
-    <div className="w-full fixed bottom-0 !bg-white border   border-gray-200 p-4 shadow-md lg:w-100 rounded  mx-0.5 mb-1">
+    <div className="w-full fixed bottom-0 !bg-dark-surface border   border-dark-border p-4 shadow-md lg:w-100 rounded  mx-0.5 mb-1">
       <h2 className="mb-2 text-xl font-heading font-black">Términos de Servicio y Uso de Cookies</h2>
-      <p className="mb-4 leading-relaxed text-black">
+      <p className="mb-4 leading-relaxed text-dark-text">
       Nuestro sitio utiliza cookies, lo que nos permite para ofrecer el mejor servicio y experiencia al cliente posible.  {" "}
         <Link className="font-semibold text-blue-700 hover:underline" href={`/termsandconditions?callBackUrl=${pathname}`}>
           Términos de Servicio 

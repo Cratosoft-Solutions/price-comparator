@@ -140,13 +140,13 @@ const HorizontalItemList = ({ type, title }) => {
   return (
     <div className="mr-2 ml-2 lg:mr-10 lg:ml-10 pb-4 pt-6">
     {showProductDetail && <ProductDetails onCloseFunction={()=>{setShowProductDetail(false)}} storeId={product.storeId} productId={product.productId}/>}
-    <div className="w-full mb-4  flex justify-center lg:justify-start"><span className="text-black  font-[1000] text-2xl">{title}</span></div>
+    <div className="w-full mb-4 flex justify-center lg:justify-start"><span className="text-dark-text font-[1000] text-2xl">{title}</span></div>
         <div className="w-full flex bg-transparent mb-6 flex-col m-auto p-auto relative mt-1">
         <div className="absolute right-3 bottom-3">
             <img src={""/*COMPANY LOGO*/} alt="" width={150}/>
         </div>
         <div className={`sm:flex hidden ${scrollToLeft?'lg:hidden':'flex'} absolute top-1/3 z-40 left-3`}>
-            <button  className="rounded-full h-10 w-10 flex items-center justify-center bg-black"
+            <button  className="rounded-full h-10 w-10 flex items-center justify-center bg-accent-primary hover:bg-accent-secondary transition-colors"
             onMouseUp={() => {
                 stopInterval();
             }}
@@ -173,7 +173,7 @@ const HorizontalItemList = ({ type, title }) => {
         </div>
         <div className={`sm:flex hidden ${scrollToRight?'lg:hidden':'flex'} absolute top-1/3 right-0 z-40 right-3`}>
             <button
-            className="rounded-full h-10 w-10 flex items-center justify-center bg-black"
+            className="rounded-full h-10 w-10 flex items-center justify-center bg-accent-primary hover:bg-accent-secondary transition-colors"
             onMouseUp={() => {
                 stopInterval();
             }}

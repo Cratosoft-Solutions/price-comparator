@@ -1002,7 +1002,7 @@ export const MAIN_STYLES = {
       image: "/assets/images/create-item2.svg",
       imgStyle: "w-1/2 h-fit",
       imgPadding: "p-8",
-      backGroundColor: "bg-[#EEDECF]",
+      backGroundColor: "bg-dark-surface",
       title: "¡Crea tu anuncio!",
       subTitle: "Fácil y sencillo.",
       bodyDescription:
@@ -1021,7 +1021,7 @@ export const MAIN_STYLES = {
         "¡Descubre infinidad de productos, autos, casas & apartamentos e inclusive servicios. Encuentra tu siguiente compra en nuestra plataforma. Recueda que puedes contactar directamente al vendedor si necesidad de intermadiarios!",
       btn: "SEARCH",
       specialStyle: {
-        backgroundColor: "#EDEEF2",
+        backgroundColor: "#262626",
       },
     },
   },

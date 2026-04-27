@@ -11,10 +11,10 @@ const Sale = () => {
     <>
       <HorizontalSlider />
       <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-1 p-6 ml-10 mt-4 mb-4 mr-10 ">
-        <h2 className="text-4xl font-extrabold text-black mb-4 ">
+        <h2 className="text-4xl font-extrabold text-dark-text mb-4 ">
           Únete a Encuéntralo Fácil CR y lleva tu negocio al siguiente nivel{" "}
         </h2>
-        <p className="text-gray-800 text-lg font-semibold leading-relaxed px-0 py-2  bg-white text-center lg:text-left">
+        <p className="text-dark-muted text-lg font-semibold leading-relaxed px-0 py-2  bg-dark-surface text-center lg:text-left">
           ¿Estás listo para transformar tu negocio y alcanzar nuevas alturas?
           Con Encuéntralo Fácil CR, tienes la oportunidad perfecta para hacerlo.
           Nuestra plataforma, desarrollada por ingenieros costarricenses, es la
@@ -30,10 +30,10 @@ const Sale = () => {
         </div>
       </div>
       <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-1 pt-0 p-6 ml-10 mt-2 mb-4 mr-10">
-        <h2 className="text-4xl font-extrabold text-black mb-4 ">
+        <h2 className="text-4xl font-extrabold text-dark-text mb-4 ">
           ¿Por qué Elegir Encuéntralo Fácil CR?
         </h2>
-        <ul className="list-disc ml-10 gap-2 text-justify text-gray-800 text-lg font-semibold leading-relaxed px-0 py-2  bg-white lg:text-left">
+        <ul className="list-disc ml-10 gap-2 text-justify text-dark-muted text-lg font-semibold leading-relaxed px-0 py-2  bg-dark-surface lg:text-left">
           <li key={1} className="mb-2">
             <p className="inline">
               <p className="inline font-black">Fácil de Usar:</p>Nuestra

@@ -40,15 +40,15 @@ const PaymentModal = ({paymentDetail, paymentIntentId, onConfirm}) => {
         />
       )}
 
-      <section className="w-full h-fit bg-white antialiased lg:rounded-lg p-8">
+      <section className="w-full h-fit bg-dark-surface antialiased lg:rounded-lg p-8">
         <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
           <div className="mx-auto max-w-5xl">
-            <div className="relative w-full bg-white inline flex items-center mb-2">
+            <div className="relative w-full bg-dark-surface inline flex items-center mb-2">
               <MdOutlineArrowRight
                 className="-ml-4 hidden lg:block inline w-12 h-12"
                 color="black"
               />
-              <p className="inline text-black w-full text-center lg:text-left font-black text-2xl">
+              <p className="inline text-dark-text w-full text-center lg:text-left font-black text-2xl">
                 Detalle del pago{" "}
                 <span className="lg:inline    hidden lg:block font-black text-sm">
                   ({paymentDetail.itemName})
@@ -71,10 +71,10 @@ const PaymentModal = ({paymentDetail, paymentIntentId, onConfirm}) => {
                 <div className="space-y-4 rounded-lg border bg-[#EEDECF] border-none p-6">
                   <div className="space-y-2">
                     <div className="flex inline">
-                      <span className="inline w-full text-base font-normal text-gray-500">
+                      <span className="inline w-full text-base font-normal text-dark-muted">
                         {paymentDetail.detail}
                       </span>
-                      <span className="inline flex text-base font-medium text-gray-900 w-full justify-end">
+                      <span className="inline flex text-base font-medium text-dark-text w-full justify-end">
                         {`${paymentDetail.currency} ${getFormattedPrice(
                           paymentDetail.price.original
                         )}`}
@@ -82,7 +82,7 @@ const PaymentModal = ({paymentDetail, paymentIntentId, onConfirm}) => {
                     </div>
 
                     <div className="flex inline">
-                      <span className="inline w-full text-base font-normal text-gray-500">
+                      <span className="inline w-full text-base font-normal text-dark-muted">
                         Descuento
                       </span>
                       <span className="inline flex text-base font-medium text-green-500 w-full justify-end">
@@ -93,18 +93,18 @@ const PaymentModal = ({paymentDetail, paymentIntentId, onConfirm}) => {
                     </div>
 
                     <div className="flex inline">
-                      <span className="inline w-full text-base font-normal text-gray-500">
+                      <span className="inline w-full text-base font-normal text-dark-muted">
                         IVA
                       </span>
-                      <span className="inline flex text-base font-medium text-gray-900 w-full justify-end">
+                      <span className="inline flex text-base font-medium text-dark-text w-full justify-end">
                         {`${paymentDetail.currency} ${getFormattedPrice(paymentDetail.price.iva)}`}
                       </span>
                     </div>
                   </div>
 
                   <dl className="flex items-center justify-between gap-4 border-t border-black pt-2">
-                    <dt className="text-base font-bold text-gray-900">Total</dt>
-                    <dd className="text-base font-bold text-gray-900">
+                    <dt className="text-base font-bold text-dark-text">Total</dt>
+                    <dd className="text-base font-bold text-dark-text">
                       {`${paymentDetail.currency} ${getFormattedPrice(paymentDetail.price.total)}`}
                     </dd>
                   </dl>
@@ -128,7 +128,7 @@ const PaymentModal = ({paymentDetail, paymentIntentId, onConfirm}) => {
                     />
                     <label
                       htmlFor="terms-accepted"
-                      className="text-gray-600  ml-2"
+                      className="text-dark-muted  ml-2"
                     >
                       Aceptar términos y condiciones
                     </label>
@@ -159,12 +159,12 @@ const PaymentModal = ({paymentDetail, paymentIntentId, onConfirm}) => {
                 </div>
               </div>
                 <div className="relative">
-                    <div className={`${termsAccepted?"hidden":"block"} bg-opacity-30 absolute flex w-full h-full bg-black z-50 justify-center items-center`}><span className="animate-bounce text-2xl font-black text-black">Para continuar, acepta términos y condiciones.</span></div>
+                    <div className={`${termsAccepted?"hidden":"block"} bg-opacity-30 absolute flex w-full h-full bg-black z-50 justify-center items-center`}><span className="animate-bounce text-2xl font-black text-dark-text">Para continuar, acepta términos y condiciones.</span></div>
                     <CreateCharge paymentIntentId={paymentIntentId} onPaymentExecuted={onPaymentExecuted}/>
                 </div>
               </div>
 
-            <p className="mt-2 text-center text-gray-500 sm:mt-8 lg:text-left">
+            <p className="mt-2 text-center text-dark-muted sm:mt-8 lg:text-left">
               Pago procesado por{" "}
               <a
                 href="#"

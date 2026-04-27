@@ -11,7 +11,7 @@ const [selectedTab, setSelectedTab] = useState(1);
     <ul className="mb-5 flex list-none flex-row flex-wrap border-b-0 ps-0" role="tablist" data-twe-nav-ref >
         <li role="presentation" className="flex-auto text-center">
             <button
-            className={`text-black lg:my-2 block border-x-0 border-t-0 border-transparent lg:px-7 pb-3.5 pt-4 text-xs font-medium ${selectedTab!=1?'':'border-b-2 text-[#40A826] border-b-[#40A826]'} transition-all duration-700 delay-75`}
+            className={`text-dark-text lg:my-2 block border-x-0 border-t-0 border-transparent lg:px-7 pb-3.5 pt-4 text-xs font-medium ${selectedTab!=1?'':'border-b-2 text-[#40A826] border-b-[#40A826]'} transition-all duration-700 delay-75`}
             data-twe-toggle="pill"
             data-twe-target="#tabs-home01"
             data-twe-nav-active
@@ -24,7 +24,7 @@ const [selectedTab, setSelectedTab] = useState(1);
         {product.otherInformation && 
             <li role="presentation" className="flex-auto text-center">
                 <button
-                className={`text-black lg:my-2 block border-x-0 border-t-0 border-transparent lg:px-7 pb-3.5 pt-4 text-xs font-medium ${selectedTab!=2?'':'border-b-2 text-[#40A826] border-b-[#40A826]'} transition-all duration-700 delay-75`}
+                className={`text-dark-text lg:my-2 block border-x-0 border-t-0 border-transparent lg:px-7 pb-3.5 pt-4 text-xs font-medium ${selectedTab!=2?'':'border-b-2 text-[#40A826] border-b-[#40A826]'} transition-all duration-700 delay-75`}
                 data-twe-toggle="pill"
                 data-twe-target="#tabs-profile01"
                 role="tab"
@@ -38,7 +38,7 @@ const [selectedTab, setSelectedTab] = useState(1);
         {product.otherInformation?.equipment && 
             <li role="presentation" className="flex-auto text-center">
                 <button
-                className={`text-black lg:my-2 block border-x-0 border-t-0 border-transparent lg:px-7 pb-3.5 pt-4 text-xs font-medium ${selectedTab!=3?'':'border-b-2 text-[#40A826] border-b-[#40A826]'} transition-all duration-700 delay-75`}
+                className={`text-dark-text lg:my-2 block border-x-0 border-t-0 border-transparent lg:px-7 pb-3.5 pt-4 text-xs font-medium ${selectedTab!=3?'':'border-b-2 text-[#40A826] border-b-[#40A826]'} transition-all duration-700 delay-75`}
                 data-twe-toggle="pill"
                 data-twe-target="#tabs-messages01"
                 role="tab"
@@ -57,7 +57,7 @@ const [selectedTab, setSelectedTab] = useState(1);
             role="tabpanel"
             aria-labelledby="tabs-home-tab01"
             >
-                <p className="text-base text-gray-500  ">
+                <p className="text-base text-dark-muted  ">
                         {product.productDescription}
                 </p>
         </div>

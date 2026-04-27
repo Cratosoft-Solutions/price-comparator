@@ -450,11 +450,11 @@ const StoreItem = ({
         )}
         
         <div className="w-full ">
-          <div className=" storepages bg-white border shadow-lg mb-6">
+          <div className=" storepages bg-dark-surface border shadow-lg mb-6">
             <div className="grid text-sm grid-cols-1 lg:grid-cols-3">
-              <div className="text-black mb-4 lg:mb-0 bg-[#EEDECF] p-4">
+              <div className="text-dark-text mb-4 lg:mb-0 bg-[#EEDECF] p-4">
                 <p className="font-black text-2xl mb-4">¡Crea tu anuncio!</p>
-                <p className="text-gray-800">
+                <p className="text-dark-muted">
                   Favor completa todos los campos para ingresar un nuevo
                   anuncio.
                 </p>
@@ -473,7 +473,7 @@ const StoreItem = ({
                     className="-ml-4 hidden lg:block inline w-12 h-12"
                     color="black"
                   />
-                  <p className="inline text-black w-full text-center lg:text-left font-black text-2xl">
+                  <p className="inline text-dark-text w-full text-center lg:text-left font-black text-2xl">
                     Datos generales del anuncio
                   </p>
                 </div>
@@ -490,7 +490,7 @@ const StoreItem = ({
                       id="category"
                       currentValue={category}
                     />
-                    <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+                    <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
                       Sección en que se mostrará el producto.
                     </div>
                   </div>
@@ -501,7 +501,7 @@ const StoreItem = ({
                       required
                       name="name"
                       id="name"
-                      className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800 border border-gray-300"
+                      className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-dark-surface shadow text-base text-dark-muted border border-dark-border"
                       value={name}
                       onChange={(e) => {
                         setName(e.target.value);
@@ -512,7 +512,7 @@ const StoreItem = ({
                         name
                           ? "labelsconfigurationwithvalue"
                           : "labelsconfiguration"
-                      } text-gray-600 text-sm`}
+                      } text-dark-muted text-sm`}
                     >
                       {nameLabel}
                     </div>
@@ -523,7 +523,7 @@ const StoreItem = ({
                       required
                       name="description"
                       id="description"
-                      className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800 border border-gray-300"
+                      className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-dark-surface shadow text-base text-dark-muted border border-dark-border"
                       value={description}
                       onChange={(e) => {
                         setDescription(e.target.value);
@@ -534,7 +534,7 @@ const StoreItem = ({
                         description
                           ? "labelsconfigurationwithvalue"
                           : "labelsconfiguration"
-                      } text-gray-600 text-sm`}
+                      } text-dark-muted text-sm`}
                     >
                       {descriptionLabel}
                     </div>
@@ -555,7 +555,7 @@ const StoreItem = ({
                           }}
                           currentValue={serviceType}
                         />
-                        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+                        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
                           Categoría del servicio.
                         </div>
                       </div>
@@ -572,7 +572,7 @@ const StoreItem = ({
                           }}
                           currentValue={modalityType}
                         />
-                        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+                        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
                           Modalidad
                         </div>
                       </div>
@@ -589,7 +589,7 @@ const StoreItem = ({
                           }}
                           currentValue={province}
                         />
-                        <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+                        <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
                           Provincia
                         </div>
                       </div>
@@ -610,7 +610,7 @@ const StoreItem = ({
                             stock
                               ? "labelsconfigurationwithvalue"
                               : "labelsconfiguration"
-                          } text-gray-600 text-sm`}
+                          } text-dark-muted text-sm`}
                         >
                           Cantidad en stock.
                         </div>
@@ -631,7 +631,7 @@ const StoreItem = ({
                         price
                           ? "labelsconfigurationwithvalue"
                           : "labelsconfiguration"
-                      } text-gray-600 text-sm`}
+                      } text-dark-muted text-sm`}
                     >
                       {priceLabel}
                     </div>
@@ -650,7 +650,7 @@ const StoreItem = ({
                         specialPrice
                           ? "labelsconfigurationwithvalue"
                           : "labelsconfiguration"
-                      } text-gray-600 text-sm`}
+                      } text-dark-muted text-sm`}
                     >
                       Precio especial (Sólo si aplica).
                     </div>
@@ -669,7 +669,7 @@ const StoreItem = ({
                         setNegotiable(e.target.value);
                       }}
                     />
-                    <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+                    <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
                       ¿Precio Negociable?.
                     </div>
                   </div>
@@ -690,7 +690,7 @@ const StoreItem = ({
                         setCurrency(e.target.value);
                       }}
                     />
-                    <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+                    <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
                       Seleccione la moneda.
                     </div>
                   </div>
@@ -711,7 +711,7 @@ const StoreItem = ({
 
                   {images.length <= 4 && (
                     <div className="lg:col-span-5 relative mt-4">
-                      <div className="labelsconfigurationwithvalue text-gray-600 text-sm">
+                      <div className="labelsconfigurationwithvalue text-dark-muted text-sm">
                         Selección de imágenes.
                       </div>
                       <DragDropFiles
@@ -744,7 +744,7 @@ const StoreItem = ({
                         className="-ml-4 hidden lg:block inline w-12 h-12"
                         color="black"
                       />
-                      <p className="inline text-black w-full text-center lg:text-left font-black text-2xl">
+                      <p className="inline text-dark-text w-full text-center lg:text-left font-black text-2xl">
                         Datos de contacto
                       </p>
                     </div>{" "}
@@ -755,7 +755,7 @@ const StoreItem = ({
                       type="email"
                       name="email"
                       id="email"
-                      className=" inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800  border border-gray-300 rounded-t-lg "
+                      className=" inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-dark-surface shadow text-base text-dark-muted  border border-dark-border rounded-t-lg "
                       value={email}
                       onChange={(e) => {
                         setEmail(e.target.value);
@@ -766,7 +766,7 @@ const StoreItem = ({
                         email
                           ? "labelsconfigurationwithvalue"
                           : "labelsconfiguration"
-                      } text-gray-600 text-sm`}
+                      } text-dark-muted text-sm`}
                     >
                       Email de contacto.
                     </div>
@@ -775,7 +775,7 @@ const StoreItem = ({
                   <div className="lg:col-span-5 relative">
                     <input
                       name="contactnumber"
-                      className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800  border border-gray-300"
+                      className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-dark-surface shadow text-base text-dark-muted  border border-dark-border"
                       id="contactnumber"
                       value={contactNumber}
                       required
@@ -788,7 +788,7 @@ const StoreItem = ({
                         contactNumber
                           ? "labelsconfigurationwithvalue"
                           : "labelsconfiguration"
-                      } text-gray-600 text-sm`}
+                      } text-dark-muted text-sm`}
                     >
                       Número de contacto.
                     </div>
@@ -800,7 +800,7 @@ const StoreItem = ({
                       type="input"
                       name="address"
                       id="address"
-                      className="inputconfiguration rounded-b-lg focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800  border border-gray-300"
+                      className="inputconfiguration rounded-b-lg focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-dark-surface shadow text-base text-dark-muted  border border-dark-border"
                       value={address}
                       onChange={(e) => {
                         setAddress(e.target.value);
@@ -811,7 +811,7 @@ const StoreItem = ({
                         address
                           ? "labelsconfigurationwithvalue"
                           : "labelsconfiguration"
-                      } text-gray-600 text-sm`}
+                      } text-dark-muted text-sm`}
                     >
                       Ubicación física (Sólo si aplica).
                     </div>
@@ -838,7 +838,7 @@ const StoreItem = ({
                       />
                       <label
                         htmlFor="billing_same"
-                        className="text-gray-600  ml-2"
+                        className="text-dark-muted  ml-2"
                       >
                         Habilitar el contacto por WhatsApp en este anuncio.
                       </label>

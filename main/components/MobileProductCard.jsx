@@ -17,10 +17,10 @@ const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
 
   return (
     
-    <div key={product.productName + index} className="container-fluid mx-auto w-full border border-gray-300">
+    <div key={product.productName + index} className="container-fluid mx-auto w-full border border-dark-border rounded-lg">
           {showShareModal && <SocialShare pid={product.productId} sid={product.storeId} onCloseFunction={setShowShareModal}/>}     
       <div
-        className="hover:cursor-pointer relative flex bg-white overflow-hidden items-center justify-start"
+        className="hover:cursor-pointer relative flex bg-dark-surface overflow-hidden items-center justify-start rounded-lg"
         style={{ cursor: "auto" }}
       >
         <div className="relative w-32 h-32 !max-h-32 flex-shrink-0">
@@ -37,17 +37,17 @@ const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
 
         </div>
         <div className="grid grid-rows-2 grid-cols-1">
-          <p className="text-sm text-black font-black text-ellipsis">
+          <p className="text-sm text-dark-text font-black text-ellipsis">
             {product.productName}
-            {product.isLocal && <BsShare className="absolute top-4 right-4 w-4 h-4" color="black" onClick={()=>{setShowShareModal(true)}}/>      }
+            {product.isLocal && <BsShare className="absolute top-4 right-4 w-4 h-4 text-dark-muted hover:text-accent-glow transition-colors" onClick={()=>{setShowShareModal(true)}}/>      }
           </p>
 
-          <div className="text-black font-[500]">
+          <div className="text-dark-text font-[500]">
             {Boolean(product.formatedEspecialPrice && 
              product.formatedEspecialPrice != 0) && (
               <div className="lg:inline text-left">
                 <span className='text-xs'>{product.currency == "CRC" ? "₡" : product.currency}</span>
-                <span className="line-through text-xs">
+                <span className="line-through text-xs text-dark-muted">
                     {product.formatedPrice}
                 </span>
               </div>
@@ -65,7 +65,7 @@ const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
 
         </div>
       </div>
-      {!adminMode && product.isLocal && <div className="relative bg-white w-full h-6"><HorizontalPromotionTags product={product}/></div>}
+      {!adminMode && product.isLocal && <div className="relative bg-dark-surface w-full h-6"><HorizontalPromotionTags product={product}/></div>}
 
 
     </div>

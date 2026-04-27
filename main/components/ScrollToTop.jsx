@@ -28,7 +28,7 @@ const ScrollToTopButton  =() => {
       <>
         {scrollYPosition > 100 ? (
           <button className="fixed bottom-2 right-2" onClick={scrollToTop}>
-            <GoTriangleUp className="h-20 w-20 hover:animate-bounce" color="black" />
+            <GoTriangleUp className="h-20 w-20 hover:animate-bounce text-accent-primary hover:text-accent-glow transition-colors" />
           </button>
         ) : null}
       </>

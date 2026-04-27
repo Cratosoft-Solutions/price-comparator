@@ -33,9 +33,9 @@ const RootLayout = ({ children }) => {
           {/* meta robots are directives that search engines will always respect. */}
           <meta name="robots" content="index,follow" />
         </head>
-        <body className="__variable_7dbc08 __variable_20951f">
+        <body className="__variable_7dbc08 __variable_20951f bg-dark-bg">
           <Provider>
-            <main className="light  app relative">
+            <main className="app relative">
                 <>
                   <Nav />
                   <SiteMapWrapper/>

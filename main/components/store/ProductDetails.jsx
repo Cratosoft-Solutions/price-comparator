@@ -137,7 +137,7 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false, i
             <div
               className={`${
                 isModal ? "max-w-4xl shadow lg:py-8 lg:px-6" : ""
-              }  mx-auto bg-white  relative  min-h-screen lg:min-h-min`}
+              }  mx-auto bg-dark-surface  relative  min-h-screen lg:min-h-min`}
             >
               <IoCloseOutline
                 onClick={() => {
@@ -159,17 +159,17 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false, i
                 <div className="w-full px-4 lg:w-1/2">
                   <div className="p-4 lg:pl-4 lg:p-0">
                     <div className="mb-8">
-                      <h2 className="text-black max-w-xl mt-2 lg:mt-0 mb-4 text-xl font-bold  lg:text-3xl">
+                      <h2 className="text-dark-text max-w-xl mt-2 lg:mt-0 mb-4 text-xl font-bold  lg:text-3xl">
                         {product.productName}
                       </h2>
 
                       <p className="inline-block mb-4">
                         {product.formatedEspecialPrice != 0 && (
-                          <span className="!text-black text-base line-through mr-10">
+                          <span className="!text-dark-text text-base line-through mr-10">
                             {product.currency + product.formatedPrice}
                           </span>
                         )}
-                        <span className="text-black text-xl">
+                        <span className="text-dark-text text-xl">
                           {product.formatedEspecialPrice != 0
                             ? product.currency + product.formatedEspecialPrice
                             : product.currency + product.formatedPrice}
@@ -178,7 +178,7 @@ const ProductDetails = ({onCloseFunction, storeId, productId, adminMode=false, i
 
                       <div className="w-full grid grid-rows-1 grid-cols-[35%_65%] mb-14">
                         <div className="grid grid-rows-2">
-                          <span className="!text-black ">Existencias</span>
+                          <span className="!text-dark-text ">Existencias</span>
                           <span className="h-8 w-28 rounded-full bg-[#EEEEEE] flex items-center justify-center text-[#363636] text-xs">
                             {product.stock}
                           </span>

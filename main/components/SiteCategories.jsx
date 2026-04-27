@@ -15,10 +15,10 @@ const SiteCategories = () => {
 
   return (
         <>
-          <div className={`text-black flex justify-start h-full items-center hover:cursor-pointer hover:font-bold`} onClick={()=>{onSelectedCategory("PRODUCT")}}>Productos</div>  
-          <div className={`text-black flex justify-start h-full items-center hover:cursor-pointer hover:font-bold`}onClick={()=>{onSelectedCategory("CAR")}}>Autos</div>  
-          <div className={`text-black flex justify-start h-full items-center hover:cursor-pointer hover:font-bold`}onClick={()=>{onSelectedCategory("HOUSES")}}>Casas & Apartamentos</div>  
-          <div className={`text-black flex justify-start h-full items-center hover:cursor-pointer hover:font-bold`} onClick={()=>{onSelectedCategory("SERVICES")}}>Servicios</div>   
+          <div className={`text-dark-text flex justify-start h-full items-center hover:cursor-pointer hover:text-accent-glow transition-colors`} onClick={()=>{onSelectedCategory("PRODUCT")}}>Productos</div>  
+          <div className={`text-dark-text flex justify-start h-full items-center hover:cursor-pointer hover:text-accent-glow transition-colors`}onClick={()=>{onSelectedCategory("CAR")}}>Autos</div>  
+          <div className={`text-dark-text flex justify-start h-full items-center hover:cursor-pointer hover:text-accent-glow transition-colors`}onClick={()=>{onSelectedCategory("HOUSES")}}>Casas & Apartamentos</div>  
+          <div className={`text-dark-text flex justify-start h-full items-center hover:cursor-pointer hover:text-accent-glow transition-colors`} onClick={()=>{onSelectedCategory("SERVICES")}}>Servicios</div>   
         </>
   )
 }

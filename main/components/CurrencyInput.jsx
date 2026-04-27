@@ -21,7 +21,7 @@ const CurrencyInput = ({ maskOptions, ...inputProps }) => {
     ...maskOptions, 
   })
  
-  return <MaskedInput mask={currencyMask} {...inputProps} className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-white shadow text-base text-gray-800 border border-gray-300"/>
+  return <MaskedInput mask={currencyMask} {...inputProps} className="inputconfiguration focus:font-bold focus:orange_gradient h-16 pt-2 border px-4 w-full bg-dark-surface shadow text-base text-dark-muted border border-dark-border"/>
 }
  
 

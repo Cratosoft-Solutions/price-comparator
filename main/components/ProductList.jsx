@@ -31,7 +31,7 @@ const ProductList = () => {
   }
 
   return (
-    <div className={`bg-white lg:pl-6 lg:pt-2 lg:pr-6`}>
+    <div className={`bg-dark-bg lg:pl-6 lg:pt-2 lg:pr-6`}>
       {showProductDetail && (
         <ProductDetails
           onCloseFunction={() => {

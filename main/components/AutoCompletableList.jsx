@@ -59,17 +59,17 @@ const AutoCompletableList = ({text, onChange}) => {
     return (
       <>
         {isBrowser() && text.length > 0 && (
-          <ul className="bg-white w-full absolute p-2">
+          <ul className="bg-dark-elevated w-full absolute p-2 border border-dark-border rounded-lg shadow-xl z-50">
             {uniqueCategories.map((element, index) => (
               <>
-                <li key={"mainul"+index} className=" flex items-center text-base text-black font-black p-4">
+                <li key={"mainul"+index} className=" flex items-center text-base text-dark-text font-black p-4">
                   <p className='capitalize'>{translateCategory(element, "SEARCHTEXT")}</p>
                 </li>
                 {coincidencesList.filter(coincidence => coincidence.category == element ).slice(0, 5).map((coincidence, index) => (
                   <li onClick={() => {onSelectItem(coincidence.category, coincidence.key);}} key={index}
-                    className="pl-8 pr-2 py-1 relative cursor-pointer hover:bg-gray-100 hover:text-gray-900 text-gray-500">
-                    <div className="flex items-center text-base hover:text-extrabold gap-2 items-center ">
-                        <IoSearchOutline className='w-4 h-4' color='gray'/>
+                    className="pl-8 pr-2 py-1 relative cursor-pointer hover:bg-dark-card text-dark-muted rounded transition-colors">
+                    <div className="flex items-center text-base hover:text-dark-text gap-2 items-center ">
+                        <IoSearchOutline className='w-4 h-4' color='#94a3b8'/>
                       <p className='capitalize'>{formatAutoCompletableItem("", coincidence.key)}</p>
                     </div>
                   </li>

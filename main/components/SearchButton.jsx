@@ -45,10 +45,10 @@ const SearchButton = ({personalizedClass="", rounded=true}) => {
                   values={CATEGORY_TYPES}  
                   onSelectValue={setInternalCategory}
                   currentValue={category}
-                  additionalClass={`!bg-gray-50 lg:!bg-white !text-gray-700 !h-full border !border-gray-100 !pt-0 lg:!border-white !shadow-none ${rounded?"!rounded-l-full":""}`}
+                  additionalClass={`!bg-dark-elevated lg:!bg-dark-surface !text-dark-text !h-full border !border-dark-border !pt-0 !shadow-none ${rounded?"!rounded-l-full":""}`}
                 /> 
 
-            <div className="relative text-gray-500 h-full">              
+            <div className="relative text-dark-muted h-full">              
               <input
                 onChange={(e) => {
                   restartFields(e.target.value);
@@ -57,7 +57,7 @@ const SearchButton = ({personalizedClass="", rounded=true}) => {
                 id="txt-search"
                 type="search"
                 name="q"
-                className={`bg-white ${rounded?"rounded-r-full":""} lg:border-white pl-10 focus:outline-none h-full w-full`}
+                className={`bg-dark-surface text-dark-text ${rounded?"rounded-r-full":""} border-dark-border pl-10 focus:outline-none focus:border-accent-primary h-full w-full`}
                 placeholder={`¿Qué buscas?`}
                 autoComplete="off"
               />

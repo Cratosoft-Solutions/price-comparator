@@ -39,20 +39,20 @@ const UserSearches = ({onHideSearch}) => {
     []);
   return (
     <>
-          <div className="absolute mt-6 lg:mt-18 grid grid-cols-1 grid-rows-3 justify-center items-center w-full bg-white h-full">
+          <div className="absolute mt-6 lg:mt-18 grid grid-cols-1 grid-rows-3 justify-center items-center w-full bg-dark-surface h-full">
           <div className='flex justify-center'>
             <p className='text-2xl lg:text-4xl orange_gradient'>Mis búsquedas anteriores</p>
           </div>
             <div className='flex justify-center'>
                 {!loading && userSearches.length>0 &&
-                  <div className="overflow-y-scroll h-52 lg:h-40 bg-white  p-2 grid grid-col-3 lg:grid-cols-4 gap-1 lg:gap-4 w-full lg:w-1/2 mr-4 ml-4">
+                  <div className="overflow-y-scroll h-52 lg:h-40 bg-dark-surface  p-2 grid grid-col-3 lg:grid-cols-4 gap-1 lg:gap-4 w-full lg:w-1/2 mr-4 ml-4">
                   {userSearches.map((search, index) => (
                       <button
                       onClick={() => {
                           goToSearch(search.key, search.category);
                       }}
                       key={index}
-                      className="w-full h-6 lg:w-30 lg:h-16 border shadow rounded flex justify-center items-center text-center search_gradient border-gray-200 hover:bg-red-400"
+                      className="w-full h-6 lg:w-30 lg:h-16 border shadow rounded flex justify-center items-center text-center search_gradient border-dark-border hover:bg-red-400"
                       >
                       {search.key}
                       </button>

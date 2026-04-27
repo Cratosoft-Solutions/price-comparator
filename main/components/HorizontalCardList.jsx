@@ -51,7 +51,7 @@ const HorizontalCardList = ({mergedProducts, adminMode = false, callBackFunction
     <div className="min-h-screen pb-24">
       {!adminMode && (
         <div className="w-full justify-left">
-          <p className="text-sm text-black font-black">
+          <p className="text-sm text-dark-text font-black">
             {" "}
             {`Encontramos ${mergedProducts.length} anuncios. Registros del ${
               FIRSTPOSITION + 1
@@ -95,7 +95,7 @@ const HorizontalCardList = ({mergedProducts, adminMode = false, callBackFunction
           (element) => element.isLocal && element.category === "PRODUCT"
         ).length > 0 && (
           <div className="w-full justify-left">
-            <p className="text-lg text-black font-black">
+            <p className="text-lg text-dark-text font-black">
               {" "}
               {"Tambien te puede interesar"}
             </p>

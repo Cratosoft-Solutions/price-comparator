@@ -9,7 +9,7 @@ const ProductDetailComponent = () => {
   const storeId = searchParams.get('sid');
 
   return (
-    <div className="w-full lg:mr-10 lg:ml-10 bg-white lg:mb-4 mt-4">
+    <div className="w-full lg:mr-10 lg:ml-10 bg-dark-surface lg:mb-4 mt-4">
         <ProductDetails onCloseFunction={()=>{}} productId={productId} storeId={storeId} adminMode={false} isModal={false}/>     
         <HorizontalItemList type="promotions" title="¡Promociones que te pueden interesar!"/>
     </div>

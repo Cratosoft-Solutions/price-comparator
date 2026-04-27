@@ -75,11 +75,11 @@ const LoginRegister = ({isLogin=true}) => {
         <Loading message={"Validando tus datos, favor espera"}/>)
 
     return (
-      <section className="bg-white">
+      <section className="bg-dark-bg">
         <div className="flex flex-col items-center justify-center mx-auto lg:h-full lg:py-0 p-6 lg:p-2">
-          <div className="w-full bg-white rounded-lg drop-shadow-[0_0px_2px_rgba(0,0,0,0.25)] lg:mt-4 sm:max-w-md xl:p-0 mb-4">
+          <div className="w-full bg-dark-surface rounded-lg shadow-xl border border-dark-border lg:mt-4 sm:max-w-md xl:p-0 mb-4">
             <div className="p-6  sm:p-8">
-              <h1 className="text-black h-8 lg:h-12 text-xl font-black">
+              <h1 className="text-dark-text h-8 lg:h-12 text-xl font-black">
                 {isLogin ? "Ingresa tus credenciales" : "Crea tu cuenta"}
               </h1>
               <form
@@ -91,7 +91,7 @@ const LoginRegister = ({isLogin=true}) => {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block mb-2 text-sm font-black text-gray-900 "
+                    className="block mb-2 text-sm font-black text-dark-text "
                   >
                     Correo
                   </label>
@@ -99,7 +99,7 @@ const LoginRegister = ({isLogin=true}) => {
                     type="email"
                     name="email"
                     id="email"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                    className="bg-dark-elevated border border-dark-border text-dark-text sm:text-sm rounded-lg focus:ring-accent-primary focus:border-accent-primary block w-full p-2.5 "
                     placeholder="ejemplo@dominio.com"
                     required={true}
                     value={formData.email}
@@ -109,7 +109,7 @@ const LoginRegister = ({isLogin=true}) => {
                 <div>
                   <label
                     htmlFor="password"
-                    className="block mb-2 text-sm font-black text-gray-900 "
+                    className="block mb-2 text-sm font-black text-dark-text "
                   >
                     Contraseña
                   </label>
@@ -118,7 +118,7 @@ const LoginRegister = ({isLogin=true}) => {
                     name="password"
                     id="password"
                     placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                    className="bg-dark-elevated border border-dark-border text-dark-text sm:text-sm rounded-lg focus:ring-accent-primary focus:border-accent-primary block w-full p-2.5 "
                     required={true}
                     value={formData.password}
                     onChange={handleData}
@@ -128,7 +128,7 @@ const LoginRegister = ({isLogin=true}) => {
                   <div className="flex items-start">
                     <div className="flex items-center h-5">
                       {isLogin ? (
-                        <span className="text-black ">
+                        <span className="text-dark-text ">
                           ¿Sin cuenta?{" "}
                           <Link className="dropdown_link" href={"/register"}>
                             Registrarme
@@ -146,7 +146,7 @@ const LoginRegister = ({isLogin=true}) => {
                   </div>
                   <a
                     href="#"
-                    className="text-black text-sm font-medium text-primary-600 hover:underline "
+                    className="text-dark-muted text-sm font-medium hover:text-accent-glow hover:underline transition-colors"
                   >
                     Olvidé mi contraseña
                   </a>
@@ -168,7 +168,7 @@ const LoginRegister = ({isLogin=true}) => {
                     track("Signup");
                     executeSignProvider("google");
                   }}
-                  className="text-black w-full bg-white font-black rounded-lg text-md px-5 py-2.5 text-center inline-flex items-center justify-between mr-2 mb-2 border border-gray-400 shadow-xl"
+                  className="text-dark-text w-full bg-dark-elevated font-black rounded-lg text-md px-5 py-2.5 text-center inline-flex items-center justify-between mr-2 mb-2 border border-dark-border shadow-xl hover:bg-dark-card transition-colors"
                 >
                   <img
                     className="mr-2 -ml-1 w-6 h-6"

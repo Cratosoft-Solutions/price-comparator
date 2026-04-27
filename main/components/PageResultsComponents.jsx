@@ -164,7 +164,7 @@ const MyResults = () => {
 
 
 return (
-    <div className='bg-white'>
+    <div className='bg-dark-bg'>
       <ProductFilterVerticalNav />
       <ProductList isOptionSearchExpanded={expandedNavBar}/>
     </div> 
