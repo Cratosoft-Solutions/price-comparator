@@ -1,4 +1,5 @@
 import { chromium } from 'patchright';
+import sparticuzChromium from '@sparticuz/chromium';
 import { JSDOM } from 'jsdom';
 import fetch from 'node-fetch';
 import { paseStoreNumber } from '@utils/functions';
@@ -261,8 +262,11 @@ export async function scrapingWithHttpRequest(urlToScrap, company, params) {
 export async function scrapingWithPuppeteer(urlToScrap, company, params) {
   try {
     let productsListTemp = [];
+    const executablePath = await sparticuzChromium.executablePath();
     const browser = await chromium.launch({
       headless: true,
+      executablePath,
+      args: sparticuzChromium.args,
     });
     const context = await browser.newContext({
       locale: 'es-CR',
