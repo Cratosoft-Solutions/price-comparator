@@ -80,6 +80,7 @@ const SiteCategoriesNav = () => {
                 <motion.div
                   className="absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-to-r from-accent-primary to-accent-glow rounded-full"
                   layoutId="activeCategory"
+                  layout="position"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
                 />
               )}

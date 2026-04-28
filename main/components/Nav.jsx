@@ -41,7 +41,7 @@ const Nav = () => {
     <>
       {/* Unified Sticky Navbar */}
       <motion.header
-        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        className={`sticky top-0 z-50 w-full transition-[background-color,border-color,box-shadow,padding,backdrop-filter] duration-300 ${
           isCompact
             ? "bg-dark-surface/80 backdrop-blur-xl border-b border-dark-border/50 shadow-lg shadow-black/20"
             : "bg-dark-bg border-b border-transparent"
