@@ -1,119 +1,24 @@
 import React from "react";
 
+const SkeletonCard = () => (
+  <div className="rounded-xl border border-dark-border/20 bg-dark-surface/40 overflow-hidden">
+    <div className="animate-pulse">
+      <div className="aspect-square bg-dark-elevated/40" />
+      <div className="p-3 space-y-2">
+        <div className="h-4 bg-dark-elevated/50 rounded-lg w-full" />
+        <div className="h-3 bg-dark-elevated/40 rounded-lg w-3/4" />
+        <div className="h-5 bg-dark-elevated/50 rounded-lg w-1/2 mt-3" />
+      </div>
+    </div>
+  </div>
+);
+
 const HorizontalCardListLoading = () => {
   return (
-    <div className="grid general-site-back p-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-4 w-full">
-        <div className="relative p-4 w-full bg-dark-surface rounded-lg overflow-hidden shadow hover:shadow-md rounded-lg">
-            <div className="animate-pulse flex flex-col">
-            <div className="rounded w-full h-52 bg-dark-card"></div>
-            <div className="flex flex-col mt-5">
-                <div className="w-full h-5 bg-dark-card rounded"></div>
-                <div className="mt-2 w-10/12 h-3 bg-dark-card rounded"></div>
-                <div className="mt-2 w-8/12 h-3 bg-dark-card rounded"></div>
-            </div>
-
-            <div className="grid grid-cols-2 mt-5 gap-x-2 gap-y-1">
-                <div className="mt-2 w-full h-3 bg-dark-card rounded"></div>
-                <div className="mt-2 w-full h-3 bg-dark-card rounded"></div>
-                <div className="mt-2 w-full h-3 bg-dark-card rounded"></div>
-                <div className="mt-2 w-full h-3 bg-dark-card rounded"></div>
-            </div>
-
-            <div className="flex items-center mt-5">
-                <div>
-                <div className="rounded-full bg-dark-card w-10 h-10"></div>
-                </div>
-                <div className="flex justify-between w-full ml-3">
-                <div className="w-5/12 h-3 bg-dark-card rounded"></div>
-                <div className="w-2/12 h-3 bg-dark-card rounded"></div>
-                </div>
-            </div>
-            </div>
-        </div>
-
-        <div className="relative p-4 w-full bg-dark-surface rounded-lg overflow-hidden shadow hover:shadow-md rounded-lg">
-            <div className="animate-pulse flex flex-col">
-            <div className="rounded w-full h-52 bg-dark-card"></div>
-            <div className="flex flex-col mt-5">
-                <div className="w-full h-5 bg-dark-card rounded"></div>
-                <div className="mt-2 w-10/12 h-3 bg-dark-card rounded"></div>
-                <div className="mt-2 w-8/12 h-3 bg-dark-card rounded"></div>
-            </div>
-
-            <div className="grid grid-cols-2 mt-5 gap-x-2 gap-y-1">
-                <div className="mt-2 w-full h-3 bg-dark-card rounded"></div>
-                <div className="mt-2 w-full h-3 bg-dark-card rounded"></div>
-                <div className="mt-2 w-full h-3 bg-dark-card rounded"></div>
-                <div className="mt-2 w-full h-3 bg-dark-card rounded"></div>
-            </div>
-
-            <div className="flex items-center mt-5">
-                <div>
-                <div className="rounded-full bg-dark-card w-10 h-10"></div>
-                </div>
-                <div className="flex justify-between w-full ml-3">
-                <div className="w-5/12 h-3 bg-dark-card rounded"></div>
-                <div className="w-2/12 h-3 bg-dark-card rounded"></div>
-                </div>
-            </div>
-            </div>
-        </div>
-
-        <div className="relative p-4 w-full bg-dark-surface rounded-lg overflow-hidden shadow hover:shadow-md rounded-lg">
-            <div className="animate-pulse flex flex-col">
-            <div className="rounded w-full h-52 bg-dark-card"></div>
-            <div className="flex flex-col mt-5">
-                <div className="w-full h-5 bg-dark-card rounded"></div>
-                <div className="mt-2 w-10/12 h-3 bg-dark-card rounded"></div>
-                <div className="mt-2 w-8/12 h-3 bg-dark-card rounded"></div>
-            </div>
-
-            <div className="grid grid-cols-2 mt-5 gap-x-2 gap-y-1">
-                <div className="mt-2 w-full h-3 bg-dark-card rounded"></div>
-                <div className="mt-2 w-full h-3 bg-dark-card rounded"></div>
-                <div className="mt-2 w-full h-3 bg-dark-card rounded"></div>
-                <div className="mt-2 w-full h-3 bg-dark-card rounded"></div>
-            </div>
-
-            <div className="flex items-center mt-5">
-                <div>
-                <div className="rounded-full bg-dark-card w-10 h-10"></div>
-                </div>
-                <div className="flex justify-between w-full ml-3">
-                <div className="w-5/12 h-3 bg-dark-card rounded"></div>
-                <div className="w-2/12 h-3 bg-dark-card rounded"></div>
-                </div>
-            </div>
-            </div>
-        </div>
-
-        <div className="relative p-4 w-full bg-dark-surface rounded-lg overflow-hidden shadow hover:shadow-md rounded-lg">
-            <div className="animate-pulse flex flex-col">
-            <div className="rounded w-full h-52 bg-dark-card"></div>
-            <div className="flex flex-col mt-5">
-                <div className="w-full h-5 bg-dark-card rounded"></div>
-                <div className="mt-2 w-10/12 h-3 bg-dark-card rounded"></div>
-                <div className="mt-2 w-8/12 h-3 bg-dark-card rounded"></div>
-            </div>
-
-            <div className="grid grid-cols-2 mt-5 gap-x-2 gap-y-1">
-                <div className="mt-2 w-full h-3 bg-dark-card rounded"></div>
-                <div className="mt-2 w-full h-3 bg-dark-card rounded"></div>
-                <div className="mt-2 w-full h-3 bg-dark-card rounded"></div>
-                <div className="mt-2 w-full h-3 bg-dark-card rounded"></div>
-            </div>
-
-            <div className="flex items-center mt-5">
-                <div>
-                <div className="rounded-full bg-dark-card w-10 h-10"></div>
-                </div>
-                <div className="flex justify-between w-full ml-3">
-                <div className="w-5/12 h-3 bg-dark-card rounded"></div>
-                <div className="w-2/12 h-3 bg-dark-card rounded"></div>
-                </div>
-            </div>
-            </div>
-        </div>
+    <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 mt-4 w-full">
+      {Array.from({ length: 8 }).map((_, i) => (
+        <SkeletonCard key={i} />
+      ))}
     </div>
   );
 };
