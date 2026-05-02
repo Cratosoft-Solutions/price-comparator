@@ -2,12 +2,15 @@
 module.exports = {
   compress: true,
   reactStrictMode: false,
-    images: {
-      remotePatterns: [
-        {
-          protocol: 'https',
-          hostname: 'lh3.googleusercontent.com',
-        },
-      ],
-    }
+  experimental: {
+    serverComponentsExternalPackages: ['patchright', '@sparticuz/chromium'],
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+      },
+    ],
   }
+}

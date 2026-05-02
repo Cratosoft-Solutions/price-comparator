@@ -1,4 +1,5 @@
-import puppeteer from 'puppeteer';
+import { chromium } from 'patchright';
+import sparticuzChromium from '@sparticuz/chromium';
 import { JSDOM } from 'jsdom';
 import fetch from 'node-fetch';
 import { paseStoreNumber } from '@utils/functions';
@@ -253,7 +254,7 @@ export async function scrapingWithHttpRequest(urlToScrap, company, params) {
 //**************************************************************************************** */
 //**************************************************************************************** */
 //**************************************************************************************** */
-//                                SCRAPING WITH PUPPETEER         
+//                                SCRAPING WITH PATCHRIGHT (Playwright)         
 //**************************************************************************************** */  
 //**************************************************************************************** */
 //**************************************************************************************** */
@@ -261,31 +262,35 @@ export async function scrapingWithHttpRequest(urlToScrap, company, params) {
 export async function scrapingWithPuppeteer(urlToScrap, company, params) {
   try {
     let productsListTemp = [];
-    let t1 = performance.now();
-    //console.log("#PASER 2 - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);
-    const browser = await puppeteer.launch({
-      headless: 'true'//'new',
+    const executablePath = await sparticuzChromium.executablePath();
+    const browser = await chromium.launch({
+      headless: true,
+      executablePath,
+      args: sparticuzChromium.args,
     });
-    t1 = performance.now();
-    //console.log("#PASER 2.1 - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);
-    const page = await browser.newPage();
-    t1 = performance.now();
-    //console.log("#PASER 3 - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);
-    await page.goto(urlToScrap, { waitUntil: 'domcontentloaded' }); //UNDEFINED> load:12, domcontentloaded:12, networkidle0:6, networkidle2:6
-    //Blocking Images and CSS. turns request interceptor on
-    t1 = performance.now();
-    //console.log("#PASER 3.1 - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);
-    try {
-      await page.waitForSelector(company.mainSelector, { visible: true, timeout: 5000 });
-      // do what you have to do here
-    } catch (e) {
-      //console.log('PUPPETEER - element probably not exists', company.name);
-      await browser.close();
-      return new Response(JSON.stringify(products), { status: 200 })
+    const context = await browser.newContext({
+      locale: 'es-CR',
+      timezoneId: 'America/Costa_Rica',
+    });
+    const page = await context.newPage();
+    // Block unnecessary resources for faster loading and reduced detection
+    if (company.rejectRequestPattern && company.rejectRequestPattern.length > 0) {
+      await page.route('**/*', (route) => {
+        const url = route.request().url();
+        if (company.rejectRequestPattern.some(pattern => url.includes(pattern))) {
+          route.abort();
+        } else {
+          route.continue();
+        }
+      });
     }
-    t1 = performance.now();
-    //console.log("#PASER 5 - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);
-    // all the web scraping will happen here  
+    await page.goto(urlToScrap, { waitUntil: 'domcontentloaded' });
+    try {
+      await page.waitForSelector(company.mainSelector, { state: 'visible', timeout: 5000 });
+    } catch (e) {
+      await browser.close();
+      return new Response(JSON.stringify(productsListTemp), { status: 200 })
+    }
     const productList = await page.evaluate((company, urlToScrap) => {
       //regular expresion to get an absolute url
       const regex = /(http(?:s?):\/\/(?:[\w]+(?:\.|\:|\-)){1}(?:(\:|)[\w\d]+(?:\.|\-)?)+)/;
@@ -344,38 +349,25 @@ export async function scrapingWithPuppeteer(urlToScrap, company, params) {
       });
       return { companyLogo, currentProducts };
     }, company, urlToScrap)
-    //console.log(productList.currentProducts);
-    t1 = performance.now();
-    //console.log("#PASER 6 - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);
     await browser.close();
-    t1 = performance.now();
-    //console.log("#PASER 7 - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);
     if (productList.currentProducts.length > 0) {
       productList.currentProducts.forEach((element, index) => {
-        productList.currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice)/* * 1 */;
-        currentProducts[index]['currency']= company.indMoneda;
+        productList.currentProducts[index]['formatedPrice'] = paseStoreNumber(element.productPrice);
+        productList.currentProducts[index]['currency']= company.indMoneda;
       });
     }
-    t1 = performance.now();
-    //console.log("#PASER 7 - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);
     productsListTemp.push({
       companyName: company.name,
       companyLogo: productList.companyLogo,
       companyProducts: productList.currentProducts
     });
-    //console.log(products);
-    //t1 = performance.now();
-    //console.log("#PASER 8 - PUPPETEER - Tiempo en responder " + (t1 - t0) + " milliseconds." + params.company);
     return productsListTemp;
   } catch (error) {
-    //await browser.close();
-    console.log('Puppeteer process failed - company.id ' + params.company + ' - ERROR ', error);
-    //if (error instanceof puppeteer.errors.TimeoutError) {
-    if (error instanceof puppeteer.error.timeout) {
-      console.log('puppeteer.error.timeout', error);
-      return new Response(JSON.stringify(products[0]), { status: 200 })
+    console.log('Patchright process failed - company.id ' + params.company + ' - ERROR ', error);
+    if (error.name === 'TimeoutError') {
+      console.log('Patchright TimeoutError', error);
+      return new Response(JSON.stringify(productsListTemp), { status: 200 })
     }
-    //console.log('ERROR CONTROLADO ' + params.company,error);
     return new Response("Failed to fetch prompts created by user", { status: 500 })
   }
 
