@@ -3,9 +3,8 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import SearchButton from "./SearchButton";
 import { MdDevices, MdMiscellaneousServices } from "react-icons/md";
-import { IoCarSport } from "react-icons/io5";
+import { IoCarSport, IoSearchOutline } from "react-icons/io5";
 import { HiHomeModern } from "react-icons/hi2";
 import { GoArrowRight, GoSearch } from "react-icons/go";
 import { useDispatch } from "react-redux";
@@ -41,7 +40,7 @@ const itemVariants = {
   },
 };
 
-const HeroSection = () => {
+const HeroSection = ({ onSearchClick }) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -85,10 +84,17 @@ const HeroSection = () => {
                 vendedores directamente y publica gratis.
               </p>
 
-              {/* Search */}
-              <div className="w-full max-w-xl">
-                <SearchButton personalizedClass="!h-12 lg:!h-14" />
-              </div>
+              {/* Search Trigger — opens CommandPalette */}
+              <button
+                onClick={onSearchClick}
+                className="w-full max-w-xl flex items-center gap-3 h-12 lg:h-14 px-4 lg:px-5 rounded-2xl border border-dark-border/40 bg-dark-elevated/30 backdrop-blur-sm text-dark-muted hover:border-accent-primary/40 hover:bg-dark-elevated/60 hover:text-dark-text transition-all duration-300 group cursor-text"
+              >
+                <IoSearchOutline className="w-5 h-5 text-dark-muted group-hover:text-accent-primary transition-colors" />
+                <span className="text-sm lg:text-base">¿Qué estás buscando?</span>
+                <span className="ml-auto hidden sm:flex items-center gap-1 px-2 py-0.5 rounded-md bg-dark-surface/60 border border-dark-border/30 text-[10px] lg:text-xs text-dark-muted">
+                  Ctrl+K
+                </span>
+              </button>
 
               {/* Quick Category Chips */}
               <div className="flex flex-wrap gap-2 mt-4 lg:mt-5">

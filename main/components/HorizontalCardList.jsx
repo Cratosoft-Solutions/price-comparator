@@ -50,17 +50,18 @@ const HorizontalCardList = ({mergedProducts, adminMode = false, callBackFunction
   return (
     <div className="min-h-screen pb-24">
       {!adminMode && (
-        <div className="w-full justify-left">
-          <p className="text-sm text-dark-text font-black">
-            {" "}
-            {`Encontramos ${mergedProducts.length} anuncios. Registros del ${
-              FIRSTPOSITION + 1
-            } al ${LASTPOSITION}`}
+        <div className="w-full mb-4">
+          <p className="text-sm text-dark-muted">
+            Encontramos{" "}
+            <span className="text-dark-text font-semibold">{mergedProducts.length}</span>{" "}
+            anuncios · Mostrando del{" "}
+            <span className="text-dark-text font-semibold">{FIRSTPOSITION + 1}</span> al{" "}
+            <span className="text-dark-text font-semibold">{LASTPOSITION}</span>
           </p>
         </div>
       )}
 
-      <div className="grid gap-3 grid-cols-5 mt-4 mb-24">
+      <div className="grid gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-2 mb-24">
         {mergedProducts
           .filter((element) => element.isLocal)
           .slice(FIRSTPOSITION, LASTPOSITION).length > 0
@@ -94,15 +95,14 @@ const HorizontalCardList = ({mergedProducts, adminMode = false, callBackFunction
         mergedProducts.filter(
           (element) => element.isLocal && element.category === "PRODUCT"
         ).length > 0 && (
-          <div className="w-full justify-left">
-            <p className="text-lg text-dark-text font-black">
-              {" "}
-              {"Tambien te puede interesar"}
+          <div className="w-full mt-6 mb-2">
+            <p className="text-base text-dark-text font-semibold">
+              También te puede interesar
             </p>
           </div>
         )}
 
-      <div className="grid gap-3 grid-cols-5 mt-4 mb-24">
+      <div className="grid gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-2 mb-24">
         {!adminMode &&
           mergedProducts.filter((element) => !element.isLocal).length > 0 &&
           mergedProducts
