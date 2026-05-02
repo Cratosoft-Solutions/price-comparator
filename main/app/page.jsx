@@ -1,4 +1,5 @@
 "use client";
+import { useCallback } from "react";
 import HorizontalItemList from "@components/HorizontalItemList";
 import HorizontalMainInfo from "@components/HorizontalMainInfo";
 import HeroSection from "@components/HeroSection";
@@ -7,11 +8,14 @@ import MainPageInformationTab from "@components/MainPageInformationTab";
 import MainPageInformationCategories from "@components/MainPageInformationCategories";
 
 const Home = () => {
- 
+  const openCommandPalette = useCallback(() => {
+    window.dispatchEvent(new KeyboardEvent("keydown", { key: "k", ctrlKey: true, bubbles: true }));
+  }, []);
+
   return (
     <div className="w-full gap-2 bg-dark-bg">
       <div className="w-full lg:mb-4 relative">
-        <HeroSection />
+        <HeroSection onSearchClick={openCommandPalette} />
       </div>
 
       <div className="w-full lg:mb-4 relative">

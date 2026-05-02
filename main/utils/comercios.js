@@ -563,13 +563,14 @@ export const scrapCompanyConfiguration = [
         name: "Pequeño Mundo",
         url: 'https://tienda.pequenomundo.com/catalogsearch/result/?q=SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
-        indHowToScrape: 'JSDOM',
+        indHowToScrape: 'PUPPETEER',
         replaceTextOnURL: 'SEARCH_TEXT',
-        indLogoSelector: true,
-        logoSelector: ".logo img",
+        rejectRequestPattern: ['google-analytics', 'facebook', 'hotjar', 'doubleclick'],
+        indLogoSelector: false,
+        logoSelector: "https://tienda.pequenomundo.com/media/logo/stores/1/logo_peque_o_mundo.png",
         attributeLogoSelector: 'src',
         indMoneda: '₡',
-        mainSelector: '.products.wrapper.grid.products-grid.columns4 ol li',
+        mainSelector: '.products.wrapper.grid.products-grid ol li',
         scrapingFields: [
             {
                 fieldName: 'productPrice',
@@ -577,13 +578,13 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: '.price',
+                        selector: '.price-wrapper .price',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 2,
-                        selector: '.product-item-info div .price-box.price-final_price span span span',
+                        selector: '.price',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -595,6 +596,12 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
+                        selector: '.product-item-link',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'href'
+                    },
+                    {
+                        order: 2,
                         selector: '.product-item-info a',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'href'
@@ -607,7 +614,13 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: '.product-item-info .product-item-photo a img',
+                        selector: '.product-image-photo',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'src'
+                    },
+                    {
+                        order: 2,
+                        selector: '.product-item-info img',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'data-src'
                     }
@@ -619,6 +632,12 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
+                        selector: '.product-item-link',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
                         selector: '.product-item-info div strong a',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null

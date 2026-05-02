@@ -1,73 +1,126 @@
-import React from "react";
-import HorizontalPromotionTags from "./HorizontalPromotionTags";
+import React, { useState } from "react";
 import { BsShare } from "react-icons/bs";
+import { GoLinkExternal } from "react-icons/go";
+import HorizontalPromotionTags from "./HorizontalPromotionTags";
 import SocialShare from "./SocialShare";
-import { useState } from "react";
 
 const MobileProductCard = ({ product, index, adminMode, callBackFunction }) => {
   const [showShareModal, setShowShareModal] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
-  const handleProductClick=(url)=>{
-    if(adminMode || product.isLocal){
+  const handleProductClick = () => {
+    if (adminMode || product.isLocal) {
       callBackFunction(product);
-    }else{
-      window.open(product.vendorLink, '_blank');
+    } else {
+      window.open(product.vendorLink, "_blank");
     }
-  }
+  };
+
+  const hasSpecialPrice =
+    Boolean(product.formatedEspecialPrice) &&
+    product.formatedEspecialPrice != 0;
+
+  const currencySymbol = product.currency === "CRC" ? "₡" : product.currency;
 
   return (
-    
-    <div key={product.productName + index} className="container-fluid mx-auto w-full border border-dark-border rounded-lg">
-          {showShareModal && <SocialShare pid={product.productId} sid={product.storeId} onCloseFunction={setShowShareModal}/>}     
-      <div
-        className="hover:cursor-pointer relative flex bg-dark-surface overflow-hidden items-center justify-start rounded-lg"
-        style={{ cursor: "auto" }}
-      >
-        <div className="relative w-32 h-32 !max-h-32 flex-shrink-0">
-          <div className="p-2 absolute left-0 top-0 w-full h-full flex items-center justify-center container-blur product-image">
+    <div
+      key={product.productName + index}
+      className="bg-dark-surface border border-dark-border/40 rounded-xl overflow-hidden mb-2 mx-2"
+    >
+      {showShareModal && (
+        <SocialShare
+          pid={product.productId}
+          sid={product.storeId}
+          onCloseFunction={setShowShareModal}
+        />
+      )}
+
+      <div className="flex items-stretch">
+        {/* Image */}
+        <div
+          onClick={handleProductClick}
+          className="relative w-28 min-h-[7rem] flex-shrink-0 bg-dark-elevated/30 flex items-center justify-center cursor-pointer overflow-hidden"
+        >
+          {!imgError && product.productImage ? (
             <img
-              alt="Productos y servicios. Encuéntralo Facil Costa Rica"
-              className="w-full h-full"
+              alt={product.productName}
+              className="w-full h-full object-contain p-2"
               loading="lazy"
               src={product.productImage}
-              onClick={()=>{handleProductClick(product.vendorLink)}}
+              onError={() => setImgError(true)}
             />
-          {adminMode? null: (<>{product.isLocal?null:<div className="centered-blur">REFERENCIA </div>}</>)} 
-          </div>
+          ) : (
+            <div className="flex items-center justify-center w-full h-full text-dark-muted/40 text-[10px]">
+              Sin imagen
+            </div>
+          )}
 
+          {/* Reference badge */}
+          {!adminMode && !product.isLocal && (
+            <div className="absolute bottom-1 left-1 px-1.5 py-0.5 rounded bg-dark-bg/70 backdrop-blur-sm text-[9px] text-dark-muted font-medium uppercase tracking-wider">
+              Ref.
+            </div>
+          )}
         </div>
-        <div className="grid grid-rows-2 grid-cols-1">
-          <p className="text-sm text-dark-text font-black text-ellipsis">
+
+        {/* Content */}
+        <div className="flex flex-col flex-1 p-3 gap-1.5 min-w-0">
+          {/* Product Name */}
+          <p
+            onClick={handleProductClick}
+            className="text-sm text-dark-text font-semibold leading-snug line-clamp-2 cursor-pointer"
+          >
             {product.productName}
-            {product.isLocal && <BsShare className="absolute top-4 right-4 w-4 h-4 text-dark-muted hover:text-accent-glow transition-colors" onClick={()=>{setShowShareModal(true)}}/>      }
           </p>
 
-          <div className="text-dark-text font-[500]">
-            {Boolean(product.formatedEspecialPrice && 
-             product.formatedEspecialPrice != 0) && (
-              <div className="lg:inline text-left">
-                <span className='text-xs'>{product.currency == "CRC" ? "₡" : product.currency}</span>
-                <span className="line-through text-xs text-dark-muted">
-                    {product.formatedPrice}
-                </span>
-              </div>
-            )}
-          <div className="lg:inline text-left">
-              <span className='text-xs'>{product.currency == "CRC" ? "₡" : product.currency }</span>
-              <span className='text-xs'> 
-              {Boolean(product.formatedEspecialPrice && 
-             product.formatedEspecialPrice != 0)
-                  ? product.formatedEspecialPrice
-                  : product.formatedPrice} 
+          {/* Price */}
+          <div className="flex flex-col gap-0.5 mt-auto">
+            {hasSpecialPrice && (
+              <span className="text-xs text-dark-muted line-through">
+                {currencySymbol} {product.formatedPrice}
               </span>
+            )}
+            <span className="text-base font-bold text-accent-glow">
+              {currencySymbol}{" "}
+              {hasSpecialPrice
+                ? product.formatedEspecialPrice
+                : product.formatedPrice}
+            </span>
+          </div>
+
+          {/* Action buttons */}
+          <div className="flex items-center gap-2 mt-1">
+            {!product.isLocal && (
+              <button
+                onClick={handleProductClick}
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-accent-primary/10 border border-accent-primary/20 text-accent-glow text-xs font-medium hover:bg-accent-primary/20 transition-colors"
+              >
+                <GoLinkExternal className="w-3 h-3" />
+                Ver tienda
+              </button>
+            )}
+            {product.isLocal && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowShareModal(true);
+                }}
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-dark-elevated/50 border border-dark-border/30 text-dark-muted text-xs hover:text-dark-text hover:border-dark-border transition-colors"
+              >
+                <BsShare className="w-3 h-3" />
+                Compartir
+              </button>
+            )}
           </div>
         </div>
-
-        </div>
       </div>
-      {!adminMode && product.isLocal && <div className="relative bg-dark-surface w-full h-6"><HorizontalPromotionTags product={product}/></div>}
 
-
+      {/* Promotion Tags */}
+      {!adminMode && product.isLocal && (
+        <div className="px-3 pb-2">
+          <HorizontalPromotionTags product={product} />
+        </div>
+      )}
     </div>
   );
 };
