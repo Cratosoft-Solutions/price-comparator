@@ -14,8 +14,8 @@ const NavCategoriesBar = () => {
           </div>
           <SiteCategories/>
           <div className='flex w-full h-full items-center '>
-            <div className='border border-dark-border rounded-l-full rounded-r-full h-10'>
-              <SearchButton personalizedClass='z-50 !h-10 hidden lg:block lg:!w-full border rounded-full border-dark-border shadow-lg shadow-dark-surface/50'/>
+            <div className='h-10 w-full'>
+              <SearchButton personalizedClass='z-50 !h-10 hidden lg:block lg:!w-full'/>
             </div>
           </div>
         </div> 

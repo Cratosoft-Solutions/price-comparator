@@ -83,11 +83,7 @@ const Nav = () => {
 
             {/* Search Bar (desktop) */}
             <div className="hidden lg:flex flex-1 max-w-xl">
-              <div className="relative w-full group">
-                <SearchButton
-                  personalizedClass={`!h-10 border rounded-full border-dark-border shadow-lg shadow-dark-surface/50 transition-all duration-300 group-focus-within:border-accent-primary/50 group-focus-within:shadow-accent-primary/10`}
-                />
-              </div>
+              <SearchButton personalizedClass="!h-10" />
             </div>
 
             {/* Spotlight Search Trigger (desktop) */}
@@ -124,7 +120,7 @@ const Nav = () => {
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <SearchButton personalizedClass="!h-12 border rounded-full border-dark-border shadow-lg shadow-dark-surface/50" />
+              <SearchButton personalizedClass="!h-12" />
             </motion.div>
           )}
         </AnimatePresence>
