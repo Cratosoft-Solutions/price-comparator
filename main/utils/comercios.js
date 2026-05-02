@@ -358,7 +358,6 @@ export const scrapCompanyConfiguration = [
         logoSelector: ".logo.fitThisOnMenu",
         attributeLogoSelector: 'src',
         indMoneda: '₡',
-        indMoneda: 2,
         mainSelector: '.row.grid div article',
         scrapingFields: [
             {
@@ -482,7 +481,7 @@ export const scrapCompanyConfiguration = [
     {
         id: 9,
         name: "Gollo",
-        url: 'https://www.gollo.com/catalogsearch/result/?q=SEARCH_TEXT',
+        url: 'https://www.gollo.com/search/SEARCH_TEXT',
         scrapType: 'QUERY_PARAMETER',
         indHowToScrape: 'JSDOM',
         replaceTextOnURL: 'SEARCH_TEXT',
@@ -497,13 +496,13 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: '.product-item-info div .price-box.price-final_price .special-price .price-wrapper .price',
+                        selector: '.price-wrapper .price',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     },
                     {
                         order: 2,
-                        selector: '.product-item-info div .price-box.price-final_price span span span',
+                        selector: '.price-box.price-final_price .price',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
                     }
@@ -515,6 +514,12 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
+                        selector: '.product-item-link',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'href'
+                    },
+                    {
+                        order: 2,
                         selector: '.product-item-info a',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'href'
@@ -527,7 +532,7 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
-                        selector: '.product-item-info a span span img',
+                        selector: '.product-image-photo',
                         selectorValueFrom: "ATTRIBUTE",
                         attribute: 'src'
                     }
@@ -539,6 +544,12 @@ export const scrapCompanyConfiguration = [
                 fieldSelectors: [
                     {
                         order: 1,
+                        selector: '.product-item-link',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
                         selector: '.product-item-info div strong a',
                         selectorValueFrom: "TEXTCONTENT",
                         attribute: null
@@ -2963,5 +2974,283 @@ export const scrapCompanyConfiguration = [
                 ],
             },
         ]
-    }        
+    },
+    {
+        id: 935,
+        name: "Tecnocentro",
+        url: 'https://tecnocentrocr.com/?s=SEARCH_TEXT&post_type=product',
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSDOM',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: "https://tecnocentrocr.com/wp-content/uploads/2020/08/Logo-Tecnocentro-Blanco.png",
+        attributeLogoSelector: 'src',
+        indMoneda: '₡',
+        mainSelector: '.products.elementor-grid li.product',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.woocommerce-Price-amount.amount',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.woocommerce-LoopProduct-link',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.attachment-woocommerce_thumbnail',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'src'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.woocommerce-loop-product__title',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 936,
+        name: "CQNet",
+        url: 'https://www.cqnetcr.com/buscar?controller=search&s=SEARCH_TEXT',
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'JSDOM',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        indLogoSelector: false,
+        logoSelector: "https://www.cqnetcr.com/img/cqnet-footer-logo-1605046393.jpg",
+        attributeLogoSelector: 'src',
+        indMoneda: '₡',
+        mainSelector: '.product-container',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.price.product-price',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.product_img_link',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.replace-2x.img-responsive',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'src'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.cbp-product-name',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 937,
+        name: "Pacifiko",
+        url: 'https://www.pacifiko.cr/buscar?q=SEARCH_TEXT',
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'PUPPETEER',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        rejectRequestPattern: ['google-analytics', 'facebook', 'hotjar', 'doubleclick'],
+        indLogoSelector: false,
+        logoSelector: "https://cdn.pacifiko.com/image/catalog/Pacifiko-cr.png",
+        attributeLogoSelector: 'src',
+        indMoneda: '₡',
+        mainSelector: '.product-card',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.product-card-price',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: '[class*="price"]',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'a',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: 'img',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'src'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.product-card-name',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: 'a',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    },
+    {
+        id: 938,
+        name: "Tienda Monge Online",
+        url: 'https://www.tiendamonge.com/catalogsearch/result/?q=SEARCH_TEXT',
+        scrapType: 'QUERY_PARAMETER',
+        indHowToScrape: 'PUPPETEER',
+        replaceTextOnURL: 'SEARCH_TEXT',
+        rejectRequestPattern: ['google-analytics', 'facebook', 'hotjar', 'doubleclick', 'demdex'],
+        indLogoSelector: false,
+        logoSelector: "https://www.tiendamonge.com/media/logo/websites/7/logo-monge.svg",
+        attributeLogoSelector: 'src',
+        indMoneda: '₡',
+        mainSelector: '.product-item',
+        scrapingFields: [
+            {
+                fieldName: 'productPrice',
+                type: 'Numeric',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.special-price .price',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    },
+                    {
+                        order: 2,
+                        selector: '.price-wrapper .price',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+            {
+                fieldName: 'vendorLink',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.product-item-link',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'href'
+                    },
+                    {
+                        order: 2,
+                        selector: '.product-item-info a',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'href'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productImage',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.product-image-photo',
+                        selectorValueFrom: "ATTRIBUTE",
+                        attribute: 'src'
+                    }
+                ],
+            },
+            {
+                fieldName: 'productName',
+                type: 'String',
+                fieldSelectors: [
+                    {
+                        order: 1,
+                        selector: '.product-item-link',
+                        selectorValueFrom: "TEXTCONTENT",
+                        attribute: null
+                    }
+                ],
+            },
+        ]
+    }
 ]
